@@ -9,7 +9,9 @@
 #import "ARTCVideoChatViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-#define SERVER_HOST_URL @"https://apprtc.appspot.com"
+//#define SERVER_HOST_URL @"https://apprtc.appspot.com"
+#define SERVER_HOST_URL @"http://10.0.1.68:8080/jWebrtc"
+
 
 @implementation ARTCVideoChatViewController
 
