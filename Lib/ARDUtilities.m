@@ -30,15 +30,23 @@
 @implementation NSDictionary (ARDUtilites)
 
 + (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString {
-  NSParameterAssert(jsonString.length > 0);
-  NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-  NSError *error = nil;
-  NSDictionary *dict =
-      [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-  if (error) {
-    NSLog(@"Error parsing JSON: %@", error.localizedDescription);
-  }
-  return dict;
+    
+    if ([jsonString isKindOfClass:[NSDictionary class]]) {
+        NSDictionary* dict = (NSDictionary*)jsonString;
+        //...
+        NSLog(@"its already a dictionary %@", dict);
+        return dict;
+    }
+
+    NSParameterAssert(jsonString.length > 0);
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+   
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (error) {
+        NSLog(@"Error parsing JSON: %@", error.localizedDescription);
+    }
+    return dict;
 }
 
 + (NSDictionary *)dictionaryWithJSONData:(NSData *)jsonData {
