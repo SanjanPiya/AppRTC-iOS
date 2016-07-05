@@ -34,6 +34,7 @@
 static NSString const *kARDRegisterResultKey = @"result";
 static NSString const *kARDRegisterResultParamsKey = @"params";
 static NSString const *kARDRegisterInitiatorKey = @"is_initiator";
+static NSString const *kARDRegisterPCConfigKey = @"pc_config";
 static NSString const *kARDRegisterRoomIdKey = @"room_id";
 static NSString const *kARDRegisterClientIdKey = @"client_id";
 static NSString const *kARDRegisterMessagesKey = @"messages";
@@ -44,6 +45,7 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
 
 @property(nonatomic, assign) ARDRegisterResultType result;
 @property(nonatomic, assign) BOOL isInitiator;
+@property(nonatomic, assign) NSDictionary *pcConfig;
 @property(nonatomic, strong) NSString *roomId;
 @property(nonatomic, strong) NSString *clientId;
 @property(nonatomic, strong) NSArray *messages;
@@ -56,6 +58,7 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
 
 @synthesize result = _result;
 @synthesize isInitiator = _isInitiator;
+@synthesize pcConfig = _pcConfig;
 @synthesize roomId = _roomId;
 @synthesize clientId = _clientId;
 @synthesize messages = _messages;
@@ -72,12 +75,15 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
   response.result = [[self class] resultTypeFromString:resultString];
   NSDictionary *params = responseJSON[kARDRegisterResultParamsKey];
 
-  response.isInitiator = [params[kARDRegisterInitiatorKey] boolValue];
-  response.roomId = params[kARDRegisterRoomIdKey];
-  response.clientId = params[kARDRegisterClientIdKey];
+  NSDictionary *pcConfigJSON = params[kARDRegisterPCConfigKey];
+  response.pcConfig = pcConfigJSON;
+
+  //response.isInitiator = [params[kARDRegisterInitiatorKey] boolValue];
+  //response.roomId = params[kARDRegisterRoomIdKey];
+  //response.clientId = params[kARDRegisterClientIdKey];
 
   // Parse messages.
-  NSArray *messages = params[kARDRegisterMessagesKey];
+  NSDictionary *messages = params[kARDRegisterMessagesKey];
   NSMutableArray *signalingMessages =
       [NSMutableArray arrayWithCapacity:messages.count];
   for (NSString *message in messages) {
@@ -88,10 +94,10 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
   response.messages = signalingMessages;
 
   // Parse websocket urls.
-  NSString *webSocketURLString = params[kARDRegisterWebSocketURLKey];
-  response.webSocketURL = [NSURL URLWithString:webSocketURLString];
-  NSString *webSocketRestURLString = params[kARDRegisterWebSocketRestURLKey];
-  response.webSocketRestURL = [NSURL URLWithString:webSocketRestURLString];
+  //NSString *webSocketURLString = params[kARDRegisterWebSocketURLKey];
+  //response.webSocketURL = [NSURL URLWithString:webSocketURLString];
+  //NSString *webSocketRestURLString = params[kARDRegisterWebSocketRestURLKey];
+  //response.webSocketRestURL = [NSURL URLWithString:webSocketRestURLString];
 
   return response;
 }

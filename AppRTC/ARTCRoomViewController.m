@@ -9,6 +9,7 @@
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 
+#define SERVER_HOST_URL @"ws://localhost:8080/jWebrtc"
 
 @implementation ARTCRoomViewController
 
@@ -20,6 +21,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    
+    //Connect to the room
+    [self disconnect];
+    self.client = [[ARDAppClient alloc] initWithDelegate:self];
+    
+    [self.client connectToWebsocket: SERVER_HOST_URL];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,17 +57,59 @@
 
 
 
+- (void)disconnect {
+    if (self.client) {
+      //  if (self.localVideoTrack) [self.localVideoTrack removeRenderer:self.localView];
+      //  if (self.remoteVideoTrack) [self.remoteVideoTrack removeRenderer:self.remoteView];
+      //  self.localVideoTrack = nil;
+      //  [self.localView renderFrame:nil];
+      //  self.remoteVideoTrack = nil;
+     //   [self.remoteView renderFrame:nil];
+        [self.client disconnect];
+    }
+}
+
+#pragma mark - ARDAppClientDelegate
+
+- (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
+    switch (state) {
+        case kARDAppClientStateConnected:
+            NSLog(@"Client connected.");
+            break;
+        case kARDAppClientStateConnecting:
+            NSLog(@"Client connecting.");
+            break;
+        case kARDAppClientStateDisconnected:
+            NSLog(@"Client disconnected.");
+         //   [self remoteDisconnected];
+            break;
+    }
+}
+
+
+
+- (void)appClient:(ARDAppClient *)client didError:(NSError *)error {
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:[NSString stringWithFormat:@"%@", error]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    [self disconnect];
+}
+
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     ARTCVideoChatViewController *viewController = (ARTCVideoChatViewController *)[segue destinationViewController];
-    [viewController setRoomName:sender];
+    [viewController setServerHostUrl: SERVER_HOST_URL];
 }
 
 #pragma mark - ARTCRoomTextInputViewCellDelegate Methods
 
-- (void)roomTextInputViewCell:(ARTCRoomTextInputViewCell *)cell shouldJoinRoom:(NSString *)room {
-    [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:room];
+- (void)toTextInputViewCell:(ARTCRoomTextInputViewCell *)cell shouldCallUser:(NSString *)to {
+    [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:to];
 }
 
 @end

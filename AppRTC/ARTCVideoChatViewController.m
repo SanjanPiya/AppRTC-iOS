@@ -9,10 +9,6 @@
 #import "ARTCVideoChatViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-//#define SERVER_HOST_URL @"https://apprtc.appspot.com"
-#define SERVER_HOST_URL @"http://10.0.1.68:8080/jWebrtc"
-
-
 @implementation ARTCVideoChatViewController
 
 - (void)viewDidLoad {
@@ -45,8 +41,6 @@
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,14 +54,9 @@
     [self.localViewHeightConstraint setConstant:self.view.frame.size.height];
     [self.localViewWidthConstraint setConstant:self.view.frame.size.width];
     [self.footerViewBottomConstraint setConstant:0.0f];
-    
-    //Connect to the room
-    [self disconnect];
-    self.client = [[ARDAppClient alloc] initWithDelegate:self];
-    [self.client setServerHostUrl:SERVER_HOST_URL];
-    [self.client connectToRoomWithId:self.roomName options:nil];
-    
-    [self.urlLabel setText:self.roomUrl];
+    //old place for connecting to room
+    [self.urlLabel setText:self.serverHostUrl]; //must go into ChatViewController
+ 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -93,9 +82,13 @@
     return YES;
 }
 
-- (void)setRoomName:(NSString *)roomName {
-    _roomName = roomName;
-    self.roomUrl = [NSString stringWithFormat:@"%@/r/%@", SERVER_HOST_URL, roomName];
+- (void) setARDClient:(ARDAppClient *)client {
+   self.client = client;
+}
+
+
+- (void)setServerHostUrl:(NSString *)serverHostUrl {
+    self.serverHostUrl = serverHostUrl;
 }
 
 - (void)disconnect {
@@ -127,6 +120,40 @@
             [self.buttonContainerViewLeftConstraint setConstant:-40.0f];
             [self.buttonContainerView setAlpha:0.0f];
         }
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)appClient:(ARDAppClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
+    if (self.localVideoTrack) {
+        [self.localVideoTrack removeRenderer:self.localView];
+        self.localVideoTrack = nil;
+        [self.localView renderFrame:nil];
+    }
+    self.localVideoTrack = localVideoTrack;
+    [self.localVideoTrack addRenderer:self.localView];
+}
+
+- (void)appClient:(ARDAppClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
+    self.remoteVideoTrack = remoteVideoTrack;
+    [self.remoteVideoTrack addRenderer:self.remoteView];
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
+        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        CGRect videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
+        if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+            videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
+        }
+        CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
+        
+        [self.localViewWidthConstraint setConstant:videoFrame.size.width];
+        [self.localViewHeightConstraint setConstant:videoFrame.size.height];
+        
+        
+        [self.localViewBottomConstraint setConstant:28.0f];
+        [self.localViewRightConstraint setConstant:28.0f];
+        [self.footerViewBottomConstraint setConstant:-80.0f];
         [self.view layoutIfNeeded];
     }];
 }
@@ -173,66 +200,7 @@
 }
 
 
-#pragma mark - ARDAppClientDelegate
 
-- (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
-    switch (state) {
-        case kARDAppClientStateConnected:
-            NSLog(@"Client connected.");
-            break;
-        case kARDAppClientStateConnecting:
-            NSLog(@"Client connecting.");
-            break;
-        case kARDAppClientStateDisconnected:
-            NSLog(@"Client disconnected.");
-            [self remoteDisconnected];
-            break;
-    }
-}
-
-- (void)appClient:(ARDAppClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-    if (self.localVideoTrack) {
-        [self.localVideoTrack removeRenderer:self.localView];
-        self.localVideoTrack = nil;
-        [self.localView renderFrame:nil];
-    }
-    self.localVideoTrack = localVideoTrack;
-    [self.localVideoTrack addRenderer:self.localView];
-}
-
-- (void)appClient:(ARDAppClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
-    self.remoteVideoTrack = remoteVideoTrack;
-    [self.remoteVideoTrack addRenderer:self.remoteView];
-    
-    [UIView animateWithDuration:0.4f animations:^{
-        //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
-        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-        CGRect videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
-        if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-            videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
-        }
-        CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
-        
-        [self.localViewWidthConstraint setConstant:videoFrame.size.width];
-        [self.localViewHeightConstraint setConstant:videoFrame.size.height];
-        
-        
-        [self.localViewBottomConstraint setConstant:28.0f];
-        [self.localViewRightConstraint setConstant:28.0f];
-        [self.footerViewBottomConstraint setConstant:-80.0f];
-        [self.view layoutIfNeeded];
-    }];
-}
-
-- (void)appClient:(ARDAppClient *)client didError:(NSError *)error {
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:[NSString stringWithFormat:@"%@", error]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    [self disconnect];
-}
 
 #pragma mark - RTCEAGLVideoViewDelegate
 

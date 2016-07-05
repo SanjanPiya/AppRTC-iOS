@@ -163,27 +163,37 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   [_delegate appClient:self didChangeState:_state];
 }
 
-- (void)connectToRoomWithId:(NSString *)roomId
-                    options:(NSDictionary *)options {
-  NSParameterAssert(roomId.length);
-  NSParameterAssert(_state == kARDAppClientStateDisconnected);
-  self.state = kARDAppClientStateConnecting;
+- (void)connectToWebsocket:(NSString *)url {
+  
+    NSParameterAssert(url.length);
+    _websocketURL = [NSURL URLWithString:url];
+    
+    NSParameterAssert(_state == kARDAppClientStateDisconnected);
+    self.state = kARDAppClientStateConnecting;
 
-  // Request TURN.
-  __weak ARDAppClient *weakSelf = self;
+
+    __weak ARDAppClient *weakSelf = self;
+    
+    ARDAppClient *strongSelf = weakSelf;
+      [strongSelf registerWithColliderIfReady];
+     //[strongSelf.iceServers addObjectsFromArray:turnServers];
+   /*
+  
+    // Request TURN.
   NSURL *turnRequestURL = [NSURL URLWithString:kARDTurnRequestUrl];
   [self requestTURNServersWithURL:turnRequestURL
                 completionHandler:^(NSArray *turnServers) {
-    ARDAppClient *strongSelf = weakSelf;
-    [strongSelf.iceServers addObjectsFromArray:turnServers];
+  
+   
     strongSelf.isTurnComplete = YES;
     [strongSelf startSignalingIfReady];
-  }];
+  }]; */
 
   // Register with room server.
-  [self registerWithRoomServerForRoomId:roomId
+ /* [self registerWithRoomServerForRoomId:roomId
                       completionHandler:^(ARDRegisterResponse *response) {
-    ARDAppClient *strongSelf = weakSelf;
+    
+                          ARDAppClient *strongSelf = weakSelf;
     if (!response || response.result != kARDRegisterResultTypeSuccess) {
       NSLog(@"Failed to register with room server. Result:%d",
           (int)response.result);
@@ -199,9 +209,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
       return;
     }
     NSLog(@"Registered with room server.");
-    strongSelf.roomId = response.roomId;
-    strongSelf.clientId = response.clientId;
-    strongSelf.isInitiator = response.isInitiator;
+   // strongSelf.roomId = response.roomId;
+   // strongSelf.clientId = response.clientId;
+   // strongSelf.isInitiator = response.isInitiator;
     for (ARDSignalingMessage *message in response.messages) {
       if (message.type == kARDSignalingMessageTypeOffer ||
           message.type == kARDSignalingMessageTypeAnswer) {
@@ -211,11 +221,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         [strongSelf.messageQueue addObject:message];
       }
     }
-    strongSelf.webSocketURL = response.webSocketURL;
-    strongSelf.webSocketRestURL = response.webSocketRestURL;
-    [strongSelf registerWithColliderIfReady];
+    //strongSelf.webSocketURL = response.webSocketURL;
+    //strongSelf.webSocketRestURL = response.webSocketRestURL;
+   //[strongSelf registerWithColliderIfReady];
     [strongSelf startSignalingIfReady];
-  }];
+  }];*/
+    
 }
 
 - (void)disconnect {
@@ -223,7 +234,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     return;
   }
   if (self.isRegisteredWithRoomServer) {
-    [self unregisterWithRoomServer];
+#warning please implement unregistering from websocket and mediastreams
+   //TODO [self unregisterWithRoomServer];
   }
   if (_channel) {
     if (_channel.state == kARDWebSocketChannelStateRegistered) {
@@ -245,6 +257,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 }
 
 #pragma mark - ARDWebSocketChannelDelegate
+
+- (void)channel:(ARDWebSocketChannel *)channel
+    setTurnServer:(NSArray *)turnServers {
+    
+    _iceServers = turnServers;
+}
 
 - (void)channel:(ARDWebSocketChannel *)channel
     didReceiveMessage:(ARDSignalingMessage *)message {
@@ -463,11 +481,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 }
 
 - (void)sendSignalingMessage:(ARDSignalingMessage *)message {
-  if (_isInitiator) {
-    [self sendSignalingMessageToRoomServer:message completionHandler:nil];
-  } else {
     [self sendSignalingMessageToCollider:message];
-  }
 }
 
 
@@ -512,7 +526,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     if (_isSpeakerEnabled) [self enableSpeaker];
     return localStream;
 }
-
+/*
 - (void)requestTURNServersWithURL:(NSURL *)requestURL
     completionHandler:(void (^)(NSArray *turnServers))completionHandler {
   NSParameterAssert([requestURL absoluteString].length);
@@ -536,10 +550,10 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     turnServers = [RTCICEServer serversFromCEODJSONDictionary:dict];
     completionHandler(turnServers);
   }];
-}
+}*/
 
 #pragma mark - Room server methods
-
+/**
 - (void)registerWithRoomServerForRoomId:(NSString *)roomId
     completionHandler:(void (^)(ARDRegisterResponse *))completionHandler {
   NSString *urlString =
@@ -634,7 +648,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         }
     }];
 }
-
+*/
 - (NSError *)roomServerNetworkError {
   NSError *error =
       [[NSError alloc] initWithDomain:kARDAppClientErrorDomain
@@ -648,21 +662,16 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 #pragma mark - Collider methods
 
 - (void)registerWithColliderIfReady {
-  if (!self.isRegisteredWithRoomServer) {
-    return;
-  }
-  // Open WebSocket connection.
-  _channel =
-      [[ARDWebSocketChannel alloc] initWithURL:_websocketURL
-                                       restURL:_websocketRestURL
-                                      delegate:self];
-  [_channel registerForRoomId:_roomId clientId:_clientId];
+    // Open WebSocket connection.
+    _websocketURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_websocketURL, @"/ws"]];
+    _channel =  [[ARDWebSocketChannel alloc] initWithURL:_websocketURL delegate:self];
 }
 
 - (void)sendSignalingMessageToCollider:(ARDSignalingMessage *)message {
   NSData *data = [message JSONData];
   [_channel sendData:data];
 }
+
 
 #pragma mark - Defaults
 

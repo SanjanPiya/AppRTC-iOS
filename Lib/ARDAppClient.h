@@ -64,12 +64,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
 
-// Establishes a connection with the AppRTC servers for the given room id.
-// TODO(tkchin): provide available keys/values for options. This will be used
-// for call configurations such as overriding server choice, specifying codecs
-// and so on.
-- (void)connectToRoomWithId:(NSString *)roomId
-                    options:(NSDictionary *)options;
+- (void)connectToWebsocket:(NSString *)url;
 
 // Mute and unmute Audio-In
 - (void)muteAudioIn;
