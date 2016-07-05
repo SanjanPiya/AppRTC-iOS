@@ -22,8 +22,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a room name." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZU-wT-4R2">
-                                            <rect key="frame" x="18" y="18" width="227" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please enter a user name to call" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZU-wT-4R2">
+                                            <rect key="frame" x="18" y="18" width="243" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="gqJ-eG-fUp"/>
                                                 <constraint firstAttribute="width" constant="227" id="iY4-S4-htt"/>
@@ -49,8 +49,8 @@
                                                 <constraint firstAttribute="height" constant="2" id="Jev-MF-QWj"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room name must be 5 or more characters and include only letters and numbers." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7r-GU-GE9">
-                                            <rect key="frame" x="40" y="93" width="520" height="40"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username must have 5 or more characters and include only letters and numbers." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7r-GU-GE9">
+                                            <rect key="frame" x="40" y="93" width="543" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="hig-Mv-0iO"/>
                                             </constraints>

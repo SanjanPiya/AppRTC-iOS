@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, ARDRegisterResultType) {
 @property(nonatomic, readonly) BOOL isInitiator;
 @property(nonatomic, readonly) NSString *roomId;
 @property(nonatomic, readonly) NSString *clientId;
+@property(nonatomic, readonly) NSDictionary *pcConfig;
 @property(nonatomic, readonly) NSArray *messages;
 @property(nonatomic, readonly) NSURL *webSocketURL;
 @property(nonatomic, readonly) NSURL *webSocketRestURL;

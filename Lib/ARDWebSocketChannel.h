@@ -49,24 +49,31 @@ typedef NS_ENUM(NSInteger, ARDWebSocketChannelState) {
 - (void)channel:(ARDWebSocketChannel *)channel
     didReceiveMessage:(ARDSignalingMessage *)message;
 
+- (void)channel:(ARDWebSocketChannel *)channel
+    setTurnServer:(NSArray *)turnservers;
+
 @end
 
 // Wraps a WebSocket connection to the AppRTC WebSocket server.
 @interface ARDWebSocketChannel : NSObject
 
+@property(nonatomic, assign)   NSArray *pcConfig;
 @property(nonatomic, readonly) NSString *roomId;
 @property(nonatomic, readonly) NSString *clientId;
 @property(nonatomic, readonly) ARDWebSocketChannelState state;
 @property(nonatomic, weak) id<ARDWebSocketChannelDelegate> delegate;
 
 - (instancetype)initWithURL:(NSURL *)url
-                    restURL:(NSURL *)restURL
                    delegate:(id<ARDWebSocketChannelDelegate>)delegate;
 
 // Registers with the WebSocket server for the given room and client id once
 // the web socket connection is open.
+
 - (void)registerForRoomId:(NSString *)roomId
                  clientId:(NSString *)clientId;
+
+
+- (void)getAppConfig;
 
 // Sends data over the WebSocket connection if registered, otherwise POSTs to
 // the web socket server instead.

@@ -10,8 +10,8 @@
 #import <libjingle_peerconnection/RTCEAGLVideoView.h>
 #import <AppRTC/ARDAppClient.h>
 
-@interface ARTCVideoChatViewController : UIViewController <ARDAppClientDelegate, RTCEAGLVideoViewDelegate>
-
+@interface ARTCVideoChatViewController : UIViewController <RTCEAGLVideoViewDelegate>
+@property (strong, nonatomic) NSString *serverHostUrl;
 //Views, Labels, and Buttons
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *remoteView;
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *audioButton;
 @property (strong, nonatomic) IBOutlet UIButton *videoButton;
 @property (strong, nonatomic) IBOutlet UIButton *hangupButton;
+@property (strong, nonatomic) ARDAppClient *client;
 
 //Auto Layout Constraints used for animations
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *remoteViewTopConstraint;
@@ -34,9 +35,6 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *footerViewBottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonContainerViewLeftConstraint;
 
-@property (strong, nonatomic) NSString *roomUrl;
-@property (strong, nonatomic) NSString *roomName;
-@property (strong, nonatomic) ARDAppClient *client;
 @property (strong, nonatomic) RTCVideoTrack *localVideoTrack;
 @property (strong, nonatomic) RTCVideoTrack *remoteVideoTrack;
 @property (assign, nonatomic) CGSize localVideoSize;

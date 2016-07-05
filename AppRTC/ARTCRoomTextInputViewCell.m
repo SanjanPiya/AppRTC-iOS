@@ -28,7 +28,7 @@
 
 - (IBAction)touchButtonPressed:(id)sender {
     if ([self.delegate respondsToSelector:@selector(roomTextInputViewCell:shouldJoinRoom:)]) {
-        [self.delegate roomTextInputViewCell:self shouldJoinRoom:self.textField.text];
+        [self.delegate toTextInputViewCell:self shouldCallUser:self.textField.text];
     }
 }
 
