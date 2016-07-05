@@ -7,6 +7,13 @@ Included in this Xcode project is a native Storyboard based Room Locator and Vid
 
 ![AppRTC - iOS WebRTC Client Pod](./screenshots/screenshots.jpg "AppRTC iOS WebRTC App")
 
+##TODO
+- registering current user at server session
+- making a call to another person
+
+##Done
+- 2016-07-05 registering websocket during app start and reading appConfig (e.g. turn servers) via websockets
+
 ## Features
 * Fully native objective-c 64-bit support
 * pre-compiled libWebRTC.a (saves you hours of compiling)
