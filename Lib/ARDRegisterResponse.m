@@ -78,27 +78,6 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
   NSDictionary *pcConfigJSON = params[kARDRegisterPCConfigKey];
   response.pcConfig = pcConfigJSON;
 
-  //response.isInitiator = [params[kARDRegisterInitiatorKey] boolValue];
-  //response.roomId = params[kARDRegisterRoomIdKey];
-  //response.clientId = params[kARDRegisterClientIdKey];
-
-  // Parse messages.
-  NSDictionary *messages = params[kARDRegisterMessagesKey];
-  NSMutableArray *signalingMessages =
-      [NSMutableArray arrayWithCapacity:messages.count];
-  for (NSString *message in messages) {
-    ARDSignalingMessage *signalingMessage =
-        [ARDSignalingMessage messageFromJSONString:message];
-    [signalingMessages addObject:signalingMessage];
-  }
-  response.messages = signalingMessages;
-
-  // Parse websocket urls.
-  //NSString *webSocketURLString = params[kARDRegisterWebSocketURLKey];
-  //response.webSocketURL = [NSURL URLWithString:webSocketURLString];
-  //NSString *webSocketRestURLString = params[kARDRegisterWebSocketRestURLKey];
-  //response.webSocketRestURL = [NSURL URLWithString:webSocketRestURLString];
-
   return response;
 }
 

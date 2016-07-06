@@ -31,6 +31,7 @@
 #import "RTCSessionDescription.h"
 
 typedef enum {
+  kARDSignalingMessageTypeRegister,
   kARDSignalingMessageTypeCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,

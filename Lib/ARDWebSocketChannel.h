@@ -58,25 +58,18 @@ typedef NS_ENUM(NSInteger, ARDWebSocketChannelState) {
 @interface ARDWebSocketChannel : NSObject
 
 @property(nonatomic, assign)   NSArray *pcConfig;
-@property(nonatomic, readonly) NSString *roomId;
-@property(nonatomic, readonly) NSString *clientId;
+@property(nonatomic, readonly) NSString *to;
+@property(nonatomic, readonly) NSString *from;
 @property(nonatomic, readonly) ARDWebSocketChannelState state;
 @property(nonatomic, weak) id<ARDWebSocketChannelDelegate> delegate;
 
 - (instancetype)initWithURL:(NSURL *)url
                    delegate:(id<ARDWebSocketChannelDelegate>)delegate;
 
-// Registers with the WebSocket server for the given room and client id once
-// the web socket connection is open.
-
-- (void)registerForRoomId:(NSString *)roomId
-                 clientId:(NSString *)clientId;
-
+- (void)registerFrom:(NSString *)name;
 
 - (void)getAppConfig;
 
-// Sends data over the WebSocket connection if registered, otherwise POSTs to
-// the web socket server instead.
 - (void)sendData:(NSData *)data;
 
 @end

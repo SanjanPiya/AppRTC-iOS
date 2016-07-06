@@ -27,6 +27,7 @@
     self.client = [[ARDAppClient alloc] initWithDelegate:self];
     
     [self.client connectToWebsocket: SERVER_HOST_URL];
+   // [self.client register: SERVER_HOST_URL];
 }
 
 - (void)didReceiveMemoryWarning {
