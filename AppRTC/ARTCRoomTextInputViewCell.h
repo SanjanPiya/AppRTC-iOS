@@ -26,5 +26,5 @@
 
 @protocol ARTCRoomTextInputViewCellDelegate<NSObject>
 @optional
-- (void)toTextInputViewCell:(ARTCRoomTextInputViewCell *)cell shouldCallUser:(NSString *)room;
+- (void)toTextInputViewCell:(ARTCRoomTextInputViewCell *)cell shouldCallUser:(NSString *)to;
 @end

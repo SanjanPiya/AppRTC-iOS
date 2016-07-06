@@ -47,22 +47,8 @@
 #import "RTCVideoCapturer.h"
 #import "RTCVideoTrack.h"
 
-// TODO(tkchin): move these to a configuration object.
-static NSString *kARDRoomServerHostUrl =
-    @"https://apprtc.appspot.com";
-static NSString *kARDRoomServerRegisterFormat =
-    @"%@/join/%@";
-static NSString *kARDRoomServerMessageFormat =
-    @"%@/message/%@/%@";
-static NSString *kARDRoomServerByeFormat =
-    @"%@/leave/%@/%@";
 
-static NSString *kARDDefaultSTUNServerUrl =
-    @"stun:stun.l.google.com:19302";
-// TODO(tkchin): figure out a better username for CEOD statistics.
-static NSString *kARDTurnRequestUrl =
-    @"https://computeengineondemand.appspot.com"
-    @"/turn?username=iapprtc&key=4080218913";
+static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
 static NSString *kARDAppClientErrorDomain = @"ARDAppClient";
 static NSInteger kARDAppClientErrorUnknown = -1;
@@ -79,18 +65,14 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;
 @property(nonatomic, strong) NSMutableArray *messageQueue;
-
-@property(nonatomic, assign) BOOL isTurnComplete;
 @property(nonatomic, assign) BOOL hasReceivedSdp;
-@property(nonatomic, readonly) BOOL isRegisteredWithRoomServer;
-
-@property(nonatomic, strong) NSString *roomId;
-@property(nonatomic, strong) NSString *clientId;
+@property(nonatomic, readonly) BOOL isRegisteredWithWebsocketServer;
+@property(nonatomic, strong) NSString *to;
+@property(nonatomic, strong) NSString *from;
 @property(nonatomic, assign) BOOL isInitiator;
 @property(nonatomic, assign) BOOL isSpeakerEnabled;
 @property(nonatomic, strong) NSMutableArray *iceServers;
 @property(nonatomic, strong) NSURL *webSocketURL;
-@property(nonatomic, strong) NSURL *webSocketRestURL;
 @property(nonatomic, strong) RTCAudioTrack *defaultAudioTrack;
 @property(nonatomic, strong) RTCVideoTrack *defaultVideoTrack;
 
@@ -105,15 +87,15 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 @synthesize peerConnection = _peerConnection;
 @synthesize factory = _factory;
 @synthesize messageQueue = _messageQueue;
-@synthesize isTurnComplete = _isTurnComplete;
 @synthesize hasReceivedSdp  = _hasReceivedSdp;
-@synthesize roomId = _roomId;
-@synthesize clientId = _clientId;
+@synthesize isRegisteredWithWebsocketServer  = _isRegisteredWithWebsocketServer;
+@synthesize from = _from;
+@synthesize to = _to;
 @synthesize isInitiator = _isInitiator;
 @synthesize isSpeakerEnabled = _isSpeakerEnabled;
 @synthesize iceServers = _iceServers;
 @synthesize webSocketURL = _websocketURL;
-@synthesize webSocketRestURL = _websocketRestURL;
+
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate {
   if (self = [super init]) {
@@ -121,7 +103,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     _factory = [[RTCPeerConnectionFactory alloc] init];
     _messageQueue = [NSMutableArray array];
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
-    _serverHostUrl = kARDRoomServerHostUrl;
+    //_serverHostUrl = kARDRoomServerHostUrl;
     _isSpeakerEnabled = YES;
       
       [[NSNotificationCenter defaultCenter] addObserver:self
@@ -171,23 +153,16 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
     self.state = kARDAppClientStateConnecting;
 
-
     __weak ARDAppClient *weakSelf = self;
-    
     ARDAppClient *strongSelf = weakSelf;
-      [strongSelf registerWithColliderIfReady];
-     //[strongSelf.iceServers addObjectsFromArray:turnServers];
-   /*
-  
-    // Request TURN.
-  NSURL *turnRequestURL = [NSURL URLWithString:kARDTurnRequestUrl];
-  [self requestTURNServersWithURL:turnRequestURL
-                completionHandler:^(NSArray *turnServers) {
-  
+    [strongSelf registerWithColliderIfReady];
+    
+    _channel.getAppConfig;
+    
+   // [_channel registerFrom:@"nico"];
    
-    strongSelf.isTurnComplete = YES;
-    [strongSelf startSignalingIfReady];
-  }]; */
+    //|strongSelf reg
+    //  [strongSelf startSignalingIfReady];
 
   // Register with room server.
  /* [self registerWithRoomServerForRoomId:roomId
@@ -233,7 +208,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   if (_state == kARDAppClientStateDisconnected) {
     return;
   }
-  if (self.isRegisteredWithRoomServer) {
+  if (self.isRegisteredWithWebsocketServer) {
 #warning please implement unregistering from websocket and mediastreams
    //TODO [self unregisterWithRoomServer];
   }
@@ -247,9 +222,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     // Disconnect from collider.
     _channel = nil;
   }
-  _clientId = nil;
-  _roomId = nil;
-  _isInitiator = NO;
+   _from = nil;
+   _to = nil;
+  //_isInitiator = NO;
   _hasReceivedSdp = NO;
   _messageQueue = [NSMutableArray array];
   _peerConnection = nil;
@@ -260,13 +235,15 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)channel:(ARDWebSocketChannel *)channel
     setTurnServer:(NSArray *)turnServers {
-    
     _iceServers = turnServers;
 }
 
 - (void)channel:(ARDWebSocketChannel *)channel
     didReceiveMessage:(ARDSignalingMessage *)message {
   switch (message.type) {
+    case kARDSignalingMessageTypeRegister:
+        
+          break;
     case kARDSignalingMessageTypeOffer:
     case kARDSignalingMessageTypeAnswer:
       _hasReceivedSdp = YES;
@@ -409,12 +386,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 #pragma mark - Private
 
-- (BOOL)isRegisteredWithRoomServer {
-  return _clientId.length;
+- (BOOL)isRegisteredWithWebsocketServer {
+  return _to.length;
 }
 
 - (void)startSignalingIfReady {
-  if (!_isTurnComplete || !self.isRegisteredWithRoomServer) {
+  if (!self.isRegisteredWithWebsocketServer) {
     return;
   }
   self.state = kARDAppClientStateConnected;
@@ -526,31 +503,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     if (_isSpeakerEnabled) [self enableSpeaker];
     return localStream;
 }
-/*
-- (void)requestTURNServersWithURL:(NSURL *)requestURL
-    completionHandler:(void (^)(NSArray *turnServers))completionHandler {
-  NSParameterAssert([requestURL absoluteString].length);
-  NSMutableURLRequest *request =
-      [NSMutableURLRequest requestWithURL:requestURL];
-  // We need to set origin because TURN provider whitelists requests based on
-  // origin.
-  [request addValue:@"Mozilla/5.0" forHTTPHeaderField:@"user-agent"];
-  [request addValue:self.serverHostUrl forHTTPHeaderField:@"origin"];
-  [NSURLConnection sendAsyncRequest:request
-                  completionHandler:^(NSURLResponse *response,
-                                      NSData *data,
-                                      NSError *error) {
-    NSArray *turnServers = [NSArray array];
-    if (error) {
-      NSLog(@"Unable to get TURN server.");
-      completionHandler(turnServers);
-      return;
-    }
-    NSDictionary *dict = [NSDictionary dictionaryWithJSONData:data];
-    turnServers = [RTCICEServer serversFromCEODJSONDictionary:dict];
-    completionHandler(turnServers);
-  }];
-}*/
+
 
 #pragma mark - Room server methods
 /**
