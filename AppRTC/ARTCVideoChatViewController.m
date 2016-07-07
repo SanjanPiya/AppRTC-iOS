@@ -55,7 +55,7 @@
     [self.localViewWidthConstraint setConstant:self.view.frame.size.width];
     [self.footerViewBottomConstraint setConstant:0.0f];
     //old place for connecting to room
-    [self.urlLabel setText:self.serverHostUrl]; //must go into ChatViewController
+    [self.urlLabel setText:self.client.serverHostUrl]; //must go into ChatViewController
  
 }
 

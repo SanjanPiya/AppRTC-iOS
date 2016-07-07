@@ -170,7 +170,7 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         
         [_delegate channel:self setTurnServer:turnServers];
         
-        //register current user 
+        //register current user
         [self registerFrom:@"nandi"];
     }
     else{ //otherwise process with normal signaling
