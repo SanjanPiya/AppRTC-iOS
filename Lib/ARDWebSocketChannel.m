@@ -141,22 +141,27 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-  NSString *messageString = message;
-  NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
-  id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
+    
+    NSString *messageString = message;
+    NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
+  
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
                                                   options:0
                                                     error:nil];
-  if (![jsonObject isKindOfClass:[NSDictionary class]]) {
-    NSLog(@"Unexpected message: %@", jsonObject);
-    return;
-  }
-  NSDictionary *wssMessage = jsonObject;
-  NSString *errorString = wssMessage[kARDWSSMessageErrorKey];
   
-  if (errorString.length) {
-    NSLog(@"WSS error: %@", errorString);
-    return;
-  }
+    if (![jsonObject isKindOfClass:[NSDictionary class]]) {
+      NSLog(@"Unexpected message: %@", jsonObject);
+      return;
+    }
+    
+    NSDictionary *wssMessage = jsonObject;
+    NSString *errorString = wssMessage[kARDWSSMessageErrorKey];
+  
+    if (errorString.length) {
+        NSLog(@"WSS error: %@", errorString);
+        return;
+    }
+    
     NSString *payload = wssMessage[kARDWSSMessagePayloadKey];
     if(wssMessage[kARDWSSMessageResultKey]!=NULL){
        payload = wssMessage[kARDWSSMessageParamsKey];
@@ -173,11 +178,9 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         //register current user
         [self registerFrom:@"nandi"];
     }
-    else{ //otherwise process with normal signaling
-
-        ARDSignalingMessage *signalingMessage = [ARDSignalingMessage messageFromJSONString:payload];
-        NSLog(@"WSS->C: %@", payload);
-        
+    else{
+        ARDSignalingMessage *signalingMessage = [ARDSignalingMessage messageFromJSONString:messageString];
+    
         [_delegate channel:self didReceiveMessage:signalingMessage];
     }
 }

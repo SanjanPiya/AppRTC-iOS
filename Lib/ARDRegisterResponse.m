@@ -39,7 +39,6 @@ static NSString const *kARDRegisterRoomIdKey = @"room_id";
 static NSString const *kARDRegisterClientIdKey = @"client_id";
 static NSString const *kARDRegisterMessagesKey = @"messages";
 static NSString const *kARDRegisterWebSocketURLKey = @"wss_url";
-static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
 
 @interface ARDRegisterResponse ()
 
@@ -50,7 +49,7 @@ static NSString const *kARDRegisterWebSocketRestURLKey = @"wss_post_url";
 @property(nonatomic, strong) NSString *clientId;
 @property(nonatomic, strong) NSArray *messages;
 @property(nonatomic, strong) NSURL *webSocketURL;
-@property(nonatomic, strong) NSURL *webSocketRestURL;
+
 
 @end
 

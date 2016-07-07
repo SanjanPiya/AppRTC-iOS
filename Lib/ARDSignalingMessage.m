@@ -31,7 +31,9 @@
 #import "RTCICECandidate+JSON.h"
 #import "RTCSessionDescription+JSON.h"
 
-static NSString const *kARDSignalingMessageTypeKey = @"type";
+static NSString const *kARDSignalingMessageIdKey = @"id";
+static NSString const *kARDSignalingMessageMessageKey = @"message";
+static NSString const *kARDSignalingMessageResponseKey = @"response";
 
 @implementation ARDSignalingMessage
 
@@ -52,16 +54,27 @@ static NSString const *kARDSignalingMessageTypeKey = @"type";
 + (ARDSignalingMessage *)messageFromJSONString:(NSString *)jsonString {
   NSDictionary *values = [NSDictionary dictionaryWithJSONString:jsonString];
   if (!values) {
-    NSLog(@"Error parsing signaling message JSON.");
+    NSLog(@"Error parsing signaling message JSON. %@", jsonString);
     return nil;
   }
 
-  NSString *typeString = values[kARDSignalingMessageTypeKey];
+  NSString *typeString = values[kARDSignalingMessageIdKey];
+    
   ARDSignalingMessage *message = nil;
-  if ([typeString isEqualToString:@"candidate"]) {
-    RTCICECandidate *candidate =
-        [RTCICECandidate candidateFromJSONDictionary:values];
-    message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
+  
+    if ([typeString isEqualToString:@"candidate"]) {
+        RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
+        message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
+        
+  }
+  else if ([typeString isEqualToString:@"registerResponse"]) {
+  
+      NSLog(@"Received RegisterResponse: (%@) %@",values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
+      
+  }
+   else if ([typeString isEqualToString:@"registeredUsers"]) {
+         NSLog(@"Received registeredUsers: (%@) ",values[kARDSignalingMessageResponseKey]);
+      
   } else if ([typeString isEqualToString:@"offer"] ||
              [typeString isEqualToString:@"answer"]) {
     RTCSessionDescription *description =
