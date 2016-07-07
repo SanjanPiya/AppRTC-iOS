@@ -146,7 +146,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 }
 
 - (void)connectToWebsocket:(NSString *)url {
-  
+   NSLog(@"wtf!!!");
     NSParameterAssert(url.length);
     _websocketURL = [NSURL URLWithString:url];
     
@@ -157,7 +157,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     ARDAppClient *strongSelf = weakSelf;
     [strongSelf registerWithColliderIfReady];
     
-    _channel.getAppConfig;
+    [_channel getAppConfig];
+    
+   
     
    // [_channel registerFrom:@"nico"];
    
