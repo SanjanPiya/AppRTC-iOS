@@ -105,6 +105,25 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
     }
 }
 
+- (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description{
+    if (_state == kARDWebSocketChannelStateOpen) {
+        
+        NSDictionary *callMessage = @{ @"id": @"call",
+                                       @"to": to,
+                                       @"from": from,
+                                       @"sdpOffer": description.description };
+        
+        NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
+                                                          options:NSJSONWritingPrettyPrinted
+                                                            error:nil];
+        
+        [self sendData: message];
+    }
+}
+
+
+
+
 
 - (void)sendData:(NSData *)data {
     NSString *payload =

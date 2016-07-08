@@ -27,7 +27,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RTCVideoTrack.h"
+#import "RTCVideoTrack.h" 
+#import "ARDSignalingMessage.h"
 
 typedef NS_ENUM(NSInteger, ARDAppClientState) {
   // Disconnected from servers.
@@ -61,10 +62,14 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, readonly) ARDAppClientState state;
 @property(nonatomic, weak) id<ARDAppClientDelegate> delegate;
 @property(nonatomic, strong) NSString *serverHostUrl;
+@property(nonatomic, strong) NSString *from;
+@property(nonatomic, strong) NSString *to;
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
 
 - (void)connectToWebsocket:(NSString *)url;
+- (void)startSignalingIfReady;
+- (void)call:(NSString *)from : (NSString *)to;
 
 // Mute and unmute Audio-In
 - (void)muteAudioIn;

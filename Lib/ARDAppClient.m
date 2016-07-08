@@ -67,14 +67,15 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 @property(nonatomic, strong) NSMutableArray *messageQueue;
 @property(nonatomic, assign) BOOL hasReceivedSdp;
 @property(nonatomic, readonly) BOOL isRegisteredWithWebsocketServer;
-@property(nonatomic, strong) NSString *to;
-@property(nonatomic, strong) NSString *from;
+
 @property(nonatomic, assign) BOOL isInitiator;
 @property(nonatomic, assign) BOOL isSpeakerEnabled;
 @property(nonatomic, strong) NSMutableArray *iceServers;
 @property(nonatomic, strong) NSURL *webSocketURL;
 @property(nonatomic, strong) RTCAudioTrack *defaultAudioTrack;
 @property(nonatomic, strong) RTCVideoTrack *defaultVideoTrack;
+
+
 
 @end
 
@@ -103,7 +104,6 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     _factory = [[RTCPeerConnectionFactory alloc] init];
     _messageQueue = [NSMutableArray array];
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
-    //_serverHostUrl = kARDRoomServerHostUrl;
     _isSpeakerEnabled = YES;
       
       [[NSNotificationCenter defaultCenter] addObserver:self
@@ -136,7 +136,6 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     }
 }
 
-
 - (void)setState:(ARDAppClientState)state {
   if (_state == state) {
     return;
@@ -146,7 +145,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 }
 
 - (void)connectToWebsocket:(NSString *)url {
-   NSLog(@"wtf!!!");
+  
     NSParameterAssert(url.length);
     _websocketURL = [NSURL URLWithString:url];
     
@@ -159,8 +158,18 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     
     [_channel getAppConfig];
     
-   
-    
+}
+
+- (void)call:(NSString *)from : (NSString *)to{
+    self.to = to;
+    self.from = from;
+    [self startSignalingIfReady];
+}
+
+//- (void)startSignalingIfReady{
+//        [self startSignalingIfReady];
+//}
+
    // [_channel registerFrom:@"nico"];
    
     //|strongSelf reg
@@ -202,9 +211,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     //strongSelf.webSocketRestURL = response.webSocketRestURL;
    //[strongSelf registerWithColliderIfReady];
     [strongSelf startSignalingIfReady];
-  }];*/
+  }];
     
-}
+}*/
 
 - (void)disconnect {
   if (_state == kARDAppClientStateDisconnected) {
@@ -355,7 +364,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
                                   sessionDescription:sdp];
     ARDSessionDescriptionMessage *message =
         [[ARDSessionDescriptionMessage alloc] initWithDescription:sdp];
-    [self sendSignalingMessage:message];
+  //  [self sendSignalingMessage:message];
+    
+      [_channel call: _from: _to : sdp];
   });
 }
 
@@ -405,16 +416,18 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
                                                   delegate:self];
   RTCMediaStream *localStream = [self createLocalMediaStream];
   [_peerConnection addStream:localStream];
-  if (_isInitiator) {
+ // if (_isInitiator) {
     [self sendOffer];
-  } else {
-    [self waitForAnswer];
-  }
+  //} else {
+    //[self waitForAnswer];
+  //}
 }
 
 - (void)sendOffer {
-  [_peerConnection createOfferWithDelegate:self
+
+    [_peerConnection createOfferWithDelegate:self
                                constraints:[self defaultOfferConstraints]];
+
 }
 
 - (void)waitForAnswer {
@@ -534,6 +547,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)sendSignalingMessageToRoomServer:(ARDSignalingMessage *)message
     completionHandler:(void (^)(ARDMessageResponse *))completionHandler {
+    
   NSData *data = [message JSONData];
   NSString *urlString =
       [NSString stringWithFormat:
@@ -588,7 +602,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     }
   }];
 }
-
+/*
 - (void)unregisterWithRoomServer {
   NSString *urlString =
       [NSString stringWithFormat:kARDRoomServerByeFormat, self.serverHostUrl, _roomId, _clientId];

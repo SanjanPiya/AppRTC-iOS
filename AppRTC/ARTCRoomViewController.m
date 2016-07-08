@@ -21,13 +21,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
+
+
     //Connect to the room
     [self disconnect];
     self.client = [[ARDAppClient alloc] initWithDelegate:self];
-    
     [self.client connectToWebsocket: SERVER_HOST_URL];
-   // [self.client register: SERVER_HOST_URL];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,15 +101,16 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)param {
     ARTCVideoChatViewController *viewController = (ARTCVideoChatViewController *)[segue destinationViewController];
-    //[viewController setServerHostUrl: SERVER_HOST_URL];
+    [viewController setClient: param];
 }
 
 #pragma mark - ARTCRoomTextInputViewCellDelegate Methods
 
 - (void)toTextInputViewCell:(ARTCRoomTextInputViewCell *)cell shouldCallUser:(NSString *)to {
-    [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:to];
+    self.client.to = to;
+    [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self.client];
 }
 
 @end

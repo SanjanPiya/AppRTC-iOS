@@ -66,9 +66,11 @@ typedef NS_ENUM(NSInteger, ARDWebSocketChannelState) {
 - (instancetype)initWithURL:(NSURL *)url
                    delegate:(id<ARDWebSocketChannelDelegate>)delegate;
 
-- (void)registerFrom:(NSString *)name;
 
 - (void)getAppConfig;
+- (void)registerFrom:(NSString *)name;
+- (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description;
+
 
 - (void)sendData:(NSData *)data;
 

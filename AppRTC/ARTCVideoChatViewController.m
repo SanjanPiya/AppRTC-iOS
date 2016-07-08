@@ -56,7 +56,12 @@
     [self.footerViewBottomConstraint setConstant:0.0f];
     //old place for connecting to room
     [self.urlLabel setText:self.client.serverHostUrl]; //must go into ChatViewController
- 
+    
+    NSLog(@"calling to: %@",self.client.to);
+    [self.client call: @"nandi":  self.client.to];
+  //  [self.client.call : @"nandi" : self.client.to: NULL ];
+   // [self.client startSignalingIfReady];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -84,11 +89,6 @@
 
 - (void) setARDClient:(ARDAppClient *)client {
    self.client = client;
-}
-
-
-- (void)setServerHostUrl:(NSString *)serverHostUrl {
-    self.serverHostUrl = serverHostUrl;
 }
 
 - (void)disconnect {
