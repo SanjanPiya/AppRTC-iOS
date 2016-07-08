@@ -48,6 +48,13 @@ typedef enum {
 
 @end
 
+@interface ARDRegisterResponseMessage : ARDSignalingMessage
+
+@property(nonatomic, readonly) NSString *response;
+
+- (instancetype)initWithString:(NSString *)response;
+@end
+
 @interface ARDICECandidateMessage : ARDSignalingMessage
 
 @property(nonatomic, readonly) RTCICECandidate *candidate;

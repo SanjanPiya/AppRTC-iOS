@@ -12,6 +12,8 @@ Included in this Xcode project is a native Storyboard based Room Locator and Vid
 - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-07-06 added registeredUsers to Websocket 
+- 2016-07-06 added RegisterResponse to Websocket
 - 2016-07-05 registering current user at server session
 - 2016-07-05 registering websocket during app start and reading appConfig (e.g. turn servers) via websockets
 

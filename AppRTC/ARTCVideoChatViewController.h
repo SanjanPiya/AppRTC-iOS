@@ -11,7 +11,7 @@
 #import <AppRTC/ARDAppClient.h>
 
 @interface ARTCVideoChatViewController : UIViewController <RTCEAGLVideoViewDelegate>
-@property (strong, nonatomic) NSString *serverHostUrl;
+
 //Views, Labels, and Buttons
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *remoteView;
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;

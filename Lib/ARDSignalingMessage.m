@@ -59,28 +59,28 @@ static NSString const *kARDSignalingMessageResponseKey = @"response";
   }
 
   NSString *typeString = values[kARDSignalingMessageIdKey];
-    
-  ARDSignalingMessage *message = nil;
   
-    if ([typeString isEqualToString:@"candidate"]) {
+  ARDSignalingMessage *message = nil;
+  if ([typeString isEqualToString:@"candidate"]) {
         RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
         message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
-        
   }
   else if ([typeString isEqualToString:@"registerResponse"]) {
-  
-      NSLog(@"Received RegisterResponse: (%@) %@",values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
       
+      message = [[ARDRegisterResponseMessage alloc] initWithString: values[kARDSignalingMessageResponseKey]];
+      
+      NSLog(@"Received RegisterResponse: (%@) %@", values[kARDSignalingMessageResponseKey],
+            values[kARDSignalingMessageMessageKey]);
   }
-   else if ([typeString isEqualToString:@"registeredUsers"]) {
+  
+  else if ([typeString isEqualToString:@"registeredUsers"]) {
          NSLog(@"Received registeredUsers: (%@) ",values[kARDSignalingMessageResponseKey]);
       
-  } else if ([typeString isEqualToString:@"offer"] ||
-             [typeString isEqualToString:@"answer"]) {
-    RTCSessionDescription *description =
-        [RTCSessionDescription descriptionFromJSONDictionary:values];
-    message =
-        [[ARDSessionDescriptionMessage alloc] initWithDescription:description];
+  }else if ([typeString isEqualToString:@"offer"] || [typeString isEqualToString:@"answer"]) {
+      
+        RTCSessionDescription *description = [RTCSessionDescription descriptionFromJSONDictionary:values];
+        message = [[ARDSessionDescriptionMessage alloc] initWithDescription:description];
+      
   } else if ([typeString isEqualToString:@"bye"]) {
     message = [[ARDByeMessage alloc] init];
   } else {
@@ -100,15 +100,32 @@ static NSString const *kARDSignalingMessageResponseKey = @"response";
 @synthesize candidate = _candidate;
 
 - (instancetype)initWithCandidate:(RTCICECandidate *)candidate {
+    if (self = [super initWithType:kARDSignalingMessageTypeCandidate]) {
+        _candidate = candidate;
+    }
+    return self;
+}
+
+- (NSData *)JSONData {
+    return [_candidate JSONData];
+}
+
+@end
+
+@implementation ARDRegisterResponseMessage
+
+@synthesize response = _response;
+
+- (instancetype)initWithString:(NSString *) response {
   if (self = [super initWithType:kARDSignalingMessageTypeCandidate]) {
-    _candidate = candidate;
+    _response = response;
   }
   return self;
 }
 
-- (NSData *)JSONData {
-  return [_candidate JSONData];
-}
+//- (NSData *)JSONData {
+//  return [_response JSONData];
+//}
 
 @end
 
@@ -146,7 +163,7 @@ static NSString const *kARDSignalingMessageResponseKey = @"response";
 
 - (NSData *)JSONData {
   NSDictionary *message = @{
-    @"type": @"bye"
+    @"id": @"stop"
   };
   return [NSJSONSerialization dataWithJSONObject:message
                                          options:NSJSONWritingPrettyPrinted
