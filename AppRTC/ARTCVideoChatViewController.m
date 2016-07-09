@@ -33,8 +33,8 @@
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
-    [self.remoteView setDelegate:self];
-    [self.localView setDelegate:self];
+    self.client.remoteView = self.remoteView;
+    self.client.localView = _localView;
 
     //Getting Orientation change
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -59,8 +59,6 @@
     
     NSLog(@"calling to: %@",self.client.to);
     [self.client call: @"nandi":  self.client.to];
-  //  [self.client.call : @"nandi" : self.client.to: NULL ];
-   // [self.client startSignalingIfReady];
 
 }
 
@@ -89,23 +87,26 @@
 
 - (void) setARDClient:(ARDAppClient *)client {
    self.client = client;
+   self.remoteView = client.remoteView;
+   self.localView = client.localView;
 }
 
 - (void)disconnect {
     if (self.client) {
-        if (self.localVideoTrack) [self.localVideoTrack removeRenderer:self.localView];
-        if (self.remoteVideoTrack) [self.remoteVideoTrack removeRenderer:self.remoteView];
-        self.localVideoTrack = nil;
+      
+        if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.localView];
+        if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.remoteView];
+        self.client.localVideoTrack = nil;
         [self.localView renderFrame:nil];
-        self.remoteVideoTrack = nil;
+        self.client.remoteVideoTrack = nil;
         [self.remoteView renderFrame:nil];
         [self.client disconnect];
     }
 }
 
 - (void)remoteDisconnected {
-    if (self.remoteVideoTrack) [self.remoteVideoTrack removeRenderer:self.remoteView];
-    self.remoteVideoTrack = nil;
+    if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.remoteView];
+    self.client.remoteVideoTrack = nil;
     [self.remoteView renderFrame:nil];
     [self videoView:self.localView didChangeVideoSize:self.localVideoSize];
     
@@ -124,44 +125,12 @@
     }];
 }
 
-- (void)appClient:(ARDAppClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-    if (self.localVideoTrack) {
-        [self.localVideoTrack removeRenderer:self.localView];
-        self.localVideoTrack = nil;
-        [self.localView renderFrame:nil];
-    }
-    self.localVideoTrack = localVideoTrack;
-    [self.localVideoTrack addRenderer:self.localView];
-}
 
-- (void)appClient:(ARDAppClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
-    self.remoteVideoTrack = remoteVideoTrack;
-    [self.remoteVideoTrack addRenderer:self.remoteView];
-    
-    [UIView animateWithDuration:0.4f animations:^{
-        //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
-        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-        CGRect videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
-        if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-            videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
-        }
-        CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
-        
-        [self.localViewWidthConstraint setConstant:videoFrame.size.width];
-        [self.localViewHeightConstraint setConstant:videoFrame.size.height];
-        
-        
-        [self.localViewBottomConstraint setConstant:28.0f];
-        [self.localViewRightConstraint setConstant:28.0f];
-        [self.footerViewBottomConstraint setConstant:-80.0f];
-        [self.view layoutIfNeeded];
-    }];
-}
 
 - (void)zoomRemote {
     //Toggle Aspect Fill or Fit
     self.isZoom = !self.isZoom;
-    [self videoView:self.remoteView didChangeVideoSize:self.remoteVideoSize];
+    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteVideoSize];
 }
 
 - (IBAction)audioButtonPressed:(id)sender {
@@ -210,12 +179,12 @@
         CGFloat containerWidth = self.view.frame.size.width;
         CGFloat containerHeight = self.view.frame.size.height;
         CGSize defaultAspectRatio = CGSizeMake(4, 3);
-        if (videoView == self.localView) {
+        if (videoView == self.client.localView) {
             //Resize the Local View depending if it is full screen or thumbnail
             self.localVideoSize = size;
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
             CGRect videoRect = self.view.bounds;
-            if (self.remoteVideoTrack) {
+            if (self.client.remoteVideoTrack) {
                 videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
                 if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
                     videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
@@ -226,14 +195,14 @@
             //Resize the localView accordingly
             [self.localViewWidthConstraint setConstant:videoFrame.size.width];
             [self.localViewHeightConstraint setConstant:videoFrame.size.height];
-            if (self.remoteVideoTrack) {
+            if (self.client.remoteVideoTrack) {
                 [self.localViewBottomConstraint setConstant:28.0f]; //bottom right corner
                 [self.localViewRightConstraint setConstant:28.0f];
             } else {
                 [self.localViewBottomConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f]; //center
                 [self.localViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             }
-        } else if (videoView == self.remoteView) {
+        } else if (videoView == self.client.remoteView) {
             //Resize Remote View
             self.remoteVideoSize = size;
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
