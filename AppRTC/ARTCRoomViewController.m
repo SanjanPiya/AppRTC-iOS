@@ -9,7 +9,7 @@
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 
-#define SERVER_HOST_URL @"ws://localhost:8080/jWebrtc"
+#define SERVER_HOST_URL @"ws://172.20.10.2:8080/jWebrtc"
 
 @implementation ARTCRoomViewController
 
