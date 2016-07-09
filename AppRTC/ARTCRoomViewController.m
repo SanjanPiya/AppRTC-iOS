@@ -59,12 +59,12 @@
 
 - (void)disconnect {
     if (self.client) {
-      //  if (self.localVideoTrack) [self.localVideoTrack removeRenderer:self.localView];
-      //  if (self.remoteVideoTrack) [self.remoteVideoTrack removeRenderer:self.remoteView];
-      //  self.localVideoTrack = nil;
-      //  [self.localView renderFrame:nil];
-      //  self.remoteVideoTrack = nil;
-     //   [self.remoteView renderFrame:nil];
+        if (self.client.localVideoTrack) [self.client.localVideoTrack removeRenderer:self.client.localView];
+        if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
+        self.client.localVideoTrack = nil;
+       [self.client.localView renderFrame:nil];
+        self.client.remoteVideoTrack = nil;
+        [self.client.remoteView renderFrame:nil];
         [self.client disconnect];
     }
 }
@@ -86,17 +86,6 @@
     }
 }
 
-
-
-- (void)appClient:(ARDAppClient *)client didError:(NSError *)error {
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:[NSString stringWithFormat:@"%@", error]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    [self disconnect];
-}
 
 
 #pragma mark - Navigation
