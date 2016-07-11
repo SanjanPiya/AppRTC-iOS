@@ -35,6 +35,7 @@
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     self.client.remoteView = self.remoteView;
     self.client.localView = _localView;
+    self.client.viewWrapper = self.view;
 
     //Getting Orientation change
     [[NSNotificationCenter defaultCenter] addObserver:self

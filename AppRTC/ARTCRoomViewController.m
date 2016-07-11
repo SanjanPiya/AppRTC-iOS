@@ -62,7 +62,7 @@
         if (self.client.localVideoTrack) [self.client.localVideoTrack removeRenderer:self.client.localView];
         if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
         self.client.localVideoTrack = nil;
-       [self.client.localView renderFrame:nil];
+        [self.client.localView renderFrame:nil];
         self.client.remoteVideoTrack = nil;
         [self.client.remoteView renderFrame:nil];
         [self.client disconnect];

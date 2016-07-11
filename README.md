@@ -9,10 +9,13 @@ Included in this Xcode project is a native Storyboard based Room Locator and Vid
 
 ##
 
-- making a call to another person
+- send proper candidate message to server
+- fix didReceiveRemoteVideoTrack in appClient (self.localViewHeightConstraint)
+- decline call from browser and handle it in app (also clear connections etc. (disconnect))
 - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-07-09 local video is displayed in app and in browser 
 - 2016-07-08 creating local description and send it to server (call from to)
 - 2016-07-06 added registeredUsers to Websocket 
 - 2016-07-06 added RegisterResponse to Websocket

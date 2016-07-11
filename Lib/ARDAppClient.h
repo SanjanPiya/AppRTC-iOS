@@ -28,6 +28,7 @@
 #import <Foundation/Foundation.h>
 
 #import "RTCVideoTrack.h" 
+#import <libjingle_peerconnection/RTCEAGLVideoView.h>
 #import "ARDSignalingMessage.h"
 
 typedef NS_ENUM(NSInteger, ARDAppClientState) {
@@ -45,15 +46,6 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)appClient:(ARDAppClient *)client
     didChangeState:(ARDAppClientState)state;
 
-- (void)appClient:(ARDAppClient *)client
-    didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack;
-
-- (void)appClient:(ARDAppClient *)client
-    didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack;
-
-- (void)appClient:(ARDAppClient *)client
-         didError:(NSError *)error;
-
 @end
 
 // Handles connections to the AppRTC server for a given room.
@@ -64,6 +56,11 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *serverHostUrl;
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
+@property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
+@property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
+@property (nonatomic, strong) IBOutlet RTCEAGLVideoView *remoteView;
+@property (nonatomic, strong) IBOutlet RTCEAGLVideoView *localView;
+@property (nonatomic, strong) UIView *viewWrapper;
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
 

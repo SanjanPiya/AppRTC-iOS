@@ -96,7 +96,11 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 @synthesize isSpeakerEnabled = _isSpeakerEnabled;
 @synthesize iceServers = _iceServers;
 @synthesize webSocketURL = _websocketURL;
-
+@synthesize localVideoTrack = _localVideoTrack;
+@synthesize remoteVideoTrack = _remoteVideoTrack;
+@synthesize remoteView = _remoteView;
+@synthesize localView = _localView;
+@synthesize viewWrapper = _viewWrapper;
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate {
   if (self = [super init]) {
@@ -121,6 +125,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)orientationChanged:(NSNotification *)notification {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if(_state == kARDAppClientStateDisconnected || _state == kARDAppClientStateConnecting){
+        NSLog(@"orientation changed ");
+        return;
+    }
+    
     if (UIDeviceOrientationIsLandscape(orientation) || UIDeviceOrientationIsPortrait(orientation)) {
         //Remove current video track
         RTCMediaStream *localStream = _peerConnection.localStreams[0];
@@ -129,7 +139,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
         if (localVideoTrack) {
             [localStream addVideoTrack:localVideoTrack];
-            [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+            [self didReceiveLocalVideoTrack:localVideoTrack];
+           // [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
         }
         [_peerConnection removeStream:localStream];
         [_peerConnection addStream:localStream];
@@ -242,6 +253,42 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   self.state = kARDAppClientStateDisconnected;
 }
 
+- (void)appClient:(ARDAppClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
+     if (self.localVideoTrack) {
+     [self.localVideoTrack removeRenderer:self.localView];
+     self.localVideoTrack = nil;
+     [self.localView renderFrame:nil];
+     }
+     self.localVideoTrack = localVideoTrack;
+     [self.localVideoTrack addRenderer:self.localView];
+}
+
+- (void)appClient:(ARDAppClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
+    
+     self.remoteVideoTrack = remoteVideoTrack;
+     [self.remoteVideoTrack addRenderer:self.remoteView];
+     
+     [UIView animateWithDuration:0.4f animations:^{
+     //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
+         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+     CGRect videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.width/4.0f, self.viewWrapper.frame.size.height/4.0f);
+     if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+     videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
+     }
+     CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
+     
+     /*[self.localViewWidthConstraint setConstant:videoFrame.size.width];
+     [self.localViewHeightConstraint setConstant:videoFrame.size.height];
+     
+     
+     [self.localViewBottomConstraint setConstant:28.0f];
+     [self.localViewRightConstraint setConstant:28.0f];
+     [self.footerViewBottomConstraint setConstant:-80.0f];*/
+     [self.viewWrapper layoutIfNeeded];
+     }];
+}
+
+
 #pragma mark - ARDWebSocketChannelDelegate
 
 - (void)channel:(ARDWebSocketChannel *)channel
@@ -301,7 +348,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         (unsigned long)stream.audioTracks.count);
     if (stream.videoTracks.count) {
       RTCVideoTrack *videoTrack = stream.videoTracks[0];
-      [_delegate appClient:self didReceiveRemoteVideoTrack:videoTrack];
+   //   [_delegate appClient:self didReceiveRemoteVideoTrack:videoTrack]; //here is still a problem!
+          [self didReceiveRemoteVideoTrack:videoTrack];
       if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
 
     }
@@ -357,7 +405,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
           [[NSError alloc] initWithDomain:kARDAppClientErrorDomain
                                      code:kARDAppClientErrorCreateSDP
                                  userInfo:userInfo];
-      [_delegate appClient:self didError:sdpError];
+      //[_delegate appClient:self didError:sdpError];
+        [self didError:sdpError];
       return;
     }
     [_peerConnection setLocalDescriptionWithDelegate:self
@@ -383,7 +432,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
           [[NSError alloc] initWithDomain:kARDAppClientErrorDomain
                                      code:kARDAppClientErrorSetSDP
                                  userInfo:userInfo];
-      [_delegate appClient:self didError:sdpError];
+    //  [_delegate appClient:self didError:sdpError];
+        [self didError:sdpError];
       return;
     }
     // If we're answering and we've just set the remote offer we need to create
@@ -414,7 +464,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   _peerConnection = [_factory peerConnectionWithICEServers:_iceServers
                                                constraints:constraints
                                                   delegate:self];
+    
   RTCMediaStream *localStream = [self createLocalMediaStream];
+  
   [_peerConnection addStream:localStream];
  // if (_isInitiator) {
     [self sendOffer];
@@ -511,7 +563,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
     if (localVideoTrack) {
         [localStream addVideoTrack:localVideoTrack];
-        [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+        //[_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+         [self didReceiveLocalVideoTrack:localVideoTrack];
     }
     
     [localStream addAudioTrack:[_factory audioTrackWithID:@"ARDAMSa0"]];
@@ -519,6 +572,49 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     return localStream;
 }
 
+- (void) didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
+       if (self.localVideoTrack) {
+    
+           [self.localVideoTrack removeRenderer:self.localView];
+     self.localVideoTrack = nil;
+     [self.localView renderFrame:nil];
+     }
+     self.localVideoTrack = localVideoTrack;
+     [self.localVideoTrack addRenderer:self.localView];
+}
+
+- (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
+      self.remoteVideoTrack = remoteVideoTrack;
+     [self.remoteVideoTrack addRenderer:self.remoteView];
+     
+     [UIView animateWithDuration:0.4f animations:^{
+         //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
+         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+         /*   CGRect videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
+          if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+          videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
+          }
+          CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
+          
+          [self.localViewWidthConstraint setConstant:videoFrame.size.width];
+          [self.localViewHeightConstraint setConstant:videoFrame.size.height];
+          
+          
+          [self.localViewBottomConstraint setConstant:28.0f];
+          [self.localViewRightConstraint setConstant:28.0f];
+          [self.footerViewBottomConstraint setConstant:-80.0f];
+          [self.view layoutIfNeeded];*/     }];
+}
+
+- (void)didError:(NSError *)error {
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:[NSString stringWithFormat:@"%@", error]
+                                                                                          delegate:nil
+                                                                                 cancelButtonTitle:@"OK"
+                                                                                 otherButtonTitles:nil];
+    [alertView show];
+    [self disconnect];
+}
 
 #pragma mark - Room server methods
 /**
@@ -751,7 +847,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
     if (localVideoTrack) {
         [localStream addVideoTrack:localVideoTrack];
-        [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+     //   [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+           [self didReceiveLocalVideoTrack:localVideoTrack];
     }
     [_peerConnection removeStream:localStream];
     [_peerConnection addStream:localStream];
@@ -764,7 +861,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     
     if (localVideoTrack) {
         [localStream addVideoTrack:localVideoTrack];
-        [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
+           [self didReceiveLocalVideoTrack:localVideoTrack];
+        //[_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
     }
     [_peerConnection removeStream:localStream];
     [_peerConnection addStream:localStream];
