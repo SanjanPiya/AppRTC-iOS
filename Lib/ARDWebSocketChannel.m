@@ -142,7 +142,7 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
   [_socket close];
   
   NSLog(@"C->WSS DELETE rid:%@ cid:%@", _to, _from);
-    
+ //send bye message here back to server
   /*NSString *urlString = [NSString stringWithFormat:@"%@/%@/%@", [_restURL absoluteString], _roomId, _clientId];
   NSURL *url = [NSURL URLWithString:urlString];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

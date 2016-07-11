@@ -61,7 +61,7 @@ static NSString const *kARDSignalingMessageResponseKey = @"response";
   NSString *typeString = values[kARDSignalingMessageIdKey];
   
   ARDSignalingMessage *message = nil;
-  if ([typeString isEqualToString:@"candidate"]) {
+  if ([typeString isEqualToString:@"iceCandidate"]) {
         RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
         message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
   }
@@ -72,7 +72,12 @@ static NSString const *kARDSignalingMessageResponseKey = @"response";
       NSLog(@"Received RegisterResponse: (%@) %@", values[kARDSignalingMessageResponseKey],
             values[kARDSignalingMessageMessageKey]);
   }
-  
+  else if ([typeString isEqualToString:@"callResponse"]) {
+      
+      message = [[ARDRegisterResponseMessage alloc] initWithString: values[kARDSignalingMessageResponseKey]];
+      
+      NSLog(@"Received callResponse: (%@) %@", values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
+  }
   else if ([typeString isEqualToString:@"registeredUsers"]) {
          NSLog(@"Received registeredUsers: (%@) ",values[kARDSignalingMessageResponseKey]);
       
