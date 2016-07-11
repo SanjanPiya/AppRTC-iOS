@@ -58,8 +58,13 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *to;
 @property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
-@property (nonatomic, strong) IBOutlet RTCEAGLVideoView *remoteView;
-@property (nonatomic, strong) IBOutlet RTCEAGLVideoView *localView;
+@property (nonatomic, strong) RTCEAGLVideoView *remoteView;
+@property (nonatomic, strong) RTCEAGLVideoView *localView;
+@property (strong, nonatomic) NSLayoutConstraint *localViewWidthConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *localViewHeightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *localViewRightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *localViewBottomConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *footerViewBottomConstraint;
 @property (nonatomic, strong) UIView *viewWrapper;
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;

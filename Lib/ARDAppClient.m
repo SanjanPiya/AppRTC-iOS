@@ -102,6 +102,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 @synthesize localView = _localView;
 @synthesize viewWrapper = _viewWrapper;
 
+@synthesize localViewWidthConstraint = _localViewWidthConstraint;
+@synthesize localViewHeightConstraint = _localViewHeightConstraint;
+@synthesize localViewRightConstraint = _localViewRightConstraint;
+@synthesize localViewBottomConstraint = _localViewBottomConstraint;
+@synthesize footerViewBottomConstraint = _footerViewBottomConstraint;
+
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate {
   if (self = [super init]) {
     _delegate = delegate;
@@ -302,6 +308,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     case kARDSignalingMessageTypeRegister:
         
           break;
+    case kARDSignalingMessageTypeResponse:
+          
+          break;
     case kARDSignalingMessageTypeOffer:
     case kARDSignalingMessageTypeAnswer:
       _hasReceivedSdp = YES;
@@ -490,8 +499,10 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   if (!_peerConnection || !_hasReceivedSdp) {
     return;
   }
+    
   for (ARDSignalingMessage *message in _messageQueue) {
-    [self processSignalingMessage:message];
+   // [_messageQueue removeObjectAtIndex:0];
+      [self processSignalingMessage:message];
   }
   [_messageQueue removeAllObjects];
 }
@@ -501,18 +512,20 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
       message.type == kARDSignalingMessageTypeBye);
   switch (message.type) {
     case kARDSignalingMessageTypeOffer:
+    case kARDSignalingMessageTypeRegister:
     case kARDSignalingMessageTypeAnswer: {
-      ARDSessionDescriptionMessage *sdpMessage =
-          (ARDSessionDescriptionMessage *)message;
+        
+      ARDSessionDescriptionMessage *sdpMessage =  (ARDSessionDescriptionMessage *)message;
       RTCSessionDescription *description = sdpMessage.sessionDescription;
-      [_peerConnection setRemoteDescriptionWithDelegate:self
-                                     sessionDescription:description];
+      [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:description];
+        
       break;
     }
     case kARDSignalingMessageTypeCandidate: {
-      ARDICECandidateMessage *candidateMessage =
-          (ARDICECandidateMessage *)message;
+    
+      ARDICECandidateMessage *candidateMessage =  (ARDICECandidateMessage *)message;
       [_peerConnection addICECandidate:candidateMessage.candidate];
+    
       break;
     }
     case kARDSignalingMessageTypeBye:
@@ -573,9 +586,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 }
 
 - (void) didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-       if (self.localVideoTrack) {
+    if (self.localVideoTrack) {
     
-           [self.localVideoTrack removeRenderer:self.localView];
+     [self.localVideoTrack removeRenderer:self.localView];
      self.localVideoTrack = nil;
      [self.localView renderFrame:nil];
      }
@@ -590,9 +603,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
      [UIView animateWithDuration:0.4f animations:^{
          //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
          UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-         /*   CGRect videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
+         
+         CGRect videoRect = CGRectMake(0.0f, 0.0f,
+                                       self.viewWrapper.frame.size.width/4.0f,
+                                       self.viewWrapper.frame.size.height/4.0f);
           if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-          videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
+          videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
           }
           CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
           
@@ -603,7 +619,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
           [self.localViewBottomConstraint setConstant:28.0f];
           [self.localViewRightConstraint setConstant:28.0f];
           [self.footerViewBottomConstraint setConstant:-80.0f];
-          [self.view layoutIfNeeded];*/     }];
+          [self.viewWrapper layoutIfNeeded];
+     }];
 }
 
 - (void)didError:(NSError *)error {

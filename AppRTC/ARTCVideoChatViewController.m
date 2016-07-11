@@ -90,6 +90,11 @@
    self.client = client;
    self.remoteView = client.remoteView;
    self.localView = client.localView;
+   self.localViewWidthConstraint = client.localViewBottomConstraint;
+   self.localViewHeightConstraint = client.localViewHeightConstraint;
+   self.localViewRightConstraint = client.localViewRightConstraint;
+   self.localViewBottomConstraint = client.localViewBottomConstraint;
+   self.footerViewBottomConstraint = client.footerViewBottomConstraint;
 }
 
 - (void)disconnect {

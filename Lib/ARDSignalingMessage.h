@@ -33,6 +33,7 @@
 typedef enum {
   kARDSignalingMessageTypeRegister,
   kARDSignalingMessageTypeRegisterResponse,
+  kARDSignalingMessageTypeResponse,
   kARDSignalingMessageTypeCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,
