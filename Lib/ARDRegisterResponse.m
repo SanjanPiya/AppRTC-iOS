@@ -33,10 +33,7 @@
 
 static NSString const *kARDRegisterResultKey = @"result";
 static NSString const *kARDRegisterResultParamsKey = @"params";
-static NSString const *kARDRegisterInitiatorKey = @"is_initiator";
 static NSString const *kARDRegisterPCConfigKey = @"pc_config";
-static NSString const *kARDRegisterRoomIdKey = @"room_id";
-static NSString const *kARDRegisterClientIdKey = @"client_id";
 static NSString const *kARDRegisterMessagesKey = @"messages";
 static NSString const *kARDRegisterWebSocketURLKey = @"wss_url";
 

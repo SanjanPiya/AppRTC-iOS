@@ -85,7 +85,7 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
                                           };
        
         NSData *message = [NSJSONSerialization dataWithJSONObject:appConfigMessage
-                                        options:NSJSONWritingPrettyPrinted
+                                            options:NSJSONWritingPrettyPrinted
                                           error:nil];
         
         [self sendData: message];
