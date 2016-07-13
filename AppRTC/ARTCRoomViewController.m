@@ -9,7 +9,7 @@
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 
-#define SERVER_HOST_URL @"ws://172.20.10.2:8080/jWebrtc"
+#define SERVER_HOST_URL @"ws://localhost:8080/jWebrtc"
 
 @implementation ARTCRoomViewController
 
@@ -86,6 +86,18 @@
     }
 }
 
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
+    NSLog(@" incoming call from %@",from);
+    NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:@"Hangup"
+                                          otherButtonTitles:@"Answer call",nil];
+    [alert show];
+    //[alert release];
+}
 
 
 #pragma mark - Navigation

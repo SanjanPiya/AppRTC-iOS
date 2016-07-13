@@ -252,46 +252,10 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   }
    _from = nil;
    _to = nil;
-  //_isInitiator = NO;
   _hasReceivedSdp = NO;
   _messageQueue = [NSMutableArray array];
   _peerConnection = nil;
   self.state = kARDAppClientStateDisconnected;
-}
-
-- (void)appClient:(ARDAppClient *)client didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-     if (self.localVideoTrack) {
-     [self.localVideoTrack removeRenderer:self.localView];
-     self.localVideoTrack = nil;
-     [self.localView renderFrame:nil];
-     }
-     self.localVideoTrack = localVideoTrack;
-     [self.localVideoTrack addRenderer:self.localView];
-}
-
-- (void)appClient:(ARDAppClient *)client didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
-    
-     self.remoteVideoTrack = remoteVideoTrack;
-     [self.remoteVideoTrack addRenderer:self.remoteView];
-     
-     [UIView animateWithDuration:0.4f animations:^{
-     //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
-         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-     CGRect videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.width/4.0f, self.viewWrapper.frame.size.height/4.0f);
-     if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-     videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
-     }
-     CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
-     
-     /*[self.localViewWidthConstraint setConstant:videoFrame.size.width];
-     [self.localViewHeightConstraint setConstant:videoFrame.size.height];
-     
-     
-     [self.localViewBottomConstraint setConstant:28.0f];
-     [self.localViewRightConstraint setConstant:28.0f];
-     [self.footerViewBottomConstraint setConstant:-80.0f];*/
-     [self.viewWrapper layoutIfNeeded];
-     }];
 }
 
 
@@ -310,6 +274,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
           break;
     case kARDSignalingMessageTypeResponse:
           
+          break;
+    case kARDSignalingMessageIncomingCall:
+          [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from];
           break;
     case kARDSignalingMessageTypeOffer:
     case kARDSignalingMessageTypeAnswer:
@@ -501,7 +468,6 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   }
     
   for (ARDSignalingMessage *message in _messageQueue) {
-   // [_messageQueue removeObjectAtIndex:0];
       [self processSignalingMessage:message];
   }
   [_messageQueue removeAllObjects];

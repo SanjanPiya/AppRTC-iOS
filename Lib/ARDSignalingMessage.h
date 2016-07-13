@@ -34,6 +34,7 @@ typedef enum {
   kARDSignalingMessageTypeRegister,
   kARDSignalingMessageTypeRegisterResponse,
   kARDSignalingMessageTypeResponse,
+  kARDSignalingMessageIncomingCall,
   kARDSignalingMessageTypeCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,
@@ -41,6 +42,7 @@ typedef enum {
 } ARDSignalingMessageType;
 
 @interface ARDSignalingMessage : NSObject
+//@interface YourViewController : UIViewController<UIAlertViewDelegate>
 
 @property(nonatomic, readonly) ARDSignalingMessageType type;
 
@@ -55,6 +57,18 @@ typedef enum {
 
 - (instancetype)initWithString:(NSString *)response;
 @end
+
+@interface ARDIncomingCallMessage : ARDSignalingMessage
+
+@property(nonatomic, readonly) NSString *response;
+@property(nonatomic, readonly) NSString *from;
+- (instancetype)initWithString:(NSString *)response;
+@end
+
+//@interface ARDIncomingCallMessage : ARDSignalingMessage
+//@property(nonatomic, readonly) NSString *from;
+//- (instancetype)initWithDictionary:(NSDictionary *)dict;
+//@end
 
 @interface ARDICECandidateMessage : ARDSignalingMessage
 
