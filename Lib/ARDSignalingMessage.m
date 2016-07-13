@@ -34,6 +34,7 @@
 static NSString const *kARDSignalingMessageIdKey = @"id";
 static NSString const *kARDSignalingMessageMessageKey = @"message";
 static NSString const *kARDSignalingMessageResponseKey = @"response";
+static NSString const *kARDSignalingMessageFromKey = @"from";
 static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 
 @implementation ARDSignalingMessage
@@ -55,7 +56,7 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 + (ARDSignalingMessage *)messageFromJSONString:(NSString *)jsonString {
   NSDictionary *values = [NSDictionary dictionaryWithJSONString:jsonString];
   if (!values) {
-    NSLog(@"Error parsing signaling message JSON. %@", jsonString);
+      NSLog(@"Error parsing signaling message JSON. %@", jsonString);
     return nil;
   }
 
@@ -66,16 +67,25 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
         RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
         message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
   }
+    
   else if ([typeString isEqualToString:@"registerResponse"]) {
       
       [[ARDRegisterResponseMessage alloc] initWithString: values[kARDSignalingMessageResponseKey]];
-      
       NSLog(@"Received RegisterResponse: (%@) %@", values[kARDSignalingMessageResponseKey],
             values[kARDSignalingMessageMessageKey]);
   }
-  else if ([typeString isEqualToString:@"callResponse"]) {
+    
+  else if ([typeString isEqualToString:@"incomingCall"]) {
+    
+      message = [[ARDIncomingCallMessage alloc] initWithString: values[@"from"]];
+
       
-     // message = [[ARDRegisterResponseMessage alloc] initWithString: values[kARDSignalingMessageResponseKey]];
+     // message = [ARDIncomingCallMessage initWithDictionary : values];
+      NSLog(@"incomingCall incomingCall from: %@", values[@"from"]);
+      
+  }
+    
+  else if ([typeString isEqualToString:@"callResponse"]) {
       
       if([values[@"response"]  isEqualToString:@"accepted"]){
           RTCSessionDescription *description = [RTCSessionDescription descriptionFromJSONDictionary:values];
@@ -128,7 +138,7 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 @synthesize response = _response;
 
 - (instancetype)initWithString:(NSString *) response {
-  if (self = [super initWithType:kARDSignalingMessageTypeCandidate]) {
+  if (self = [super initWithType:kARDSignalingMessageTypeRegisterResponse]) {
     _response = response;
   }
   return self;
@@ -139,6 +149,37 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 //}
 
 @end
+
+@implementation ARDIncomingCallMessage
+
+//@synthesize response = _response;
+@synthesize from = _from;
+- (instancetype)initWithString:(NSString *) response {
+    if (self = [super initWithType: kARDSignalingMessageIncomingCall]) {
+       // _response = response;
+         _from = response;
+    }
+    return self;
+}
+
+//- (NSData *)JSONData {
+//  return [_response JSONData];
+//}
+
+@end
+
+//@implementation ARDIncomingCallMessage
+//
+//@synthesize from = _from;
+//
+//- (instancetype)initWithDictionary:(NSDictionary *) dict {
+//    ARDSignalingMessageType type = kARDSignalingMessageIncomingCall;
+//    _from = dict[@"from"];
+//    return self;
+//}
+//
+//
+//@end
 
 @implementation ARDSessionDescriptionMessage
 

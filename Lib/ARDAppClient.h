@@ -46,6 +46,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)appClient:(ARDAppClient *)client
     didChangeState:(ARDAppClientState)state;
 
+- (void)appClient:(ARDAppClient *)client
+   incomingCallRequest:(NSString *)from;
+
 @end
 
 // Handles connections to the AppRTC server for a given room.

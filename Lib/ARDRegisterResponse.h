@@ -33,7 +33,6 @@ typedef NS_ENUM(NSInteger, ARDRegisterResultType) {
   kARDRegisterResultTypeFull
 };
 
-// Result of registering with the GAE server.
 @interface ARDRegisterResponse : NSObject
 
 @property(nonatomic, readonly) ARDRegisterResultType result;
