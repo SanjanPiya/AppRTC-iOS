@@ -10,17 +10,18 @@
 #import "ARTCVideoChatViewController.h"
 
 
-//#define SERVER_HOST_URL @"wss://192.168.11.81/jWebrtc"
+#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"
 //#define SERVER_HOST_URL @"ws://192.168.11.81:8080/jWebrtc"
 
-    #define SERVER_HOST_URL @"wss://www.nicokrause.com/jWebrtc"
+//#define SERVER_HOST_URL @"wss://www.nicokrause.com/jWebrtc"
+#define MY_USERNAME @"nandi"
+
 //#define SERVER_HOST_URL @"wss://www.nicokrause.com:8181/jWebrtc"
 //www.nicokrause.com:8181/jWebrtc/ws
 @implementation ARTCRoomViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 
@@ -33,7 +34,7 @@
     //Connect to the room
     [self disconnect];
     self.client = [[ARDAppClient alloc] initWithDelegate:self];
-    [self.client connectToWebsocket: SERVER_HOST_URL];
+    [self.client connectToWebsocket: SERVER_HOST_URL : MY_USERNAME];
     
 }
 
@@ -101,7 +102,7 @@
     NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
     
     self.client.to = from;
-    self.client.from = @"nandi";
+    self.client.from = MY_USERNAME; //@"nandi";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
                                                     message:message

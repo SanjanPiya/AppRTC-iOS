@@ -161,11 +161,11 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   [_delegate appClient:self didChangeState:_state];
 }
 
-- (void)connectToWebsocket:(NSString *)url {
+- (void)connectToWebsocket:(NSString *)url : (NSString *)from {
   
     NSParameterAssert(url.length);
     _websocketURL = [NSURL URLWithString:url];
-    
+    _from = from;
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
     self.state = kARDAppClientStateConnecting;
   
