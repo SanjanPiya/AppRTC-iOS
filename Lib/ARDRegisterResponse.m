@@ -62,10 +62,14 @@ static NSString const *kARDRegisterWebSocketURLKey = @"wss_url";
 @synthesize webSocketRestURL = _webSocketRestURL;
 
 + (ARDRegisterResponse *)responseFromJSONData:(NSData *)data {
+   
+    
   NSDictionary *responseJSON = [NSDictionary dictionaryWithJSONData:data];
   if (!responseJSON) {
     return nil;
   }
+ 
+    
   ARDRegisterResponse *response = [[ARDRegisterResponse alloc] init];
   NSString *resultString = responseJSON[kARDRegisterResultKey];
   response.result = [[self class] resultTypeFromString:resultString];

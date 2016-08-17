@@ -7,14 +7,22 @@ Included in this Xcode project is a native Storyboard based Room Locator and Vid
 
 ![AppRTC - iOS WebRTC Client Pod](./screenshots/screenshots.jpg "AppRTC iOS WebRTC App")
 
-##
+##Todo
+- user nandi to be configured over gui or a better place in code AppRTC/ARTCVideoChatViewController.m
+- server url should be configured over url
+- don't display user nandi in listbox because it cannot be called
 
-- send proper candidate message to server
-- fix didReceiveRemoteVideoTrack in appClient (self.localViewHeightConstraint)
 - decline call from browser and handle it in app (also clear connections etc. (disconnect))
 - if server not reachable print message (generally print response messages somewhere in a status field)
 
+##To-Check
+-if phone goes offline does it unregister form server too? 
+- Error-Handling:
+    - if appConfig is in wrong format display a message
+    - wrong-turn-config or server - app crashes here: ARDAppClient.h:416 [_peerConnection addStream:localStream]
+
 ##Done
+- 2016-07-19 ios app can receive calls and answer calls
 - 2016-07-09 local video is displayed in app and in browser 
 - 2016-07-08 creating local description and send it to server (call from to)
 - 2016-07-06 added registeredUsers to Websocket 

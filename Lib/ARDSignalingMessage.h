@@ -32,9 +32,12 @@
 
 typedef enum {
   kARDSignalingMessageTypeRegister,
+  kARDSignalingMessageTypeRegisteredUsers,
   kARDSignalingMessageTypeRegisterResponse,
   kARDSignalingMessageTypeResponse,
   kARDSignalingMessageIncomingCall,
+  kARDSignalingMessageStartCommunication,
+  kARDSignalingMessageIncomingResponseCall,
   kARDSignalingMessageTypeCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,
@@ -58,6 +61,14 @@ typedef enum {
 - (instancetype)initWithString:(NSString *)response;
 @end
 
+@interface ARDStartCommunicationMessage : ARDSignalingMessage
+
+@property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
+//@property(nonatomic, readonly) NSString *response;
+//- (instancetype)initWithString:(NSString *)response;
+- (instancetype)initWithDescription:(RTCSessionDescription *)description;
+@end
+
 @interface ARDIncomingCallMessage : ARDSignalingMessage
 
 @property(nonatomic, readonly) NSString *response;
@@ -65,10 +76,11 @@ typedef enum {
 - (instancetype)initWithString:(NSString *)response;
 @end
 
-//@interface ARDIncomingCallMessage : ARDSignalingMessage
-//@property(nonatomic, readonly) NSString *from;
-//- (instancetype)initWithDictionary:(NSDictionary *)dict;
-//@end
+@interface ARDRegisteredUserMessage : ARDSignalingMessage
+@property(nonatomic, readonly) NSArray *registeredUsers;
+- (instancetype)initWithArray:(NSArray *) registeredUsers;
+@end
+
 
 @interface ARDICECandidateMessage : ARDSignalingMessage
 
@@ -84,6 +96,9 @@ typedef enum {
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description;
 
+@end
+@interface ARDIncomingCallResponseMessage : ARDSignalingMessage
+@property(nonatomic, readwrite) NSString *from;
 @end
 
 @interface ARDByeMessage : ARDSignalingMessage

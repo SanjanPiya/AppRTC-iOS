@@ -59,7 +59,10 @@
     [self.urlLabel setText:self.client.serverHostUrl]; //must go into ChatViewController
     
     NSLog(@"calling to: %@",self.client.to);
-    [self.client call: @"nandi":  self.client.to];
+    if (self.client.isInitiator){
+        [self.client call: @"nandi":  self.client.to];
+    }
+
 
 }
 

@@ -104,7 +104,6 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         [self sendData: message];
     }
 }
-
 - (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description{
     if (_state == kARDWebSocketChannelStateOpen) {
         
@@ -113,6 +112,25 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
                                        @"from": from,
                                        @"sdpOffer": description.description };
         
+        NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
+                                                          options:NSJSONWritingPrettyPrinted
+                                                            error:nil];
+        
+        [self sendData: message];
+    }
+}
+
+
+- (void)incomingCallResponse:(NSString *)from : (RTCSessionDescription *) description{
+    
+    if (_state == kARDWebSocketChannelStateOpen) {
+        
+        NSDictionary *callMessage = @{ @"id": @"incomingCallResponse",
+                                       @"from": from,
+                                       @"callResponse": @"accept",
+                                       @"sdpOffer": description.description };
+        
+
         NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
                                                           options:NSJSONWritingPrettyPrinted
                                                             error:nil];
@@ -163,7 +181,8 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
     
     NSString *messageString = message;
     NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
-  
+    
+    NSLog(@"message: %@",message);
     id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
                                                   options:0
                                                     error:nil];
@@ -213,8 +232,8 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
     didCloseWithCode:(NSInteger)code
               reason:(NSString *)reason
             wasClean:(BOOL)wasClean {
-  NSLog(@"WebSocket closed with code: %ld reason:%@ wasClean:%d",
-      (long)code, reason, wasClean);
+    
+  NSLog(@"WebSocket closed with code: %ld reason:%@ wasClean:%d", (long)code, reason, wasClean);
   NSParameterAssert(_state != kARDWebSocketChannelStateError);
   self.state = kARDWebSocketChannelStateClosed;
 }
