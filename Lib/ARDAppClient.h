@@ -81,7 +81,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
 
-- (void)connectToWebsocket:(NSString *)url;
+- (void)connectToWebsocket:(NSString *)url : (NSString *)from;
 - (void)startSignalingIfReady;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
 - (void)call:(NSString *)from : (NSString *)to;

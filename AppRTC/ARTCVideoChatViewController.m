@@ -60,7 +60,7 @@
     
     NSLog(@"calling to: %@",self.client.to);
     if (self.client.isInitiator){
-        [self.client call: @"nandi":  self.client.to];
+        [self.client call: self.client.from:  self.client.to];
     }
 
 

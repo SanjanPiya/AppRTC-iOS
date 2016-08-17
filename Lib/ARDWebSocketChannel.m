@@ -31,6 +31,7 @@
 #import "RTCICEServer+JSON.h"
 #import "ARDUtilities.h"
 #import "SRWebSocket.h"
+#include "ARDAppClient.h"
 
 // TODO(tkchin): move these to a configuration object.
 static NSString const *kARDWSSMessageErrorKey = @"error";
@@ -214,7 +215,8 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         [_delegate channel:self setTurnServer:turnServers];
         
         //register current user
-        [self registerFrom:@"nandi"];
+     
+        [self registerFrom: ((ARDAppClient *) _delegate).from];
     }
     else{
         ARDSignalingMessage *signalingMessage = [ARDSignalingMessage messageFromJSONString:messageString];
