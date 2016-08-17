@@ -13,11 +13,15 @@
 - (void)awakeFromNib {
     // Initialization code
     [self.errorLabelHeightConstraint setConstant:0.0f];
-    [self.textField setDelegate:self];
-    [self.textField becomeFirstResponder];
+    //[self.textField setDelegate:self];
+    //[self.textField becomeFirstResponder];
     [self.joinButton setBackgroundColor:[UIColor colorWithWhite:100.0f/255.0f alpha:1.0f]];
     [self.joinButton setEnabled:NO];
     [self.joinButton.layer setCornerRadius:3.0f];
+    
+    self.userListTableView.delegate = self;
+    self.userListTableView.dataSource = self;
+ 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,9 +30,29 @@
     // Configure the view for the selected state
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.textLabel.text     = self.registeredUsers[indexPath.row];
+    return cell;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    return self.registeredUsers.count;
+}
+
+- (void)updateTable:(NSArray *)registeredUser{
+    self.registeredUsers = registeredUser;
+    [self.userListTableView reloadData];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+   [self.delegate toTextInputViewCell:self shouldCallUser:self.registeredUsers[indexPath.row]];
+}
+
+
 - (IBAction)touchButtonPressed:(id)sender {
     if ([self.delegate respondsToSelector:@selector(toTextInputViewCell:shouldCallUser:)]) {
-        [self.delegate toTextInputViewCell:self shouldCallUser:self.textField.text];
+        [self.delegate toTextInputViewCell:self shouldCallUser:@"testEntry"];  //self.textField.text
     }
 }
 
@@ -47,7 +71,7 @@
     if (text.length >= 5) {
         [UIView animateWithDuration:0.3f animations:^{
             [self.errorLabelHeightConstraint setConstant:0.0f];
-            [self.textFieldBorderView setBackgroundColor:[UIColor colorWithRed:66.0f/255.0f green:133.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
+          //  [self.textFieldBorderView setBackgroundColor:[UIColor colorWithRed:66.0f/255.0f green:133.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
             [self.joinButton setBackgroundColor:[UIColor colorWithRed:66.0f/255.0f green:133.0f/255.0f blue:244.0f/255.0f alpha:1.0f]];
             [self.joinButton setEnabled:YES];
             [self layoutIfNeeded];
@@ -55,7 +79,7 @@
     } else {
         [UIView animateWithDuration:0.3f animations:^{
             [self.errorLabelHeightConstraint setConstant:40.0f];
-            [self.textFieldBorderView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:67.0f/255.0f blue:54.0f/255.0f alpha:1.0f]];
+          //  [self.textFieldBorderView setBackgroundColor:[UIColor colorWithRed:244.0f/255.0f green:67.0f/255.0f blue:54.0f/255.0f alpha:1.0f]];
             [self.joinButton setBackgroundColor:[UIColor colorWithWhite:100.0f/255.0f alpha:1.0f]];
             [self.joinButton setEnabled:NO];
             [self layoutIfNeeded];

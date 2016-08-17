@@ -49,6 +49,13 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)appClient:(ARDAppClient *)client
    incomingCallRequest:(NSString *)from;
 
+
+@end
+
+@protocol ARDAppClientUpdateUserTableDelegate <NSObject>
+
+- (void)updateTable:(NSArray *)registeredUser;
+
 @end
 
 // Handles connections to the AppRTC server for a given room.
@@ -56,9 +63,11 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 @property(nonatomic, readonly) ARDAppClientState state;
 @property(nonatomic, weak) id<ARDAppClientDelegate> delegate;
+@property(nonatomic, weak) id<ARDAppClientUpdateUserTableDelegate> registeredUserdelegate;
 @property(nonatomic, strong) NSString *serverHostUrl;
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
+@property(nonatomic, assign) BOOL isInitiator;
 @property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
 @property (nonatomic, strong) RTCEAGLVideoView *remoteView;
@@ -74,6 +83,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (void)connectToWebsocket:(NSString *)url;
 - (void)startSignalingIfReady;
+- (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
 - (void)call:(NSString *)from : (NSString *)to;
 
 // Mute and unmute Audio-In
