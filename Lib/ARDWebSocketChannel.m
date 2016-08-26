@@ -1,4 +1,4 @@
-/*
+    /*
  * libjingle
  * Copyright 2014, Google Inc.
  *
@@ -210,6 +210,8 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         
         //get iceServers from appConfig
         NSDictionary *dict = response.pcConfig;
+        
+      //  NSDictionary *turnServers = [RTCICEServer serverFromJSONDictionary:dict[kARDWSSMessageIceServersKey]];
         NSDictionary *turnServers = [RTCICEServer serversFromCEODJSONDictionary:dict[kARDWSSMessageIceServersKey]];
         
         [_delegate channel:self setTurnServer:turnServers];

@@ -1,27 +1,43 @@
 # AppRTC - iOS implementation of the Google WebRTC Demo
 
 ## About
-This Xcode project is a native wrapper for the Google's WebRTC Demo. It organizes the WebRTC components into a cocoa pod that can be easily deployed into any Xcode project. The precompiled libWebRTC static library bundled with the pod works with 64-bit apps, unlike prior versions of WebRTC projects where only the 32-bit version was available. Currently, the project is designed to run on iOS Devices (iOS Simulator is not supported).
-
-Included in this Xcode project is a native Storyboard based Room Locator and Video Chat View Controllers:
-
-![AppRTC - iOS WebRTC Client Pod](./screenshots/screenshots.jpg "AppRTC iOS WebRTC App")
+This Xcode project is a native wrapper prototype in order to communicate with kurentos media server.
+It works in conjunction with two other projects
+- AppRTC-Kurento-Example (Kurento Signaling Server in Java (NodeJS not fully implemented yet))
+- AppRTC-Demo (The Android counterpart of this project)
 
 ##Todo
-- user nandi to be configured over gui  
-- server url should be configured over gui
-- don't display user nandi in listbox because it cannot be called
+- test on server (does the video appear or not)
 
-- decline call from browser and handle it in app (also clear connections etc. (disconnect))
-- if server not reachable print message (generally print response messages somewhere in a status field)
+##bugs
+- (setup) try multi URL selection list for urls and setups (for development, integration, production)
+- (setup) sound cannot be disabled from phone while broadcasting sound 
+- calling the phone - video does not appear instantly (after shake it comes)
+- calling from the phone - video appears full and after shake (the small vindow comes too)
+- stopping session on browser does not stop session in phone (should go back) stop is send but probably not received.
+- stopping session in phone stopps session in phone but not in browser (stop is not send to server! )
 
 ##Improveements & Checks 
+- does websocket stay online when going app goes into background?
+- shaking video turns into connection problem
+- "waiting for answer" does not disappear (should be removed)
+- sound works video sometimes does not appear (no big no small window) 
+- decline call from browser and handle it in app (also clear connections etc. (disconnect))
+- (sept) screen orientation change results in strange behavior - even sometimes connection breaks
 - if phone goes offline does it unregister form server too? 
+- play sound when calling 
+- iphone switches screen of after some minutes without activity (prevent)
+- user nandi to be configured over gui  
+- websocket url should be configured over gui
+- don't display user nandi in listbox because it cannot be called
 - Error-Handling:
     - if appConfig is in wrong format display a message
     - wrong-turn-config or server - app crashes here: ARDAppClient.h:416 [_peerConnection addStream:localStream]
+    - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-08-26 putting username and url into iphone setup
+- 2016-08-26 disable sound 
 - 2016-08-16 user nandi configured in cente place e.g. AppRTC/ARTCVideoChatViewController.m
 - 2016-07-19 ios app can receive calls and answer calls
 - 2016-07-09 local video is displayed in app and in browser 

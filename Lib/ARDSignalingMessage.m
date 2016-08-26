@@ -108,10 +108,10 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
       message = [[ARDRegisteredUserMessage alloc] initWithArray: array];
       NSLog(@"Received registeredUsers: (%@) ",array);
       
-  } else if ([typeString isEqualToString:@"bye"]) {
+  } else if ([typeString isEqualToString:@"stopCommunication"]) {
     message = [[ARDByeMessage alloc] init];
   } else {
-    NSLog(@"Unexpected type: %@", typeString);
+    NSLog(@"Unexpected type: %@ (which is not a problem!)", typeString);
   }
   return message;
 }

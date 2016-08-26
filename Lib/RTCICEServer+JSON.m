@@ -28,6 +28,7 @@
 #import "RTCICEServer+JSON.h"
 
 static NSString const *kRTCICEServerUsernameKey = @"username";
+static NSString const *kRTCICEServerBenutzerKey = @"benutzer";
 static NSString const *kRTCICEServerPasswordKey = @"password";
 static NSString const *kRTCICEServerUrisKey = @"uris";
 static NSString const *kRTCICEServerUrlKey = @"urls";
@@ -48,6 +49,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
 
 + (NSArray *)serversFromCEODJSONDictionary:(NSDictionary *)dictionary {
   NSString *username = dictionary[kRTCICEServerUsernameKey];
+  
   NSString *password = dictionary[kRTCICEServerPasswordKey];
   NSArray *uris = dictionary[kRTCICEServerUrisKey];
   NSMutableArray *servers = [NSMutableArray arrayWithCapacity:uris.count];

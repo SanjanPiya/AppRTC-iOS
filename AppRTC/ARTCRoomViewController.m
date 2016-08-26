@@ -10,11 +10,13 @@
 #import "ARTCVideoChatViewController.h"
 
 
-#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"
-//#define SERVER_HOST_URL @"ws://192.168.11.81:8080/jWebrtc"
+//#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"
 
+//#define SERVER_HOST_URL @"wss://192.168.4.237/jWebrtc" //salt, jekatarienburg http://www.saltsalt.ru/
+//#define SERVER_HOST_URL @"ws://100.100.104.152:8080/jWebrtc" //zentral telegraph, moscow http://ditelegraph.com/en
 //#define SERVER_HOST_URL @"wss://www.nicokrause.com/jWebrtc"
-#define MY_USERNAME @"nandi"
+//#define SERVER_HOST_URL @"wss://webrtc.a-fk.de/jWebrtc"
+//#define MY_USERNAME @"nico"
 
 //#define SERVER_HOST_URL @"wss://www.nicokrause.com:8181/jWebrtc"
 //www.nicokrause.com:8181/jWebrtc/ws
@@ -24,17 +26,30 @@
     [super viewDidLoad];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 
-
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"nico"
+                                                           forKey:@"MY_USERNAME"];
+    
+    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
+                                                            forKey:@"SERVER_HOST_URL"];
+   // [appDefaults setValuesForKeysWithDictionary: [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
+          //                                                                   forKey:@"SERVER_HOST_URL"]];
+    //[appDefaults setValue:@"wss://www.nicokrause.com/jWebrtc" forKey:@"SERVER_HOST_URL"];
+   // [defaults setValue:@"nico" forKey:@"MY_USERNAME"];
+    [defaults registerDefaults:appDefaults];
+    [defaults registerDefaults:appDefaults2];
+    [defaults synchronize];
+    
     //Connect to the room
     [self disconnect];
     self.client = [[ARDAppClient alloc] initWithDelegate:self];
-    [self.client connectToWebsocket: SERVER_HOST_URL : MY_USERNAME];
+
+    [self.client connectToWebsocket: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"] : [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]];
     
 }
 
@@ -76,7 +91,7 @@
         [self.client.localView renderFrame:nil];
         self.client.remoteVideoTrack = nil;
         [self.client.remoteView renderFrame:nil];
-        [self.client disconnect];
+        [self.client disconnect:true];
     }
 }
 
@@ -102,7 +117,7 @@
     NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
     
     self.client.to = from;
-    self.client.from = MY_USERNAME; //@"nandi";
+    self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]; //@"nandi";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
                                                     message:message

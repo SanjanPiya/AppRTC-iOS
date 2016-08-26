@@ -126,7 +126,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-  [self disconnect];
+    [self disconnect : false];
 }
 
 - (void)orientationChanged:(NSNotification *)notification {
@@ -146,7 +146,6 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         if (localVideoTrack) {
             [localStream addVideoTrack:localVideoTrack];
             [self didReceiveLocalVideoTrack:localVideoTrack];
-           // [_delegate appClient:self didReceiveLocalVideoTrack:localVideoTrack];
         }
         [_peerConnection removeStream:localStream];
         [_peerConnection addStream:localStream];
@@ -185,23 +184,21 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 
 
-- (void)disconnect {
-  if (_state == kARDAppClientStateDisconnected) {
+- (void)disconnect: (BOOL) ownDisconnect {
+  if (_state == kARDAppClientStateDisconnected) {  //disconnect from call not from colider
     return;
   }
-  if (self.isRegisteredWithWebsocketServer) {
-#warning please implement unregistering from websocket and mediastreams
-   //TODO [self unregisterWithRoomServer];
-  }
-  if (_channel) {
-    if (_channel.state == kARDWebSocketChannelStateRegistered) {
+    if (_channel) {
+    
+    //check if this disconnect was issued by ourselfs - if so send our peer a message
+    if (ownDisconnect) {
       // Tell the other client we're hanging up.
       ARDByeMessage *byeMessage = [[ARDByeMessage alloc] init];
       NSData *byeData = [byeMessage JSONData];
       [_channel sendData:byeData];
     }
     // Disconnect from collider.
-    _channel = nil;
+   // _channel = nil;
   }
    _from = nil;
    _to = nil;
@@ -209,6 +206,10 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   _messageQueue = [NSMutableArray array];
   _peerConnection = nil;
   self.state = kARDAppClientStateDisconnected;
+    
+    [_delegate self ]; //.navigationController popToRootViewControllerAnimated:YES]
+    //[_delegate navigationController popToRootViewControllerAnimated:YES];
+   // [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
@@ -270,7 +271,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     case kARDWebSocketChannelStateError:
       // TODO(tkchin): reconnection scenarios. Right now we just disconnect
       // completely if the websocket connection fails.
-      [self disconnect];
+          [self disconnect : false];
       break;
   }
 }
@@ -339,7 +340,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   dispatch_async(dispatch_get_main_queue(), ^{
     if (error) {
       NSLog(@"Failed to create session description. Error: %@", error);
-      [self disconnect];
+        [self disconnect : false];
       NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey: @"Failed to create session description.",
       };
@@ -369,7 +370,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
   dispatch_async(dispatch_get_main_queue(), ^{
     if (error) {
       NSLog(@"Failed to set session description. Error: %@", error);
-      [self disconnect];
+        [self disconnect : false];
       NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey: @"Failed to set session description.",
       };
@@ -466,7 +467,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
       // Other client disconnected.
       // TODO(tkchin): support waiting in room for next client. For now just
       // disconnect.
-      [self disconnect];
+          [self disconnect : false];
+      
       break;
   }
 }
@@ -564,7 +566,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
                                                                                  cancelButtonTitle:@"OK"
                                                                                  otherButtonTitles:nil];
     [alertView show];
-    [self disconnect];
+    [self disconnect : false];
 }
 
 #pragma mark - Collider methods
@@ -714,8 +716,8 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 #pragma mark - enable/disable speaker
 
 - (void)enableSpeaker {
-    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
-    _isSpeakerEnabled = YES;
+   // [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+  //  _isSpeakerEnabled = YES;
 }
 
 - (void)disableSpeaker {
