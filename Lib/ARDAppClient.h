@@ -103,6 +103,6 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)swapCameraToBack;
 
 // Disconnects from the AppRTC servers and any connected clients.
-- (void)disconnect;
+- (void)disconnect: (BOOL) ownDisconnect;
 
 @end
