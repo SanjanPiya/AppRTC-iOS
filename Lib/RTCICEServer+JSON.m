@@ -30,7 +30,7 @@
 static NSString const *kRTCICEServerUsernameKey = @"username";
 static NSString const *kRTCICEServerBenutzerKey = @"benutzer";
 static NSString const *kRTCICEServerPasswordKey = @"password";
-static NSString const *kRTCICEServerUrisKey = @"uris";
+static NSString const *kRTCICEServerUrisKey = @"urls";
 static NSString const *kRTCICEServerUrlKey = @"urls";
 static NSString const *kRTCICEServerCredentialKey = @"credential";
 
@@ -48,19 +48,23 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
 }
 
 + (NSArray *)serversFromCEODJSONDictionary:(NSDictionary *)dictionary {
-  NSString *username = dictionary[kRTCICEServerUsernameKey];
-  
-  NSString *password = dictionary[kRTCICEServerPasswordKey];
-  NSArray *uris = dictionary[kRTCICEServerUrisKey];
-  NSMutableArray *servers = [NSMutableArray arrayWithCapacity:uris.count];
-  for (NSString *uri in uris) {
-    RTCICEServer *server =
-        [[RTCICEServer alloc] initWithURI:[NSURL URLWithString:uri]
-                                 username:username
-                                 password:password];
-    [servers addObject:server];
-  }
-  return servers;
+    NSMutableArray *servers =[NSMutableArray arrayWithCapacity:dictionary.count];
+    for (NSDictionary *entry in dictionary) {
+        
+        NSString *username = entry[kRTCICEServerUsernameKey];
+        NSString *password = entry[kRTCICEServerPasswordKey];
+        NSArray *uris = entry[kRTCICEServerUrisKey];
+        
+     //   [NSMutableArray arrayWithCapacity:uris.count];
+        for (NSString *uri in uris) {
+            RTCICEServer *server =
+            [[RTCICEServer alloc] initWithURI:[NSURL URLWithString:uri]
+                                     username:username
+                                     password:password];
+            [servers addObject:server];
+        }
+    }
+    return servers;
 }
 
 @end
