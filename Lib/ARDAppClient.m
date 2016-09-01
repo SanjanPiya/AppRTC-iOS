@@ -1,4 +1,4 @@
-/*
+        /*
  * libjingle
  * Copyright 2014, Google Inc.
  *
@@ -48,7 +48,8 @@
 #import "RTCVideoTrack.h"
 
 
-static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
+//static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
+static NSString *kARDDefaultSTUNServerUrl = @"stun:5.9.154.226:3478";
 
 static NSString *kARDAppClientErrorDomain = @"ARDAppClient";
 static NSInteger kARDAppClientErrorUnknown = -1;
@@ -60,7 +61,9 @@ static NSInteger kARDAppClientErrorInvalidClient = -6;
 static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 @interface ARDAppClient () <ARDWebSocketChannelDelegate,
-    RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>
+RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
+     NSMutableArray * arrayCondidates;
+}
 @property(nonatomic, strong) ARDWebSocketChannel *channel;
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;
@@ -162,6 +165,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)connectToWebsocket:(NSString *)url : (NSString *)from {
   
+    if (_channel != nil) {  //disconnect from call not from colider
+        return;
+    }
     NSParameterAssert(url.length);
     _websocketURL = [NSURL URLWithString:url];
     _from = from;
@@ -173,6 +179,7 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
     [strongSelf registerWithColliderIfReady];
     
     [_channel getAppConfig];
+
     
 }
 
@@ -197,15 +204,12 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
       NSData *byeData = [byeMessage JSONData];
       [_channel sendData:byeData];
     }
-    // Disconnect from collider.
-   // _channel = nil;
   }
-   _from = nil;
-   _to = nil;
-  _hasReceivedSdp = NO;
-  _messageQueue = [NSMutableArray array];
-  _peerConnection = nil;
-  self.state = kARDAppClientStateDisconnected;
+
+    _hasReceivedSdp = NO;
+    _messageQueue = [NSMutableArray array];
+    _peerConnection = nil;
+    self.state = kARDAppClientStateDisconnected;
     
     [_delegate self ]; //.navigationController popToRootViewControllerAnimated:YES]
     //[_delegate navigationController popToRootViewControllerAnimated:YES];
@@ -290,11 +294,9 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
         (unsigned long)stream.videoTracks.count,
         (unsigned long)stream.audioTracks.count);
     if (stream.videoTracks.count) {
-      RTCVideoTrack *videoTrack = stream.videoTracks[0];
-   //   [_delegate appClient:self didReceiveRemoteVideoTrack:videoTrack]; //here is still a problem!
-          [self didReceiveRemoteVideoTrack:videoTrack];
-      if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
-
+        RTCVideoTrack *videoTrack = stream.videoTracks[0];
+        [self didReceiveRemoteVideoTrack:videoTrack];
+        if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
     }
   });
 }
@@ -311,20 +313,44 @@ static NSInteger kARDAppClientErrorInvalidRoom = -7;
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
     iceConnectionChanged:(RTCICEConnectionState)newState {
-  NSLog(@"ICE state changed: %d", newState);
+
+        switch (newState) {
+                   case RTCICEConnectionCompleted:
+                        NSLog(@"RTCICEConnectionCompleted");
+                        break;
+                    case RTCICEConnectionConnected:
+                        NSLog(@"RTCICEConnectionConnected");
+                        break;
+                    default:
+                        break;
+        }
+    
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
     iceGatheringChanged:(RTCICEGatheringState)newState {
   NSLog(@"ICE gathering state changed: %d", newState);
+       switch (newState) {
+                    case RTCICEGatheringComplete:
+                        for (ARDICECandidateMessage *message in arrayCondidates) {
+                                [self sendSignalingMessage:message];
+                            }
+                    break;
+       }
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
        gotICECandidate:(RTCICECandidate *)candidate {
   dispatch_async(dispatch_get_main_queue(), ^{
-    ARDICECandidateMessage *message =
+      
+      if (!arrayCondidates) {
+          arrayCondidates = [NSMutableArray array];
+      }
+      ARDICECandidateMessage *message =
         [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
-    [self sendSignalingMessage:message];
+    
+       [arrayCondidates addObject:message];
+      [self sendSignalingMessage:message];
   });
 }
 

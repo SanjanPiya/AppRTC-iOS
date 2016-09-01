@@ -2,36 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Title</key>
+	<string>Root</string>
 	<key>PreferenceSpecifiers</key>
 	<array>
-		<dict>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>Title</key>
-			<string>test</string>
-			<key>Key</key>
-			<string>test</string>
-			<key>DefaultValue</key>
-			<string>test</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>Server URL (WS/WSS)</string>
-			<key>Key</key>
-			<string>SERVER_HOST_URL</string>
-			<key>DefaultValue</key>
-			<string>wss://www.nicokrause.com/jWebrtc</string>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>KeyboardType</key>
-			<string>URL</string>
-			<key>IsSecure</key>
-			<false/>
-		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
@@ -40,11 +14,29 @@
 			<key>Key</key>
 			<string>MY_USERNAME</string>
 			<key>DefaultValue</key>
-			<string>nico</string>
+			<string>afk</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
 			<string>Alphabet</string>
+			<key>AutocapitalizationType</key>
+			<string>None</string>
+			<key>AutocorrectionType</key>
+			<string>No</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Name</string>
+			<key>Key</key>
+			<string>SERVER_HOST_URL</string>
+			<key>DefaultValue</key>
+			<string>wss://webrtc.a-fk.de/jWebrtc</string>
+			<key>IsSecure</key>
+			<false/>
+			<key>KeyboardType</key>
+			<string>URL</string>
 			<key>AutocapitalizationType</key>
 			<string>None</string>
 			<key>AutocorrectionType</key>

@@ -158,9 +158,9 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
       _state == kARDWebSocketChannelStateError) {
     return;
   }
-  [_socket close];
-  
-  NSLog(@"C->WSS DELETE rid:%@ cid:%@", _to, _from);
+  //[_socket close];
+  NSLog(@"we are not closing the websocket here anymore!:%@", _to, _from);
+  //NSLog(@"C->WSS DELETE rid:%@ cid:%@", _to, _from);
  //send bye message here back to server
   /*NSString *urlString = [NSString stringWithFormat:@"%@/%@/%@", [_restURL absoluteString], _roomId, _clientId];
   NSURL *url = [NSURL URLWithString:urlString];

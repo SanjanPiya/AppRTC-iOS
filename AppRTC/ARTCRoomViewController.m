@@ -11,8 +11,10 @@
 
 
 //#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"
-
+                                                            //jeltsin, center, jekatarinburg http://yeltsin.ru/
 //#define SERVER_HOST_URL @"wss://192.168.4.237/jWebrtc" //salt, jekatarienburg http://www.saltsalt.ru/
+
+
 //#define SERVER_HOST_URL @"ws://100.100.104.152:8080/jWebrtc" //zentral telegraph, moscow http://ditelegraph.com/en
 //#define SERVER_HOST_URL @"wss://www.nicokrause.com/jWebrtc"
 //#define SERVER_HOST_URL @"wss://webrtc.a-fk.de/jWebrtc"
@@ -35,21 +37,29 @@
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"nico"
                                                            forKey:@"MY_USERNAME"];
     
-    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
+    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
                                                             forKey:@"SERVER_HOST_URL"];
+    
+    ///NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.4.237/jWebrtc"
+    //                                                         forKey:@"SERVER_HOST_URL"];
+    
+    
    // [appDefaults setValuesForKeysWithDictionary: [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
           //                                                                   forKey:@"SERVER_HOST_URL"]];
     //[appDefaults setValue:@"wss://www.nicokrause.com/jWebrtc" forKey:@"SERVER_HOST_URL"];
    // [defaults setValue:@"nico" forKey:@"MY_USERNAME"];
+    
     [defaults registerDefaults:appDefaults];
     [defaults registerDefaults:appDefaults2];
     [defaults synchronize];
     
     //Connect to the room
-    [self disconnect];
-    self.client = [[ARDAppClient alloc] initWithDelegate:self];
+    if(self.client == nil){
+        //[self disconnect];
+        self.client = [[ARDAppClient alloc] initWithDelegate:self];
 
-    [self.client connectToWebsocket: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"] : [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]];
+        [self.client connectToWebsocket: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"] : [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]];
+    }
     
 }
 
