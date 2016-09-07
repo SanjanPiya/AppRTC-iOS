@@ -475,7 +475,6 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
       }
     case kARDSignalingMessageTypeAnswer:{
         ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;
-     //   ARDSessionDescriptionMessage *sdpMessage =  (ARDSessionDescriptionMessage *)message; //old
         RTCSessionDescription *remoteDesc = sdpMessage.sessionDescription;
 
       [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:remoteDesc];
@@ -483,7 +482,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
       break;
     }
     case kARDSignalingMessageTypeCandidate: {
-    
+             NSLog(@"got candidate: %@", message);
       ARDICECandidateMessage *candidateMessage =  (ARDICECandidateMessage *)message;
       [_peerConnection addICECandidate:candidateMessage.candidate];
     
