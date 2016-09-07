@@ -1,26 +1,33 @@
-# AppRTC - iOS implementation of the Google WebRTC Demo
+# AppRTC - iOS implementation
 
-## About
-This Xcode project is a native wrapper prototype in order to communicate with kurentos media server.
-It works in conjunction with two other projects
-- AppRTC-Kurento-Example (Kurento Signaling Server in Java (NodeJS not fully implemented yet))
-- AppRTC-Demo (the android counterpart of this project)
+##About
+This Xcode project is a native wrapper prototype in order to communicate with kurentos media server. It works in conjunction with two other projects
+- AppRTC-Kurento (Kurento Signaling Server in Java (NodeJS not fully implemented yet))
+- AppRTC-Android (the android counterpart of this project)
+
+!!!This version was modified to work with websockets and kurento java api!!!
 
 ##Todo
+- create webrtc.libs for ios with
+    - https://webrtc.org/native-code/development/ and/or
+    - https://webrtc.org/native-code/ios/
+    - apprtc - client with new webrtc.libs for ios do not connect correctly 
+            (websocket connection problem of ios whitelist? - no info.plist) 
+
 - video sometimes does not appear with remote server 
-    https://webrtchacks.com/trickle-ice/
+    - Bugs? 
+        ios problem with ipv6/reflexiveIP - https://bugs.chromium.org/p/webrtc/issues/detail?id=5871
+        blue screen of christian during test with Dell Notebook Latitude E5550 mit Windows 10 latest version.
+
+    - information on bugs https://webrtchacks.com/trickle-ice/
     https://tech.appear.in/2015/05/25/Getting-started-with-WebRTC-on-iOS/
     reflex
-- test on server (does the video appear or not)
+    ipv6
 
 ##Observations
-- ios client connects well in local network (android and browser does!)
-- ios client connects well in hostel network (android and browser does!)
-- ios client did not connect well in salt (coworking space) jekatarienburg ()
-    - reflexive connectivity failed (udp)
-    - also public turn/stun does not help! (not a stun server problem)
 - ios client did not connect well in travelercafé network (reflexive connectivity test failed: https://test.webrtc.org/)
     - trickle ice https://webrtchacks.com/trickle-ice/
+    turn:numb.viagenie.ca
     - rfc6544 https://tools.ietf.org/html/rfc6544
     - rfc5245 https://tools.ietf.org/html/rfc5245
     - https://webrtc.org/troubleshooting/
@@ -35,6 +42,7 @@ It works in conjunction with two other projects
     - mail of someone with iOS problems fixing it with a couple of stun servers https://groups.google.com/forum/#!topic/kurento/FmHUXSv6n7M
     - problems in erricson mailinglist https://recordnotfound.com/openwebrtc-examples-EricssonResearch-68647/issues
     http://www.avaya.com/blogs/archives/2014/08/understanding-webrtc-media-connections-ice-stun-and-turn.html
+    - WebRTC Reflexive Connectivity Problems  https://github.com/webrtc/testrtc/issues/176
 
 ##Build WebRTC-Libs
 - https://github.com/pristineio/webrtc-build-scripts
@@ -43,17 +51,20 @@ It works in conjunction with two other projects
 ##Test-WebRTc
 - https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
 - https://test.webrtc.org/
+- stun/turn servers: https://gist.github.com/yetithefoot/7592580
 
 ##WebRTC-Security 
 - Security Considerations http://webrtc-security.github.io/
 
 ##Bugs
-- (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 - (setup) sound cannot be disabled from phone while broadcasting sound 
-- calling the phone - video does not appear instantly (after shake it comes)
-- calling from the phone - video appears full and after shake (the small vindow comes too)
+- calling the phone - video does not appear instantly (after a shake it comes)
+- calling from the phone - video appears full and after shake the small vindow comes too
 - stopping session on browser does not stop session in phone (should go back) stop is send but probably not received.
 - stopping session in phone stopps session in phone but not in browser (stop is not send to server! )
+
+##Nice2Haves
+- (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 
 ##Improveements & Checks 
 -  websocket stays online when app goes in to background - also when no active video connectino 
@@ -77,7 +88,7 @@ It works in conjunction with two other projects
 - 2016-08-30 websocket stays online (audio too) when app goes in to background (when active video connection)
 - 2016-08-26 putting username and url into iphone setup
 - 2016-08-26 disable sound 
-- 2016-08-16 user nandi configured in cente place e.g. AppRTC/ARTCVideoChatViewController.m
+- 2016-08-16 user nandi configured in <center></center> place e.g. AppRTC/ARTCVideoChatViewController.m
 - 2016-07-19 ios app can receive calls and answer calls
 - 2016-07-09 local video is displayed in app and in browser 
 - 2016-07-08 creating local description and send it to server (call from to)
