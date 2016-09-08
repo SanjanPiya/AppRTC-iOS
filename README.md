@@ -1,4 +1,4 @@
-# AppRTC - iOS implementation
+# AppRTC - iOS
 
 ##About
 This Xcode project is a native wrapper prototype in order to communicate with kurentos media server. It works in conjunction with two other projects
