@@ -110,7 +110,7 @@
         self.client.remoteVideoTrack = nil;
         [self.remoteView renderFrame:nil];
         [self.client disconnect: true ];
-        //[_delegate navigationController popToRootViewControllerAnimated:YES];
+        //[delegate navigationController popToRootViewControllerAnimated:YES];
     }
 }
 

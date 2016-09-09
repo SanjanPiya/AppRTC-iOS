@@ -40,8 +40,8 @@
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
                                                             forKey:@"SERVER_HOST_URL"];
     
-    ///NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.4.237/jWebrtc"
-    //                                                         forKey:@"SERVER_HOST_URL"];
+  ///  NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.1.39/jWebrtc"
+                                           //                  forKey:@"SERVER_HOST_URL"];
     
     
    // [appDefaults setValuesForKeysWithDictionary: [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
@@ -117,7 +117,9 @@
             break;
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
-         //   [self remoteDisconnected];
+            // [[self navigationController] setNavigationBarHidden:NO animated:YES];
+             [self.navigationController popToRootViewControllerAnimated:YES];
+           //  [self remoteDisconnected];
             break;
     }
 }

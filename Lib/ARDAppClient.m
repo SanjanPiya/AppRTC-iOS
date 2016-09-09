@@ -211,9 +211,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
     _peerConnection = nil;
     self.state = kARDAppClientStateDisconnected;
     
-    [_delegate self ]; //.navigationController popToRootViewControllerAnimated:YES]
-    //[_delegate navigationController popToRootViewControllerAnimated:YES];
-   // [self.navigationController popToRootViewControllerAnimated:YES];
+    [_delegate self ]; 
 }
 
 
@@ -467,12 +465,12 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
   
     NSParameterAssert(_peerConnection || message.type == kARDSignalingMessageTypeBye);
     
-  switch (message.type) {
+    switch (message.type) {
       case kARDSignalingMessageStartCommunication:{
           ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;
           [_peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:sdpMessage.sessionDescription];
           break;
-      }
+    }
     case kARDSignalingMessageTypeAnswer:{
         ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;
         RTCSessionDescription *remoteDesc = sdpMessage.sessionDescription;
@@ -490,8 +488,6 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
     }
     case kARDSignalingMessageTypeBye:
       // Other client disconnected.
-      // TODO(tkchin): support waiting in room for next client. For now just
-      // disconnect.
           [self disconnect : false];
       
       break;
