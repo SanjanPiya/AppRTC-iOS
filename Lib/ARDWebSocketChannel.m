@@ -159,15 +159,7 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
     return;
   }
   //[_socket close];
-  NSLog(@"we are not closing the websocket here anymore!:%@", _to, _from);
-  //NSLog(@"C->WSS DELETE rid:%@ cid:%@", _to, _from);
- //send bye message here back to server
-  /*NSString *urlString = [NSString stringWithFormat:@"%@/%@/%@", [_restURL absoluteString], _roomId, _clientId];
-  NSURL *url = [NSURL URLWithString:urlString];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-  request.HTTPMethod = @"DELETE";
-  request.HTTPBody = nil;
-  [NSURLConnection sendAsyncRequest:request completionHandler:nil];*/
+ // NSLog(@"we are not closing the websocket here anymore!:%@", _to, _from);
 }
 
 #pragma mark - SRWebSocketDelegate
@@ -210,14 +202,10 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         
         //get iceServers from appConfig
         NSDictionary *dict = response.pcConfig;
-        
-      //  NSDictionary *turnServers = [RTCICEServer serverFromJSONDictionary:dict[kARDWSSMessageIceServersKey]];
         NSDictionary *turnServers = [RTCICEServer serversFromCEODJSONDictionary:dict[kARDWSSMessageIceServersKey]];
         
         [_delegate channel:self setTurnServer:turnServers];
         
-        //register current user
-     
         [self registerFrom: ((ARDAppClient *) _delegate).from];
     }
     else{

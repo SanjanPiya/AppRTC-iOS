@@ -2,10 +2,10 @@
 
 ##About
 This Xcode project is a native wrapper prototype in order to communicate with kurentos media server. It works in conjunction with two other projects
-- AppRTC-Kurento (Kurento Signaling Server in Java (NodeJS not fully implemented yet))
-- AppRTC-Android (the android counterpart of this project)
 
-!!!This version was modified to work with websockets and kurento java api!!!
+There are also:
+- a pure websocket AppRTC for Kurento: AppRTC-Kurento and
+- a pure websocket AppRTC for Android: AppRTC-Android 
 
 ##Todo
 - create webrtc.libs for ios with
@@ -60,8 +60,7 @@ This Xcode project is a native wrapper prototype in order to communicate with ku
 - (setup) sound cannot be disabled from phone while broadcasting sound 
 - calling the phone - video does not appear instantly (after a shake it comes)
 - calling from the phone - video appears full and after shake the small vindow comes too
-- stopping session on browser does not stop session in phone (should go back) stop is send but probably not received.
-- stopping session in phone stopps session in phone but not in browser (stop is not send to server! )
+- after stopping a call a user cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why it does so.
 
 ##Nice2Haves
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
@@ -85,6 +84,8 @@ This Xcode project is a native wrapper prototype in order to communicate with ku
     - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-09-09 - stopping session in phone stopps session in phone but not in browser (stop is not send to server! ) implement / improve delegate - https://www.youtube.com/watch?v=eNmZEXNQheE
+- 2016-09-09  stopping session on browser does not stop session in phone (should go back) stop is send but probably not received.
 - 2016-08-30 websocket stays online (audio too) when app goes in to background (when active video connection)
 - 2016-08-26 putting username and url into iphone setup
 - 2016-08-26 disable sound 
