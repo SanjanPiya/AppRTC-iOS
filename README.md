@@ -8,21 +8,24 @@ There are also:
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
 ##Todo
-- create webrtc.libs for ios with
-    - https://webrtc.org/native-code/development/ and/or
-    - https://webrtc.org/native-code/ios/
-    - apprtc - client with new webrtc.libs for ios do not connect correctly 
-            (websocket connection problem of ios whitelist? - no info.plist) 
+- fix ios Connection Problem
+    Possibilities:
+    - enable ipv6 on le-space.de or 
+    - create fast(!) server at amazon with IPv6
+    - download libjingle from somewhere and try: e.g. 
+        - https://github.com/chamara-dev/gate_libjingle_peerconnection/tree/master/libjingle_peerconnection
 
-- video sometimes does not appear with remote server 
-    - Bugs? 
-        ios problem with ipv6/reflexiveIP - https://bugs.chromium.org/p/webrtc/issues/detail?id=5871
-        blue screen of christian during test with Dell Notebook Latitude E5550 mit Windows 10 latest version.
+    - create webrtc.libs for ios with
+        - https://webrtc.org/native-code/development/ and/or
+        - https://webrtc.org/native-code/ios/
+        - apprtc - client with new webrtc.libs for ios do not connect correctly 
+                (websocket connection problem of ios whitelist? - no info.plist) 
+    - ask webrtc mailing list
+    - follow reactNative issue: https://github.com/oney/react-native-webrtc/issues/79
+    - follow with ipv6/reflexiveIP 
+            - https://bugs.chromium.org/p/webrtc/issues/detail?id=5871
+            - https://github.com/oney/react-native-webrtc/issues/79
 
-    - information on bugs https://webrtchacks.com/trickle-ice/
-    https://tech.appear.in/2015/05/25/Getting-started-with-WebRTC-on-iOS/
-    reflex
-    ipv6
 
 ##Observations
 - ios client did not connect well in travelercafé network (reflexive connectivity test failed: https://test.webrtc.org/)
@@ -45,8 +48,8 @@ There are also:
     - WebRTC Reflexive Connectivity Problems  https://github.com/webrtc/testrtc/issues/176
 
 ##Build WebRTC-Libs
-- https://github.com/pristineio/webrtc-build-scripts
-- (doesn't work!) http://ninjanetic.com/how-to-get-started-with-webrtc-and-ios-without-wasting-10-hours-of-your-life/
+- https://github.com/pristineio/webrtc-build-scripts (stopped maintenance! don't use)
+- http://ninjanetic.com/how-to-get-started-with-webrtc-and-ios-without-wasting-10-hours-of-your-life/ (doesn't work!)
 
 ##Test-WebRTc
 - https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
@@ -64,16 +67,14 @@ There are also:
 
 ##Nice2Haves
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
+- play ring-tone when calling 
 
 ##Improveements & Checks 
 -  websocket stays online when app goes in to background - also when no active video connectino 
-- shaking video turns into connection problem
-- "waiting for answer" does not disappear (should be removed)
-- sound works video sometimes does not appear (no big no small window) 
-- decline call from browser and handle it in app (also clear connections etc. (disconnect))
+- "waiting for answer" does not disappear (should be removed) 
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks
 - if phone goes offline does it unregister form server too? 
-- play sound when calling 
+
 - iphone switches screen of after some minutes without activity (prevent)
 - user nandi to be configured over gui  
 - websocket url should be configured over gui
