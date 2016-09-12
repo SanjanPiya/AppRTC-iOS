@@ -7,9 +7,13 @@ There are also:
 - a pure websocket AppRTC for Kurento: AppRTC-Kurento and
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
-##Todo
+##Todos:
 
-
+##Bugs
+- (setup) sound cannot be disabled from phone while broadcasting sound 
+- calling the phone - video does not appear instantly (after a shake it comes)
+- calling from the phone - video appears full and after shake the small vindow comes too
+- after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
 
 
 ##Build WebRTC-Libs
@@ -24,11 +28,7 @@ There are also:
 ##WebRTC-Security 
 - Security Considerations http://webrtc-security.github.io/
 
-##Bugs
-- (setup) sound cannot be disabled from phone while broadcasting sound 
-- calling the phone - video does not appear instantly (after a shake it comes)
-- calling from the phone - video appears full and after shake the small vindow comes too
-- after stopping a call a user cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why it does so.
+
 
 ##Nice2Haves
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
