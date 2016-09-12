@@ -34,7 +34,7 @@
 
     // Set the application defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"nico"
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"webrtc"
                                                            forKey:@"MY_USERNAME"];
     
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"

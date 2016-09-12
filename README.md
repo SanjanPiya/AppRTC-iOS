@@ -8,44 +8,9 @@ There are also:
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
 ##Todo
-- fix ios Connection Problem
-    Possibilities:
-    - enable ipv6 on le-space.de or 
-    - create fast(!) server at amazon with IPv6
-    - download libjingle from somewhere and try: e.g. 
-        - https://github.com/chamara-dev/gate_libjingle_peerconnection/tree/master/libjingle_peerconnection
-
-    - create webrtc.libs for ios with
-        - https://webrtc.org/native-code/development/ and/or
-        - https://webrtc.org/native-code/ios/
-        - apprtc - client with new webrtc.libs for ios do not connect correctly 
-                (websocket connection problem of ios whitelist? - no info.plist) 
-    - ask webrtc mailing list
-    - follow reactNative issue: https://github.com/oney/react-native-webrtc/issues/79
-    - follow with ipv6/reflexiveIP 
-            - https://bugs.chromium.org/p/webrtc/issues/detail?id=5871
-            - https://github.com/oney/react-native-webrtc/issues/79
 
 
-##Observations
-- ios client did not connect well in travelercafé network (reflexive connectivity test failed: https://test.webrtc.org/)
-    - trickle ice https://webrtchacks.com/trickle-ice/
-    turn:numb.viagenie.ca
-    - rfc6544 https://tools.ietf.org/html/rfc6544
-    - rfc5245 https://tools.ietf.org/html/rfc5245
-    - https://webrtc.org/troubleshooting/
-    - https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
-    - https://easyrtc.com/docs/guides/easyrtc_webrtc_problems.php
-    - https://blogs.technet.microsoft.com/nexthop/2009/04/22/how-communicator-uses-sdp-and-ice-to-establish-a-media-channel/
-    - http://stackoverflow.com/questions/32520255/building-ios-native-app-using-webrtc
-    - https://medium.com/@TechStud/blab-how-to-configure-your-firewall-1c6675e86f7b#.432tmg89m
-    https://tech.appear.in/2015/05/25/Getting-started-with-WebRTC-on-iOS/
-    http://stackoverflow.com/questions/32520255/building-ios-native-app-using-webrtc
-        https://github.com/aolszak/WebRTC-iOS
-    - mail of someone with iOS problems fixing it with a couple of stun servers https://groups.google.com/forum/#!topic/kurento/FmHUXSv6n7M
-    - problems in erricson mailinglist https://recordnotfound.com/openwebrtc-examples-EricssonResearch-68647/issues
-    http://www.avaya.com/blogs/archives/2014/08/understanding-webrtc-media-connections-ice-stun-and-turn.html
-    - WebRTC Reflexive Connectivity Problems  https://github.com/webrtc/testrtc/issues/176
+
 
 ##Build WebRTC-Libs
 - https://github.com/pristineio/webrtc-build-scripts (stopped maintenance! don't use)
@@ -74,10 +39,7 @@ There are also:
 - "waiting for answer" does not disappear (should be removed) 
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks
 - if phone goes offline does it unregister form server too? 
-
 - iphone switches screen of after some minutes without activity (prevent)
-- user nandi to be configured over gui  
-- websocket url should be configured over gui
 - don't display user nandi in listbox because it cannot be called
 - Error-Handling:
     - if appConfig is in wrong format display a message
@@ -85,6 +47,46 @@ There are also:
     - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-09-12 - fix ios Connection Problem
+                Possibilities:
+                - enable ipv6 on le-space.de
+                    -- Update: ipv6 is enabled(!) - but cannot be pingt from #pipoca nor from #webrtc.a-fk.de -- need network which can ping IPv6  
+                - create fast(!) server at amazon with IPv6 
+                    -- Update: amazon with IPv6 does not work if I sit inside of a not ipv6 routed NAT.
+                - download libjingle from somewhere and try: e.g. 
+                    - https://github.com/chamara-dev/gate_libjingle_peerconnection/tree/master/libjingle_peerconnection
+
+                - create webrtc.libs for ios with
+                    - https://webrtc.org/native-code/development/ and/or
+                    - https://webrtc.org/native-code/ios/
+                    - apprtc - client with new webrtc.libs for ios do not connect correctly 
+                            (websocket connection problem of ios whitelist? - no info.plist) 
+                - ask webrtc mailing list
+                - check creator of forked project 
+                - follow reactNative issue: https://github.com/oney/react-native-webrtc/issues/79
+                - follow with ipv6/reflexiveIP 
+                        - https://bugs.chromium.org/p/webrtc/issues/detail?id=5871
+                        - https://github.com/oney/react-native-webrtc/issues/79
+                        ##Observations
+                - ios client did not connect well in travelercafé network (reflexive connectivity test failed: https://test.webrtc.org/)
+                    - trickle ice https://webrtchacks.com/trickle-ice/
+                    turn:numb.viagenie.ca
+                    - rfc6544 https://tools.ietf.org/html/rfc6544
+                    - rfc5245 https://tools.ietf.org/html/rfc5245
+                    - https://webrtc.org/troubleshooting/
+                    - https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
+                    - https://easyrtc.com/docs/guides/easyrtc_webrtc_problems.php
+                    - https://blogs.technet.microsoft.com/nexthop/2009/04/22/how-communicator-uses-sdp-and-ice-to-establish-a-media-channel/
+                    - http://stackoverflow.com/questions/32520255/building-ios-native-app-using-webrtc
+                    - https://medium.com/@TechStud/blab-how-to-configure-your-firewall-1c6675e86f7b#.432tmg89m
+                    https://tech.appear.in/2015/05/25/Getting-started-with-WebRTC-on-iOS/
+                    http://stackoverflow.com/questions/32520255/building-ios-native-app-using-webrtc
+                        https://github.com/aolszak/WebRTC-iOS
+                    - mail of someone with iOS problems fixing it with a couple of stun servers https://groups.google.com/forum/#!topic/kurento/FmHUXSv6n7M
+                    - problems in erricson mailinglist https://recordnotfound.com/openwebrtc-examples-EricssonResearch-68647/issues
+                    http://www.avaya.com/blogs/archives/2014/08/understanding-webrtc-media-connections-ice-stun-and-turn.html
+                    - WebRTC Reflexive Connectivity Problems  https://github.com/webrtc/testrtc/issues/176
+
 - 2016-09-09 - stopping session in phone stopps session in phone but not in browser (stop is not send to server! ) implement / improve delegate - https://www.youtube.com/watch?v=eNmZEXNQheE
 - 2016-09-09  stopping session on browser does not stop session in phone (should go back) stop is send but probably not received.
 - 2016-08-30 websocket stays online (audio too) when app goes in to background (when active video connection)
@@ -99,9 +101,6 @@ There are also:
 - 2016-07-05 registering current user at server session
 - 2016-07-05 registering websocket during app start and reading appConfig (e.g. turn servers) via websockets
 
-##Documentations read
-- getting Started with WebRTC on iOS https://tech.appear.in/2015/05/25/Getting-started-with-WebRTC-on-iOS/
-- ObjectiveC Properties http://rypress.com/tutorials/objective-c/properties
 
 ## Features
 * Fully native objective-c 64-bit support

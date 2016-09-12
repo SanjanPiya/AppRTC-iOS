@@ -25,22 +25,33 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "RTCICECandidate+JSON.h"
+#import "./RTCICECandidate+JSON.h"
 
 static NSString const *kRTCICECandidateTypeKey = @"id";
 static NSString const *kRTCICECandidateTypeValue = @"onIceCandidate";
 static NSString const *kRTCICECandidateMidKey = @"sdpMid";
 static NSString const *kRTCICECandidateMLineIndexKey = @"sdpMLineIndex";
 static NSString const *kRTCICECandidateSdpKey = @"candidate";
-
+static NSString const *kARDSignalingCandidate = @"candidate";
 @implementation RTCICECandidate (JSON)
 
 + (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
-  NSString *mid = dictionary[kRTCICECandidateMidKey];
-  NSString *sdp = dictionary[kRTCICECandidateSdpKey];
-  NSNumber *num = dictionary[kRTCICECandidateMLineIndexKey];
-  NSInteger mLineIndex = [num integerValue];
-  return [[RTCICECandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];
+    
+
+    NSDictionary *subdict = dictionary;
+    if([subdict[kARDSignalingCandidate] isKindOfClass:[NSDictionary class]]){
+        subdict = dictionary[kARDSignalingCandidate];
+    }
+    
+    
+    NSString *mid = subdict[kRTCICECandidateMidKey];
+    NSString *sdp = subdict[kRTCICECandidateSdpKey];
+    NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
+    NSInteger mLineIndex = [num integerValue];
+
+    
+
+    return [[RTCICECandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];;
 }
 
 - (NSData *)JSONData {
