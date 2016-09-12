@@ -33,6 +33,7 @@
 
 static NSString const *kARDSignalingMessageIdKey = @"id";
 static NSString const *kARDSignalingMessageMessageKey = @"message";
+
 static NSString const *kARDSignalingMessageResponseKey = @"response";
 static NSString const *kARDSignalingMessageFromKey = @"from";
 static NSString const *kARDSignalingCallResponseKey = @"callResponse";
@@ -54,6 +55,7 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 }
 
 + (ARDSignalingMessage *)messageFromJSONString:(NSString *)jsonString {
+    
   NSDictionary *values = [NSDictionary dictionaryWithJSONString:jsonString];
   if (!values) {
       NSLog(@"Error parsing signaling message JSON. %@", jsonString);
@@ -61,13 +63,12 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
   }
 
   NSString *typeString = values[kARDSignalingMessageIdKey];
-  
+ 
   ARDSignalingMessage *message = nil;
   if ([typeString isEqualToString:@"iceCandidate"]) {
         RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
         message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
   }
-    
   else if ([typeString isEqualToString:@"registerResponse"]) {
       
       [[ARDRegisterResponseMessage alloc] initWithString: values[kARDSignalingMessageResponseKey]];
