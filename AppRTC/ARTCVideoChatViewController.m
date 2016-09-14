@@ -34,7 +34,7 @@
     
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     self.client.remoteView = self.remoteView;
-    self.client.localView = _localView;
+    self.client.localView = self.localView ; //_localView; was
     self.client.viewWrapper = self.view;
 
     //Getting Orientation change
@@ -42,6 +42,17 @@
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
+    
+    NSLog(@"calling to: %@",self.client.to);
+    if (self.client.isInitiator){
+        [self.client call: self.client.from:  self.client.to];
+    }else{
+        [self.client startSignalingIfReady];
+    }
+     self.client.delegate = self;
+
+     [self.urlLabel setText: @"loaded..."];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,14 +67,9 @@
     [self.localViewWidthConstraint setConstant:self.view.frame.size.width];
     [self.footerViewBottomConstraint setConstant:0.0f];
     //old place for connecting to room
-    [self.urlLabel setText:self.client.serverHostUrl]; //must go into ChatViewController
     
-    NSLog(@"calling to: %@",self.client.to);
-    if (self.client.isInitiator){
-        [self.client call: self.client.from:  self.client.to];
-    }
-
-
+    [self.urlLabel setText: @"ok"]; //must go into ChatViewController
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -102,7 +108,6 @@
 
 - (void)disconnect {
     if (self.client) {
-      
         if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.localView];
         if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.remoteView];
         self.client.localVideoTrack = nil;
@@ -110,7 +115,6 @@
         self.client.remoteVideoTrack = nil;
         [self.remoteView renderFrame:nil];
         [self.client disconnect: true ];
-        //[delegate navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
@@ -119,7 +123,6 @@
     self.client.remoteVideoTrack = nil;
     [self.remoteView renderFrame:nil];
     [self videoView:self.localView didChangeVideoSize:self.localVideoSize];
-    
 }
 
 - (void)toggleButtonContainer {
@@ -178,6 +181,30 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+
+#pragma mark - ARDAppClientDelegate
+
+- (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
+    switch (state) {
+        case kARDAppClientStateConnected:
+            NSLog(@"Client connected.");
+            break;
+        case kARDAppClientStateConnecting:
+            NSLog(@"Client connecting.");
+            break;
+        case kARDAppClientIceFinished:
+            NSLog(@"ICE  connecting.");
+            [self videoView:client.localView didChangeVideoSize:self.localView.frame.size];
+            [self videoView:client.remoteView didChangeVideoSize:self.remoteView.frame.size];
+            break;
+        case kARDAppClientStateDisconnected:
+            NSLog(@"Client disconnected.");
+            // [[self navigationController] setNavigationBarHidden:NO animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            //  [self remoteDisconnected];
+            break;
+    }
+}
 
 
 

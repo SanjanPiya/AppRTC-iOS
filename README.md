@@ -10,7 +10,9 @@ There are also:
 ##Todos:
 
 ##Bugs
-- (setup) sound cannot be disabled from phone while broadcasting sound 
+- Call-Test c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
+- miniLocalVideoDoesNotAppear / RemoteVideo does not appear  
+- (setup) sound cannot be disabled from phone while broadcasting sound  
 - calling the phone - video does not appear instantly (after a shake it comes)
 - calling from the phone - video appears full and after shake the small vindow comes too
 - after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
@@ -32,10 +34,11 @@ There are also:
 
 ##Nice2Haves
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
-- play ring-tone when calling 
+- play ring-tone when calling
+- third state while changing camera 1-front 2-back -3 off
 
 ##Improveements & Checks 
--  websocket stays online when app goes in to background - also when no active video connectino 
+- websocket stays online when app goes in to background - also when no active video connectino 
 - "waiting for answer" does not disappear (should be removed) 
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks
 - if phone goes offline does it unregister form server too? 

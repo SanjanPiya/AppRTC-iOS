@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AppRTC/ARDAppClient.h>
 
-@interface ARTCVideoChatViewController : UIViewController <RTCEAGLVideoViewDelegate>
+@interface ARTCVideoChatViewController : UIViewController <ARDAppClientDelegate, RTCEAGLVideoViewDelegate>
 
 //Views, Labels, and Buttons
 
