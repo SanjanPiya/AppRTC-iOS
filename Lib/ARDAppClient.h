@@ -37,7 +37,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
   // Connecting to servers.
   kARDAppClientStateConnecting,
   // Connected to servers.
-  kARDAppClientStateConnected,
+  kARDAppClientStateConnected
+  //Ice finished
+  //kARDAppClientIceFinished
 };
 
 @class ARDAppClient;
@@ -77,6 +79,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (strong, nonatomic) NSLayoutConstraint *localViewRightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *localViewBottomConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *footerViewBottomConstraint;
+@property(nonatomic, assign)  BOOL isPotrait;
 @property (nonatomic, strong) UIView *viewWrapper;
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;

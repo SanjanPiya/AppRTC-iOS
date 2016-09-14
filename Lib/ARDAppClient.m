@@ -1,4 +1,4 @@
-/*
+    /*
  * libjingle
  * Copyright 2014, Google Inc.
  *
@@ -48,8 +48,8 @@
 #import "RTCVideoTrack.h"
 
 
-//static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
-static NSString *kARDDefaultSTUNServerUrl = @"stun:5.9.154.226:3478";
+static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
+//static NSString *kARDDefaultSTUNServerUrl = @"stun:5.9.154.226:3478";
 
 static NSString *kARDAppClientErrorDomain = @"ARDAppClient";
 static NSInteger kARDAppClientErrorUnknown = -1;
@@ -70,8 +70,6 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 @property(nonatomic, strong) NSMutableArray *messageQueue;
 @property(nonatomic, assign) BOOL hasReceivedSdp;
 @property(nonatomic, readonly) BOOL isRegisteredWithWebsocketServer;
-
-
 @property(nonatomic, assign) BOOL isSpeakerEnabled;
 @property(nonatomic, strong) NSMutableArray *iceServers;
 @property(nonatomic, strong) NSURL *webSocketURL;
@@ -104,6 +102,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 @synthesize remoteView = _remoteView;
 @synthesize localView = _localView;
 @synthesize viewWrapper = _viewWrapper;
+@synthesize isPotrait = _isPotrait;
 
 @synthesize localViewWidthConstraint = _localViewWidthConstraint;
 @synthesize localViewHeightConstraint = _localViewHeightConstraint;
@@ -119,10 +118,19 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
     _isSpeakerEnabled = YES;
       
-      [[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(orientationChanged:)
                                                    name:@"UIDeviceOrientationDidChangeNotification"
                                                  object:nil];
+    //get default orientation and store it so it cannot be overwritten by other orientations
+      
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if (UIDeviceOrientationIsLandscape(orientation)){
+          _isPotrait = false;
+    }
+    else{
+          _isPotrait = true;
+    }
   }
   return self;
 }
@@ -135,24 +143,37 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 - (void)orientationChanged:(NSNotification *)notification {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
+    //if orientation is the same don't do anything
+    if(!UIDeviceOrientationIsLandscape(orientation) && !UIDeviceOrientationIsPortrait(orientation)) return;
+    
+    if(_isPotrait == true  && !UIDeviceOrientationIsLandscape(orientation)) return;
+    if(_isPotrait == false && !UIDeviceOrientationIsPortrait(orientation)) return;
+  
+    if (UIDeviceOrientationIsLandscape(orientation)){
+        _isPotrait = false;
+    }
+    else{
+        _isPotrait = true;
+    }
+
+    
+    //if device is not yet connected don't do any peerConnection stream actions
     if(_state == kARDAppClientStateDisconnected || _state == kARDAppClientStateConnecting){
         NSLog(@"orientation changed ");
         return;
     }
     
-    if (UIDeviceOrientationIsLandscape(orientation) || UIDeviceOrientationIsPortrait(orientation)) {
-        //Remove current video track
-        RTCMediaStream *localStream = _peerConnection.localStreams[0];
-        [localStream removeVideoTrack:localStream.videoTracks[0]];
+    RTCMediaStream *localStream = _peerConnection.localStreams[0];
+    [localStream removeVideoTrack:localStream.videoTracks[0]];
         
-        RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
-        if (localVideoTrack) {
+    RTCVideoTrack *localVideoTrack = [self createLocalVideoTrack];
+    if (localVideoTrack) {
             [localStream addVideoTrack:localVideoTrack];
             [self didReceiveLocalVideoTrack:localVideoTrack];
-        }
-        [_peerConnection removeStream:localStream];
-        [_peerConnection addStream:localStream];
     }
+    
+    [_peerConnection removeStream:localStream];
+    [_peerConnection addStream:localStream];
 }
 
 - (void)setState:(ARDAppClientState)state {
@@ -318,6 +339,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
                         break;
                     case RTCICEConnectionConnected:
                         NSLog(@"RTCICEConnectionConnected");
+                      //    [self setState: kARDAppClientIceFinished];
                         break;
                     default:
                         break;
@@ -544,10 +566,9 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 
 - (void) didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
     if (self.localVideoTrack) {
-    
-     [self.localVideoTrack removeRenderer:self.localView];
-     self.localVideoTrack = nil;
-     [self.localView renderFrame:nil];
+        [self.localVideoTrack removeRenderer:self.localView];
+        self.localVideoTrack = nil;
+        [self.localView renderFrame:nil];
      }
      self.localVideoTrack = localVideoTrack;
      [self.localVideoTrack addRenderer:self.localView];
@@ -564,10 +585,13 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
          CGRect videoRect = CGRectMake(0.0f, 0.0f,
                                        self.viewWrapper.frame.size.width/4.0f,
                                        self.viewWrapper.frame.size.height/4.0f);
+         //if orientation is landscape create a videoRect with the size of the view divided by 4 (switch height and width of the rectangle)
           if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-          videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
+              videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
           }
-          CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(_localView.frame.size, videoRect);
+         
+          //create a viewFrame with the remoteView.
+          CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(self.remoteView.frame.size, videoRect);
           
           [self.localViewWidthConstraint setConstant:videoFrame.size.width];
           [self.localViewHeightConstraint setConstant:videoFrame.size.height];

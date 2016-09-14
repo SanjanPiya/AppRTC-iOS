@@ -10,8 +10,7 @@
 #import "ARTCVideoChatViewController.h"
 
 
-//#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"
-                                                            //jeltsin, center, jekatarinburg http://yeltsin.ru/
+//#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"  //jeltsin, center, jekatarinburg http://yeltsin.ru/
 //#define SERVER_HOST_URL @"wss://192.168.4.237/jWebrtc" //salt, jekatarienburg http://www.saltsalt.ru/
 
 
@@ -40,14 +39,6 @@
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
                                                             forKey:@"SERVER_HOST_URL"];
     
-  ///  NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.1.39/jWebrtc"
-                                           //                  forKey:@"SERVER_HOST_URL"];
-    
-    
-   // [appDefaults setValuesForKeysWithDictionary: [NSDictionary dictionaryWithObject:@"wss://www.nicokrause.com/jWebrtc"
-          //                                                                   forKey:@"SERVER_HOST_URL"]];
-    //[appDefaults setValue:@"wss://www.nicokrause.com/jWebrtc" forKey:@"SERVER_HOST_URL"];
-   // [defaults setValue:@"nico" forKey:@"MY_USERNAME"];
     
     [defaults registerDefaults:appDefaults];
     [defaults registerDefaults:appDefaults2];
@@ -55,7 +46,7 @@
     
     //Connect to the room
     if(self.client == nil){
-        //[self disconnect];
+
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
 
         [self.client connectToWebsocket: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"] : [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]];
@@ -151,8 +142,7 @@
     }
     else if (buttonIndex == 1) {
         self.client.isInitiator = FALSE;
-    
-        [self.client startSignalingIfReady];
+        
         [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self.client];
     }
 }
