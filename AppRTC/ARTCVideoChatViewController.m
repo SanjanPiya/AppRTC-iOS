@@ -14,9 +14,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.isZoom = NO;
+    self.client.isZoom = NO;
     self.isAudioMute = NO;
     self.isVideoMute = NO;
+    //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
+    self.client.remoteView = self.remoteView;
+    self.client.localView = self.localView ; //_localView; was
+    self.client.viewWrapper = self.view;
     
     [self.audioButton.layer setCornerRadius:20.0f];
     [self.videoButton.layer setCornerRadius:20.0f];
@@ -25,23 +29,21 @@
     //Add Tap to hide/show controls
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleButtonContainer)];
     [tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    [self.client.viewWrapper addGestureRecognizer:tapGestureRecognizer];
     
     //Add Double Tap to zoom
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomRemote)];
     [tapGestureRecognizer setNumberOfTapsRequired:2];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    [self.client.viewWrapper addGestureRecognizer:tapGestureRecognizer];
     
-    //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
-    self.client.remoteView = self.remoteView;
-    self.client.localView = self.localView ; //_localView; was
-    self.client.viewWrapper = self.view;
+
 
     //Getting Orientation change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
+
     
     NSLog(@"calling to: %@",self.client.to);
     if (self.client.isInitiator){
@@ -49,7 +51,6 @@
     }else{
         [self.client startSignalingIfReady];
     }
-     self.client.delegate = self;
 
      [self.urlLabel setText: @"loaded..."];
 
@@ -86,43 +87,28 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)orientationChanged:(NSNotification *)notification{
-    [self videoView:self.localView didChangeVideoSize:self.localVideoSize];
-    [self videoView:self.remoteView didChangeVideoSize:self.remoteVideoSize];
-}
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
-- (void) setARDClient:(ARDAppClient *)client {
-   self.client = client;
-   self.remoteView = client.remoteView;
-   self.localView = client.localView;
-   self.localViewWidthConstraint = client.localViewBottomConstraint;
-   self.localViewHeightConstraint = client.localViewHeightConstraint;
-   self.localViewRightConstraint = client.localViewRightConstraint;
-   self.localViewBottomConstraint = client.localViewBottomConstraint;
-   self.footerViewBottomConstraint = client.footerViewBottomConstraint;
-}
-
 - (void)disconnect {
     if (self.client) {
-        if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.localView];
-        if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.remoteView];
+        if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.client.localView];
+        if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
         self.client.localVideoTrack = nil;
-        [self.localView renderFrame:nil];
+        [self.client.localView renderFrame:nil];
         self.client.remoteVideoTrack = nil;
-        [self.remoteView renderFrame:nil];
+        [self.client.remoteView renderFrame:nil];
         [self.client disconnect: true ];
     }
 }
 
 - (void)remoteDisconnected {
-    if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.remoteView];
+    if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
     self.client.remoteVideoTrack = nil;
-    [self.remoteView renderFrame:nil];
-    [self videoView:self.localView didChangeVideoSize:self.localVideoSize];
+    [self.client.remoteView renderFrame:nil];
+    [self videoView:self.client.localView didChangeVideoSize:self.client.localVideoSize];
 }
 
 - (void)toggleButtonContainer {
@@ -192,11 +178,11 @@
         case kARDAppClientStateConnecting:
             NSLog(@"Client connecting.");
             break;
-        case kARDAppClientIceFinished:
-            NSLog(@"ICE  connecting.");
-            [self videoView:client.localView didChangeVideoSize:self.localView.frame.size];
-            [self videoView:client.remoteView didChangeVideoSize:self.remoteView.frame.size];
-            break;
+       // case kARDAppClientIceFinished:
+        //    NSLog(@"ICE  connecting.");
+        //    [self videoView:client.localView didChangeVideoSize:self.localView.frame.size];
+        //    [self videoView:client.remoteView didChangeVideoSize:self.remoteView.frame.size];
+         //   break;
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
             // [[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -206,25 +192,34 @@
     }
 }
 
+- (void)orientationChanged:(NSNotification *)notification{
+    [self videoView:self.client.localView didChangeVideoSize:self.localVideoSize];
+    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteVideoSize];
+}
 
 
 #pragma mark - RTCEAGLVideoViewDelegate
+/*
+- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size {
+    [self.client videoView:videoView didChangeVideoSize:size];
+}*/
+
 
 - (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size {
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     [UIView animateWithDuration:0.4f animations:^{
-        CGFloat containerWidth = self.view.frame.size.width;
-        CGFloat containerHeight = self.view.frame.size.height;
+        CGFloat containerWidth = self.client.viewWrapper.frame.size.width;
+        CGFloat containerHeight = self.client.viewWrapper.frame.size.height;
         CGSize defaultAspectRatio = CGSizeMake(4, 3);
         if (videoView == self.client.localView) {
             //Resize the Local View depending if it is full screen or thumbnail
             self.localVideoSize = size;
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
-            CGRect videoRect = self.view.bounds;
+            CGRect videoRect = self.client.viewWrapper.bounds;
             if (self.client.remoteVideoTrack) {
-                videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width/4.0f, self.view.frame.size.height/4.0f);
+                videoRect = CGRectMake(0.0f, 0.0f, self.client.viewWrapper.frame.size.width/4.0f, self.client.viewWrapper.frame.size.height/4.0f);
                 if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-                    videoRect = CGRectMake(0.0f, 0.0f, self.view.frame.size.height/4.0f, self.view.frame.size.width/4.0f);
+                    videoRect = CGRectMake(0.0f, 0.0f, self.client.viewWrapper.frame.size.height/4.0f, self.client.viewWrapper.frame.size.width/4.0f);
                 }
             }
             CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, videoRect);
@@ -241,11 +236,11 @@
             }
         } else if (videoView == self.client.remoteView) {
             //Resize Remote View
-            self.remoteVideoSize = size;
+            self.client.remoteVideoSize = size;
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
-            CGRect videoRect = self.view.bounds;
+            CGRect videoRect = self.client.viewWrapper.bounds;
             CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, videoRect);
-            if (self.isZoom) {
+            if (self.client.isZoom) {
                 //Set Aspect Fill
                 CGFloat scale = MAX(containerWidth/videoFrame.size.width, containerHeight/videoFrame.size.height);
                 videoFrame.size.width *= scale;
@@ -257,10 +252,8 @@
             [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             
         }
-        [self.view layoutIfNeeded];
+        [self.client.viewWrapper layoutIfNeeded];
     }];
-
 }
-
 
 @end

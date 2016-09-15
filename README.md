@@ -10,12 +10,12 @@ There are also:
 ##Todos:
 
 ##Bugs
-- Call-Test c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
-- miniLocalVideoDoesNotAppear / RemoteVideo does not appear  
+- remote video freezes on iPhone (Remote Video on Browser is perfect)
+- Orientation-Change between potrait an landscape not testen (has probably Problems don't try!) 
+- Call-Test-Sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
+    -  after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
 - (setup) sound cannot be disabled from phone while broadcasting sound  
-- calling the phone - video does not appear instantly (after a shake it comes)
-- calling from the phone - video appears full and after shake the small vindow comes too
-- after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
+
 
 
 ##Build WebRTC-Libs
@@ -50,6 +50,9 @@ There are also:
     - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-09-15    - calling the phone - video does not appear instantly (after a shake it comes)
+                - calling from the phone - video appears full and after shake the small vindow comes too
+                - miniLocalVideoDoesNotAppear / RemoteVideo does not appear   
 - 2016-09-12 - fix ios Connection Problem
                 Possibilities:
                 - enable ipv6 on le-space.de
