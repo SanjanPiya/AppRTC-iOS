@@ -49,7 +49,6 @@
 
 
 static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
-//static NSString *kARDDefaultSTUNServerUrl = @"stun:5.9.154.226:3478";
 
 static NSString *kARDAppClientErrorDomain = @"ARDAppClient";
 static NSInteger kARDAppClientErrorUnknown = -1;
@@ -75,6 +74,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 @property(nonatomic, strong) NSURL *webSocketURL;
 @property(nonatomic, strong) RTCAudioTrack *defaultAudioTrack;
 @property(nonatomic, strong) RTCVideoTrack *defaultVideoTrack;
+
 
 
 
@@ -339,7 +339,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
                         break;
                     case RTCICEConnectionConnected:
                         NSLog(@"RTCICEConnectionConnected");
-                      //    [self setState: kARDAppClientIceFinished];
+                        // Post a notification to loginComplete
                         break;
                     default:
                         break;
@@ -601,6 +601,9 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
           [self.localViewRightConstraint setConstant:28.0f];
           [self.footerViewBottomConstraint setConstant:-80.0f];
           [self.viewWrapper layoutIfNeeded];
+         
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:nil];
+         
      }];
 }
 

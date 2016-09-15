@@ -39,16 +39,13 @@
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
                                                             forKey:@"SERVER_HOST_URL"];
     
-    
     [defaults registerDefaults:appDefaults];
     [defaults registerDefaults:appDefaults2];
     [defaults synchronize];
     
     //Connect to the room
     if(self.client == nil){
-
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
-
         [self.client connectToWebsocket: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"] : [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]];
     }
     

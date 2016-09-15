@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 @end
 
-// Handles connections to the AppRTC server for a given room.
+// Handles connections to the AppRTC server 
 @interface ARDAppClient : NSObject
 
 @property(nonatomic, readonly) ARDAppClientState state;
@@ -74,16 +74,26 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
 @property (nonatomic, strong) RTCEAGLVideoView *remoteView;
 @property (nonatomic, strong) RTCEAGLVideoView *localView;
-@property (strong, nonatomic) NSLayoutConstraint *localViewWidthConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *localViewHeightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *localViewRightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *localViewBottomConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *footerViewBottomConstraint;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewWidthConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewRightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *footerViewBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *remoteViewTopConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *remoteViewRightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *remoteViewLeftConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *remoteViewBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonContainerViewLeftConstraint;
+
 @property(nonatomic, assign)  BOOL isPotrait;
 @property (nonatomic, strong) UIView *viewWrapper;
+@property (assign, nonatomic) CGSize localVideoSize;
+@property (assign, nonatomic) CGSize remoteVideoSize;
+@property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
-
+- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
 - (void)connectToWebsocket:(NSString *)url : (NSString *)from;
 - (void)startSignalingIfReady;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
