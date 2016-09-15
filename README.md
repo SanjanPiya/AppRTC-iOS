@@ -10,9 +10,9 @@ There are also:
 ##Todos:
 
 ##Bugs
-- remote video freezes on iPhone (Remote Video on Browser is perfect)
-- Orientation-Change between potrait an landscape not testen (has probably Problems don't try!) 
-- Call-Test-Sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
+- remote video freezes on iPhone (remote video on browser is perfect)
+- orientation change between potrait an landscape not testen (has probably problems don't try!) 
+- call-test-sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
     -  after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
 - (setup) sound cannot be disabled from phone while broadcasting sound  
 
@@ -30,14 +30,12 @@ There are also:
 ##WebRTC-Security 
 - Security Considerations http://webrtc-security.github.io/
 
-
-
 ##Nice2Haves
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 - play ring-tone when calling
 - third state while changing camera 1-front 2-back -3 off
 
-##Improveements & Checks 
+##Improvements & Checks 
 - websocket stays online when app goes in to background - also when no active video connectino 
 - "waiting for answer" does not disappear (should be removed) 
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks
