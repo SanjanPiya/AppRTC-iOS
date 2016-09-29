@@ -207,6 +207,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
 - (void)call:(NSString *)from : (NSString *)to{
     self.to = to;
     self.from = from;
+    
     [self startSignalingIfReady];
 }
 
@@ -231,7 +232,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
     _messageQueue = [NSMutableArray array];
     _peerConnection = nil;
     self.state = kARDAppClientStateDisconnected;
-    
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     [_delegate self ]; 
 }
 
@@ -502,7 +503,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
       break;
     }
     case kARDSignalingMessageTypeCandidate: {
-             NSLog(@"got candidate: %@", message);
+       // NSLog(@"got candidate: %@", message);
       ARDICECandidateMessage *candidateMessage =  (ARDICECandidateMessage *)message;
       [_peerConnection addICECandidate:candidateMessage.candidate];
     
@@ -602,6 +603,7 @@ RTCPeerConnectionDelegate, RTCSessionDescriptionDelegate>{
           [self.footerViewBottomConstraint setConstant:-80.0f];
           [self.viewWrapper layoutIfNeeded];
          
+         [UIApplication sharedApplication].idleTimerDisabled = YES;
          [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:nil];
          
      }];

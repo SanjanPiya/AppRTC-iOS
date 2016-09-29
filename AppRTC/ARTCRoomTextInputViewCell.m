@@ -21,7 +21,7 @@
     
     self.userListTableView.delegate = self;
     self.userListTableView.dataSource = self;
- 
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

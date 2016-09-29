@@ -10,19 +10,18 @@ There are also:
 ##Todos:
 
 ##Bugs
-- remote video freezes on iPhone (remote video on browser is perfect)
-- orientation change between potrait an landscape not testen (has probably problems don't try!) 
+- iOS RemoteVideo freezes in certain situations seems like this bug is related with 
 - call-test-sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
     -  after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
+- orientation change between potrait an landscape not tested (has probably problems don't try!) 
 - (setup) sound cannot be disabled from phone while broadcasting sound  
-
 
 
 ##Build WebRTC-Libs
 - https://github.com/pristineio/webrtc-build-scripts (stopped maintenance! don't use)
 - http://ninjanetic.com/how-to-get-started-with-webrtc-and-ios-without-wasting-10-hours-of-your-life/ (doesn't work!)
 
-##Test-WebRTc
+##Test-WebRTC
 - https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
 - https://test.webrtc.org/
 - stun/turn servers: https://gist.github.com/yetithefoot/7592580
@@ -36,8 +35,7 @@ There are also:
 - third state while changing camera 1-front 2-back -3 off
 
 ##Improvements & Checks 
-- websocket stays online when app goes in to background - also when no active video connectino 
-- "waiting for answer" does not disappear (should be removed) 
+
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks
 - if phone goes offline does it unregister form server too? 
 - iphone switches screen of after some minutes without activity (prevent)
@@ -48,6 +46,10 @@ There are also:
     - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Done
+- 2016-09-29    - app goes in stand-by mode after some time during video broadcast
+                - app goes in stand-by mode and closes websocket 
+                - websocket stays online when app goes in to background - also when no active video connectino 
+- "waiting for answer" does not disappear (should be removed) 
 - 2016-09-15    - calling the phone - video does not appear instantly (after a shake it comes)
                 - calling from the phone - video appears full and after shake the small vindow comes too
                 - miniLocalVideoDoesNotAppear / RemoteVideo does not appear   

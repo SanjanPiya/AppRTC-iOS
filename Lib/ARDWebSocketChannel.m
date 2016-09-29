@@ -194,9 +194,10 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
     }
     
     NSString *payload = wssMessage[kARDWSSMessagePayloadKey];
+     NSLog(@"WSS->C: %@", payload);
     if(wssMessage[kARDWSSMessageResultKey]!=NULL){
        payload = wssMessage[kARDWSSMessageParamsKey];
-        NSLog(@"WSS->C: %@", payload);
+       
         //read appconfig here
         ARDRegisterResponse *response = [ARDRegisterResponse responseFromJSONData:messageData];
         
@@ -209,6 +210,7 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         [self registerFrom: ((ARDAppClient *) _delegate).from];
     }
     else{
+        
         ARDSignalingMessage *signalingMessage = [ARDSignalingMessage messageFromJSONString:messageString];
     
         [_delegate channel:self didReceiveMessage:signalingMessage];
