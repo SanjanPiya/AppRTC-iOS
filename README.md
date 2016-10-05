@@ -10,12 +10,34 @@ There are also:
 ##Todos:
 
 ##Bugs
-- iOS RemoteVideo freezes in certain situations seems like this bug is related with 
-- call-test-sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
-    -  after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why.
+- iOS is not as fluent as Android 
+    - probably stun is not beeing used - instead it uses TURN change WebRTC-Library
+    - https://github.com/Anakros/WebRTC-iOS
+    - https://github.com/nubomediaTI/Kurento-iOS
 - orientation change between potrait an landscape not tested (has probably problems don't try!) 
 - (setup) sound cannot be disabled from phone while broadcasting sound  
 
+##Nice2Haves
+- play ring-tone when calling
+- let websocket go into background mode and handle it as voip socket
+    - http://stackoverflow.com/questions/27631748/configuring-ios-voip-application-to-run-in-sleep-background-mode
+    - How to maintain voip-socket in background http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
+    - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
+    - https://github.com/facebook/SocketRocket/pull/275
+    - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
+- third state while changing camera 1-front 2-back -3 off
+- (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
+
+##Improvements & Checks 
+- if url is not reachable or user already registered print error message
+- (sept) screen orientation change results in strange behavior - even sometimes connection breaks
+- if phone goes offline does it unregister form server too? 
+- iphone switches screen of after some minutes without activity (prevent)
+- don't display own user in listbox because it cannot be called
+- Error-Handling:
+    - if appConfig is in wrong format display a message
+    - wrong-turn-config or server - app crashes here: ARDAppClient.h:416 [_peerConnection addStream:localStream]
+    - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Build WebRTC-Libs
 - https://github.com/pristineio/webrtc-build-scripts (stopped maintenance! don't use)
@@ -29,23 +51,12 @@ There are also:
 ##WebRTC-Security 
 - Security Considerations http://webrtc-security.github.io/
 
-##Nice2Haves
-- (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
-- play ring-tone when calling
-- third state while changing camera 1-front 2-back -3 off
-
-##Improvements & Checks 
-
-- (sept) screen orientation change results in strange behavior - even sometimes connection breaks
-- if phone goes offline does it unregister form server too? 
-- iphone switches screen of after some minutes without activity (prevent)
-- don't display user nandi in listbox because it cannot be called
-- Error-Handling:
-    - if appConfig is in wrong format display a message
-    - wrong-turn-config or server - app crashes here: ARDAppClient.h:416 [_peerConnection addStream:localStream]
-    - if server not reachable print message (generally print response messages somewhere in a status field)
-
 ##Done
+- 2016-10-04 - call-test-sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
+                after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why. If the user who hangsup whants to call again he can't the session of the caller cannot be found anymore.
+- 2016-10-03   - iOS RemoteVideo freezes in certain situations seems like this bug is related with 
+               - ios freezes only while communicating with a chrome (not with android not with firefox)
+               - update kurento
 - 2016-09-29    - app goes in stand-by mode after some time during video broadcast
                 - app goes in stand-by mode and closes websocket 
                 - websocket stays online when app goes in to background - also when no active video connectino 
