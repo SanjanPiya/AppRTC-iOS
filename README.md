@@ -8,9 +8,11 @@ There are also:
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
 ##Todos:
+- sound cannot be disabled from phone while broadcasting sound  
+- third state while changing camera 1-front 2-back -3 off
 
-##Bugs
-- (setup) sound cannot be disabled from phone while broadcasting sound  
+##Bugs:
+
 
 ##Nice2Haves
 - play ring-tone when calling
@@ -27,15 +29,13 @@ There are also:
     - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
     - https://github.com/facebook/SocketRocket/pull/275
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
-
-- third state while changing camera 1-front 2-back -3 off
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
+
 
 ##Improvements & Checks 
 - if url is not reachable or user already registered print error message
-- (sept) screen orientation change results in strange behavior - even sometimes connection breaks
+- (sept) screen orientation change results in strange behavior - even sometimes connection breaks (Update) orientation change works but is very slow. The Video at the remote side takes at least 10sec to appear again. 
 - if phone goes offline does it unregister form server too? 
-- iphone switches screen of after some minutes without activity (prevent)
 - don't display own user in listbox because it cannot be called
 - Error-Handling:
     - if appConfig is in wrong format display a message
@@ -43,6 +43,7 @@ There are also:
     - if server not reachable print message (generally print response messages somewhere in a status field)
 
 ##Build WebRTC-Libs
+- current https://github.com/Anakros/WebRTC-iOS
 - https://github.com/pristineio/webrtc-build-scripts (stopped maintenance! don't use)
 - http://ninjanetic.com/how-to-get-started-with-webrtc-and-ios-without-wasting-10-hours-of-your-life/ (doesn't work!)
 
@@ -55,6 +56,7 @@ There are also:
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-10-12 - iphone switches screen of after some minutes without activity (prevent)
 - 2016-10-12 - removed old libjingle implementation and replaced it with new WebRTC.framework pod https://cocoapods.org/pods/WebRTC 
     - generall information on ios
         - http://quickblox.com/developers/Sample-webrtc-ios
