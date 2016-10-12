@@ -24,11 +24,9 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 #import <Foundation/Foundation.h>
-
-#import "RTCICECandidate.h"
-#import "RTCSessionDescription.h"
+#import <WebRTC/RTCICECandidate.h>
+#import <WebRTC/RTCSessionDescription.h>
 
 typedef enum {
   kARDSignalingMessageTypeRegister,
@@ -84,9 +82,9 @@ typedef enum {
 
 @interface ARDICECandidateMessage : ARDSignalingMessage
 
-@property(nonatomic, readonly) RTCICECandidate *candidate;
+@property(nonatomic, readonly) RTCIceCandidate *candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate;
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate;
 
 @end
 

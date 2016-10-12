@@ -202,10 +202,10 @@ static NSString const *kARDWSSMessageIceServersKey = @"iceServers";
         ARDRegisterResponse *response = [ARDRegisterResponse responseFromJSONData:messageData];
         
         //get iceServers from appConfig
-        NSDictionary *dict = response.pcConfig;
-        NSDictionary *turnServers = [RTCICEServer serversFromCEODJSONDictionary:dict[kARDWSSMessageIceServersKey]];
+        NSDictionary *dict = response.pcConfig[@"iceServers"];
+       // NSDictionary *turnServers = [RTCIceServer serversFromCEODJSONDictionary:dict[kARDWSSMessageIceServersKey]];
         
-        [_delegate channel:self setTurnServer:turnServers];
+        [_delegate channel:self setTurnServer:dict];
         
         [self registerFrom: ((ARDAppClient *) _delegate).from];
     }

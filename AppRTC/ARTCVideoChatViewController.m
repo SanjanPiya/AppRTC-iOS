@@ -19,7 +19,8 @@
     self.isVideoMute = NO;
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     self.client.remoteView = self.remoteView;
-    self.client.localView = self.localView ; //_localView; was
+    self.client.localView = self.localView ;
+    self.client.localView.layer.zPosition = MAXFLOAT;
     self.client.viewWrapper = self.view;
     
     [self.audioButton.layer setCornerRadius:20.0f];
@@ -37,22 +38,27 @@
     [self.client.viewWrapper addGestureRecognizer:tapGestureRecognizer];
     
 
-
     //Getting Orientation change
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
 
+    NSString *callingString;
     
-    NSLog(@"calling to: %@",self.client.to);
     if (self.client.isInitiator){
+        callingString = [NSString stringWithFormat:@"calling to %@", self.client.to];
+        [self.urlLabel setText: callingString];
+        NSLog(@"%@", callingString);
         [self.client call: self.client.from:  self.client.to];
+        
     }else{
+        callingString = [NSString stringWithFormat:@"call from %@", self.client.to];
+        [self.urlLabel setText: callingString];
+        NSLog(@"%@", callingString);
         [self.client startSignalingIfReady];
+        
     }
-
-     [self.urlLabel setText: @"loaded..."];
 
 }
 
@@ -61,16 +67,13 @@
     
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
-    //Display the Local View full screen while connecting to Room
+    //Display the Local View full screen while connecting to Room (very good - but don't let the the remote video appear above the local video yet!)
     [self.localViewBottomConstraint setConstant:0.0f];
     [self.localViewRightConstraint setConstant:0.0f];
     [self.localViewHeightConstraint setConstant:self.view.frame.size.height];
     [self.localViewWidthConstraint setConstant:self.view.frame.size.width];
     [self.footerViewBottomConstraint setConstant:0.0f];
-    //old place for connecting to room
-    
-    [self.urlLabel setText: @"ok"]; //must go into ChatViewController
-    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -108,7 +111,7 @@
     if (self.client.remoteVideoTrack) [self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
     self.client.remoteVideoTrack = nil;
     [self.client.remoteView renderFrame:nil];
-    [self videoView:self.client.localView didChangeVideoSize:self.client.localVideoSize];
+    [self videoView:self.client.localView didChangeVideoSize:self.localVideoSize];
 }
 
 - (void)toggleButtonContainer {
@@ -178,11 +181,11 @@
         case kARDAppClientStateConnecting:
             NSLog(@"Client connecting.");
             break;
-       // case kARDAppClientIceFinished:
-        //    NSLog(@"ICE  connecting.");
-        //    [self videoView:client.localView didChangeVideoSize:self.localView.frame.size];
-        //    [self videoView:client.remoteView didChangeVideoSize:self.remoteView.frame.size];
-         //   break;
+        case kARDAppClientIceFinished:
+             NSLog(@"ICE  finished");
+                [self videoView:client.localView didChangeVideoSize:self.localView.frame.size];
+                [self videoView:client.remoteView didChangeVideoSize:self.remoteView.frame.size];
+            break;
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
             // [[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -193,19 +196,23 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification{
-    [self videoView:self.client.localView didChangeVideoSize:self.localVideoSize];
-    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteVideoSize];
+    [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
+    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteView.frame.size]; //self.remoteVideoSize (is not set anywhere !?!)
 }
 
 
+
 #pragma mark - RTCEAGLVideoViewDelegate
-/*
 - (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size {
-    [self.client videoView:videoView didChangeVideoSize:size];
-}*/
-
-
-- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size {
+    
+    if(self.client.localView.window != nil){
+        NSLog(@"localView is there.");
+    }
+    
+    if(self.remoteView.window != nil){
+        NSLog(@"remoteView is there.");
+    }
+    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     [UIView animateWithDuration:0.4f animations:^{
         CGFloat containerWidth = self.client.viewWrapper.frame.size.width;
@@ -232,11 +239,11 @@
                 [self.localViewRightConstraint setConstant:28.0f];
             } else {
                 [self.localViewBottomConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f]; //center
-                [self.localViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
+                 [self.localViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             }
         } else if (videoView == self.client.remoteView) {
             //Resize Remote View
-            self.client.remoteVideoSize = size;
+            self.remoteVideoSize = size;
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
             CGRect videoRect = self.client.viewWrapper.bounds;
             CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, videoRect);

@@ -66,7 +66,7 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
  
   ARDSignalingMessage *message = nil;
   if ([typeString isEqualToString:@"iceCandidate"]) {
-        RTCICECandidate *candidate = [RTCICECandidate candidateFromJSONDictionary:values];
+        RTCIceCandidate *candidate = [RTCIceCandidate candidateFromJSONDictionary:values];
         message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
   }
   else if ([typeString isEqualToString:@"registerResponse"]) {
@@ -127,7 +127,7 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 
 @synthesize candidate = _candidate;
 
-- (instancetype)initWithCandidate:(RTCICECandidate *)candidate {
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate {
     if (self = [super initWithType:kARDSignalingMessageTypeCandidate]) {
         _candidate = candidate;
     }
@@ -208,7 +208,14 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
 
 - (instancetype)initWithDescription:(RTCSessionDescription *)description {
   ARDSignalingMessageType type = kARDSignalingMessageTypeOffer;
-  NSString *typeString = description.type;
+ 
+    
+  //[description stringForType:description.type]
+  //  if([description.type == (RTCSessionDescription *) RTCSdpType.RTCSdpTypeOffer]){
+        
+    //}
+      
+    /*NSString *typeString = description.type;
     
   if ([typeString isEqualToString:@"offer"]) {
     type = kARDSignalingMessageTypeOffer;
@@ -217,7 +224,8 @@ static NSString const *kARDSignalingCallResponseKey = @"callResponse";
   } else {
     NSAssert(NO, @"Unexpected type: %@", typeString);
   }
-  if (self = [super initWithType:type]) {
+    */
+  if (self = [super initWithType:description.type]) {
     _sessionDescription = description;
   }
   return self;

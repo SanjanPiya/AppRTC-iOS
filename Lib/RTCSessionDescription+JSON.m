@@ -28,6 +28,7 @@
 #import "RTCSessionDescription+JSON.h"
 
 static NSString const *kRTCSessionDescriptionTypeKey = @"id";
+static NSString const *kRTCSessionDescriptionSdpKey = @"sdp";
 static NSString const *kRTCSessionDescriptionResponseKey = @"response";
 static NSString const *kRTCSessionDescriptionSdpAnswerKey = @"sdpAnswer";
 static NSString const *kRTCSessionDescriptionSdpOfferKey = @"sdpOffer";
@@ -37,7 +38,10 @@ static NSString const *kRTCSessionDescriptionSdpOfferKey = @"sdpOffer";
 + (RTCSessionDescription *)descriptionFromJSONDictionary:
     (NSDictionary *)dictionary {
   
-  NSString *type = dictionary[kRTCSessionDescriptionTypeKey];
+ // NSString *type = dictionary[kRTCSessionDescriptionTypeKey];
+  
+    NSString *typeString = dictionary[kRTCSessionDescriptionTypeKey];
+  RTCSdpType type = [[self class] typeForString:typeString];
   NSString *response = dictionary[kRTCSessionDescriptionResponseKey];
     if([ response isEqualToString:@"accepted"]){
         NSString *sdp = @"";
@@ -60,14 +64,12 @@ static NSString const *kRTCSessionDescriptionSdpOfferKey = @"sdpOffer";
 }
 
 - (NSData *)JSONData {
-    
-  NSDictionary *json = @{
-    kRTCSessionDescriptionTypeKey : self.type,
-    kRTCSessionDescriptionSdpAnswerKey : self.description,
-    kRTCSessionDescriptionSdpOfferKey : self.description
-  };
-        
-  return [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+    NSString *type = [[self class] stringForType:self.type];
+    NSDictionary *json = @{                           
+                                    kRTCSessionDescriptionTypeKey : type,
+                                    kRTCSessionDescriptionSdpKey : self.sdp
+                                };
+    return [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
 }
 
 @end
