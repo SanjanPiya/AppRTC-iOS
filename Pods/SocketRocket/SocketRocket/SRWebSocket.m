@@ -620,9 +620,8 @@ static __strong NSData *CRLFCRLF;
     _inputStream.delegate = self;
     _outputStream.delegate = self;
     
-     [self setupNetworkServiceType:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType];
   
-   // [self setupNetworkServiceType:_urlRequest.networkServiceType];
+   [self setupNetworkServiceType:_urlRequest.networkServiceType];
 }
 
 - (void)setupNetworkServiceType:(NSURLRequestNetworkServiceType)requestNetworkServiceType
