@@ -10,21 +10,24 @@ There are also:
 ##Todos:
 
 ##Bugs
-- iOS is not as fluent as Android 
-    - probably stun is not beeing used - instead it uses TURN change WebRTC-Library
-    - https://github.com/Anakros/WebRTC-iOS
-    - https://github.com/nubomediaTI/Kurento-iOS
-- orientation change between potrait an landscape not tested (has probably problems don't try!) 
 - (setup) sound cannot be disabled from phone while broadcasting sound  
 
 ##Nice2Haves
 - play ring-tone when calling
 - let websocket go into background mode and handle it as voip socket
-    - http://stackoverflow.com/questions/27631748/configuring-ios-voip-application-to-run-in-sleep-background-mode
-    - How to maintain voip-socket in background http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
+    - network service types of nsurlrequest
+        https://github.com/facebook/SocketRocket/pull/293
+    - example void socket in background
+        https://www.raywenderlich.com/29948/backgrounding-for-ios
+        https://github.com/facebook/SocketRocket/issues/152
+        http://stackoverflow.com/questions/28619881/ios-voip-socket-does-not-work-in-background-until-handler-is-fired
+        http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
+        http://stackoverflow.com/questions/27631748/configuring-ios-voip-application-to-run-in-sleep-background-mode
+        http://stackoverflow.com/questions/12057151/voip-socket-on-ios-no-notifications-received
     - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
     - https://github.com/facebook/SocketRocket/pull/275
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
+
 - third state while changing camera 1-front 2-back -3 off
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 
@@ -52,10 +55,25 @@ There are also:
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-10-12 - removed old libjingle implementation and replaced it with new WebRTC.framework pod https://cocoapods.org/pods/WebRTC 
+    - generall information on ios
+        - http://quickblox.com/developers/Sample-webrtc-ios
+    - Try Kurento-iOS 
+        - https://media.readthedocs.org/pdf/kurento-ios/latest/kurento-ios.pdf
+    - probably stun is not beeing used - instead it uses TURN change WebRTC-Library
+        - https://github.com/Anakros/WebRTC-iOS
+        - https://github.com/nubomediaTI/Kurento-iOS
+    - framerate and bandwith issues on iOS
+        - example to change height-width + framerate https://bugs.chromium.org/p/webrtc/issues/detail?id=4192
+        - bitrates @ webrtc-experiment https://www.webrtc-experiment.com/webrtcpedia/
+        - bandwidths example http://stackoverflow.com/questions/16712224/how-to-control-bandwidth-in-webrtc-video-call
+    - orientation change between potrait an landscape not tested (has probably problems don't try!) 
+- 2016-10-11 - iOS is not as fluent as Android 
+- 2016-10-11 - rejecting a call from peer does not result in a stop connection on ios.
 - 2016-10-04 - call-test-sequence c) Chrome2iPhoneHangupChrome --> d) Chrome2iPhoneHangupiPhone did not work 
                 after stopping a call a user sometimes cannot be called again. Signalling is looking for sessions which do not exist anymore. It's not clear why. If the user who hangsup whants to call again he can't the session of the caller cannot be found anymore.
 - 2016-10-03   - iOS RemoteVideo freezes in certain situations seems like this bug is related with 
-               - ios freezes only while communicating with a chrome (not with android not with firefox)
+               - iOS freezes only while communicating with a chrome (not with android not with firefox)
                - update kurento
 - 2016-09-29    - app goes in stand-by mode after some time during video broadcast
                 - app goes in stand-by mode and closes websocket 

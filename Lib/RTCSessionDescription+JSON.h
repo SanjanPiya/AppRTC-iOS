@@ -25,10 +25,11 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "RTCSessionDescription.h"
 
+#import <WebRTC/RTCSessionDescription.h>
 @interface RTCSessionDescription (JSON)
 
+//#import "webrtc/api/objc/RTCSessionDescription.h"
 + (RTCSessionDescription *)descriptionFromJSONDictionary:
     (NSDictionary *)dictionary;
 - (NSData *)JSONData;

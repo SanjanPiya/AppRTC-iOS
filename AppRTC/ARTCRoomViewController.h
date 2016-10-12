@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ARTCRoomTextInputViewCell.h"
-#import <AppRTC/ARDAppClient.h>
+#import "ARDAppClient.h"
 
 @interface ARTCRoomViewController : UITableViewController  <ARDAppClientDelegate, ARTCRoomTextInputViewCellDelegate>
 

@@ -26,9 +26,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
-#import "RTCVideoTrack.h" 
-#import <libjingle_peerconnection/RTCEAGLVideoView.h>
+#import <WebRTC/WebRTC.h>
 #import "ARDSignalingMessage.h"
 
 typedef NS_ENUM(NSInteger, ARDAppClientState) {
@@ -72,6 +70,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, assign) BOOL isInitiator;
 @property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
+@property (nonatomic, strong) RTCMediaStream *localStream;
 @property (nonatomic, strong) RTCEAGLVideoView *remoteView;
 @property (nonatomic, strong) RTCEAGLVideoView *localView;
 
@@ -97,6 +96,10 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)connectToWebsocket:(NSString *)url : (NSString *)from;
 - (void)startSignalingIfReady;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
+
+- (RTCMediaConstraints *)connectionConstraints;
+- (NSDictionary *)mandatoryConstraints;
+- (NSDictionary *)optionalConstraints;
 - (void)call:(NSString *)from : (NSString *)to;
 
 // Mute and unmute Audio-In

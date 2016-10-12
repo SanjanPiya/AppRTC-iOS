@@ -33,9 +33,9 @@ static NSString const *kRTCICECandidateMidKey = @"sdpMid";
 static NSString const *kRTCICECandidateMLineIndexKey = @"sdpMLineIndex";
 static NSString const *kRTCICECandidateSdpKey = @"candidate";
 static NSString const *kARDSignalingCandidate = @"candidate";
-@implementation RTCICECandidate (JSON)
+@implementation RTCIceCandidate (JSON)
 
-+ (RTCICECandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
++ (RTCIceCandidate *)candidateFromJSONDictionary:(NSDictionary *)dictionary {
     
 
     NSDictionary *subdict = dictionary;
@@ -49,9 +49,9 @@ static NSString const *kARDSignalingCandidate = @"candidate";
     NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
     NSInteger mLineIndex = [num integerValue];
 
-    
+    return [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:mLineIndex sdpMid:mid];
 
-    return [[RTCICECandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];;
+   // return [[RTCIceCandidate alloc] initWithMid:mid index:mLineIndex sdp:sdp];
 }
 
 - (NSData *)JSONData {

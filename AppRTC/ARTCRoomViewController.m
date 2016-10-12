@@ -33,7 +33,7 @@
 
     // Set the application defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"webrtc"
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"support"
                                                            forKey:@"MY_USERNAME"];
     
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
@@ -67,16 +67,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
         ARTCRoomTextInputViewCell *cell = (ARTCRoomTextInputViewCell *)[tableView dequeueReusableCellWithIdentifier:@"RoomInputCell" forIndexPath:indexPath];
       
         self.client.registeredUserdelegate = cell;
         [cell setDelegate:self];
         
         return cell;
-    }
-    
-    return nil;
 }
 
 
@@ -105,9 +101,7 @@
             break;
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
-            // [[self navigationController] setNavigationBarHidden:NO animated:YES];
              [self.navigationController popToRootViewControllerAnimated:YES];
-           //  [self remoteDisconnected];
             break;
     }
 }
@@ -117,7 +111,7 @@
     NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
     
     self.client.to = from;
-    self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"]; //@"nandi";
+    self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
                                                     message:message
