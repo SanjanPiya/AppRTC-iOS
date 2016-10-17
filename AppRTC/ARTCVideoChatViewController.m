@@ -17,7 +17,7 @@
     self.client.isZoom = NO;
     self.isAudioMute = NO;
     self.isVideoMute = NO;
-    //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
+
     self.client.remoteView = self.remoteView;
     self.client.localView = self.localView ;
     self.client.localView.layer.zPosition = MAXFLOAT;
@@ -152,14 +152,14 @@
 - (IBAction)videoButtonPressed:(id)sender {
     UIButton *videoButton = sender;
     if (self.isVideoMute) {
-//        [self.client unmuteVideoIn];
+       // [self.client unmuteVideoIn];
         [self.client swapCameraToFront];
         [videoButton setImage:[UIImage imageNamed:@"videoOn"] forState:UIControlStateNormal];
         self.isVideoMute = NO;
     } else {
         [self.client swapCameraToBack];
-        //[self.client muteVideoIn];
-        //[videoButton setImage:[UIImage imageNamed:@"videoOff"] forState:UIControlStateNormal];
+      //  [self.client muteVideoIn];
+        [videoButton setImage:[UIImage imageNamed:@"videoOff"] forState:UIControlStateNormal];
         self.isVideoMute = YES;
     }
 }

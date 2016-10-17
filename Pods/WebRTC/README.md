@@ -1,81 +1,35 @@
 # WebRTC iOS framework
 
-![](https://img.shields.io/cocoapods/v/WebRTC.svg?maxAge=100) ![](https://img.shields.io/cocoapods/dw/WebRTC.svg?maxAge=100)
-![](https://img.shields.io/cocoapods/l/WebRTC.svg?maxAge=100)
-
-# Contents
-
-- [Installation](#installation)
-  - [Unstable versions](#unstable-versions)
-- [Usage](#usage)
-- [Bitcode](#bitcode)
-- [Information](#information)
-- [Links](#links)
+![](https://img.shields.io/cocoapods/v/WebRTC.svg?maxAge=2592000) ![](https://img.shields.io/cocoapods/dw/WebRTC.svg?maxAge=2592000)
+![](https://img.shields.io/cocoapods/l/WebRTC.svg?maxAge=2592000)
 
 # Installation
 
-__Cocoapods__ (add to Podfile):
+__Cocoapods__: add `pod "WebRTC"` to Podfile
 
-```ruby
-pod "WebRTC"
-```
+__Carthage__: add `github "Anakros/WebRTC-iOS"` to Cartfile
 
-__Carthage__ (add to Cartfile):
+__Manual__: just download framework from [latest release](https://github.com/Anakros/WebRTC-iOS/releases/latest) and copy it to your project
 
-```
-github "Anakros/WebRTC-iOS"
-```
+>You can only use binary release, because full WebRTC repository takes ~12Gb of space
 
-__Manual__: just download framework from [the latest release](https://github.com/Anakros/WebRTC-iOS/releases/latest) and copy it to your project
+## Usage
 
->You can only use the binary release, because the whole WebRTC repository is ~12Gb of disk space
-
-## Unstable versions
-
-__Cocoapods__ (will install specified unstable version or _any_ higher version):
-```ruby
-pod "WebRTC", ">= 14093.0.0-master"
-```
-
-__Carthage__ (there is no way to auto-update to the latest unstable version at the current moment, so you should specify [corresponding version tag](https://github.com/Anakros/WebRTC-iOS/tags)):
-```
-github "Anakros/WebRTC-iOS" "14093.0.0-master"
-```
-
-# Usage
-
-## Swift
+### Swift
 ```swift
 import WebRTC
-
-let device = UIDevice.string(for: UIDevice.deviceType())
-
-print(device)
-print(RTCInitializeSSL())
 ```
 
-## Objective-C
+### Objective-C
 ```objc
 @import WebRTC;
-
-NSString *device = [UIDevice stringForDeviceType:[UIDevice deviceType]];
-
-NSLog(@"%@", device);
-NSLog(@"%d", RTCInitializeSSL());
 ```
 
-# Bitcode
-
-Bitcode isn't supported in the upstream for now. So you should disable it in the project build settings.
-
-# Information
+## Information
 
 Built from `https://chromium.googlesource.com/external/webrtc/` using `webrtc/build/ios/build_ios_libs.sh` script.
 
 Following patches applied:
-
-> Hardware H264 support enabled
-
 ```diff
 diff --git a/webrtc/build/common.gypi b/webrtc/build/common.gypi
 index 36a2dae..1332809 100644
@@ -92,8 +46,6 @@ index 36a2dae..1332809 100644
      # The chromium settings we inherit hide symbols by default on Release
 
 ```
-
-> Provide default implementation for WebRTC metrics
 
 ```diff
 diff --git a/webrtc/system_wrappers/system_wrappers.gyp b/webrtc/system_wrappers/system_wrappers.gyp
@@ -117,15 +69,3 @@ index ea8fdb6..4ff2bab 100644
        'conditions': [
          ['enable_data_logging==1', {
 ```
-
-# Links
-
-[WebRTC Homepage](https://webrtc.org/)
-
-[WebRTC discussion group](https://groups.google.com/forum/#!forum/discuss-webrtc)
-
-[CocoaDocs](http://cocoadocs.org/docsets/WebRTC/)
-
-[CocoaPods Page](https://cocoapods.org/pods/WebRTC)
-
-[WebRTC Bug Tracker](https://bugs.chromium.org/p/webrtc/issues/list)
