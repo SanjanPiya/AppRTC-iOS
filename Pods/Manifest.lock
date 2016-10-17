@@ -1,15 +1,15 @@
 PODS:
   - SocketRocket (0.5.1)
-  - WebRTC (14604.0.0-master)
+  - WebRTC (13869.6.0)
 
 DEPENDENCIES:
   - SocketRocket
-  - WebRTC (= 14604.0.0-master)
+  - WebRTC
 
 SPEC CHECKSUMS:
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
-  WebRTC: 500c0cdaf287db32db8d1daee68bc680e9a59517
+  WebRTC: ee369681c4f06e868fa45a7a6abbbf2c865c49ae
 
-PODFILE CHECKSUM: e1f05d443f5a2cd7c24aaaab150384987d7bd5c9
+PODFILE CHECKSUM: 4b3077760d53c6cf5c0bb220436c95291f96ba4d
 
 COCOAPODS: 1.0.1

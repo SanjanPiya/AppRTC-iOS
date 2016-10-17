@@ -296,7 +296,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream {
-  dispatch_async(dispatch_get_main_queue(), ^{
+/*  dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"Received %lu video tracks and %lu audio tracks",
         (unsigned long)stream.videoTracks.count,
         (unsigned long)stream.audioTracks.count);
@@ -306,7 +306,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         [self didReceiveRemoteVideoTrack:videoTrack];
         if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
     }
-  });
+  }); */
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -328,7 +328,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didAddStream:(RTCMediaStream *)stream {
     NSLog(@"didAddStream");
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"Received %lu video tracks and %lu audio tracks",
               (unsigned long)stream.videoTracks.count,
@@ -585,8 +585,8 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
       
         case kARDSignalingMessageTypeAnswer:
                 case kARDSignalingMessageStartCommunication:{
-            ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;
-            [_peerConnection setRemoteDescription:sdpMessage.sessionDescription completionHandler:^(NSError * _Nullable error) {
+                ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;
+                [_peerConnection setRemoteDescription:sdpMessage.sessionDescription completionHandler:^(NSError * _Nullable error) {
                   // some code when remote description was set (was a delegate before - see below)
             }];
             break;
@@ -672,6 +672,7 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
     RTCAVFoundationVideoSource* videoSource = [self.factory avFoundationVideoSourceWithConstraints:videoConstraints];
     //if (self.cameraPosition == AVCaptureDevicePositionBack) {
       //  [videoSource setUseBackCamera:YES];
+   // [videoSource set]
     //}
     
     RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:videoSource trackId:[self videoTrackId]];
@@ -714,7 +715,7 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
 
 - (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
       self.remoteVideoTrack = remoteVideoTrack;
-     [self.remoteVideoTrack addRenderer:self.remoteView];
+    [self.remoteVideoTrack addRenderer:self.remoteView];
      
      [UIView animateWithDuration:0.4f animations:^{
          //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
@@ -800,8 +801,9 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
                  @"maxHeight":@"240",
                  @"maxFrameRate":@"15"
                  };
+      
     }
-    
+
 - (NSDictionary *)optionalConstraints
     {
         //     @"internalSctpDataChannels": @"true", (we don't need DataChannels at the momet right?)
