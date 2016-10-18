@@ -866,10 +866,10 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
 #pragma mark - swap camera
 
 - (RTCVideoTrack *)createLocalVideoTrackBackCamera {
-    RTCVideoTrack *localVideoTrack = nil;
+    RTCVideoTrack *videoTrack = nil;
 #if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
     //AVCaptureDevicePositionFront
-    NSString *cameraID = nil;
+  /*  NSString *cameraID = nil;
     for (AVCaptureDevice *captureDevice in
          [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
         if (captureDevice.position == AVCaptureDevicePositionBack) {
@@ -877,15 +877,25 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
             break;
         }
     }
-    NSAssert(cameraID, @"Unable to get the back camera id");
+    NSAssert(cameraID, @"Unable to get the back camera id");*/
     
    // RTCVideoCapturer *capturer = [RTCVideoCapturer capturerWithDeviceName:cameraID];
   //  RTCMediaConstraints *mediaConstraints = [self defaultMediaStreamConstraints];
   //  RTCVideoSource *videoSource = [_factory videoSourceWithCapturer:capturer constraints:mediaConstraints];
      //localVideoTrack = [_factory videoTrackWithID:@"ARDAMSv0" source:videoSource];
-    localVideoTrack = [self localVideoTrackWithConstraints: [self videoConstraints]];
+    
+    RTCAVFoundationVideoSource* videoSource = [self.factory avFoundationVideoSourceWithConstraints:[self videoConstraints]];
+      [videoSource setUseBackCamera:YES];
+    //if (self.cameraPosition == AVCaptureDevicePositionBack) {
+   
+    // [videoSource set]
+    //}
+    
+    videoTrack = [self.factory videoTrackWithSource:videoSource trackId:[self videoTrackId]];
+    
+    //videoTrack = [self localVideoTrackWithConstraints: [self videoConstraints]];
 #endif
-    return localVideoTrack;
+    return videoTrack;
 }
 - (void)swapCameraToFront{
     RTCMediaStream *localStream = _peerConnection.localStreams[0];
