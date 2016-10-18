@@ -56,6 +56,8 @@ There are also:
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-10-18 - re-enabled camera switch (front-back cam)
+- 2016-10-18 - re-installed stable webrtc pod since pre-release used wrong camera orientation
 - 2016-10-12 - iphone switches screen of after some minutes without activity (prevent)
 - 2016-10-12 - removed old libjingle implementation and replaced it with new WebRTC.framework pod https://cocoapods.org/pods/WebRTC 
     - generall information on ios
