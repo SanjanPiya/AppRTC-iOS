@@ -4,6 +4,7 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+    <key>ITSAppUsesNonExemptEncryption</key><false/>
 	<key>CFBundleDisplayName</key>
 	<string>MSCRTC</string>
 	<key>CFBundleExecutable</key>
@@ -12,10 +13,6 @@
 	<dict/>
 	<key>CFBundleIcons~ipad</key>
 	<dict/>
-    <key>NSCameraUsageDescription</key>
-    <string>VideoPhone functions</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>VideoPhone functions</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -25,7 +22,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.1.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
