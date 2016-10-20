@@ -8,11 +8,16 @@ There are also:
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
 ##Todos:
-- sound cannot be disabled from phone while broadcasting sound  
-- third state while changing camera 1-front 2-back -3 off
 
-##Bugs:
 
+##Todo/Bugs
+- (p1) iOS-Websocket does not wake up 
+        https://github.com/jmesnil/stomp-websocket/issues/81
+        http://stackoverflow.com/questions/3712979/applicationwillenterforeground-vs-applicationdidbecomeactive-applicationwillre
+- (p2) (Test) Handsfree speaker test switch with earpiece 
+- (p3) third state while changing camera 1-front 2-back -3 off
+- (p3) add "audio call" and "video call" button
+- (p3) add "answer with audio" and answer "answer with video" button during incoming call  
 
 ##Nice2Haves
 - play ring-tone when calling
@@ -31,8 +36,8 @@ There are also:
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 
-
 ##Improvements & Checks 
+- Handsfree speaker test switch with earpiece 
 - if url is not reachable or user already registered print error message
 - (sept) screen orientation change results in strange behavior - even sometimes connection breaks (Update) orientation change works but is very slow. The Video at the remote side takes at least 10sec to appear again. 
 - if phone goes offline does it unregister form server too? 
@@ -57,6 +62,7 @@ There are also:
 
 ##Done
 - 2016-10-18 - re-enabled camera switch (front-back cam)
+- 2016-10-18 - re-enabled mute switch (sound cannot be disabled from phone while broadcasting sound) 
 - 2016-10-18 - re-installed stable webrtc pod since pre-release used wrong camera orientation
 - 2016-10-12 - iphone switches screen of after some minutes without activity (prevent)
 - 2016-10-12 - removed old libjingle implementation and replaced it with new WebRTC.framework pod https://cocoapods.org/pods/WebRTC 

@@ -381,24 +381,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
             break;
         }
 }
- /*
-- (void)peerConnection:(RTCPeerConnection *)peerConnection
-didChangeIceGatheringState:(RTCIceGatheringState)newState {
-    
-    NSLog(@"didChangeIceGatheringState %@", [self stringForGatheringState:newState]);
-    
-   // NBMPeerConnection *connection = [self wrapperForConnection:peerConnection];
-  //  DDLogVerbose(@"Peer connection %@ - ICE gathering state changed: %@", connection.connectionId, [self stringForGatheringState:newState]);didChangeIceGatheringState
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (newState == RTCIceGatheringStateGathering) {
-            //Is this check needed?
-            if (peerConnection.iceGatheringState == RTCIceGatheringStateGathering) {
-               // [connection drainRemoteCandidates];
-                   NSLog(@"peerConnection.iceGatheringState  == RTCIceGatheringStateGathering (true)");
-            }
-        }
-    });
-}*/
+
 - (NSString *)stringForGatheringState:(RTCIceGatheringState)state
     {
     switch (state) {
@@ -672,7 +655,6 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
     RTCAVFoundationVideoSource* videoSource = [self.factory avFoundationVideoSourceWithConstraints:videoConstraints];
     //if (self.cameraPosition == AVCaptureDevicePositionBack) {
       //  [videoSource setUseBackCamera:YES];
-   // [videoSource set]
     //}
     
     RTCVideoTrack *videoTrack = [self.factory videoTrackWithSource:videoSource trackId:[self videoTrackId]];
@@ -681,8 +663,6 @@ didChangeIceGatheringState:(RTCIceGatheringState)newState {
 }
 
 - (NSString *)cameraDevice{
-//:(NBMCameraPosition)cameraPosition
-
     NSString *cameraID = nil;
     for (AVCaptureDevice *captureDevice in
          [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
