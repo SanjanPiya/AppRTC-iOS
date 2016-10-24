@@ -163,6 +163,9 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
 - (void)disconnect {
   if (_state == kARDWebSocketChannelStateClosed ||
       _state == kARDWebSocketChannelStateError) {
+      
+      [_socket close];
+      
     return;
   }
 }

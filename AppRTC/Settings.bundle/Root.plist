@@ -14,7 +14,7 @@
 			<key>Key</key>
 			<string>MY_USERNAME</string>
 			<key>DefaultValue</key>
-			<string>afk</string>
+			<string>support</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>

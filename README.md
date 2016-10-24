@@ -7,20 +7,11 @@ There are also:
 - a pure websocket AppRTC for Kurento: AppRTC-Kurento and
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
-##Todos:
-
-
 ##Todo/Bugs
-- (p1) iOS-Websocket does not wake up 
-        https://github.com/jmesnil/stomp-websocket/issues/81
-        http://stackoverflow.com/questions/3712979/applicationwillenterforeground-vs-applicationdidbecomeactive-applicationwillre
 - (p2) (Test) Handsfree speaker test switch with earpiece 
-- (p3) third state while changing camera 1-front 2-back -3 off
-- (p3) add "audio call" and "video call" button
-- (p3) add "answer with audio" and answer "answer with video" button during incoming call  
-
+ 
 ##Nice2Haves
-- play ring-tone when calling
+- play ring-tone when calling and create "pop over" in apps (see whats app)
 - let websocket go into background mode and handle it as voip socket
     - network service types of nsurlrequest
         https://github.com/facebook/SocketRocket/pull/293
@@ -34,6 +25,12 @@ There are also:
     - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
     - https://github.com/facebook/SocketRocket/pull/275
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
+
+- third state while changing camera 1-front 2-back -3 off
+- (extern) add "audio call" and "video call" button
+- (extern) add "answer with audio" and answer "answer with video" button during incoming call 
+
+
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 
 ##Improvements & Checks 
@@ -45,7 +42,8 @@ There are also:
 - Error-Handling:
     - if appConfig is in wrong format display a message
     - wrong-turn-config or server - app crashes here: ARDAppClient.h:416 [_peerConnection addStream:localStream]
-    - if server not reachable print message (generally print response messages somewhere in a status field)
+    - if server not reachable print message (generally print response messages somewhere in a st
+    atus field)
 
 ##Build WebRTC-Libs
 - current https://github.com/Anakros/WebRTC-iOS
@@ -61,6 +59,9 @@ There are also:
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-10-24 - (p1) iOS-Websocket does not wake up 
+                https://github.com/jmesnil/stomp-websocket/issues/81
+                http://stackoverflow.com/questions/3712979/applicationwillenterforeground-vs-applicationdidbecomeactive-applicationwillre
 - 2016-10-18 - re-enabled camera switch (front-back cam)
 - 2016-10-18 - re-enabled mute switch (sound cannot be disabled from phone while broadcasting sound) 
 - 2016-10-18 - re-installed stable webrtc pod since pre-release used wrong camera orientation
