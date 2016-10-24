@@ -92,7 +92,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
 - (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
-- (void)connectToWebsocket:(NSString *)url : (NSString *)from;
+- (void)connectToWebsocket;
 - (void)startSignalingIfReady;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
 

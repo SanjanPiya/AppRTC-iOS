@@ -110,6 +110,16 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                                selector:@selector(orientationChanged:)
                                                    name:@"UIDeviceOrientationDidChangeNotification"
                                                  object:nil];
+      
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                               selector:@selector(connectToWebsocket)
+                                                   name:@"UIApplicationDidBecomeActiveNotification"
+                                                 object:nil];
+      
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(disconnect:)
+                                                   name:@"UIApplicationDidEnterBackgroundNotification"
+                                                 object:nil];
     //get default orientation and store it so it cannot be overwritten by other orientations
       
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -125,6 +135,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationDidBecomeActiveNotification" object:nil];
     [self disconnect : false];
 }
 
@@ -171,18 +183,23 @@ NSString const *kARDSignalingCandidate = @"candidate";
   if (_state == state) {
     return;
   }
+  
+  NSLog(@"changed state ");
+    
   _state = state;
   [_delegate appClient:self didChangeState:_state];
 }
 
-- (void)connectToWebsocket:(NSString *)url : (NSString *)from {
-  
+- (void)connectToWebsocket {
+    
+     NSLog(@"called connectToWebsocket");
     if (_channel != nil) {  //disconnect from call not from colider
+         NSLog(@"don't connect again because channel is not nil");
         return;
     }
-    NSParameterAssert(url.length);
-    _websocketURL = [NSURL URLWithString:url];
-    _from = from;
+ 
+    _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
+    _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
     self.state = kARDAppClientStateConnecting;
   
@@ -206,7 +223,10 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)disconnect: (BOOL) ownDisconnect {
     
+    NSLog(@"ownDisconnect %s ",ownDisconnect ? "true" : "false");
+    
     if (_state == kARDAppClientStateDisconnected) {  //disconnect from call not from colider
+        NSLog(@"kARDAppClientStateDisconnected");
         return;
     }
     
@@ -214,6 +234,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         //check if this disconnect was issued by ourselfs - if so send our peer a message
         if (ownDisconnect) {
           // Tell the other client we're hanging up.
+          NSLog(@"Tell the other client we're hanging up.");
           ARDByeMessage *byeMessage = [[ARDByeMessage alloc] init];
           NSData *byeData = [byeMessage JSONData];
           [_channel sendData:byeData];
@@ -225,6 +246,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _peerConnection = nil;
     
     self.state = kARDAppClientStateDisconnected;
+    _channel = nil;
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [_delegate self ]; 
 }
