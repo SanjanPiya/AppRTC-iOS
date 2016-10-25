@@ -12,6 +12,7 @@ There are also:
 
 ##Improvements
 - Orientation-Change during call
+- ios-code remove warnings (incompatible type, incompatible pointer)
  
 ##Nice2Haves
 - play ring-tone when calling and create "pop over" in apps (see whats app)
@@ -62,6 +63,7 @@ There are also:
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-10-25 - removed websocket disconnect after hangup
 - 2016-10-24 - (p1) iOS-Websocket does not wake up 
                 https://github.com/jmesnil/stomp-websocket/issues/81
                 http://stackoverflow.com/questions/3712979/applicationwillenterforeground-vs-applicationdidbecomeactive-applicationwillre
