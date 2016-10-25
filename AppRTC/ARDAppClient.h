@@ -91,12 +91,12 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
-- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
+//- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
 - (void)connectToWebsocket;
 - (void)startSignalingIfReady;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
 
-- (RTCMediaConstraints *)connectionConstraints;
+//- (RTCMediaConstraints *)connectionConstraints;
 - (NSDictionary *)mandatoryConstraints;
 - (NSDictionary *)optionalConstraints;
 - (void)call:(NSString *)from : (NSString *)to;

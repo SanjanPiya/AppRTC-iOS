@@ -192,14 +192,14 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)connectToWebsocket {
     
-     NSLog(@"called connectToWebsocket");
     if (_channel != nil) {  //disconnect from call not from colider
          NSLog(@"don't connect again because channel is not nil");
         return;
     }
- 
     _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
     _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    
+    NSLog(@"called connectToWebsocket to %@ with user: %@",_websocketURL,_from);
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
     self.state = kARDAppClientStateConnecting;
   
@@ -266,9 +266,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
           [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
           break;
     case kARDSignalingMessageTypeRegister:
-         // [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
+         
+          break;
+    case kARDSignalingMessageTypeRegisterResponse:
+          // [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
           break;
     case kARDSignalingMessageTypeResponse:
+          
           
           break;
     case kARDSignalingMessageIncomingCall:
@@ -277,7 +281,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
           _hasReceivedSdp = YES;
           [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from];
           break;
+  //  case kARDSignalingMessageIncomingCall:
+          
+          break;
+   case kARDSignalingMessageIncomingResponseCall:
     
+          break;
     case kARDSignalingMessageStartCommunication:
           _hasReceivedSdp = YES;
           [_messageQueue insertObject:message atIndex:0];
@@ -439,7 +448,11 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)peerConnection:(RTCPeerConnection *)peerConnection  didChangeIceGatheringState:(RTCIceGatheringState)newState {
          NSLog(@"didChangeIceGatheringState %@", [self stringForGatheringState:newState]);
          switch (newState) {
-                    case RTCIceGatheringStateComplete:
+            case RTCIceGatheringStateNew:
+                 break;
+             case RTCIceGatheringStateGathering:
+                 break;
+             case RTCIceGatheringStateComplete:
                         for (ARDICECandidateMessage *message in arrayCondidates) {
                                 [self sendSignalingMessage:message];
                             }
@@ -588,6 +601,15 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     switch (message.type) {
       
+        case kARDSignalingMessageTypeRegister:
+        case kARDSignalingMessageTypeRegisterResponse:
+        case kARDSignalingMessageIncomingCall:
+        case kARDSignalingMessageIncomingResponseCall:
+        case kARDSignalingMessageTypeResponse:
+        case kARDSignalingMessageTypeOffer:
+        case kARDSignalingMessageTypeRegisteredUsers:
+            break;
+            
         case kARDSignalingMessageTypeAnswer:
                 case kARDSignalingMessageStartCommunication:{
                 ARDStartCommunicationMessage *sdpMessage = (ARDStartCommunicationMessage *) message;

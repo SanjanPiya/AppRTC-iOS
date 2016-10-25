@@ -90,6 +90,9 @@
 }
 
 #pragma mark - ARDAppClientDelegate
+- (void) appClient:(ARDAppClient *)client didChangeSignalingState:(ARDAppClientState)state {
+    
+}
 
 - (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
     switch (state) {
@@ -102,6 +105,9 @@
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
              [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        case kARDAppClientIceFinished:
+            NSLog(@"Client connecting.");
             break;
     }
 }
