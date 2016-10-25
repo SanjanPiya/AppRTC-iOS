@@ -9,6 +9,9 @@ There are also:
 
 ##Todo/Bugs
 - (p2) (Test) Handsfree speaker test switch with earpiece 
+
+##Improvements
+- Orientation-Change during call
  
 ##Nice2Haves
 - play ring-tone when calling and create "pop over" in apps (see whats app)

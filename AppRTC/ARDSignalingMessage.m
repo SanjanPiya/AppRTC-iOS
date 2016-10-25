@@ -123,18 +123,18 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       message = [[ARDStartCommunicationMessage alloc] initWithDescription: description];
   }
   else if ([typeString isEqualToString:@"registeredUsers"]) {
-    
-     NSData* data = [values[@"response"] dataUsingEncoding:NSUTF8StringEncoding];
-     NSError *e;
-     NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:nil error:&e];
-    
-      message = [[ARDRegisteredUserMessage alloc] initWithArray: array];
-      NSLog(@"Received registeredUsers: (%@) ",array);
+      NSString *jsonUsers = values[@"response"];
+      NSArray *data =  [jsonUsers dataUsingEncoding:NSUTF8StringEncoding];
+      
+      NSError *e;
+      NSArray *users = [NSJSONSerialization JSONObjectWithData:data options:nil error:&e];
+      
+      NSLog(@"Received registeredUsers: (%@) ",users);
+      message = [[ARDRegisteredUserMessage alloc] initWithArray: users];
+     
       
   } else if ([typeString isEqualToString:@"stopCommunication"]) {
-      
     message = [[ARDByeMessage alloc] init];
-  
   } else {
     NSLog(@"Received type: %@ and did nothing so far here", typeString);
   }
