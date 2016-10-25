@@ -246,7 +246,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _peerConnection = nil;
     
     self.state = kARDAppClientStateDisconnected;
-    _channel = nil;
+   // _channel = nil; don't do that - after every call socket gets terminated
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [_delegate self ]; 
 }
