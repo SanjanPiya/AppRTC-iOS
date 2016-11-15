@@ -7,11 +7,34 @@ There are also:
 - a pure websocket AppRTC for Kurento: AppRTC-Kurento and
 - a pure websocket AppRTC for Android: AppRTC-Android 
 
+##Documentation
+This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websocket Protokoll and lists connected users which can be called via Videophone. It is a WebRTC-ready prototype for an integration into other apps which want to implement WebRTC Videocalls e.g. for their Sales and Support team. 
+
+##Installation
+1. git clone this repository and open it in X-Code
+2. AppRTC-Kurento (Signaling Server) must be running already
+3. STUN-TURN Server should be running, if you run the project outside your local LAN.
+4. connect your iOS phone via USB and deploy and start app from X-Code 
+5. in the app settings (iPhone - Settings - mscwebrtc) 
+    - change the Websocket-URL according to the URL of your signaling server 
+        e.g. wss://webrtcsignaling-server/jWebrtc (secure websocket - wss:// insecure with ws:// )
+        you can change the default values in settings.bundle ROOT.plist
+    - enter your favourite username which should register on signaling server and should be visible and reachable by the peers
+6. open chrome and/or android browser to https://webrtcsignaling-server/jWebrtc and register another user
+7. choose a registered user on phone or browser and call.
+
+##Code-Instructions:
+- the apps main controllers are
+    - ARTCRoomViewController - displays the userlist for calling the users
+    - ARTCVideoChatViewController - displays the videochat view incl. controlls
+- websocket controller for signaling - ARDWebsocketChannel
+- main app logic for WebRTC - ARDAppClient
+
 ##Todo/Bugs
 - (p2) (Test) Handsfree speaker test switch with earpiece 
 
 ##Improvements
-- Orientation-Change during call
+- orientation-change during call
 - ios-code remove warnings (incompatible type, incompatible pointer)
  
 ##Nice2Haves
