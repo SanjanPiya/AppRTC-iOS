@@ -133,7 +133,7 @@
 
 - (void)zoomRemote {
     //Toggle Aspect Fill or Fit
-    self.isZoom = !self.isZoom;
+    self.client.isZoom = !self.client.isZoom;
     [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize];
 }
 
@@ -198,8 +198,15 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification{
+    
+    //NSDictionary* userInfo = notification.userInfo;
+    // NSNumber* remoteHeight = (NSNumber*)userInfo[@"remoteHeight"];
+    // NSNumber* remoteWidth = (NSNumber*)userInfo[@"remoteWidth"];
+    //NSLog (@"Successfully received test notification! %@ %@", userInfo[@"remoteHeight"], userInfo[@"remoteWidth"]);
+    
+    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
-    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteView.frame.size]; //self.remoteVideoSize (is not set anywhere !?!)
+    [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
 }
 
 
