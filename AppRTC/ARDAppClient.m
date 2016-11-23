@@ -87,6 +87,9 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize webSocketURL = _websocketURL;
 @synthesize localVideoTrack = _localVideoTrack;
 @synthesize remoteVideoTrack = _remoteVideoTrack;
+
+@synthesize remoteVideoSize = _remoteVideoSize;
+
 @synthesize remoteView = _remoteView;
 @synthesize localView = _localView;
 @synthesize viewWrapper = _viewWrapper;
