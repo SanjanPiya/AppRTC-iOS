@@ -69,6 +69,8 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
 @property(nonatomic, assign) BOOL isInitiator;
+
+@property (nonatomic, assign) CGSize remoteVideoSize;
 @property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
 @property (nonatomic, strong) RTCMediaStream *localStream;

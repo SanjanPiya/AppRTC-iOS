@@ -20,6 +20,8 @@
 
     self.client.remoteView = self.remoteView;
     self.client.localView = self.localView ;
+    self.client.remoteVideoSize = self.remoteVideoSize;
+    
     self.client.localView.layer.zPosition = MAXFLOAT;
     self.client.viewWrapper = self.view;
     
@@ -132,7 +134,7 @@
 - (void)zoomRemote {
     //Toggle Aspect Fill or Fit
     self.isZoom = !self.isZoom;
-    [self videoView:self.client.remoteView didChangeVideoSize:self.remoteVideoSize];
+    [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize];
 }
 
 - (IBAction)audioButtonPressed:(id)sender {
