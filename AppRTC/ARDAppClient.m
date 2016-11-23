@@ -168,18 +168,18 @@ NSString const *kARDSignalingCandidate = @"candidate";
         _isPotrait = true;
     }
 
-
+/*
     RTCMediaStream *localStream = _peerConnection.localStreams[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
         
     RTCVideoTrack *localVideoTrack = [self localVideoTrackWithConstraints: [self videoConstraints]];
     if (localVideoTrack) {
-            [localStream addVideoTrack:localVideoTrack];
+            [localStream addVideoTrack:lo   calVideoTrack];
             [self didReceiveLocalVideoTrack:localVideoTrack];
     }
     
     [_peerConnection removeStream:localStream];
-    [_peerConnection addStream:localStream];
+    [_peerConnection addStream:localStream];*/
 }
 
 - (void)setState:(ARDAppClientState)state {
@@ -730,48 +730,36 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (void) didReceiveLocalVideoTrack:(RTCVideoTrack *)localVideoTrack {
-    if (self.localVideoTrack) {
+    
+     if(self.localVideoTrack) {
         [self.localVideoTrack removeRenderer:self.localView];
         self.localVideoTrack = nil;
         [self.localView renderFrame:nil];
      }
+    
      self.localVideoTrack = localVideoTrack;
      [self.localVideoTrack addRenderer:self.localView];
-  
 }
 
 - (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
-      self.remoteVideoTrack = remoteVideoTrack;
+    self.remoteVideoTrack = remoteVideoTrack;
     [self.remoteVideoTrack addRenderer:self.remoteView];
      
      [UIView animateWithDuration:0.4f animations:^{
-         //Instead of using 0.4 of screen size, we re-calculate the local view and keep our aspect ratio
-         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-         
-         CGRect videoRect = CGRectMake(0.0f, 0.0f,
-                                       self.viewWrapper.frame.size.width/4.0f,
-                                       self.viewWrapper.frame.size.height/4.0f);
-         //if orientation is landscape create a videoRect with the size of the view divided by 4 (switch height and width of the rectangle)
-          if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
-              videoRect = CGRectMake(0.0f, 0.0f, self.viewWrapper.frame.size.height/4.0f, self.viewWrapper.frame.size.width/4.0f);
-          }
-         
-          //create a viewFrame with the remoteView.
-          CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(self.remoteView.frame.size, videoRect);
-          
-          [self.localViewWidthConstraint setConstant:videoFrame.size.width];
-          [self.localViewHeightConstraint setConstant:videoFrame.size.height];
-          
-          
-          [self.localViewBottomConstraint setConstant:28.0f];
-          [self.localViewRightConstraint setConstant:28.0f];
-          [self.footerViewBottomConstraint setConstant:-80.0f];
-          [self.localView setHidden:false];
-          [self.viewWrapper layoutIfNeeded];
          
          [UIApplication sharedApplication].idleTimerDisabled = YES;
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:nil];
          
+         
+       /*  NSString *remoteHeight = [[NSNumber numberWithFloat:self.remoteView.frame.size.height] stringValue];
+         NSString *remoteWidth =  [[NSNumber numberWithFloat:self.remoteView.frame.size.width] stringValue];
+         NSDictionary* userInfo = @{ @"height":  remoteHeight,
+                                     @"width":  remoteWidth
+                                     };*/
+         
+               //   [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self userInfo: userInfo];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
+
+
      }];
 }
 
@@ -925,30 +913,31 @@ NSString const *kARDSignalingCandidate = @"candidate";
     return videoTrack;
 }
 - (void)swapCameraToFront{
-    RTCMediaStream *localStream = _peerConnection.localStreams[0];
+   /* RTCMediaStream *localStream = _peerConnection.localStreams[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
     
     RTCVideoTrack *localVideoTrack = [self localVideoTrackWithConstraints: [self videoConstraints]];
     if (localVideoTrack) {
+        //[localStream removeVideoTrack: l ];
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
     }
-    
-    [_peerConnection removeStream:localStream];
-    [_peerConnection addStream:localStream];
+    */
+   // [_peerConnection removeStream:localStream];
+   // [_peerConnection addStream:localStream];
 }
 - (void)swapCameraToBack{
-    RTCMediaStream *localStream = _peerConnection.localStreams[0];
+   /* RTCMediaStream *localStream = _peerConnection.localStreams[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
     
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrackBackCamera];
     if (localVideoTrack) {
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
-    }
+    }*/
     
-    [_peerConnection removeStream:localStream];
-    [_peerConnection addStream:localStream];
+   // [_peerConnection removeStream:localStream];
+    //[_peerConnection addStream:localStream];
 }
 
 #pragma mark - enable/disable speaker
