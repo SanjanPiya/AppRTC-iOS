@@ -881,6 +881,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
 #pragma mark - swap camera
 
 - (RTCVideoTrack *)createLocalVideoTrackBackCamera {
+    
+
     RTCVideoTrack *videoTrack = nil;
 #if !TARGET_IPHONE_SIMULATOR && TARGET_OS_IPHONE
     //AVCaptureDevicePositionFront
@@ -913,28 +915,27 @@ NSString const *kARDSignalingCandidate = @"candidate";
     return videoTrack;
 }
 - (void)swapCameraToFront{
-   /* RTCMediaStream *localStream = _peerConnection.localStreams[0];
+    RTCMediaStream *localStream = _peerConnection.localStreams[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
     
     RTCVideoTrack *localVideoTrack = [self localVideoTrackWithConstraints: [self videoConstraints]];
     if (localVideoTrack) {
-        //[localStream removeVideoTrack: l ];
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
     }
-    */
+
    // [_peerConnection removeStream:localStream];
    // [_peerConnection addStream:localStream];
 }
 - (void)swapCameraToBack{
-   /* RTCMediaStream *localStream = _peerConnection.localStreams[0];
+    RTCMediaStream *localStream = _peerConnection.localStreams[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
     
     RTCVideoTrack *localVideoTrack = [self createLocalVideoTrackBackCamera];
     if (localVideoTrack) {
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
-    }*/
+    }
     
    // [_peerConnection removeStream:localStream];
     //[_peerConnection addStream:localStream];
