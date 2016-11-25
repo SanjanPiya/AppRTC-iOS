@@ -34,7 +34,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - (p2) (Test) Handsfree speaker test switch with earpiece 
 
 ##Improvements
-- orientation-change during call
+
 - ios-code remove warnings (incompatible type, incompatible pointer)
  
 ##Nice2Haves
@@ -61,9 +61,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
 
 ##Improvements & Checks 
-- Handsfree speaker test switch with earpiece 
 - if url is not reachable or user already registered print error message
-- (sept) screen orientation change results in strange behavior - even sometimes connection breaks (Update) orientation change works but is very slow. The Video at the remote side takes at least 10sec to appear again. 
 - if phone goes offline does it unregister form server too? 
 - don't display own user in listbox because it cannot be called
 - Error-Handling:
@@ -86,6 +84,11 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-11-25 - disable zoom (for now)
+- 2016-11-25 - double touch for camera change (like periscope)
+- 2016-10-26 - handsfree speaker test switch with earpiece 
+- 2016-10-26 - video during communication with firefox or chrome not blurred/stretched anymore. (1 MT)
+- 2016-10-26 - orientation-change during call fast and smooth (1 MT)
 - 2016-10-25 - removed websocket disconnect after hangup
 - 2016-10-24 - (p1) iOS-Websocket does not wake up 
                 https://github.com/jmesnil/stomp-websocket/issues/81

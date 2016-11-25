@@ -867,15 +867,15 @@ NSString const *kARDSignalingCandidate = @"candidate";
     RTCMediaStream *localStream = _peerConnection.localStreams[0];
     self.defaultVideoTrack = localStream.videoTracks[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
-    [_peerConnection removeStream:localStream];
-    [_peerConnection addStream:localStream];
+   // [_peerConnection removeStream:localStream];
+   // [_peerConnection addStream:localStream];
 }
 - (void)unmuteVideoIn {
     NSLog(@"video unmuted");
     RTCMediaStream* localStream = _peerConnection.localStreams[0];
     [localStream addVideoTrack:self.defaultVideoTrack];
-    [_peerConnection removeStream:localStream];
-    [_peerConnection addStream:localStream];
+   // [_peerConnection removeStream:localStream];
+   // [_peerConnection addStream:localStream];
 }
 
 #pragma mark - swap camera
