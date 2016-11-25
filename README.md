@@ -84,6 +84,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-11-25 - camera symbol switches camera of on
 - 2016-11-25 - disable zoom (for now)
 - 2016-11-25 - double touch for camera change (like periscope)
 - 2016-10-26 - handsfree speaker test switch with earpiece 

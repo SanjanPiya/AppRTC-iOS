@@ -132,12 +132,12 @@
 
 - (void)switchCamera {
     
-    if (self.isVideoMute) {
-        [self.client swapCameraToFront];
-        self.isVideoMute = NO;
+    if (self.isBackCamera) {
+            [self.client swapCameraToFront];
+            self.isBackCamera = NO;
     } else {
         [self.client swapCameraToBack];
-        self.isVideoMute = YES;
+        self.isBackCamera = YES;
     }
     
 }
