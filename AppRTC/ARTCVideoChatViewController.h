@@ -44,6 +44,7 @@
 //togle button parameter
 @property (assign, nonatomic) BOOL isAudioMute;
 @property (assign, nonatomic) BOOL isVideoMute;
+@property (assign, nonatomic) BOOL isBackCamera;
 
 - (IBAction)audioButtonPressed:(id)sender;
 - (IBAction)videoButtonPressed:(id)sender;
