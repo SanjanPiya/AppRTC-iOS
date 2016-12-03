@@ -37,12 +37,17 @@ typedef enum {
   kARDSignalingMessageTypeRegisterResponse,
   kARDSignalingMessageTypeResponse,
   kARDSignalingMessageIncomingCall,
+  kARDSignalingMessageIncomingScreenCall,
   kARDSignalingMessageStartCommunication,
+  kARDSignalingMessageStartScreenCommunication,
   kARDSignalingMessageIncomingResponseCall,
+  kARDSignalingMessageIncomingScreenResponseCall,
   kARDSignalingMessageTypeCandidate,
+  kARDSignalingMessageTypeScreenCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,
   kARDSignalingMessageTypeBye,
+  kARDSignalingMessageTypeScreenBye,
 } ARDSignalingMessageType;
 
 @interface ARDSignalingMessage : NSObject
@@ -62,17 +67,25 @@ typedef enum {
 - (instancetype)initWithString:(NSString *)response;
 @end
 
-@interface ARDStartCommunicationMessage : ARDSignalingMessage
 
+@interface ARDStartCommunicationMessage : ARDSignalingMessage
+@property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
+- (instancetype)initWithDescription:(RTCSessionDescription *)description;
+@end
+
+@interface ARDStartScreenCommunicationMessage : ARDSignalingMessage
 @property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
 - (instancetype)initWithDescription:(RTCSessionDescription *)description;
 @end
 
 @interface ARDIncomingCallMessage : ARDSignalingMessage
-
-@property(nonatomic, readonly) NSString *response;
 @property(nonatomic, readonly) NSString *from;
-- (instancetype)initWithString:(NSString *)response;
+- (instancetype)initWithString:(NSString *)from;
+@end
+
+@interface ARDIncomingScreenCallMessage : ARDSignalingMessage
+@property(nonatomic, readonly) NSString *from;
+- (instancetype)initWithString:(NSString *)from;
 @end
 
 @interface ARDRegisteredUserMessage : ARDSignalingMessage
@@ -80,13 +93,13 @@ typedef enum {
 - (instancetype)initWithArray:(NSArray *) registeredUsers;
 @end
 
-
 @interface ARDICECandidateMessage : ARDSignalingMessage
-
 @property(nonatomic, readonly) RTCIceCandidate *candidate;
-
 - (instancetype)initWithCandidate:(RTCIceCandidate *)candidate;
-
+@end
+@interface ARDICEScreenCandidateMessage : ARDSignalingMessage
+@property(nonatomic, readonly) RTCIceCandidate *candidate;
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate;
 @end
 
 @interface ARDSessionDescriptionMessage : ARDSignalingMessage
@@ -96,9 +109,17 @@ typedef enum {
 - (instancetype)initWithDescription:(RTCSessionDescription *)description;
 
 @end
+
 @interface ARDIncomingCallResponseMessage : ARDSignalingMessage
 @property(nonatomic, readwrite) NSString *from;
 @end
 
+@interface ARDIncomingScreenCallResponseMessage : ARDSignalingMessage
+@property(nonatomic, readwrite) NSString *from;
+@property(nonatomic, readwrite) NSString *to;
+@end
+
 @interface ARDByeMessage : ARDSignalingMessage
+@end
+@interface ARDScreenByeMessage : ARDSignalingMessage
 @end

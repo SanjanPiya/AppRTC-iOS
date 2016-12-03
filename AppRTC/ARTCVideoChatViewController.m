@@ -20,7 +20,11 @@
 
     self.client.remoteView = self.remoteView;
     self.client.localView = self.localView ;
+    self.client.screenView = self.screenView ;
+    
+    self.client.localVideoSize = self.localVideoSize;
     self.client.remoteVideoSize = self.remoteVideoSize;
+    self.client.screenVideoSize = self.screenVideoSize;
     
     self.client.localView.layer.zPosition = MAXFLOAT;
     self.client.viewWrapper = self.view;
@@ -102,10 +106,17 @@
     if (self.client) {
         if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.client.localView];
         if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
+        if (self.client.screenVideoTrack)[self.client.screenVideoTrack removeRenderer:self.client.screenView];
+        
         self.client.localVideoTrack = nil;
         [self.client.localView renderFrame:nil];
+        
         self.client.remoteVideoTrack = nil;
         [self.client.remoteView renderFrame:nil];
+        
+        self.client.screenVideoTrack = nil;
+        [self.client.screenView renderFrame:nil];
+        
         [self.client disconnect: true ];
     }
 }
@@ -217,6 +228,7 @@
     
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
     [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
+    [self videoView:self.client.screenView didChangeVideoSize:self.client.screenVideoSize];
 }
 
 
@@ -230,6 +242,10 @@
     
     if(self.remoteView.window != nil){
         NSLog(@"remoteView is there.");
+    }
+    
+    if(self.screenView.window != nil){
+        NSLog(@"screenView is there.");
     }
     
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -277,7 +293,24 @@
             [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             
+    } /*else if (videoView == self.client.screenView) {
+        //Resize Remote View
+        self.screenVideoSize = size;
+        CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
+        CGRect videoRect = self.client.viewWrapper.bounds;
+        CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, videoRect);
+        if (self.client.isZoom) {
+            //Set Aspect Fill
+            CGFloat scale = MAX(containerWidth/videoFrame.size.width, containerHeight/videoFrame.size.height);
+            videoFrame.size.width *= scale;
+            videoFrame.size.height *= scale;
         }
+       [self.remoteViewTopConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
+        [self.remoteViewBottomConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
+        [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
+        [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
+        
+    }*/
         [self.client.viewWrapper layoutIfNeeded];
     }];
 }

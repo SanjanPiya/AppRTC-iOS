@@ -127,6 +127,24 @@
     [alert show];
     
 }
+
+- (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from {
+    NSLog(@" incoming screencall from %@",from);
+    
+    
+   // NSString *message =  [NSString stringWithFormat:@"incoming screencall from %@", from];
+    
+    self.client.to = from;
+    self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    [self.client startSignalingScreensharing];
+   // ARDIncomingScreenCallResponseMessage *message = [[ARDIncomingScreenCallResponseMessage alloc] init];
+   // message.from = self.client.from;
+   // message.to = self.client.to;
+    
+   // [self.client sendSignalingMessageToCollider: message];
+    
+}
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         NSLog(@"Cancel Tapped.");

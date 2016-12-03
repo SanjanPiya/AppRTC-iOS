@@ -45,12 +45,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state;
 - (void)appClient:(ARDAppClient *)client didChangeSignalingState:(ARDAppClientState)state;
-    
 
-- (void)appClient:(ARDAppClient *)client
-   incomingCallRequest:(NSString *)from;
-
-
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from;
+- (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from;
 @end
 
 @protocol ARDAppClientUpdateUserTableDelegate <NSObject>
@@ -70,12 +67,21 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *to;
 @property(nonatomic, assign) BOOL isInitiator;
 
+@property (nonatomic, assign) CGSize localVideoSize;
 @property (nonatomic, assign) CGSize remoteVideoSize;
+@property (nonatomic, assign) CGSize screenVideoSize;
+
 @property (nonatomic, strong) RTCVideoTrack *localVideoTrack;
 @property (nonatomic, strong) RTCVideoTrack *remoteVideoTrack;
+@property (nonatomic, strong) RTCVideoTrack *screenVideoTrack;
+
 @property (nonatomic, strong) RTCMediaStream *localStream;
+@property (nonatomic, strong) RTCMediaStream *remoteStream;
+@property (nonatomic, strong) RTCMediaStream *screenStream;
+
 @property (nonatomic, strong) RTCEAGLVideoView *remoteView;
 @property (nonatomic, strong) RTCEAGLVideoView *localView;
+@property (nonatomic, strong) RTCEAGLVideoView *screenView;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewWidthConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewHeightConstraint;
@@ -96,6 +102,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 //- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
 - (void)connectToWebsocket;
 - (void)startSignalingIfReady;
+- (void)startSignalingScreensharing;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
 
 //- (RTCMediaConstraints *)connectionConstraints;

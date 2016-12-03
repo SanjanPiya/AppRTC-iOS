@@ -1,4 +1,4 @@
-    /*
+        /*
  * libjingle
  * Copyright 2014, Google Inc.
  *
@@ -57,15 +57,18 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 @property(nonatomic, strong) ARDWebSocketChannel *channel;
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
+@property(nonatomic, strong) RTCPeerConnection *peerConnection2;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;
 @property(nonatomic, strong) NSMutableArray *messageQueue;
 @property(nonatomic, assign) BOOL hasReceivedSdp;
+@property(nonatomic, assign) BOOL hasReceivedScreenSdp;
 @property(nonatomic, readonly) BOOL isRegisteredWithWebsocketServer;
 @property(nonatomic, assign) BOOL isSpeakerEnabled;
 @property(nonatomic, strong) NSMutableArray *iceServers;
 @property(nonatomic, strong) NSURL *webSocketURL;
 @property(nonatomic, strong) RTCAudioTrack *defaultAudioTrack;
 @property(nonatomic, strong) RTCVideoTrack *defaultVideoTrack;
+@property(nonatomic, strong) RTCVideoTrack *defaultScreenTrack;
 @end
 
 @implementation ARDAppClient
@@ -75,9 +78,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize serverHostUrl = _serverHostUrl;
 @synthesize channel = _channel;
 @synthesize peerConnection = _peerConnection;
+@synthesize peerConnection2 = _peerConnection2;
 @synthesize factory = _factory;
 @synthesize messageQueue = _messageQueue;
 @synthesize hasReceivedSdp  = _hasReceivedSdp;
+@synthesize hasReceivedScreenSdp  = _hasReceivedScreenSdp;
+
 @synthesize isRegisteredWithWebsocketServer  = _isRegisteredWithWebsocketServer;
 @synthesize from = _from;
 @synthesize to = _to;
@@ -85,13 +91,19 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize isSpeakerEnabled = _isSpeakerEnabled;
 @synthesize iceServers = _iceServers;
 @synthesize webSocketURL = _websocketURL;
+
 @synthesize localVideoTrack = _localVideoTrack;
 @synthesize remoteVideoTrack = _remoteVideoTrack;
+@synthesize screenVideoTrack = _screenVideoTrack;
 
+@synthesize localVideoSize = _localVideoSize;
 @synthesize remoteVideoSize = _remoteVideoSize;
+@synthesize screenVideoSize = _screenVideoSize;
 
 @synthesize remoteView = _remoteView;
 @synthesize localView = _localView;
+@synthesize screenView = _screenView;
+
 @synthesize viewWrapper = _viewWrapper;
 @synthesize isPotrait = _isPotrait;
 
@@ -143,8 +155,82 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect : false];
 }
 
-#pragma FIXME: orientationchange
+- (void)call:(NSString *)from : (NSString *)to{
+    self.to = to;
+    self.from = from;
     
+    [self startSignalingIfReady];
+}
+
+- (void)startSignalingIfReady {
+    
+    if (!self.isRegisteredWithWebsocketServer) {
+        return;
+    }
+    
+    self.state = kARDAppClientStateConnected;
+    
+    // Create peer connection.
+    RTCMediaConstraints *constraints = [self offerConstraints];
+    
+    RTCConfiguration *config = [[RTCConfiguration alloc] init];
+    [config setIceServers:_iceServers];
+    _peerConnection = [_factory peerConnectionWithConfiguration:config
+                                                    constraints:constraints
+                                                       delegate:self];
+    
+    RTCMediaConstraints *constraintsScreensharing = [self offerScreensharingConstraints];
+    
+    _peerConnection2 = [_factory peerConnectionWithConfiguration:config
+                                                    constraints:constraintsScreensharing
+                                                       delegate:self];
+    
+    if(self.startLocalMedia){
+        [_peerConnection addStream:self.localStream];
+        [self sendOffer];
+    }
+}
+- (void)startSignalingScreensharing{
+    [self sendOfferScreensharing];
+}
+- (void)connectToWebsocket {
+    
+    if (_channel != nil) {  //disconnect from call not from colider
+        NSLog(@"don't connect again because channel is not nil");
+        return;
+    }
+    _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
+    _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    
+    NSLog(@"called connectToWebsocket to %@ with user: %@",_websocketURL,_from);
+    NSParameterAssert(_state == kARDAppClientStateDisconnected);
+    self.state = kARDAppClientStateConnecting;
+    
+    __weak ARDAppClient *weakSelf = self;
+    ARDAppClient *strongSelf = weakSelf;
+    [strongSelf registerWithColliderIfReady];
+    
+    [_channel getAppConfig];
+    
+    
+}
+
+- (void)sendOffer {
+    [_peerConnection offerForConstraints:[self offerConstraints] completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+        
+        [self peerConnection:_peerConnection didCreateSessionDescription:sdp error:error];
+        
+    }];
+}
+
+- (void)sendOfferScreensharing {
+    [_peerConnection2 offerForConstraints:[self offerScreensharingConstraints] completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
+        
+        [self peerConnection2:_peerConnection2 didCreateSessionDescription:sdp error:error];
+        
+    }];
+}
+
 - (void)orientationChanged:(NSNotification *)notification {
     
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -193,34 +279,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
   [_delegate appClient:self didChangeState:_state];
 }
 
-- (void)connectToWebsocket {
-    
-    if (_channel != nil) {  //disconnect from call not from colider
-         NSLog(@"don't connect again because channel is not nil");
-        return;
-    }
-    _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
-    _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
-    
-    NSLog(@"called connectToWebsocket to %@ with user: %@",_websocketURL,_from);
-    NSParameterAssert(_state == kARDAppClientStateDisconnected);
-    self.state = kARDAppClientStateConnecting;
-  
-    __weak ARDAppClient *weakSelf = self;
-    ARDAppClient *strongSelf = weakSelf;
-    [strongSelf registerWithColliderIfReady];
-    
-    [_channel getAppConfig];
 
-    
-}
-
-- (void)call:(NSString *)from : (NSString *)to{
-    self.to = to;
-    self.from = from;
-    
-    [self startSignalingIfReady];
-}
 
 
 
@@ -275,8 +334,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
           // [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
           break;
     case kARDSignalingMessageTypeResponse:
-          
-          
+          //what should have been happening here?
           break;
     case kARDSignalingMessageIncomingCall:
           _isInitiator = FALSE;
@@ -284,23 +342,25 @@ NSString const *kARDSignalingCandidate = @"candidate";
           _hasReceivedSdp = YES;
           [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from];
           break;
-  //  case kARDSignalingMessageIncomingCall:
-          
+    case kARDSignalingMessageIncomingScreenCall:
+          _hasReceivedScreenSdp = YES;
+          [_delegate appClient:self incomingScreenCallRequest: ((ARDIncomingScreenCallMessage *)message).from];
           break;
-   case kARDSignalingMessageIncomingResponseCall:
-    
+    case kARDSignalingMessageIncomingResponseCall:
+           //what should have been happening here?
           break;
     case kARDSignalingMessageStartCommunication:
+    case kARDSignalingMessageStartScreenCommunication:
           _hasReceivedSdp = YES;
           [_messageQueue insertObject:message atIndex:0];
           break;
-
     case kARDSignalingMessageTypeOffer:
     case kARDSignalingMessageTypeAnswer:
       _hasReceivedSdp = YES;
       [_messageQueue insertObject:message atIndex:0];
       break;
     case kARDSignalingMessageTypeCandidate:
+    case kARDSignalingMessageTypeScreenCandidate:
       [_messageQueue addObject:message];
       break;
     case kARDSignalingMessageTypeBye:
@@ -329,8 +389,9 @@ NSString const *kARDSignalingCandidate = @"candidate";
     NSLog(@"Signaling state changed: %ld", (long)stateChanged);
 }
 
+/*
 - (void)peerConnection:(RTCPeerConnection *)peerConnection addedStream:(RTCMediaStream *)stream {
-/*  dispatch_async(dispatch_get_main_queue(), ^{
+ dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"Received %lu video tracks and %lu audio tracks",
         (unsigned long)stream.videoTracks.count,
         (unsigned long)stream.audioTracks.count);
@@ -340,17 +401,17 @@ NSString const *kARDSignalingCandidate = @"candidate";
         [self didReceiveRemoteVideoTrack:videoTrack];
         if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
     }
-  }); */
-}
+  });
+}*/
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
         removedStream:(RTCMediaStream *)stream {
-  NSLog(@"Stream was removed.");
+    NSLog(@"Stream was removed.");
 }
 
 - (void)peerConnectionOnRenegotiationNeeded:
     (RTCPeerConnection *)peerConnection {
-  NSLog(@"WARNING: Renegotiation needed but unimplemented.");
+    NSLog(@"WARNING: Renegotiation needed but unimplemented.");
 }
     
     
@@ -367,10 +428,52 @@ NSString const *kARDSignalingCandidate = @"candidate";
         NSLog(@"Received %lu video tracks and %lu audio tracks",
               (unsigned long)stream.videoTracks.count,
               (unsigned long)stream.audioTracks.count);
+        
+        if(!self.remoteStream){
+            self.remoteStream=stream;
+        }
+        else{
+            self.screenStream=stream;
+        }
+            if (stream.videoTracks.count) {
+                
+               // if(_remoteStream){
+                    RTCVideoTrack *videoTrack = stream.videoTracks[0];
+                    [self didReceiveRemoteVideoTrack:videoTrack];
+                  //  if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
+               // }
+            }
+     //   }
+      /*  else {
+            self.screenStream = stream;
+            if (stream.videoTracks.count) {
+                
+                if(_remoteStream){
+                    if (stream.videoTracks.count) {
+                        RTCVideoTrack *videoTrack = stream.videoTracks[0];
+                       
+                        [self didReceiveScreenVideoTrack:videoTrack];
+                        
+                    }
+                }
+            }
+        }*/
+        
+    });
+}
+
+- (void)peerConnection2:(RTCPeerConnection *)peerConnection didAddStream:(RTCMediaStream *)stream {
+    NSLog(@"didAddStream for screensharing");
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Received %lu video tracks and %lu audio tracks",
+              (unsigned long)stream.videoTracks.count,
+              (unsigned long)stream.audioTracks.count);
+        
         if (stream.videoTracks.count) {
             RTCVideoTrack *videoTrack = stream.videoTracks[0];
-            [self didReceiveRemoteVideoTrack:videoTrack];
-            if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
+            [self didReceiveScreenVideoTrack:videoTrack];
+          
         }
     });
 }
@@ -458,11 +561,25 @@ NSString const *kARDSignalingCandidate = @"candidate";
              case RTCIceGatheringStateComplete:
                         for (ARDICECandidateMessage *message in arrayCondidates) {
                                 [self sendSignalingMessage:message];
-                            }
+                        }
                     break;
        }
 }
 
+- (void)peerConnection2:(RTCPeerConnection *)peerConnection2  didChangeIceGatheringState:(RTCIceGatheringState)newState {
+    NSLog(@"didChangeIceGatheringState %@", [self stringForGatheringState:newState]);
+    switch (newState) {
+        case RTCIceGatheringStateNew:
+            break;
+        case RTCIceGatheringStateGathering:
+            break;
+        case RTCIceGatheringStateComplete:
+            for (ARDICEScreenCandidateMessage *message in arrayCondidates) {
+                [self sendSignalingMessage:message];
+            }
+            break;
+    }
+}
 
 #pragma mark - RTCSessionDescription
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didCreateSessionDescription:(RTCSessionDescription *)sdp
@@ -495,6 +612,40 @@ NSString const *kARDSignalingCandidate = @"candidate";
       
 
   });
+}
+- (void)peerConnection2:(RTCPeerConnection *)peerConnection2 didCreateSessionDescription:(RTCSessionDescription *)sdp
+                 error:(NSError *)error {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        if (error) {
+            NSLog(@"Failed to create session description. Error: %@", error);
+            [self disconnect : false];
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: @"Failed to create session description.",
+                                       };
+            NSError *sdpError =
+            [[NSError alloc] initWithDomain:kARDAppClientErrorDomain
+                                       code:kARDAppClientErrorCreateSDP
+                                   userInfo:userInfo];
+            
+            [self didError:sdpError];
+            return;
+        }
+        
+        [peerConnection2 setLocalDescription:sdp completionHandler:^(NSError * _Nullable error) {
+        [_channel incomingScreenCallResponse: _to:  sdp];
+            
+            // [_channel call: _from: _to : sdp];
+            /*
+            if(!self.isInitiator){
+                [_channel incomingCallResponse: _to:  sdp];
+            }else{
+                [_channel call: _from: _to : sdp];
+            }*/
+        }];
+        
+        
+    });
 }
 
 - (void)peerConnection:(RTCPeerConnection *)peerConnection didSetSessionDescriptionWithError:(NSError *)error {
@@ -550,38 +701,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     return audioEnabled && videoEnabled;
 }
-- (void)startSignalingIfReady {
-    
-  if (!self.isRegisteredWithWebsocketServer) {
-    return;
-  }
-    
-  self.state = kARDAppClientStateConnected;
 
-  // Create peer connection.
-  RTCMediaConstraints *constraints = [self offerConstraints];
-  
-  RTCConfiguration *config = [[RTCConfiguration alloc] init];
-  [config setIceServers:_iceServers];
-  _peerConnection = [_factory peerConnectionWithConfiguration:config
-                                                    constraints:constraints
-                                                       delegate:self];
-    
-   if(self.startLocalMedia){
-        [_peerConnection addStream:self.localStream];
-        [self sendOffer];
-   }
-
-
-}
-
-- (void)sendOffer {
-    [_peerConnection offerForConstraints:[self offerConstraints] completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
-        
-            [self peerConnection:_peerConnection didCreateSessionDescription:sdp error:error];
-        
-    }];
-}
 
 - (void)waitForAnswer {
   [self drainMessageQueueIfReady];
@@ -621,6 +741,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
             }];
             break;
         }
+        case kARDSignalingMessageStartScreenCommunication:{
+            ARDStartScreenCommunicationMessage *sdpMessage = (ARDStartScreenCommunicationMessage *) message;
+            [_peerConnection2 setRemoteDescription:sdpMessage.sessionDescription completionHandler:^(NSError * _Nullable error) {
+                // some code when remote description was set (was a delegate before - see below)
+            }];
+            break;
+        }
         case kARDSignalingMessageTypeCandidate: {
 
           ARDICECandidateMessage *candidateMessage =  (ARDICECandidateMessage *)message;
@@ -634,6 +761,34 @@ NSString const *kARDSignalingCandidate = @"candidate";
                 
           break;
         }
+}
+
+- (void)processScreenSignalingMessage:(ARDSignalingMessage *)message {
+    
+    NSParameterAssert(_peerConnection2 || message.type == kARDSignalingMessageTypeBye);
+    
+    switch (message.type) {
+            
+        case kARDSignalingMessageStartScreenCommunication:{
+            ARDStartScreenCommunicationMessage *sdpMessage = (ARDStartScreenCommunicationMessage *) message;
+            [_peerConnection2 setRemoteDescription:sdpMessage.sessionDescription completionHandler:^(NSError * _Nullable error) {
+                // some code when remote description was set (was a delegate before - see below)
+            }];
+            break;
+        }
+        case kARDSignalingMessageTypeCandidate: {
+            
+            ARDICEScreenCandidateMessage *candidateMessage =  (ARDICEScreenCandidateMessage *)message;
+            [_peerConnection2 addIceCandidate: candidateMessage.candidate];
+            
+            break;
+        }
+        case kARDSignalingMessageTypeBye:
+            // Other client disconnected.
+            [self disconnect : false];
+            
+            break;
+    }
 }
 
 - (void)sendSignalingMessage:(ARDSignalingMessage *)message {
@@ -742,9 +897,19 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
+    
+    if(self.remoteVideoTrack) {
+        [self.remoteVideoTrack removeRenderer:self.remoteView];
+        self.remoteVideoTrack = nil;
+        [self.remoteView renderFrame:nil];
+        
+        //[_peerConnection removeStream: _remoteStream];
+        [_peerConnection2 addStream:_screenStream];
+    }
+    
     self.remoteVideoTrack = remoteVideoTrack;
     [self.remoteVideoTrack addRenderer:self.remoteView];
-     
+   
      [UIView animateWithDuration:0.4f animations:^{
          
          [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -761,6 +926,31 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 
      }];
+}
+
+- (void)didReceiveScreenVideoTrack:(RTCVideoTrack *)screenVideoTrack {
+    self.screenVideoTrack = screenVideoTrack;
+    
+   //  [_screenStream removeVideoTrack:localStream.videoTracks[0]];
+    [self.remoteVideoTrack removeRenderer:self.remoteView];
+    [self.screenVideoTrack addRenderer:self.remoteView];
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+        
+        
+        /*  NSString *remoteHeight = [[NSNumber numberWithFloat:self.remoteView.frame.size.height] stringValue];
+         NSString *remoteWidth =  [[NSNumber numberWithFloat:self.remoteView.frame.size.width] stringValue];
+         NSDictionary* userInfo = @{ @"height":  remoteHeight,
+         @"width":  remoteWidth
+         };*/
+        
+        //   [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self userInfo: userInfo];
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
+        
+        
+    }];
 }
 
 - (void)didError:(NSError *)error {
@@ -792,6 +982,10 @@ NSString const *kARDSignalingCandidate = @"candidate";
     return [self offerConstraintsRestartIce:NO];
 }
 
+- (RTCMediaConstraints *)offerScreensharingConstraints {
+    return [self offerConstraintsRestartScreenIce:NO];
+}
+
 - (RTCMediaConstraints *)offerConstraintsRestartIce:(BOOL)restartICE;
 {
     // In the AppRTC example optional offer contraints are nil
@@ -803,6 +997,21 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     RTCMediaConstraints *constraints = [[RTCMediaConstraints alloc]
                                         initWithMandatoryConstraints:[self mandatoryConstraints] optionalConstraints:optional];
+    
+    return constraints;
+}
+
+- (RTCMediaConstraints *)offerConstraintsRestartScreenIce:(BOOL)restartICE;
+{
+    // In the AppRTC example optional offer contraints are nil
+    NSMutableDictionary *optional = [NSMutableDictionary dictionaryWithDictionary:[self optionalConstraints]];
+    
+    if (restartICE) {
+        [optional setObject:@"true" forKey:@"IceRestart"];
+    }
+    
+    RTCMediaConstraints *constraints = [[RTCMediaConstraints alloc]
+                                        initWithMandatoryConstraints:[self mandatoryConstraintsScreen] optionalConstraints:optional];
     
     return constraints;
 }
@@ -818,6 +1027,18 @@ NSString const *kARDSignalingCandidate = @"candidate";
                  };
       
     }
+
+- (NSDictionary *)mandatoryConstraintsScreen
+{
+    return @{
+             @"OfferToReceiveAudio": @"false",
+             @"OfferToReceiveVideo": @"true",
+             @"maxWidth":@"320",
+             @"maxHeight":@"240",
+             @"maxFrameRate":@"15"
+             };
+    
+}
 
 - (NSDictionary *)optionalConstraints
     {
@@ -867,15 +1088,11 @@ NSString const *kARDSignalingCandidate = @"candidate";
     RTCMediaStream *localStream = _peerConnection.localStreams[0];
     self.defaultVideoTrack = localStream.videoTracks[0];
     [localStream removeVideoTrack:localStream.videoTracks[0]];
-   // [_peerConnection removeStream:localStream];
-   // [_peerConnection addStream:localStream];
 }
 - (void)unmuteVideoIn {
     NSLog(@"video unmuted");
     RTCMediaStream* localStream = _peerConnection.localStreams[0];
     [localStream addVideoTrack:self.defaultVideoTrack];
-   // [_peerConnection removeStream:localStream];
-   // [_peerConnection addStream:localStream];
 }
 
 #pragma mark - swap camera
@@ -902,7 +1119,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
      //localVideoTrack = [_factory videoTrackWithID:@"ARDAMSv0" source:videoSource];
     
     RTCAVFoundationVideoSource* videoSource = [self.factory avFoundationVideoSourceWithConstraints:[self videoConstraints]];
-      [videoSource setUseBackCamera:YES];
+    
+    [videoSource setUseBackCamera:YES];
     //if (self.cameraPosition == AVCaptureDevicePositionBack) {
    
     // [videoSource set]
@@ -923,9 +1141,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
     }
-
-   // [_peerConnection removeStream:localStream];
-   // [_peerConnection addStream:localStream];
 }
 - (void)swapCameraToBack{
     RTCMediaStream *localStream = _peerConnection.localStreams[0];
@@ -936,9 +1151,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
         [localStream addVideoTrack:localVideoTrack];
         [self didReceiveLocalVideoTrack:localVideoTrack];
     }
-    
-   // [_peerConnection removeStream:localStream];
-    //[_peerConnection addStream:localStream];
 }
 
 #pragma mark - enable/disable speaker
