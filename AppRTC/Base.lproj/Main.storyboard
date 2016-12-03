@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bnz-jK-0BD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bnz-jK-0BD">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +27,7 @@
                                     <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E1K-Zv-6rh" id="I1B-RQ-vVk">
-                                        <frame key="frameInset" width="375" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableViewCellContentView>
                                 </tableViewCell>
@@ -32,14 +35,14 @@
                         </tableView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="RoomInputCell" rowHeight="54" id="Heo-uc-TEk" customClass="ARTCRoomTextInputViewCell">
-                                <rect key="frame" x="0.0" y="86" width="375" height="54"/>
+                                <rect key="frame" x="0.0" y="22" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Heo-uc-TEk" id="6ns-Sh-XIS">
-                                    <frame key="frameInset" width="375" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please choose user to call:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZU-wT-4R2">
-                                            <frame key="frameInset" minX="17" minY="8" width="243" height="21"/>
+                                            <rect key="frame" x="17" y="8" width="243" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -84,13 +87,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBv-zP-oWI" userLabel="Remote View" customClass="RTCEAGLVideoView">
-                                <frame key="frameInset" width="375" height="583"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pNG-Z1-33i" userLabel="Local View" customClass="RTCEAGLVideoView">
-                                        <frame key="frameInset" minX="232" minY="455" width="120" height="120"/>
+                                        <rect key="frame" x="232" y="455" width="120" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="CeK-nw-lub"/>
                                             <constraint firstAttribute="height" constant="120" id="ehF-uo-uGv"/>
+                                        </constraints>
+                                    </view>
+                                    <view opaque="NO" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="90W-Yd-hXj" userLabel="Screen View" customClass="RTCEAGLVideoView">
+                                        <rect key="frame" x="25" y="34" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="Iu5-7E-7TV"/>
+                                            <constraint firstAttribute="height" constant="120" id="UXH-gl-Vrh"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -100,10 +110,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd3-fP-LRC" userLabel="Footer View">
-                                <frame key="frameInset" minY="583" width="370" height="80"/>
+                                <rect key="frame" x="0.0" y="583" width="370" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OI-v1-phz" userLabel="Waiting for answer:">
-                                        <frame key="frameInset" minX="10" minY="10" width="350" height="21"/>
+                                        <rect key="frame" x="10" y="10" width="350" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="qyF-Ki-4dS"/>
                                         </constraints>
@@ -112,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="status ok" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4B-RQ-879">
-                                        <frame key="frameInset" minX="10" minY="32" width="350" height="21"/>
+                                        <rect key="frame" x="10" y="32" width="350" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fbZ-rW-rtx"/>
                                         </constraints>
@@ -133,10 +143,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lf3-Gc-fyY" userLabel="Button Container View">
-                                <frame key="frameInset" minX="20" minY="220" width="40" height="160"/>
+                                <rect key="frame" x="20" y="220" width="40" height="160"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRA-AT-ApW" userLabel="Audio Button">
-                                        <frame key="frameInset" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="audioOn">
@@ -147,7 +157,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76V-d2-VYt" userLabel="Video Button">
-                                        <frame key="frameInset" minY="60" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="60" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="videoOn">
@@ -158,7 +168,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG8-K5-Ssv" userLabel="Hangup Button">
-                                        <frame key="frameInset" minY="120" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="120" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="hangup">
@@ -205,6 +215,7 @@
                         <outlet property="remoteViewLeftConstraint" destination="A0f-J1-3Oq" id="irO-yx-GYn"/>
                         <outlet property="remoteViewRightConstraint" destination="fje-pq-7U1" id="NSW-fJ-HAM"/>
                         <outlet property="remoteViewTopConstraint" destination="RpQ-i1-veX" id="SMP-kJ-366"/>
+                        <outlet property="screenView" destination="90W-Yd-hXj" id="AGd-Tq-enb"/>
                         <outlet property="urlLabel" destination="X4B-RQ-879" id="Y9h-q5-HVa"/>
                         <outlet property="videoButton" destination="76V-d2-VYt" id="SFH-gg-Kmo"/>
                     </connections>

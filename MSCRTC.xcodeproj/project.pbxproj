@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		03273E4A1D70A3FF008F3106 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 03273E491D70A3FF008F3106 /* Settings.bundle */; };
+		03E737131DF184230062F31E /* NBMPeerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E737121DF184230062F31E /* NBMPeerConnection.m */; };
+		03E737171DF184CA0062F31E /* NBMSessionDescriptionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E737161DF184CA0062F31E /* NBMSessionDescriptionFactory.m */; };
+		03E7371B1DF1888E0062F31E /* NBMWebRTCPeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E7371A1DF1888E0062F31E /* NBMWebRTCPeer.m */; };
+		03E7371F1DF188E90062F31E /* NBMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E7371E1DF188E90062F31E /* NBMError.m */; };
 		03F5F0681DA7D1D10087C4BC /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F5F0551DA7D1D10087C4BC /* ARDAppClient.m */; };
 		03F5F0691DA7D1D10087C4BC /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F5F0571DA7D1D10087C4BC /* ARDMessageResponse.m */; };
 		03F5F06A1DA7D1D10087C4BC /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F5F0591DA7D1D10087C4BC /* ARDRegisterResponse.m */; };
@@ -29,6 +33,16 @@
 /* Begin PBXFileReference section */
 		03273E491D70A3FF008F3106 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		03D4A2D51D9D5A7800A60EEC /* AppRTC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppRTC.entitlements; sourceTree = "<group>"; };
+		03E737111DF184230062F31E /* NBMPeerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMPeerConnection.h; sourceTree = "<group>"; };
+		03E737121DF184230062F31E /* NBMPeerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMPeerConnection.m; sourceTree = "<group>"; };
+		03E737151DF184CA0062F31E /* NBMSessionDescriptionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMSessionDescriptionFactory.h; sourceTree = "<group>"; };
+		03E737161DF184CA0062F31E /* NBMSessionDescriptionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMSessionDescriptionFactory.m; sourceTree = "<group>"; };
+		03E737181DF185130062F31E /* NBMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMTypes.h; sourceTree = "<group>"; };
+		03E737191DF1888E0062F31E /* NBMWebRTCPeer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMWebRTCPeer.h; sourceTree = "<group>"; };
+		03E7371A1DF1888E0062F31E /* NBMWebRTCPeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMWebRTCPeer.m; sourceTree = "<group>"; };
+		03E7371C1DF188E90062F31E /* NBMLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMLog.h; sourceTree = "<group>"; };
+		03E7371D1DF188E90062F31E /* NBMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMError.h; sourceTree = "<group>"; };
+		03E7371E1DF188E90062F31E /* NBMError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMError.m; sourceTree = "<group>"; };
 		03F5F0541DA7D1D10087C4BC /* ARDAppClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
 		03F5F0551DA7D1D10087C4BC /* ARDAppClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDAppClient.m; sourceTree = "<group>"; };
 		03F5F0561DA7D1D10087C4BC /* ARDMessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
@@ -73,6 +87,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03E737141DF184590062F31E /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				03F5F05E1DA7D1D10087C4BC /* ARDWebSocketChannel.h */,
+				03F5F05F1DA7D1D10087C4BC /* ARDWebSocketChannel.m */,
+				03F5F0541DA7D1D10087C4BC /* ARDAppClient.h */,
+				03F5F0551DA7D1D10087C4BC /* ARDAppClient.m */,
+				03F5F0561DA7D1D10087C4BC /* ARDMessageResponse.h */,
+				03F5F0571DA7D1D10087C4BC /* ARDMessageResponse.m */,
+				03F5F0581DA7D1D10087C4BC /* ARDRegisterResponse.h */,
+				03F5F0591DA7D1D10087C4BC /* ARDRegisterResponse.m */,
+				03F5F05A1DA7D1D10087C4BC /* ARDSignalingMessage.h */,
+				03F5F05B1DA7D1D10087C4BC /* ARDSignalingMessage.m */,
+				03F5F05C1DA7D1D10087C4BC /* ARDUtilities.h */,
+				03F5F05D1DA7D1D10087C4BC /* ARDUtilities.m */,
+			);
+			name = WebRTC;
+			sourceTree = "<group>";
+		};
+		03E737201DF188F70062F31E /* Toolbox */ = {
+			isa = PBXGroup;
+			children = (
+				03E7371C1DF188E90062F31E /* NBMLog.h */,
+				03E7371D1DF188E90062F31E /* NBMError.h */,
+				03E7371E1DF188E90062F31E /* NBMError.m */,
+				03E737191DF1888E0062F31E /* NBMWebRTCPeer.h */,
+				03E7371A1DF1888E0062F31E /* NBMWebRTCPeer.m */,
+				03E737181DF185130062F31E /* NBMTypes.h */,
+				03E737151DF184CA0062F31E /* NBMSessionDescriptionFactory.h */,
+				03E737161DF184CA0062F31E /* NBMSessionDescriptionFactory.m */,
+				03E737111DF184230062F31E /* NBMPeerConnection.h */,
+				03E737121DF184230062F31E /* NBMPeerConnection.m */,
+			);
+			name = Toolbox;
+			sourceTree = "<group>";
+		};
 		5C80AA6D1AAB5DF300F21FFA = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +146,8 @@
 			children = (
 				03D4A2D51D9D5A7800A60EEC /* AppRTC.entitlements */,
 				5C80AAA21AAB718200F21FFA /* App */,
+				03E737201DF188F70062F31E /* Toolbox */,
+				03E737141DF184590062F31E /* WebRTC */,
 				5C80AAA31AAB718700F21FFA /* ViewControllers */,
 				5C80AAA71AAB786200F21FFA /* Views */,
 				5C80AA791AAB5DF300F21FFA /* Supporting Files */,
@@ -130,18 +182,6 @@
 		5C80AAA31AAB718700F21FFA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				03F5F0541DA7D1D10087C4BC /* ARDAppClient.h */,
-				03F5F0551DA7D1D10087C4BC /* ARDAppClient.m */,
-				03F5F0561DA7D1D10087C4BC /* ARDMessageResponse.h */,
-				03F5F0571DA7D1D10087C4BC /* ARDMessageResponse.m */,
-				03F5F0581DA7D1D10087C4BC /* ARDRegisterResponse.h */,
-				03F5F0591DA7D1D10087C4BC /* ARDRegisterResponse.m */,
-				03F5F05A1DA7D1D10087C4BC /* ARDSignalingMessage.h */,
-				03F5F05B1DA7D1D10087C4BC /* ARDSignalingMessage.m */,
-				03F5F05C1DA7D1D10087C4BC /* ARDUtilities.h */,
-				03F5F05D1DA7D1D10087C4BC /* ARDUtilities.m */,
-				03F5F05E1DA7D1D10087C4BC /* ARDWebSocketChannel.h */,
-				03F5F05F1DA7D1D10087C4BC /* ARDWebSocketChannel.m */,
 				5C80AA9F1AAB717100F21FFA /* ARTCRoomViewController.h */,
 				5C80AAA01AAB717100F21FFA /* ARTCRoomViewController.m */,
 				5C80AAA41AAB71C700F21FFA /* ARTCVideoChatViewController.h */,
@@ -306,11 +346,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E737171DF184CA0062F31E /* NBMSessionDescriptionFactory.m in Sources */,
 				03F5F0681DA7D1D10087C4BC /* ARDAppClient.m in Sources */,
+				03E7371B1DF1888E0062F31E /* NBMWebRTCPeer.m in Sources */,
 				03F5F06B1DA7D1D10087C4BC /* ARDSignalingMessage.m in Sources */,
 				03F5F06C1DA7D1D10087C4BC /* ARDUtilities.m in Sources */,
+				03E737131DF184230062F31E /* NBMPeerConnection.m in Sources */,
 				5C80AAAA1AAB788A00F21FFA /* ARTCRoomTextInputViewCell.m in Sources */,
 				03F5F06D1DA7D1D10087C4BC /* ARDWebSocketChannel.m in Sources */,
+				03E7371F1DF188E90062F31E /* NBMError.m in Sources */,
 				5C80AAA61AAB71C700F21FFA /* ARTCVideoChatViewController.m in Sources */,
 				03F5F06A1DA7D1D10087C4BC /* ARDRegisterResponse.m in Sources */,
 				03F5F0691DA7D1D10087C4BC /* ARDMessageResponse.m in Sources */,

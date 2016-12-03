@@ -31,7 +31,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - main app logic for WebRTC - ARDAppClient
 
 ##Todo/Bugs
-- (p2) (Test) Handsfree speaker test switch with earpiece 
+- (P1) Call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works! 
 
 ##Improvements
 
@@ -84,6 +84,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2016-11-40 - implemented code for separate screensharing stream over separate peerconnection
 - 2016-11-25 - camera symbol switches camera of on
 - 2016-11-25 - disable zoom (for now)
 - 2016-11-25 - double touch for camera change (like periscope)

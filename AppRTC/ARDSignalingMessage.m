@@ -70,58 +70,13 @@ static NSString const *kARDSignalingCandidate = @"candidate";
   NSString *typeString = values[kARDSignalingMessageIdKey];
  
   ARDSignalingMessage *message = nil;
-  if ([typeString isEqualToString:@"iceCandidate"]) {
-    
-      NSDictionary *dictionary = values[kARDSignalingCandidate];
-
-      NSDictionary *subdict = dictionary;
-      if([subdict[kARDSignalingCandidate] isKindOfClass:[NSDictionary class]]){
-          subdict = dictionary[kARDSignalingCandidate];
-      }
-      NSString *mid = subdict[kRTCICECandidateMidKey];
-      NSString *sdp = subdict[kRTCICECandidateSdpKey];
-      NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
-      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:[num integerValue] sdpMid:mid];
-      message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
-      
-  }
-  else if ([typeString isEqualToString:@"registerResponse"]) {
+  
+  if ([typeString isEqualToString:@"registerResponse"]) {
       
       NSLog(@"Received RegisterResponse: (%@) %@", values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
       
   }
-  else if ([typeString isEqualToString:@"callResponse"]) {
-      
-        if([values[@"response"]  isEqualToString:@"accepted"]){
-            RTCSessionDescription *description =  [[RTCSessionDescription alloc]
-                                                   initWithType: RTCSdpTypeAnswer
-                                                   sdp:values[@"sdpAnswer"]];
-            
-     
-            message = [[ARDSessionDescriptionMessage alloc] initWithDescription:description];
-            
-        }else{ //otherwise this was a reject (should be equals to a bye message)
-            message = [[ARDByeMessage alloc] init];
-        }
-        NSLog(@"Received callResponse: (%@) %@", values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
-      
-  }
-  else if ([typeString isEqualToString:@"incomingCall"]) {
-      
-      NSLog(@"incomingCall incomingCall from: %@", values[@"from"]);
-      message = [[ARDIncomingCallMessage alloc] initWithString: values[@"from"]];
-      
-  }
     
-  else if ([typeString isEqualToString:@"startCommunication"]) {
-      
-      NSLog(@"Received callResponse: %@", values);
-      RTCSessionDescription *description =  [[RTCSessionDescription alloc]
-                                             initWithType: RTCSdpTypeAnswer
-                                             sdp:values[@"sdpAnswer"]];
-      
-      message = [[ARDStartCommunicationMessage alloc] initWithDescription: description];
-  }
   else if ([typeString isEqualToString:@"registeredUsers"]) {
       NSString *jsonUsers = values[@"response"];
       NSArray *data =  [jsonUsers dataUsingEncoding:NSUTF8StringEncoding];
@@ -131,13 +86,100 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       
       NSLog(@"Received registeredUsers: (%@) ",users);
       message = [[ARDRegisteredUserMessage alloc] initWithArray: users];
-     
       
-  } else if ([typeString isEqualToString:@"stopCommunication"]) {
-    message = [[ARDByeMessage alloc] init];
-  } else {
+      
+  }
+  else if ([typeString isEqualToString:@"incomingCall"]) {
+      
+      NSLog(@"incomingCall incomingCall from: %@", values[@"from"]);
+      message = [[ARDIncomingCallMessage alloc] initWithString: values[@"from"]];
+      
+  }
+  else if ([typeString isEqualToString:@"incomingScreenCall"]) {
+      
+      NSLog(@"incomingScreenCall from: %@ ", values[@"from"]);
+      message = [[ARDIncomingScreenCallMessage alloc] initWithString: values[@"from"]];
+      
+  }
+  else if ([typeString isEqualToString:@"callResponse"]) {
+      
+      if([values[@"response"]  isEqualToString:@"accepted"]){
+          
+         RTCSessionDescription *description =  [[RTCSessionDescription alloc]
+                                                 initWithType: RTCSdpTypeAnswer
+                                                 sdp:values[@"sdpAnswer"]];
+          
+          
+         message = [[ARDSessionDescriptionMessage alloc] initWithDescription:description];
+          
+      }else{ //otherwise this was a reject (should be equals to a bye message)
+          message = [[ARDByeMessage alloc] init];
+      }
+      NSLog(@"Received callResponse: (%@) %@", values[kARDSignalingMessageResponseKey],values[kARDSignalingMessageMessageKey]);
+      
+  }
+  else if ([typeString isEqualToString:@"iceCandidate"]) {
+    
+      NSDictionary *dictionary = values[kARDSignalingCandidate];
+      NSDictionary *subdict = dictionary;
+      
+      if([subdict[kARDSignalingCandidate] isKindOfClass:[NSDictionary class]]){
+          subdict = dictionary[kARDSignalingCandidate];
+      }
+      
+      NSString *mid = subdict[kRTCICECandidateMidKey];
+      NSString *sdp = subdict[kRTCICECandidateSdpKey];
+      NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
+      
+      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:[num integerValue] sdpMid:mid];
+      message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
+      
+  }
+  else if ([typeString isEqualToString:@"iceCandidateScreen"]) {
+      
+      NSDictionary *dictionary = values[kARDSignalingCandidate];
+      NSDictionary *subdict = dictionary;
+      
+      if([subdict[kARDSignalingCandidate] isKindOfClass:[NSDictionary class]]){
+          subdict = dictionary[kARDSignalingCandidate];
+      }
+      
+      NSString *mid = subdict[kRTCICECandidateMidKey];
+      NSString *sdp = subdict[kRTCICECandidateSdpKey];
+      NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
+      
+      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:[num integerValue] sdpMid:mid];
+      message = [[ARDICEScreenCandidateMessage alloc] initWithCandidate:candidate];
+      
+  }
+  else if ([typeString isEqualToString:@"startCommunication"]) {
+      
+      NSLog(@"Received callResponse: %@", values);
+      RTCSessionDescription *description =  [[RTCSessionDescription alloc]
+                                             initWithType: RTCSdpTypeAnswer
+                                             sdp:values[@"sdpAnswer"]];
+      
+      message = [[ARDStartCommunicationMessage alloc] initWithDescription: description];
+  }
+  else if ([typeString isEqualToString:@"startScreenCommunication"]) {
+      
+      NSLog(@"Received callResponse: %@", values);
+      RTCSessionDescription *description =  [[RTCSessionDescription alloc]
+                                             initWithType: RTCSdpTypeAnswer
+                                             sdp:values[@"sdpAnswer"]];
+      
+      message = [[ARDStartScreenCommunicationMessage alloc] initWithDescription: description];
+  }
+  else if ([typeString isEqualToString:@"stopCommunication"]) {
+      message = [[ARDByeMessage alloc] init];
+  }
+  else if ([typeString isEqualToString:@"stopCommunication"]) {
+      message = [[ARDByeMessage alloc] init];
+  }
+  else {
     NSLog(@"Received type: %@ and did nothing so far here", typeString);
   }
+    
   return message;
 }
 
@@ -175,7 +217,36 @@ static NSString const *kARDSignalingCandidate = @"candidate";
     }
     return data;
 }
+@end
 
+@implementation ARDICEScreenCandidateMessage
+
+@synthesize candidate = _candidate;
+
+- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate {
+    if (self = [super initWithType:kARDSignalingMessageTypeScreenCandidate]) {
+        _candidate = candidate;
+    }
+    return self;
+}
+
+- (NSData *)JSONData {
+    NSDictionary *json = @{
+                           kRTCICECandidateTypeKey : kRTCICECandidateTypeValue,
+                           kRTCICECandidateMLineIndexKey : @(_candidate.sdpMLineIndex),
+                           kRTCICECandidateMidKey : _candidate.sdpMid,
+                           kRTCICECandidateSdpKey : _candidate.sdp
+                           };
+    NSError *error = nil;
+    NSData *data =  [NSJSONSerialization dataWithJSONObject:json
+                                                    options:NSJSONWritingPrettyPrinted
+                                                      error:&error];
+    if (error) {
+        NSLog(@"Error serializing JSON: %@", error);
+        return nil;
+    }
+    return data;
+}
 @end
 
 @implementation ARDRegisterResponseMessage
@@ -203,41 +274,47 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 
 @end
 
-@implementation ARDIncomingCallMessage
 
-//@synthesize response = _response;
+@implementation ARDIncomingCallMessage
 @synthesize from = _from;
-- (instancetype)initWithString:(NSString *) response {
+- (instancetype)initWithString:(NSString *) from {
     if (self = [super initWithType: kARDSignalingMessageIncomingCall]) {
-       // _response = response;
-         _from = response;
+        _from = from;
     }
     return self;
 }
+@end
 
-//- (NSData *)JSONData {
-//  return [_response JSONData];
-//}
-
+@implementation ARDIncomingScreenCallMessage
+@synthesize from = _from;
+- (instancetype)initWithString:(NSString *) from  {
+    if (self = [super initWithType: kARDSignalingMessageIncomingScreenCall]) {
+        _from = from;
+    }
+    return self;
+}
 @end
 
 @implementation ARDStartCommunicationMessage
-
-//@synthesize response = _response;
 @synthesize sessionDescription = _sessionDescription;
 - (instancetype)initWithDescription:(RTCSessionDescription *)description {
 
     if (self = [super initWithType: kARDSignalingMessageStartCommunication]) {
-
         _sessionDescription = description;
     }
     return self;
 }
+@end
 
-//- (NSData *)JSONData {
-//  return [_response JSONData];
-//}
-
+@implementation ARDStartScreenCommunicationMessage
+@synthesize sessionDescription = _sessionDescription;
+- (instancetype)initWithDescription:(RTCSessionDescription *)description {
+    
+    if (self = [super initWithType: kARDSignalingMessageStartScreenCommunication]) {
+        _sessionDescription = description;
+    }
+    return self;
+}
 @end
 
 @implementation ARDSessionDescriptionMessage
@@ -281,7 +358,6 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 @end
 
 @implementation ARDByeMessage
-
 - (instancetype)init {
   return [super initWithType:kARDSignalingMessageTypeBye];
 }
@@ -294,5 +370,19 @@ static NSString const *kARDSignalingCandidate = @"candidate";
                                          options:NSJSONWritingPrettyPrinted
                                            error:NULL];
 }
+@end
 
+@implementation ARDScreenByeMessage
+- (instancetype)init {
+    return [super initWithType:kARDSignalingMessageTypeScreenBye];
+}
+
+- (NSData *)JSONData {
+    NSDictionary *message = @{
+                              @"id": @"stop"
+                              };
+    return [NSJSONSerialization dataWithJSONObject:message
+                                           options:NSJSONWritingPrettyPrinted
+                                             error:NULL];
+}
 @end

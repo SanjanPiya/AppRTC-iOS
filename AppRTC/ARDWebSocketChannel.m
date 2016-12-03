@@ -64,16 +64,15 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
   if (self = [super init]) {
     _url = url;
     _delegate = delegate;
- //   _socket = [[[SRWebSocket alloc] initWithURL:url]; //old url only connection
     
     NSURLRequest *request =  [NSURLRequest requestWithURL: url]; 
-    //[request networkServiceType: NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType];
-      //[request setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType];
+    
+      //[request networkServiceType: NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType];
+    //[request setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType];
      
-      _socket = [[SRWebSocket alloc] initWithURLRequest:request];
-      
-      ///[_socket initWithURLRequest:  ];
+    _socket = [[SRWebSocket alloc] initWithURLRequest:request];
     _socket.delegate = self;
+      
     NSLog(@"Opening WebSocket.");
     [_socket open];
   }
@@ -119,6 +118,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
         [self sendData: message];
     }
 }
+
 - (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description{
     if (_state == kARDWebSocketChannelStateOpen) {
         
@@ -146,6 +146,24 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
                                        @"sdpOffer": description.description };
         
 
+        NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
+                                                          options:NSJSONWritingPrettyPrinted
+                                                            error:nil];
+        
+        [self sendData: message];
+    }
+}
+
+- (void)incomingScreenCallResponse:(NSString *)from : (RTCSessionDescription *) description{
+    
+    if (_state == kARDWebSocketChannelStateOpen) {
+        
+        NSDictionary *callMessage = @{ @"id": @"incomingScreenCallResponse",
+                                       @"from": from,
+                                       @"callResponse": @"accept",
+                                       @"sdpOffer": description.description };
+        
+        
         NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
                                                           options:NSJSONWritingPrettyPrinted
                                                             error:nil];
@@ -210,6 +228,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
         //get turn/stun from appConfig
         NSArray *dict = response.pcConfig[@"iceServers"];
         NSMutableArray *iceServers = [NSMutableArray array];
+        
         for (NSDictionary *entry in dict) {
             
             NSString *username = entry[kRTCICEServerUsernameKey];
@@ -218,6 +237,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
  
             [iceServers addObject: [[RTCIceServer alloc] initWithURLStrings:uris username:username credential:password]];
         }
+        
         [_delegate channel:self setTurnServer:iceServers];
         
         [self registerFrom: ((ARDAppClient *) _delegate).from];

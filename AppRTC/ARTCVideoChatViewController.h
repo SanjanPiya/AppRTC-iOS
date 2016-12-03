@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *hangupButton;
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *remoteView;
 @property (strong, nonatomic) IBOutlet RTCEAGLVideoView *localView;
+@property (strong, nonatomic) IBOutlet RTCEAGLVideoView *screenView;
 @property (strong, nonatomic) ARDAppClient *client;
 
 
@@ -33,12 +34,17 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewRightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *localViewBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *screenViewWidthConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *screenViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *screenViewRightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *screenViewBottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *footerViewBottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonContainerViewLeftConstraint;
 
 
 @property (assign, nonatomic) CGSize localVideoSize;
 @property (assign, nonatomic) CGSize remoteVideoSize;
+@property (assign, nonatomic) CGSize screenVideoSize;
 @property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 //togle button parameter
