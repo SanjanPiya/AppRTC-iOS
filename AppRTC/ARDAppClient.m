@@ -481,6 +481,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     NSLog(@"didAddStream");
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         NSLog(@"Received %lu video tracks and %lu audio tracks",
               (unsigned long)stream.videoTracks.count,
               (unsigned long)stream.audioTracks.count);
@@ -488,14 +489,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
         if(!self.remoteStream){
             self.remoteStream=stream;
         }
-            if (stream.videoTracks.count) {
-
+        
+        if (stream.videoTracks.count) {
                     RTCVideoTrack *videoTrack = stream.videoTracks[0];
                     [self didReceiveRemoteVideoTrack:videoTrack];
                    if (_isSpeakerEnabled) [self enableSpeaker]; //Use the "handsfree" speaker instead of the ear speaker.
-            }
-
-        
+        }
     });
 }
 
