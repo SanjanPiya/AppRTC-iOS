@@ -230,7 +230,7 @@
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
   //   [self videoView:self.client.localView didChangeVideoSize:self.remoteView.frame.size]; //this works for phones! next one for browser! (how to find out format from remote video? 
    [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
-   [self videoView:self.client.screenView didChangeVideoSize:self.screenView.frame.size];
+   [self videoView:self.client.screenView didChangeVideoSize:self.client.screenVideoSize];
 }
 
 
@@ -297,9 +297,10 @@
             [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             
-    }else if (videoView == self.client.screenView) {
+    } else if (videoView == self.client.screenView) {
         //Resize Remote View
         self.screenVideoSize = size;
+        
         CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
         CGRect videoRect = self.client.viewWrapper.bounds;
         CGRect videoFrame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, videoRect);
@@ -309,6 +310,12 @@
             videoFrame.size.width *= scale;
             videoFrame.size.height *= scale;
         }
+        
+        
+        
+        [self.screenViewWidthConstraint setConstant:videoFrame.size.width/4.0f];
+        [self.screenViewHeightConstraint setConstant:videoFrame.size.height/4.0f];
+        
     /*   [self.remoteViewTopConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
         [self.remoteViewBottomConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
         [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center

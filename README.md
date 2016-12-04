@@ -31,8 +31,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - main app logic for WebRTC - ARDAppClient
 
 ##Todo/Bugs
-- (P1) screensharing needs to pop up fullscreen (instead of in small window)
-- (P1) screensharing small window needs to show remote video in right proportion
+
 - (P1) screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
 - (P1) screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
 
@@ -86,7 +85,9 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
-- 2016-12-04 -  fixed call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works!  
+- 2016-12-04 - screensharing needs to pop up fullscreen (instead of in small window)
+- 2016-12-04 - screensharing small window needs to show remote video in right proportion
+- 2016-12-04 - fixed call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works!  
 - 2016-12-04 - implemented stopCommunication function for proper receiving screensharing stop / start stream
 - 2016-12-02 - implemented code for separate screensharing stream over separate peerconnection
 - 2016-11-25 - camera symbol switches camera of on
