@@ -201,7 +201,6 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
     NSString *messageString = message;
     NSData *messageData = [messageString dataUsingEncoding:NSUTF8StringEncoding];
     
-   // NSLog(@"message: %@",message);
     id jsonObject = [NSJSONSerialization JSONObjectWithData:messageData
                                                   options:0
                                                     error:nil];

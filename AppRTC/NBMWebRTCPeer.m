@@ -45,7 +45,7 @@ static NSString *kDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
 @interface NBMWebRTCPeer () <RTCPeerConnectionDelegate, RTCDataChannelDelegate>
 
-@property (nonatomic, strong) NSMutableArray *iceServers;
+//@property (nonatomic, assign) NSMutableArray *iceServers;
 @property (nonatomic, strong) RTCPeerConnectionFactory *peerConnectionFactory;
 @property (nonatomic, strong) NSMutableDictionary *connectionMap;
 @property (nonatomic, strong) NBMPeerConnection *localPeerConnection;
@@ -160,7 +160,7 @@ static NSString *kDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
 /** The data channel state changed. */
 - (void)dataChannelDidChangeState:(RTCDataChannel *)dataChannel {
-    DDLogVerbose(@"Data channel changed state: @%, %@", dataChannel.label, dataChannel.readyState);
+  //  DDLogVerbose(@"Data channel changed state: @%, %@", dataChannel.label, dataChannel.readyState);
     
     if (dataChannel.readyState == RTCDataChannelStateOpen) {
         [self.delegate webRTCPeer:self didAddDataChannel:dataChannel];
@@ -177,14 +177,14 @@ didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
 //    
 //}
 
-- (void)processAnswer:(NSString *)sdpAnswer connectionId:(NSString *)connectionId {
-    //NSParameterAssert(sdpAnswer);
+- (void)processAnswer:(RTCSessionDescription *)sdpAnswer connectionId:(NSString *)connectionId {
+    NSParameterAssert(sdpAnswer);
     NSParameterAssert(connectionId);
     
     NBMPeerConnection *connection = self.connectionMap[connectionId];
     __block __weak RTCPeerConnection* peerConnection = connection.peerConnection;
-    RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:RTCSdpTypeAnswer sdp:sdpAnswer];
-    [connection.peerConnection setRemoteDescription:description completionHandler:^(NSError * _Nullable error) {
+   // RTCSessionDescription *description = [[RTCSessionDescription alloc] initWithType:RTCSdpTypeAnswer sdp:sdpAnswer];
+    [connection.peerConnection setRemoteDescription:sdpAnswer completionHandler:^(NSError * _Nullable error) {
         [self peerConnection:peerConnection didSetSessionDescriptionWithError:error];
     }];
     //[connection.peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:description];
@@ -673,7 +673,7 @@ didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
     
     // Send an SDP.
     dispatch_async(dispatch_get_main_queue(), ^{
-        DDLogVerbose(@"Peer connection did create %@", sdp.type);
+        DDLogVerbose(@"Peer connection did create %ld", (long)sdp.type);
         // Set the local description.
         
         //NBMVideoFormat videoFormat = self.mediaConfiguration.receiverVideoFormat;
