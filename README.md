@@ -31,7 +31,11 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - main app logic for WebRTC - ARDAppClient
 
 ##Todo/Bugs
-- (P1) Call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works! 
+- (P1) screensharing needs to pop up fullscreen (instead of in small window)
+- (P1) screensharing small window needs to show remote video in right proportion
+- (P1) screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
+- (P1) screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
+
 
 ##Improvements
 
@@ -52,8 +56,6 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
     - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
     - https://github.com/facebook/SocketRocket/pull/275
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
-
-- third state while changing camera 1-front 2-back -3 off
 - (extern) add "audio call" and "video call" button
 - (extern) add "answer with audio" and answer "answer with video" button during incoming call 
 
@@ -84,7 +86,9 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
-- 2016-11-40 - implemented code for separate screensharing stream over separate peerconnection
+- 2016-12-04 -  fixed call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works!  
+- 2016-12-04 - implemented stopCommunication function for proper receiving screensharing stop / start stream
+- 2016-12-02 - implemented code for separate screensharing stream over separate peerconnection
 - 2016-11-25 - camera symbol switches camera of on
 - 2016-11-25 - disable zoom (for now)
 - 2016-11-25 - double touch for camera change (like periscope)

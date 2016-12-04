@@ -51,7 +51,13 @@
                                              selector:@selector(orientationChanged:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
-
+    
+    //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
+    [self.remoteView setDelegate:self];
+    [self.localView setDelegate:self];
+    [self.screenView setDelegate:self];
+    
+    
     NSString *callingString;
     
     if (self.client.isInitiator){
@@ -220,11 +226,11 @@
 }
 
 - (void)orientationChanged:(NSNotification *)notification{
-    
+   
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
   //   [self videoView:self.client.localView didChangeVideoSize:self.remoteView.frame.size]; //this works for phones! next one for browser! (how to find out format from remote video? 
    [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
-    [self videoView:self.client.screenView didChangeVideoSize:self.screenView.frame.size];
+   [self videoView:self.client.screenView didChangeVideoSize:self.screenView.frame.size];
 }
 
 
@@ -255,7 +261,9 @@
             CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
             CGRect videoRect = self.client.viewWrapper.bounds;
             if (self.client.remoteVideoTrack) {
+                
                 videoRect = CGRectMake(0.0f, 0.0f, self.client.viewWrapper.frame.size.width/4.0f, self.client.viewWrapper.frame.size.height/4.0f);
+                
                 if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
                     videoRect = CGRectMake(0.0f, 0.0f, self.client.viewWrapper.frame.size.height/4.0f, self.client.viewWrapper.frame.size.width/4.0f);
                 }
