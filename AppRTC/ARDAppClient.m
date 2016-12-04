@@ -282,9 +282,27 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)disconnectScreen: (BOOL) ownDisconnect {
     
-    self.screenView.layer.zPosition = -100;
-    [self.screenVideoTrack removeRenderer:self.screenView];
-    self.screenVideoTrack = nil;
+   
+    [self.remoteVideoTrack removeRenderer:self.screenView];
+    self.screenView.layer.hidden = true;   // [self.screenView renderFrame:nil];
+    
+
+    
+    [self.screenVideoTrack removeRenderer:self.remoteView];
+     self.screenVideoTrack = nil;
+
+
+    [self.remoteVideoTrack addRenderer:self.remoteView];
+    
+
+    
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        
+        [UIApplication sharedApplication].idleTimerDisabled = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
+        
+    }];
     
     [self.webRTCPeer closeConnectionWithConnectionId: @"screensharing"];
 }
@@ -314,7 +332,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _peerConnection = nil;
     
     self.state = kARDAppClientStateDisconnected;
-   // _channel = nil; don't do that - after every call socket gets terminated
+
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [_delegate self ]; 
 }
@@ -342,6 +360,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     else if(state == RTCIceConnectionStateCompleted) NSLog(@"screensharing RTCIceConnectionStateCompleted");
     else if(state == RTCIceConnectionStateConnected) {
         self.screenView.layer.zPosition = MAXFLOAT;
+        self.screenView.layer.hidden = false;
         NSLog(@"screensharing RTCIceConnectionStateConnected");
     }
     else if(state == RTCIceConnectionStateFailed) NSLog(@"screensharing RTCIceConnectionStateFailed ");
@@ -375,8 +394,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)webRTCPeer:(NBMWebRTCPeer *)peer didRemoveStream:(RTCMediaStream *)remoteStream ofConnection:(NBMPeerConnection *)connection{
     NSLog(@"didRemoveStream in %@ connection", connection);
     
- 
-
     self.screenStream = nil;
     
 }
@@ -868,46 +885,29 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
     self.remoteVideoTrack = remoteVideoTrack;
     [self.remoteVideoTrack addRenderer:self.remoteView];
- //   [self.remoteVideoTrack addRenderer:self.screenView];
    
      [UIView animateWithDuration:0.4f animations:^{
          
          [UIApplication sharedApplication].idleTimerDisabled = YES;
          
-         
-       /*  NSString *remoteHeight = [[NSNumber numberWithFloat:self.remoteView.frame.size.height] stringValue];
-         NSString *remoteWidth =  [[NSNumber numberWithFloat:self.remoteView.frame.size.width] stringValue];
-         NSDictionary* userInfo = @{ @"height":  remoteHeight,
-                                     @"width":  remoteWidth
-                                     };*/
-         
-               //   [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self userInfo: userInfo];
          [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
-
-
      }];
 }
 
 - (void)didReceiveScreenVideoTrack:(RTCVideoTrack *)screenVideoTrack {
+    
     self.screenVideoTrack = screenVideoTrack;
     
-    
-  //  [self.remoteStream removeVideoTrack:self.remoteVideoTrack];
-  //  [self.remoteStream addVideoTrack:self.screenVideoTrack];
-
-    
-   //  [_screenStream removeVideoTrack:localStream.videoTracks[0]];
-   // [self.remoteVideoTrack removeRenderer:self.remoteView];
-    [self.screenVideoTrack addRenderer:self.screenView];
+     [self.remoteVideoTrack removeRenderer:self.remoteView];
+     [self.remoteView renderFrame:nil];
+     [self.screenVideoTrack addRenderer:self.remoteView];
+     [self.remoteVideoTrack addRenderer:self.screenView];
     
     
     [UIView animateWithDuration:0.4f animations:^{
         
         [UIApplication sharedApplication].idleTimerDisabled = YES;
-        
-     
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
-        
         
     }];
 }
