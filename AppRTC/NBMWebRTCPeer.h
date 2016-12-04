@@ -97,10 +97,13 @@
  */
 @interface NBMWebRTCPeer : NSObject
 
+
+@property(nonatomic, assign) NSMutableArray *iceServers;
 /**
  *  The media configuration object.
  */
 @property (nonatomic, strong, readonly) NBMMediaConfiguration *mediaConfiguration;
+
 
 /**
  *  The local stream.
@@ -151,7 +154,7 @@
  *  @param sdpAnswer    The SDP answer.
  *  @param connectionId The connection identifier.
  */
-- (void)processAnswer:(NSString *)sdpAnswer connectionId:(NSString *)connectionId;
+- (void)processAnswer:(RTCSessionDescription *)sdpAnswer connectionId:(NSString *)connectionId;
 
 /**
  *  Provides a remote candidate to ICE agent for connection with specified identifier.

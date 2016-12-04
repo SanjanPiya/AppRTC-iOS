@@ -27,6 +27,7 @@
     self.client.screenVideoSize = self.screenVideoSize;
     
     self.client.localView.layer.zPosition = MAXFLOAT;
+    
     self.client.viewWrapper = self.view;
     
     [self.audioButton.layer setCornerRadius:20.0f];
@@ -220,15 +221,10 @@
 
 - (void)orientationChanged:(NSNotification *)notification{
     
-    //NSDictionary* userInfo = notification.userInfo;
-    // NSNumber* remoteHeight = (NSNumber*)userInfo[@"remoteHeight"];
-    // NSNumber* remoteWidth = (NSNumber*)userInfo[@"remoteWidth"];
-    //NSLog (@"Successfully received test notification! %@ %@", userInfo[@"remoteHeight"], userInfo[@"remoteWidth"]);
-    
-    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
-    [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
-    [self videoView:self.client.screenView didChangeVideoSize:self.client.screenVideoSize];
+  //   [self videoView:self.client.localView didChangeVideoSize:self.remoteView.frame.size]; //this works for phones! next one for browser! (how to find out format from remote video? 
+   [self videoView:self.client.remoteView didChangeVideoSize:self.client.remoteVideoSize]; //self.remoteVideoSize (is not set anywhere !?!)
+    [self videoView:self.client.screenView didChangeVideoSize:self.screenView.frame.size];
 }
 
 
@@ -293,7 +289,7 @@
             [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
             
-    } /*else if (videoView == self.client.screenView) {
+    }else if (videoView == self.client.screenView) {
         //Resize Remote View
         self.screenVideoSize = size;
         CGSize aspectRatio = CGSizeEqualToSize(size, CGSizeZero) ? defaultAspectRatio : size;
@@ -305,12 +301,12 @@
             videoFrame.size.width *= scale;
             videoFrame.size.height *= scale;
         }
-       [self.remoteViewTopConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
+    /*   [self.remoteViewTopConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
         [self.remoteViewBottomConstraint setConstant:containerHeight/2.0f - videoFrame.size.height/2.0f];
         [self.remoteViewLeftConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
-        [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center
+        [self.remoteViewRightConstraint setConstant:containerWidth/2.0f - videoFrame.size.width/2.0f]; //center*/
         
-    }*/
+    }
         [self.client.viewWrapper layoutIfNeeded];
     }];
 }

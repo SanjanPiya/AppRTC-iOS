@@ -3,24 +3,14 @@
 //  AppRTC
 //
 //  Created by Kelly Chu on 3/7/15.
+//  Modified by Nico Krause 2016-12-03
+//
 //  Copyright (c) 2015 ISBX. All rights reserved.
 //
 
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 
-
-//#define SERVER_HOST_URL @"wss://192.168.1.72/jWebrtc"  //jeltsin, center, jekatarinburg http://yeltsin.ru/
-//#define SERVER_HOST_URL @"wss://192.168.4.237/jWebrtc" //salt, jekatarienburg http://www.saltsalt.ru/
-
-
-//#define SERVER_HOST_URL @"ws://100.100.104.152:8080/jWebrtc" //zentral telegraph, moscow http://ditelegraph.com/en
-//#define SERVER_HOST_URL @"wss://www.nicokrause.com/jWebrtc"
-//#define SERVER_HOST_URL @"wss://webrtc.a-fk.de/jWebrtc"
-//#define MY_USERNAME @"nico"
-
-//#define SERVER_HOST_URL @"wss://www.nicokrause.com:8181/jWebrtc"
-//www.nicokrause.com:8181/jWebrtc/ws
 @implementation ARTCRoomViewController
 
 - (void)viewDidLoad {
@@ -131,18 +121,10 @@
 - (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from {
     NSLog(@" incoming screencall from %@",from);
     
-    
-   // NSString *message =  [NSString stringWithFormat:@"incoming screencall from %@", from];
-    
     self.client.to = from;
     self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    
     [self.client startSignalingScreensharing];
-   // ARDIncomingScreenCallResponseMessage *message = [[ARDIncomingScreenCallResponseMessage alloc] init];
-   // message.from = self.client.from;
-   // message.to = self.client.to;
-    
-   // [self.client sendSignalingMessageToCollider: message];
-    
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
