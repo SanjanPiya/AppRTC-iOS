@@ -219,7 +219,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
     }
     
     NSString *payload = wssMessage[kARDWSSMessagePayloadKey];
-    NSLog(@"WSS->C: %@", payload);
+    NSLog(@"WSS->App: %@", payload);
     if(wssMessage[kARDWSSMessageResultKey]!=NULL){
         //read appconfig here
         ARDRegisterResponse *response = [ARDRegisterResponse responseFromJSONData:messageData];

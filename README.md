@@ -32,12 +32,9 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 
 ##Todo/Bugs
 
-- (P1) screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
-- (P1) screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
-
-
 ##Improvements
-
+- screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
+- screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
 - ios-code remove warnings (incompatible type, incompatible pointer)
  
 ##Nice2Haves
