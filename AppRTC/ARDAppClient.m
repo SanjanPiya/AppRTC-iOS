@@ -55,7 +55,7 @@ NSString const *kRTCICECandidateSdpKey = @"candidate";
 NSString const *kARDSignalingCandidate = @"candidate";
 
 @interface ARDAppClient (){
-    NSMutableArray * arrayCondidates;
+   // NSMutableArray * arrayCondidates;
 }
 
 @property(nonatomic, strong) ARDWebSocketChannel *channel;
@@ -282,29 +282,34 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)disconnectScreen: (BOOL) ownDisconnect {
     
+    if(self.webRTCPeer){
+        [self.remoteVideoTrack removeRenderer:self.screenView];
+        self.screenView.layer.hidden = true;   // [self.screenView renderFrame:nil];
+    
+
+    
+        [self.screenVideoTrack removeRenderer:self.remoteView];
+        self.screenVideoTrack = nil;
+
+
+        [self.remoteVideoTrack addRenderer:self.remoteView];
    
-    [self.remoteVideoTrack removeRenderer:self.screenView];
-    self.screenView.layer.hidden = true;   // [self.screenView renderFrame:nil];
-    
-
-    
-    [self.screenVideoTrack removeRenderer:self.remoteView];
-     self.screenVideoTrack = nil;
 
 
-    [self.remoteVideoTrack addRenderer:self.remoteView];
-    
 
     
     
-    [UIView animateWithDuration:0.4f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
         
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
         
-    }];
+        }];
     
-    [self.webRTCPeer closeConnectionWithConnectionId: @"screensharing"];
+   
+        [self.webRTCPeer closeConnectionWithConnectionId: @"screensharing"];
+        self.webRTCPeer = nil;
+    }
 }
 
 - (void)disconnect: (BOOL) ownDisconnect {
@@ -313,24 +318,22 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     if (_state == kARDAppClientStateDisconnected) {  //disconnect from call not from colider
         NSLog(@"kARDAppClientStateDisconnected");
-        return;
+            return;
     }
     
-    if (_channel) {
-        //check if this disconnect was issued by ourselfs - if so send our peer a message
-        if (ownDisconnect) {
+    if (_channel && ownDisconnect) {  //check if this disconnect was issued by ourselfs - if so send our peer a message
           // Tell the other client we're hanging up.
           NSLog(@"Tell the other client we're hanging up.");
           ARDByeMessage *byeMessage = [[ARDByeMessage alloc] init];
           NSData *byeData = [byeMessage JSONData];
           [_channel sendData:byeData];
-        }
     }
 
     _hasReceivedSdp = NO;
     _messageQueue = [NSMutableArray array];
     _peerConnection = nil;
     
+    if(self.webRTCPeer)  [self disconnectScreen: false];
     self.state = kARDAppClientStateDisconnected;
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
@@ -363,8 +366,16 @@ NSString const *kARDSignalingCandidate = @"candidate";
         self.screenView.layer.hidden = false;
         NSLog(@"screensharing RTCIceConnectionStateConnected");
     }
-    else if(state == RTCIceConnectionStateFailed) NSLog(@"screensharing RTCIceConnectionStateFailed ");
-    else if(state == RTCIceConnectionStateDisconnected) NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
+    else if(state == RTCIceConnectionStateFailed){
+    
+            [self disconnectScreen:false];
+            NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
+        
+    }
+    else if(state == RTCIceConnectionStateDisconnected) {
+        [self disconnectScreen:false];
+        NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
+    }
     else if(state == RTCIceConnectionStateClosed) NSLog(@"screensharing RTCIceConnectionStateClosed ");
     else if(state == RTCIceConnectionStateCount) NSLog(@"screensharing RTCIceConnectionStateCount ");
     else if(state == RTCIceGatheringStateNew) NSLog(@"screensharing RTCIceGatheringStateNew");
@@ -466,6 +477,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
       break;
     case kARDWebSocketChannelStateClosed:
     case kARDWebSocketChannelStateError:
+            NSLog(@"kARDWebSocketChannelStateError");
           [self disconnect : false];
       break;
   }
@@ -596,9 +608,9 @@ NSString const *kARDSignalingCandidate = @"candidate";
              case RTCIceGatheringStateGathering:
                  break;
              case RTCIceGatheringStateComplete:
-                        for (ARDICECandidateMessage *message in arrayCondidates) {
+                       /* for (ARDICECandidateMessage *message in arrayCondidates) {
                                 [self sendSignalingMessage:message];
-                        }
+                        }*/
                     break;
        }
 }
