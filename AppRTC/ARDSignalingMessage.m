@@ -79,7 +79,7 @@ static NSString const *kARDSignalingCandidate = @"candidate";
     
   else if ([typeString isEqualToString:@"registeredUsers"]) {
       NSString *jsonUsers = values[@"response"];
-      NSArray *data =  [jsonUsers dataUsingEncoding:NSUTF8StringEncoding];
+      NSData *data =  [jsonUsers dataUsingEncoding:NSUTF8StringEncoding];
       
       NSError *e;
       NSArray *users = [NSJSONSerialization JSONObjectWithData:data options:nil error:&e];
@@ -92,7 +92,8 @@ static NSString const *kARDSignalingCandidate = @"candidate";
   else if ([typeString isEqualToString:@"incomingCall"]) {
       
       NSLog(@"incomingCall incomingCall from: %@", values[@"from"]);
-      message = [[ARDIncomingCallMessage alloc] initWithString: values[@"from"]];
+      bool activeCall = [values[@"screensharing"] length] != 0;
+      message = [[ARDIncomingCallMessage alloc] initWithFromAndType: values[@"from"]: activeCall ];
       
   }
   else if ([typeString isEqualToString:@"incomingScreenCall"]) {
@@ -171,7 +172,11 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       message = [[ARDStartScreenCommunicationMessage alloc] initWithDescription: description];
   }
   else if ([typeString isEqualToString:@"stopCommunication"]) {
-      message = [[ARDByeMessage alloc] init];
+      bool callback = ([values[@"callback"] length] != 0);
+      message = [[ARDByeMessage alloc] initWithCallback:callback];
+  }
+  else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
+      message = [[ARDScreenByeMessage alloc] init];
   }
   else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
       message = [[ARDScreenByeMessage alloc] init];
@@ -277,9 +282,11 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 
 @implementation ARDIncomingCallMessage
 @synthesize from = _from;
-- (instancetype)initWithString:(NSString *) from {
+@synthesize activeCall = _activeCall;
+- (instancetype)initWithFromAndType:(NSString *) from: (bool) activeCall{
     if (self = [super initWithType: kARDSignalingMessageIncomingCall]) {
         _from = from;
+        _activeCall = activeCall;
     }
     return self;
 }
@@ -354,12 +361,31 @@ static NSString const *kARDSignalingCandidate = @"candidate";
                                            options:NSJSONWritingPrettyPrinted
                                              error:NULL];
 }
+@end
 
+@implementation ARDCallbackMessage
+- (instancetype)init {
+    return [super initWithType:kARDSignalingMessageTypeCallback];
+}
+- (NSData *)JSONData {
+    NSDictionary *message = @{
+                              @"id": @"callback"
+                              };
+    return [NSJSONSerialization dataWithJSONObject:message
+                                           options:NSJSONWritingPrettyPrinted
+                                             error:NULL];
+}
 @end
 
 @implementation ARDByeMessage
-- (instancetype)init {
-  return [super initWithType:kARDSignalingMessageTypeBye];
+@synthesize callback = _callback;
+- (instancetype)initWithCallback:(bool) callback {
+  
+    if (self = [super initWithType:kARDSignalingMessageTypeBye]) {
+          _callback = callback;
+    }
+    
+    return self;
 }
 
 - (NSData *)JSONData {

@@ -102,19 +102,26 @@
     }
 }
 
-- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from : (BOOL) activeCall{
     NSLog(@" incoming call from %@",from);
     NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
     
     self.client.to = from;
     self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
-                                                    message:message
-                                                   delegate:self
-                                          cancelButtonTitle:@"Hangup"
-                                          otherButtonTitles:@"Answer call",nil];
-    [alert show];
+    if(!activeCall){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:@"Hangup"
+                                              otherButtonTitles:@"Answer call",nil];
+        [alert show];
+    }
+    else{
+        self.client.isInitiator = FALSE;
+        
+        [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self.client];
+    }
+
     
 }
 

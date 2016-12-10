@@ -48,6 +48,7 @@ typedef enum {
   kARDSignalingMessageTypeAnswer,
   kARDSignalingMessageTypeBye,
   kARDSignalingMessageTypeScreenBye,
+  kARDSignalingMessageTypeCallback,
 } ARDSignalingMessageType;
 
 @interface ARDSignalingMessage : NSObject
@@ -80,7 +81,8 @@ typedef enum {
 
 @interface ARDIncomingCallMessage : ARDSignalingMessage
 @property(nonatomic, readonly) NSString *from;
-- (instancetype)initWithString:(NSString *)from;
+@property(nonatomic, readonly) bool activeCall;
+- (instancetype)initWithFromAndType:(NSString *)from : (bool) activeCall;
 @end
 
 @interface ARDIncomingScreenCallMessage : ARDSignalingMessage
@@ -120,6 +122,13 @@ typedef enum {
 @end
 
 @interface ARDByeMessage : ARDSignalingMessage
+@property(nonatomic, readonly) bool callback;
+- (instancetype)initWithCallback:(bool) callback;
 @end
+
+@interface ARDCallbackMessage : ARDSignalingMessage
+- (instancetype)init;
+@end
+
 @interface ARDScreenByeMessage : ARDSignalingMessage
 @end
