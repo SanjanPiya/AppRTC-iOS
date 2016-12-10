@@ -240,7 +240,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     self.webRTCPeer = webRTCManager;
     self.webRTCPeer.iceServers = self.iceServers;
     [self.webRTCPeer generateOffer:@"screensharing"];  //we use 'screensharing' as connectionId since we are not using more then one right now. (no conferences!)
-    
 }
 
 
@@ -285,19 +284,10 @@ NSString const *kARDSignalingCandidate = @"candidate";
     if(self.webRTCPeer){
         [self.remoteVideoTrack removeRenderer:self.screenView];
         self.screenView.layer.hidden = true;   // [self.screenView renderFrame:nil];
-    
-
-    
         [self.screenVideoTrack removeRenderer:self.remoteView];
         self.screenVideoTrack = nil;
 
-
         [self.remoteVideoTrack addRenderer:self.remoteView];
-   
-
-
-
-    
     
         [UIView animateWithDuration:0.4f animations:^{
         
@@ -357,7 +347,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)webrtcPeer:(NBMWebRTCPeer *)peer iceStatusChanged:(RTCIceConnectionState)state ofConnection:(NBMPeerConnection *)connection{
     
-    
     if(state == RTCIceGatheringStateNew) NSLog(@"screensharing RTCIceGatheringStateNew");
     else if(state == RTCIceConnectionStateChecking) NSLog(@"screensharing RTCIceConnectionStateChecking");
     else if(state == RTCIceConnectionStateCompleted) NSLog(@"screensharing RTCIceConnectionStateCompleted");
@@ -367,10 +356,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
         NSLog(@"screensharing RTCIceConnectionStateConnected");
     }
     else if(state == RTCIceConnectionStateFailed){
-    
             [self disconnectScreen:false];
             NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
-        
     }
     else if(state == RTCIceConnectionStateDisconnected) {
         [self disconnectScreen:false];
@@ -406,7 +393,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     NSLog(@"didRemoveStream in %@ connection", connection);
     
     self.screenStream = nil;
-    
 }
 
 #pragma mark - ARDWebSocketChannelDelegate
@@ -435,7 +421,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
           _isInitiator = FALSE;
           _to = ((ARDIncomingCallMessage *)message).from; //the guy who is calling is "from" but its the new "to"!
           _hasReceivedSdp = YES;
-          [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from];
+      [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from: ((ARDIncomingCallMessage *)message).activeCall];
           break;
     case kARDSignalingMessageIncomingScreenCall:
           _hasReceivedScreenSdp = YES;
@@ -591,8 +577,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     NSLog(@"didGenerateIceCandidate %@", candidate.sdp);
     
     ARDICECandidateMessage *message =  [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
-    
-     [self sendSignalingMessage:message];
+    [self sendSignalingMessage:message];
 }
     
 - (void)peerConnection:(RTCPeerConnection *)peerConnection
@@ -748,7 +733,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         case kARDSignalingMessageStartScreenCommunication:{
             ARDStartScreenCommunicationMessage *sdpMessage = (ARDStartScreenCommunicationMessage *) message;
             
-           [self.webRTCPeer processAnswer:sdpMessage.sessionDescription connectionId:@"screensharing"];
+            [self.webRTCPeer processAnswer:sdpMessage.sessionDescription connectionId:@"screensharing"];
             break;
         }
         case kARDSignalingMessageTypeCandidate: {
@@ -766,10 +751,18 @@ NSString const *kARDSignalingCandidate = @"candidate";
             break;
         }
         case kARDSignalingMessageTypeBye:{
+          
             
           // Other client disconnected.
           [self disconnect : false];
-    
+          ARDByeMessage *byeMessage = (ARDByeMessage *) message;
+            
+           // byeMessage initWithCallback:(message.val==null)
+            if(byeMessage.callback){
+                ARDCallbackMessage *callbackMessage =  [[ARDCallbackMessage alloc] init];
+               [self sendSignalingMessage:callbackMessage];
+            }
+            
           break;
         }
         case kARDSignalingMessageTypeScreenBye: {

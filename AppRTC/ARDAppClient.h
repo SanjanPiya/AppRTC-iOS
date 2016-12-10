@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state;
 - (void)appClient:(ARDAppClient *)client didChangeSignalingState:(ARDAppClientState)state;
 
-- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from;
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from : (BOOL) activeCall;
 - (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from;
 @end
 

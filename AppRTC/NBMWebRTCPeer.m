@@ -190,7 +190,7 @@ didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
     //[connection.peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:description];
 }
 
-- (void)addICECandidate:(RTCIceCandidate *)candidate connectionId:(NSString *)connectionId {
+- (void)addICECandidate:(RTCICECandidate *)candidate connectionId:(NSString *)connectionId {
     NSParameterAssert(candidate);
     NSParameterAssert(connectionId);
     
