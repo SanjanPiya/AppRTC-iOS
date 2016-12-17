@@ -82,8 +82,8 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       NSData *data =  [jsonUsers dataUsingEncoding:NSUTF8StringEncoding];
       
       NSError *e;
-      NSArray *users = [NSJSONSerialization JSONObjectWithData:data options:nil error:&e];
-      
+      NSArray *users = [NSJSONSerialization JSONObjectWithData:data options:0 error:&e];
+     
       NSLog(@"Received registeredUsers: (%@) ",users);
       message = [[ARDRegisteredUserMessage alloc] initWithArray: users];
       
@@ -93,7 +93,7 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       
       NSLog(@"incomingCall incomingCall from: %@", values[@"from"]);
       bool activeCall = [values[@"screensharing"] length] != 0;
-      message = [[ARDIncomingCallMessage alloc] initWithFromAndType: values[@"from"]: activeCall ];
+      message = [[ARDIncomingCallMessage alloc] initWithFromAndType: values[@"from"] setActiveCall: activeCall ];
       
   }
   else if ([typeString isEqualToString:@"incomingScreenCall"]) {
@@ -132,7 +132,7 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       NSString *sdp = subdict[kRTCICECandidateSdpKey];
       NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
       
-      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:[num integerValue] sdpMid:mid];
+      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:(int)[num integerValue] sdpMid:mid];
       message = [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
       
   }
@@ -149,7 +149,7 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       NSString *sdp = subdict[kRTCICECandidateSdpKey];
       NSNumber *num = subdict[kRTCICECandidateMLineIndexKey];
       
-      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:[num integerValue] sdpMid:mid];
+      RTCIceCandidate *candidate = [[RTCIceCandidate alloc] initWithSdp:sdp sdpMLineIndex:(int)[num integerValue] sdpMid:mid];
       message = [[ARDICEScreenCandidateMessage alloc] initWithCandidate:candidate];
       
   }
@@ -174,9 +174,6 @@ static NSString const *kARDSignalingCandidate = @"candidate";
   else if ([typeString isEqualToString:@"stopCommunication"]) {
       bool callback = ([values[@"callback"] length] != 0);
       message = [[ARDByeMessage alloc] initWithCallback:callback];
-  }
-  else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
-      message = [[ARDScreenByeMessage alloc] init];
   }
   else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
       message = [[ARDScreenByeMessage alloc] init];
@@ -283,9 +280,9 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 @implementation ARDIncomingCallMessage
 @synthesize from = _from;
 @synthesize activeCall = _activeCall;
-- (instancetype)initWithFromAndType:(NSString *) from: (bool) activeCall{
+- (instancetype)initWithFromAndType:(NSString *) callFrom setActiveCall: (bool) activeCall{
     if (self = [super initWithType: kARDSignalingMessageIncomingCall]) {
-        _from = from;
+        _from = callFrom;
         _activeCall = activeCall;
     }
     return self;
@@ -389,9 +386,11 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (NSData *)JSONData {
+    
   NSDictionary *message = @{
-    @"id": @"stop"
+        @"id": @"stop"
   };
+    
   return [NSJSONSerialization dataWithJSONObject:message
                                          options:NSJSONWritingPrettyPrinted
                                            error:NULL];

@@ -1,4 +1,4 @@
-        /*
+/*
  * libjingle
  * Copyright 2014, Google Inc.
  *
@@ -38,7 +38,7 @@
 #import "NBMWebRTCPeer.h"
 #import "NBMPeerConnection.h"
 #import "NBMMediaConfiguration.h"
-
+#import <WebRTC/RTCPeerConnection.h>
 
 static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
@@ -62,6 +62,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @property(nonatomic, strong) RTCPeerConnection *peerConnection;
 @property(nonatomic, strong) RTCPeerConnectionFactory *factory;
 @property(nonatomic, strong) NSMutableArray *messageQueue;
+
 @property(nonatomic, assign) BOOL hasReceivedSdp;
 @property(nonatomic, assign) BOOL hasReceivedScreenSdp;
 @property(nonatomic, readonly) BOOL isRegisteredWithWebsocketServer;
@@ -81,6 +82,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize state = _state;
 @synthesize serverHostUrl = _serverHostUrl;
 @synthesize channel = _channel;
+@synthesize isCallbackMode = _isCallbackMode;
 @synthesize peerConnection = _peerConnection;
 @synthesize factory = _factory;
 @synthesize messageQueue = _messageQueue;
@@ -130,12 +132,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                                  object:nil];
       
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                               selector:@selector(connectToWebsocket)
+                                             selector:@selector(connectToWebsocket:)
                                                    name:@"UIApplicationDidBecomeActiveNotification"
                                                  object:nil];
       
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(disconnect:)
+                                             selector:@selector(disconnect)
                                                    name:@"UIApplicationDidEnterBackgroundNotification"
                                                  object:nil];
     //get default orientation and store it so it cannot be overwritten by other orientations
@@ -155,12 +157,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationDidBecomeActiveNotification" object:nil];
-    [self disconnect : false];
+    [self disconnect : false useCallback: false];
 }
 
-- (void)connectToWebsocket {
+- (void)connectToWebsocket : (BOOL) reconnect {
     
-    if (_channel != nil) {  //disconnect from call not from colider
+    if (_channel != nil && !reconnect) {  //disconnect from call not from colider
         NSLog(@"don't connect again because channel is not nil");
         return;
     }
@@ -179,6 +181,11 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     
 }
+
+- (void)disconnect{
+    [self disconnect:true useCallback:false];
+}
+
 
 - (void)call:(NSString *)from : (NSString *)to{
     self.to = to;
@@ -202,7 +209,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [config setIceServers:_iceServers];
     _peerConnection = [_factory peerConnectionWithConfiguration:config
                                                     constraints:constraints
-                                                       delegate:self];
+                                                       delegate:(id)self];
     
     if(self.startLocalMedia){
         [_peerConnection addStream:self.localStream];
@@ -227,7 +234,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)sendOfferScreensharing {
         
     NBMMediaConfiguration *defaultConfig = [NBMMediaConfiguration defaultConfiguration];
-    NBMWebRTCPeer *webRTCManager = [[NBMWebRTCPeer alloc] initWithDelegate:self configuration:defaultConfig];
+    NBMWebRTCPeer *webRTCManager = [[NBMWebRTCPeer alloc] initWithDelegate:(id) self configuration:defaultConfig];
     
     if (!webRTCManager) {
         /*    NSError *retryError = [NSError errorWithDomain:@"it.nubomedia.NBMRoomManager"
@@ -302,18 +309,21 @@ NSString const *kARDSignalingCandidate = @"candidate";
     }
 }
 
-- (void)disconnect: (BOOL) ownDisconnect {
+- (void)disconnect: (BOOL) ownDisconnect  useCallback: (BOOL) sendCallback {
     
     NSLog(@"ownDisconnect %s ",ownDisconnect ? "true" : "false");
     
     if (_state == kARDAppClientStateDisconnected) {  //disconnect from call not from colider
         NSLog(@"kARDAppClientStateDisconnected");
-            return;
+        return;
     }
+    
+    self.isCallbackMode = sendCallback;
     
     if (_channel && ownDisconnect) {  //check if this disconnect was issued by ourselfs - if so send our peer a message
           // Tell the other client we're hanging up.
           NSLog(@"Tell the other client we're hanging up.");
+         
           ARDByeMessage *byeMessage = [[ARDByeMessage alloc] init];
           NSData *byeData = [byeMessage JSONData];
           [_channel sendData:byeData];
@@ -327,7 +337,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     self.state = kARDAppClientStateDisconnected;
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [_delegate self ]; 
 }
 
 #pragma mark - NBMWebRTCPeerDelegate
@@ -351,6 +360,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     else if(state == RTCIceConnectionStateChecking) NSLog(@"screensharing RTCIceConnectionStateChecking");
     else if(state == RTCIceConnectionStateCompleted) NSLog(@"screensharing RTCIceConnectionStateCompleted");
     else if(state == RTCIceConnectionStateConnected) {
+        
         self.screenView.layer.zPosition = MAXFLOAT;
         self.screenView.layer.hidden = false;
         NSLog(@"screensharing RTCIceConnectionStateConnected");
@@ -407,6 +417,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
   switch (message.type) {
     case kARDSignalingMessageTypeRegisteredUsers:
           [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
+          [_registeredUserdelegate removeRegisteredUser:_from];
           break;
     case kARDSignalingMessageTypeRegister:
          
@@ -421,11 +432,14 @@ NSString const *kARDSignalingCandidate = @"candidate";
           _isInitiator = FALSE;
           _to = ((ARDIncomingCallMessage *)message).from; //the guy who is calling is "from" but its the new "to"!
           _hasReceivedSdp = YES;
-      [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from: ((ARDIncomingCallMessage *)message).activeCall];
+          [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from: ((ARDIncomingCallMessage *)message).activeCall];
           break;
     case kARDSignalingMessageIncomingScreenCall:
           _hasReceivedScreenSdp = YES;
           [_delegate appClient:self incomingScreenCallRequest: ((ARDIncomingScreenCallMessage *)message).from];
+          break;
+    case kARDSignalingMessageTypeCallback:
+          
           break;
     case kARDSignalingMessageIncomingResponseCall:
     case kARDSignalingMessageIncomingScreenResponseCall:
@@ -464,7 +478,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     case kARDWebSocketChannelStateClosed:
     case kARDWebSocketChannelStateError:
             NSLog(@"kARDWebSocketChannelStateError");
-          [self disconnect : false];
+          [self disconnect : false useCallback: false];
       break;
   }
 }
@@ -608,7 +622,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
       
     if (error) {
       NSLog(@"Failed to create session description. Error: %@", error);
-        [self disconnect : false];
+        [self disconnect : false useCallback: false];
       NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey: @"Failed to create session description.",
       };
@@ -639,7 +653,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
   dispatch_async(dispatch_get_main_queue(), ^{
     if (error) {
       NSLog(@"Failed to set session description. Error: %@", error);
-        [self disconnect : false];
+        [self disconnect : false useCallback: false];
       NSDictionary *userInfo = @{
         NSLocalizedDescriptionKey: @"Failed to set session description.",
       };
@@ -719,6 +733,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         case kARDSignalingMessageIncomingScreenResponseCall:
         case kARDSignalingMessageTypeResponse:
         case kARDSignalingMessageTypeOffer:
+        case kARDSignalingMessageTypeCallback:
         case kARDSignalingMessageTypeRegisteredUsers:
             break;
             
@@ -754,15 +769,10 @@ NSString const *kARDSignalingCandidate = @"candidate";
           
             
           // Other client disconnected.
-          [self disconnect : false];
+         
           ARDByeMessage *byeMessage = (ARDByeMessage *) message;
-            
-           // byeMessage initWithCallback:(message.val==null)
-            if(byeMessage.callback){
-                ARDCallbackMessage *callbackMessage =  [[ARDCallbackMessage alloc] init];
-               [self sendSignalingMessage:callbackMessage];
-            }
-            
+           
+          [self disconnect : false useCallback: byeMessage.callback];
           break;
         }
         case kARDSignalingMessageTypeScreenBye: {
@@ -924,14 +934,14 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                                                                  cancelButtonTitle:@"OK"
                                                                                  otherButtonTitles:nil];
     [alertView show];
-    [self disconnect : false];
+    [self disconnect : false useCallback: false];
 }
 
 #pragma mark - Websocket methods
 
 - (void)registerWithColliderIfReady {
     _websocketURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_websocketURL, @"/ws"]];
-    _channel =  [[ARDWebSocketChannel alloc] initWithURL:_websocketURL delegate:self];
+    _channel =  [[ARDWebSocketChannel alloc] initWithURL:_websocketURL delegate:(id) self];
 }
 
 - (void)sendSignalingMessageToCollider:(ARDSignalingMessage *)message {
@@ -981,7 +991,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
     
 - (NSDictionary *)mandatoryConstraints
-    {
+    {   
         return @{
                  @"OfferToReceiveAudio": @"true",
                  @"OfferToReceiveVideo": @"true",

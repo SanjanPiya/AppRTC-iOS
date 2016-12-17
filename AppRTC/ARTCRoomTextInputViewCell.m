@@ -41,9 +41,19 @@
     return self.registeredUsers.count;
 }
 
-- (void)updateTable:(NSArray *)registeredUser{
-    self.registeredUsers = registeredUser;
+- (void)updateTable:(NSArray *)registeringUser{
+    self.registeredUsers =  [[NSMutableArray alloc] init];
+   // self.registeredUsers = [registeringUser mutableCopy];
+    
     [self.userListTableView reloadData];
+}
+
+- (void) removeRegisteredUser:(NSString *)username{
+    if ([self.registeredUsers containsObject:username]) {
+       // NSMutableArray *newArray = [NSMutableArray arrayWithArray: self.registeredUsers ];
+       // [self.registeredUsers removeObject: @"support"];
+       // self.registeredUsers = newArray;
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    [self.delegate toTextInputViewCell:self shouldCallUser:self.registeredUsers[indexPath.row]];

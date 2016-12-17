@@ -42,7 +42,6 @@ static NSString const *kARDRegisterWebSocketURLKey = @"wss_url";
 @property(nonatomic, assign) ARDRegisterResultType result;
 @property(nonatomic, assign) BOOL isInitiator;
 @property(nonatomic, assign) NSDictionary *pcConfig;
-@property(nonatomic, strong) NSString *roomId;
 @property(nonatomic, strong) NSString *clientId;
 @property(nonatomic, strong) NSArray *messages;
 @property(nonatomic, strong) NSURL *webSocketURL;
