@@ -96,7 +96,6 @@ static NSString *kDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
     [connection.peerConnection setRemoteDescription:description completionHandler:^(NSError * _Nullable error) {
         [self peerConnection:peerConnection didSetSessionDescriptionWithError:error];
     }];
-    //[connection.peerConnection setRemoteDescriptionWithDelegate:self sessionDescription:description];
     
     self.connectionMap[connectionId] = connection;
     
@@ -119,9 +118,6 @@ static NSString *kDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 - (void)generateOffer:(NSString *)connectionId withDataChannels:(BOOL)dataChannels {
     NSParameterAssert(connectionId);
     
-//    if (!self.localStream) {
-//        [self startLocalMedia];
-//    }
    
     NBMPeerConnection *connection = self.connectionMap[connectionId];
 //    if (connection) {
@@ -169,9 +165,8 @@ static NSString *kDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
 /** The data channel successfully received a data buffer. */
 - (void)dataChannel:(RTCDataChannel *)dataChannel
-didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
-    
-}
+    didReceiveMessageWithBuffer:(RTCDataBuffer *)buffer {
+    }
 
 //- (void)generateOffer:(NSString *)connectionId restartICE:(BOOL)restart {
 //    

@@ -52,6 +52,18 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     
+    //Getting when app goes into background
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enterBackground:)
+                                                 name:@"UIApplicationDidEnterBackgroundNotification"
+                                               object:nil];
+    
+    //Getting when app comes back from background
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(returnFromBackground:)
+                                                 name:@"UIApplicationDidBecomeActiveNotification"
+                                               object:nil];
+    
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     [self.remoteView setDelegate:self];
     [self.localView setDelegate:self];
@@ -93,11 +105,11 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    [self disconnect];
+    [self disconnect:false];
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application {
-    [self disconnect];
+   // [self disconnect:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,7 +121,7 @@
     return YES;
 }
 
-- (void)disconnect {
+- (void)disconnect:(BOOL)ownDisconnect  {
     if (self.client) {
         if (self.client.localVideoTrack)[self.client.localVideoTrack removeRenderer: self.client.localView];
         if (self.client.remoteVideoTrack)[self.client.remoteVideoTrack removeRenderer:self.client.remoteView];
@@ -124,7 +136,17 @@
         self.client.screenVideoTrack = nil;
         [self.client.screenView renderFrame:nil];
         
-        [self.client disconnect: true ];
+       // if(self.client.isInitiator)
+        [self.client disconnect: ownDisconnect useCallback: false ];
+        if(self.client.isCallbackMode){
+            NSLog(@"Call the other peer to send another stream - e.g. screensharing / video");
+            ARDCallbackMessage *callbackMessage =  [[ARDCallbackMessage alloc] init];
+           // NSData *callBackData = [callbackMessage JSONData];
+            //usleep(2000000);
+            [self.client sendSignalingMessageToCollider: callbackMessage];
+            //usleep(2000000);
+            
+        }
     }
 }
 
@@ -196,7 +218,7 @@
 
 - (IBAction)hangupButtonPressed:(id)sender {
     //Clean up
-    [self disconnect];
+    [self disconnect: true];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -224,7 +246,12 @@
             break;
     }
 }
+- (void)enterBackground:(NSNotification *)notification{
 
+}
+- (void)returnFromBackground:(NSNotification *)notification{
+    
+}
 - (void)orientationChanged:(NSNotification *)notification{
    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)

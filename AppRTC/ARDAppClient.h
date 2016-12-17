@@ -51,10 +51,12 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @end
 
 @protocol ARDAppClientUpdateUserTableDelegate <NSObject>
-
 - (void)updateTable:(NSArray *)registeredUser;
-
+- (void)removeRegisteredUser: (NSString *) username;
 @end
+
+
+
 
 // Handles connections to the AppRTC server 
 @interface ARDAppClient : NSObject
@@ -66,6 +68,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
 @property(nonatomic, assign) BOOL isInitiator;
+@property(nonatomic, assign) BOOL isCallbackMode;
 
 @property (nonatomic, assign) CGSize localVideoSize;
 @property (nonatomic, assign) CGSize remoteVideoSize;
@@ -99,8 +102,8 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
-//- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size;
-- (void)connectToWebsocket;
+- (void)disconnect;
+- (void)connectToWebsocket: (BOOL) reconnect;
 - (void)startSignalingIfReady;
 - (void)startSignalingScreensharing;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
@@ -127,6 +130,6 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 - (void)swapCameraToBack;
 
 // Disconnects from the AppRTC servers and any connected clients.
-- (void)disconnect: (BOOL) ownDisconnect;
+- (void)disconnect: (BOOL) ownDisconnect useCallback: (BOOL) sendCallback;
 
 @end

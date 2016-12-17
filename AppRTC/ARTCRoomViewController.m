@@ -36,7 +36,7 @@
     //Connect to the room
     if(self.client == nil){
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
-        [self.client connectToWebsocket];
+        [self.client connectToWebsocket : false];
     }
     
 }
@@ -75,7 +75,7 @@
         [self.client.localView renderFrame:nil];
         self.client.remoteVideoTrack = nil;
         [self.client.remoteView renderFrame:nil];
-        [self.client disconnect:true];
+        [self.client disconnect:true useCallback:false];
     }
 }
 

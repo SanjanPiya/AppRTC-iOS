@@ -82,7 +82,7 @@ typedef enum {
 @interface ARDIncomingCallMessage : ARDSignalingMessage
 @property(nonatomic, readonly) NSString *from;
 @property(nonatomic, readonly) bool activeCall;
-- (instancetype)initWithFromAndType:(NSString *)from : (bool) activeCall;
+- (instancetype)initWithFromAndType:(NSString *) callFrom setActiveCall: (bool) activeCall;
 @end
 
 @interface ARDIncomingScreenCallMessage : ARDSignalingMessage
