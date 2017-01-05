@@ -43,7 +43,7 @@
 
 - (void)updateTable:(NSArray *)registeringUser{
     self.registeredUsers =  [[NSMutableArray alloc] init];
-   // self.registeredUsers = [registeringUser mutableCopy];
+        self.registeredUsers = [registeringUser mutableCopy];
     
     [self.userListTableView reloadData];
 }

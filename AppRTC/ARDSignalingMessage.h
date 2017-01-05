@@ -49,6 +49,8 @@ typedef enum {
   kARDSignalingMessageTypeBye,
   kARDSignalingMessageTypeScreenBye,
   kARDSignalingMessageTypeCallback,
+  kARDSignalingMessageTypePing,
+  kARDSignalingMessageTypePong,
 } ARDSignalingMessageType;
 
 @interface ARDSignalingMessage : NSObject
@@ -127,6 +129,10 @@ typedef enum {
 @end
 
 @interface ARDCallbackMessage : ARDSignalingMessage
+- (instancetype)init;
+@end
+
+@interface ARDPingMessage : ARDSignalingMessage
 - (instancetype)init;
 @end
 

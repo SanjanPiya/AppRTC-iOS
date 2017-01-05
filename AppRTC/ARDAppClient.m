@@ -308,7 +308,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
         self.webRTCPeer = nil;
     }
 }
-
+- (void)sendPong {
+}
 - (void)disconnect: (BOOL) ownDisconnect  useCallback: (BOOL) sendCallback {
     
     NSLog(@"ownDisconnect %s ",ownDisconnect ? "true" : "false");
@@ -462,8 +463,11 @@ NSString const *kARDSignalingCandidate = @"candidate";
       break;
     case kARDSignalingMessageTypeBye:
     case kARDSignalingMessageTypeScreenBye:
-             [_messageQueue insertObject:message atIndex:0];
-          break;
+        [_messageQueue insertObject:message atIndex:0];
+        break;
+    case kARDSignalingMessageTypePing:   
+         [self sendSignalingMessage: [[ARDPingMessage alloc] init]];
+         break;
       return;
   }
   [self drainMessageQueueIfReady];
@@ -766,9 +770,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
             break;
         }
         case kARDSignalingMessageTypeBye:{
-          
-            
-          // Other client disconnected.
          
           ARDByeMessage *byeMessage = (ARDByeMessage *) message;
            
