@@ -184,6 +184,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (void)disconnect{
     [self disconnect:true useCallback:false];
+    _channel = nil;
 }
 
 
@@ -308,8 +309,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         self.webRTCPeer = nil;
     }
 }
-- (void)sendPong {
-}
+
 - (void)disconnect: (BOOL) ownDisconnect  useCallback: (BOOL) sendCallback {
     
     NSLog(@"ownDisconnect %s ",ownDisconnect ? "true" : "false");

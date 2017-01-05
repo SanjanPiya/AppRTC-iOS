@@ -247,9 +247,12 @@
     }
 }
 - (void)enterBackground:(NSNotification *)notification{
-
+      [self.client disconnect];
+    
 }
 - (void)returnFromBackground:(NSNotification *)notification{
+    
+    [self.client connectToWebsocket:true];
     
 }
 - (void)orientationChanged:(NSNotification *)notification{
