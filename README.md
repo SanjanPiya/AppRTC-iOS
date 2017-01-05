@@ -31,8 +31,6 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - main app logic for WebRTC - ARDAppClient
 
 ##Todo/Bugs
-- implement background2front reconncect and register
-
 - implement background websocket
 - when receiving "rejected" do not send channel close to other party and display reject message"
 - wrong connection url or other connection error does not show error
@@ -90,6 +88,7 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2017-01-05 - implement background2front reconncect and register
 - 2017-01-05 - implement ping-pong 
 - 2016-12-17 - ios-code remove warnings (incompatible type, incompatible pointer)
 
