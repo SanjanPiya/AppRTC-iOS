@@ -178,6 +178,9 @@ static NSString const *kARDSignalingCandidate = @"candidate";
   else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
       message = [[ARDScreenByeMessage alloc] init];
   }
+  else if ([typeString isEqualToString:@"ping"]) {
+      message = [[ARDPingMessage alloc] init];
+  }
   else {
     NSLog(@"Received type: %@ and did nothing so far here", typeString);
   }
@@ -405,6 +408,21 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 - (NSData *)JSONData {
     NSDictionary *message = @{
                               @"id": @"stopScreen"
+                              };
+    return [NSJSONSerialization dataWithJSONObject:message
+                                           options:NSJSONWritingPrettyPrinted
+                                             error:NULL];
+}
+@end
+
+@implementation ARDPingMessage
+- (instancetype)init {
+    return [super initWithType:kARDSignalingMessageTypePing];
+}
+
+- (NSData *)JSONData {
+    NSDictionary *message = @{
+                              @"id": @"pong"
                               };
     return [NSJSONSerialization dataWithJSONObject:message
                                            options:NSJSONWritingPrettyPrinted

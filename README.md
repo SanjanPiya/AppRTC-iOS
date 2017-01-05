@@ -31,29 +31,37 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - main app logic for WebRTC - ARDAppClient
 
 ##Todo/Bugs
+- implement background2front reconncect and register
 
+- implement background websocket
+- when receiving "rejected" do not send channel close to other party and display reject message"
+- wrong connection url or other connection error does not show error
 ##Improvements
-- screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
-- screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
-- ios-code remove warnings (incompatible type, incompatible pointer)
- 
+
+
 ##Nice2Haves
 - play ring-tone when calling and create "pop over" in apps (see whats app)
 - let websocket go into background mode and handle it as voip socket
-    - network service types of nsurlrequest
-        https://github.com/facebook/SocketRocket/pull/293
     - example void socket in background
+        http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
+        http://stackoverflow.com/questions/22366038/socketrocket-connection-pausing-while-in-background
+        http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
         https://www.raywenderlich.com/29948/backgrounding-for-ios
         https://github.com/facebook/SocketRocket/issues/152
         http://stackoverflow.com/questions/28619881/ios-voip-socket-does-not-work-in-background-until-handler-is-fired
         http://stackoverflow.com/questions/5987495/how-to-maintain-voip-socket-connection-in-background
         http://stackoverflow.com/questions/27631748/configuring-ios-voip-application-to-run-in-sleep-background-mode
         http://stackoverflow.com/questions/12057151/voip-socket-on-ios-no-notifications-received
+    - network service types of nsurlrequest
+        https://github.com/facebook/SocketRocket/pull/293
     - https://developer.apple.com/library/content/documentation/iPhone/Conceptual/  iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1 
     - https://github.com/facebook/SocketRocket/pull/275
     - update socketrocket? https://cocoapods.org/?q=on%3Aios%20socketrocket
 - (extern) add "audio call" and "video call" button
 - (extern) add "answer with audio" and answer "answer with video" button during incoming call 
+- separate stream for screensharing
+    - screensharing tab on small window (with remote video) moves in fullscreen and screensharing in smallscreen
+    - screensharing tab on small window (with screen video) moves in fullscreen and remotevideo in smallscreen
 
 
 - (setup) try multi URL selection list for urls and setups (for development, integration, productionq)
@@ -82,6 +90,9 @@ This WebRTC iOS App simply connects to a Java Webrtc Signaling Server via Websoc
 - Security Considerations http://webrtc-security.github.io/
 
 ##Done
+- 2017-01-05 - implement ping-pong 
+- 2016-12-17 - ios-code remove warnings (incompatible type, incompatible pointer)
+
 - 2016-12-04 - screensharing needs to pop up fullscreen (instead of in small window)
 - 2016-12-04 - screensharing small window needs to show remote video in right proportion
 - 2016-12-04 - fixed call from Android (eventuelly from iPhone too) does not have right proportion (aspect ratio), webbrowser works!  
