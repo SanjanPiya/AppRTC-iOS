@@ -1,0 +1,36 @@
+{
+  "name": "storyboards-sample",
+  "version": "0.1.0",
+  "summary": "A short description of storyboards-sample.",
+  "description": "An optional longer description of storyboards-sample\n\n* Markdown format.\n* Don't worry about the indent, we strip it!",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/storyboards-sample",
+  "license": "MIT",
+  "authors": {
+    "David Linsin": "dlinsin@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/storyboards-sample.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.1"
+  },
+  "requires_arc": true,
+  "dependencies": {
+    "WebRTC": [
+
+    ],
+    "CocoaLumberjack": [
+
+    ],
+    "SocketRocket": [
+
+    ]
+  },
+  "source_files": "Pod/Classes",
+  "resource_bundles": {
+    "storyboards-sample": [
+      "Pod/**/*.{lproj,storyboard}"
+    ]
+  }
+}
