@@ -1,0 +1,30 @@
+PODS:
+  - CocoaLumberjack (3.1.0):
+    - CocoaLumberjack/Default (= 3.1.0)
+    - CocoaLumberjack/Extensions (= 3.1.0)
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Extensions (3.1.0):
+    - CocoaLumberjack/Default
+  - mscrtc (0.0.1):
+    - CocoaLumberjack
+    - SocketRocket
+    - WebRTC
+  - SocketRocket (0.5.1)
+  - WebRTC (57.5.16123)
+
+DEPENDENCIES:
+  - mscrtc (from `../`)
+
+EXTERNAL SOURCES:
+  mscrtc:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
+  mscrtc: b6b616cdf0b6a16cd25fa8be47db722fc76100a9
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  WebRTC: c05e75588769c79b0db6eb007646718751e4f108
+
+PODFILE CHECKSUM: e1e2c18d887f0ea0379b53a4845d7147d1603f88
+
+COCOAPODS: 1.2.0
