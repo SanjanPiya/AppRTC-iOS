@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.dependency  'SocketRocket'
   s.source_files = 'Pod/Classes'
   s.resource_bundles = {
-    'mscrtc-ios' => ['Pod/**/*.{lproj,storyboard}']
+    'mscrtc' => ['Pod/**/*.{lproj,storyboard}']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
