@@ -2,14 +2,14 @@
   "name": "mscrtc",
   "version": "0.0.1",
   "summary": "MSCRTC - WebRTC functions for mscrtc-ios",
-  "description": "This pod enables WebRTC functions to a calling app. \nIt works together with the msc-kurento mediaserver implementation in Java",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/storyboards-sample",
+  "description": "This pod add WebRTC functions to an app. \nIt works together with the msc-kurento mediaserver implementation in Java",
+  "homepage": "https://github.com/inspiraluna/AppRTC-iOS",
   "license": "MIT",
   "authors": {
     "Nico Krause": "nico@le-space.de"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/storyboards-sample.git",
+    "git": "https://github.com/inspiraluna/AppRTC-iOS.git",
     "tag": "0.0.1"
   },
   "platforms": {
@@ -29,7 +29,7 @@
   },
   "source_files": "Pod/Classes",
   "resource_bundles": {
-    "mscrtc-ios": [
+    "mscrtc": [
       "Pod/**/*.{lproj,storyboard}"
     ]
   }

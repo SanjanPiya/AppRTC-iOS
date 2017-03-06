@@ -49,7 +49,7 @@
     [self presentViewController:testController animated:YES completion:nil];*/
     
 
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"storyboards-sample" withExtension:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSCWebRTC"
                                                          bundle:bundle];
