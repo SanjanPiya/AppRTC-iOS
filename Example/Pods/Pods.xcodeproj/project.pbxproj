@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		021415D5CEB56EB107D4324D222DC7A1 /* NBMSessionDescriptionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C5B873AF8410E535A2FAD8FBBDE680 /* NBMSessionDescriptionFactory.m */; };
-		03FD2AF81E71ACA300611005 /* PKPushRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD2AF71E71ACA300611005 /* PKPushRegistry.m */; };
+		03FD2AFE1E728AB900611005 /* ADCallKitManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 03FD2AFC1E728AB900611005 /* ADCallKitManager.h */; };
+		03FD2AFF1E728AB900611005 /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD2AFD1E728AB900611005 /* ADCallKitManager.m */; };
 		0596680FB743918F21EF9DFE8CF0B0AE /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = BB76D003ABF267C127FF8E78A692AF1F /* DDDispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06EBDC738A9A1180E5B2D9085A5A5CAB /* TTransportError.m in Sources */ = {isa = PBXBuildFile; fileRef = E488DF1F93FB5E0D185F3AF66952F14D /* TTransportError.m */; };
 		08891F560B0876B581F5E2128110E0DA /* THTTPSessionTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = FB79D37A992B362580757C8536D10CE5 /* THTTPSessionTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -219,8 +220,8 @@
 /* Begin PBXFileReference section */
 		005BC3D1576851EEA1CEAF19A37982FD /* ARDUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDUtilities.h; sourceTree = "<group>"; };
 		01E6907CF2644EB1CF8E23F708A3DA0B /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
-		03FD2AF61E71AC7400611005 /* PKPushRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKPushRegistry.h; sourceTree = "<group>"; };
-		03FD2AF71E71ACA300611005 /* PKPushRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPushRegistry.m; sourceTree = "<group>"; };
+		03FD2AFC1E728AB900611005 /* ADCallKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADCallKitManager.h; path = ../../../../CallKit/ADCallKitManager.h; sourceTree = "<group>"; };
+		03FD2AFD1E728AB900611005 /* ADCallKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADCallKitManager.m; path = ../../../../CallKit/ADCallKitManager.m; sourceTree = "<group>"; };
 		064235CD5F6B19FFDED7823CA4DE382E /* thrift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "thrift-prefix.pch"; sourceTree = "<group>"; };
 		08DB1A7D22392F37D957A89149D5B38E /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
 		0AA0C51E42661974B5C66A49FD39B23B /* DDASLLogCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = Classes/DDASLLogCapture.m; sourceTree = "<group>"; };
@@ -453,6 +454,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03FD2B001E728AC500611005 /* CallKit */ = {
+			isa = PBXGroup;
+			children = (
+				03FD2AFC1E728AB900611005 /* ADCallKitManager.h */,
+				03FD2AFD1E728AB900611005 /* ADCallKitManager.m */,
+			);
+			name = CallKit;
+			sourceTree = "<group>";
+		};
+		03FD2B011E728ADE00611005 /* NBM */ = {
+			isa = PBXGroup;
+			children = (
+				967CDA3902833F27C13F422965CD3546 /* NBMEAGLRenderer.h */,
+				4E693AEA9815E5C02488D8CCFA61AED1 /* NBMEAGLRenderer.m */,
+				4FEE3AE37A90B2DB4FC10CE0AA9D9C87 /* NBMEAGLVideoViewContainer.h */,
+				7A6E9FB9BBB0501B6382584BE59B2076 /* NBMEAGLVideoViewContainer.m */,
+				EC8ECDB4AC6F325A1F6E28925C12C7B4 /* NBMError.h */,
+				BA39B4CA62CB5ABD81B7A8DCA733825D /* NBMError.m */,
+				84F27C11837505E5B1003ED7AEC47FA1 /* NBMLog.h */,
+				4BDEFC33E7A5BB0F4FCAE7ABD3CE91D3 /* NBMMediaConfiguration.h */,
+				DE6A998C563EB5C87A499C9DD2727A38 /* NBMMediaConfiguration.m */,
+				601DFFB500B7621F2FECA0D963A8BD01 /* NBMPeerConnection.h */,
+				80ECA5AEE172FAA550E6051B75F568F2 /* NBMPeerConnection.m */,
+				1C34B11247921BB770B1400CCA10B8E7 /* NBMRenderer.h */,
+				4E26221B60B5BE48BAC72AE607ABBF60 /* NBMSessionDescriptionFactory.h */,
+				26C5B873AF8410E535A2FAD8FBBDE680 /* NBMSessionDescriptionFactory.m */,
+				C96FA378D449C0D83808F14C1AD34A57 /* NBMTypes.h */,
+				243E69948FB7DB0BD0E4184A0260BFCD /* NBMWebRTCPeer.h */,
+				443504D1A9BE433572FC6D9F3C807B23 /* NBMWebRTCPeer.m */,
+			);
+			name = NBM;
+			sourceTree = "<group>";
+		};
+		03FD2B021E728AFB00611005 /* Thrift */ = {
+			isa = PBXGroup;
+			children = (
+				F64CE8DD44DFA207C137D28C532555D6 /* Webrtc.h */,
+				E7E583A88E26CC6B64630005D6F7F13C /* Webrtc.m */,
+			);
+			name = Thrift;
+			sourceTree = "<group>";
+		};
+		03FD2B031E728B1C00611005 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				391E98E43323716C8151C3CAC9243CEF /* ARTCRoomViewController.h */,
+				29746990543F3E41FE5DF30921B678DA /* ARTCRoomViewController.m */,
+				3D05F2E205AEEBDC89676D0338E29003 /* ARTCVideoChatViewController.h */,
+				DF7697CF91A087D461E8BA15AEBA3CF2 /* ARTCVideoChatViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		124C69D84A56C83033EDEB3F3094A8ED /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +559,10 @@
 		3C15514489E1240CE1AF978897A56C4E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				03FD2B031E728B1C00611005 /* ViewController */,
+				03FD2B021E728AFB00611005 /* Thrift */,
+				03FD2B011E728ADE00611005 /* NBM */,
+				03FD2B001E728AC500611005 /* CallKit */,
 				F6567D29DC3C835516E18E95FEE61A91 /* ARDAppClient.h */,
 				1F48D781EE70886652ED90F15365DA7D /* ARDAppClient.m */,
 				7D67ECDD5C3C416CF607CE47B938CC00 /* ARDMessageResponse.h */,
@@ -519,33 +577,8 @@
 				A766B91EF4A772294B96A52BAEE1600F /* ARDWebSocketChannel.m */,
 				108622E51138AF1D775EC091391CC2EB /* ARTCRoomTextInputViewCell.h */,
 				08DB1A7D22392F37D957A89149D5B38E /* ARTCRoomTextInputViewCell.m */,
-				391E98E43323716C8151C3CAC9243CEF /* ARTCRoomViewController.h */,
-				29746990543F3E41FE5DF30921B678DA /* ARTCRoomViewController.m */,
-				3D05F2E205AEEBDC89676D0338E29003 /* ARTCVideoChatViewController.h */,
-				DF7697CF91A087D461E8BA15AEBA3CF2 /* ARTCVideoChatViewController.m */,
-				967CDA3902833F27C13F422965CD3546 /* NBMEAGLRenderer.h */,
-				4E693AEA9815E5C02488D8CCFA61AED1 /* NBMEAGLRenderer.m */,
-				4FEE3AE37A90B2DB4FC10CE0AA9D9C87 /* NBMEAGLVideoViewContainer.h */,
-				7A6E9FB9BBB0501B6382584BE59B2076 /* NBMEAGLVideoViewContainer.m */,
-				EC8ECDB4AC6F325A1F6E28925C12C7B4 /* NBMError.h */,
-				BA39B4CA62CB5ABD81B7A8DCA733825D /* NBMError.m */,
-				84F27C11837505E5B1003ED7AEC47FA1 /* NBMLog.h */,
-				4BDEFC33E7A5BB0F4FCAE7ABD3CE91D3 /* NBMMediaConfiguration.h */,
-				DE6A998C563EB5C87A499C9DD2727A38 /* NBMMediaConfiguration.m */,
-				601DFFB500B7621F2FECA0D963A8BD01 /* NBMPeerConnection.h */,
-				80ECA5AEE172FAA550E6051B75F568F2 /* NBMPeerConnection.m */,
-				1C34B11247921BB770B1400CCA10B8E7 /* NBMRenderer.h */,
-				4E26221B60B5BE48BAC72AE607ABBF60 /* NBMSessionDescriptionFactory.h */,
-				26C5B873AF8410E535A2FAD8FBBDE680 /* NBMSessionDescriptionFactory.m */,
-				C96FA378D449C0D83808F14C1AD34A57 /* NBMTypes.h */,
-				243E69948FB7DB0BD0E4184A0260BFCD /* NBMWebRTCPeer.h */,
-				443504D1A9BE433572FC6D9F3C807B23 /* NBMWebRTCPeer.m */,
 				935B4EBAE73C1CF41E111EF9596B268B /* RTCMediaStream+Configuration.h */,
 				CA90F64B5AE4F34B30BCF7865AC28FE9 /* RTCMediaStream+Configuration.m */,
-				F64CE8DD44DFA207C137D28C532555D6 /* Webrtc.h */,
-				E7E583A88E26CC6B64630005D6F7F13C /* Webrtc.m */,
-				03FD2AF61E71AC7400611005 /* PKPushRegistry.h */,
-				03FD2AF71E71ACA300611005 /* PKPushRegistry.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -936,6 +969,7 @@
 				5745F56FF2769506417589D64C12E7BF /* NBMTypes.h in Headers */,
 				D4537F30E61B276B2E397E9BF8BCD198 /* NBMWebRTCPeer.h in Headers */,
 				C68BD8CEFC29C8AED35A8AB69D6A9A79 /* RTCMediaStream+Configuration.h in Headers */,
+				03FD2AFE1E728AB900611005 /* ADCallKitManager.h in Headers */,
 				FF617399FCD6F09587837F04664E2366 /* Webrtc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1201,7 +1235,7 @@
 				4A7103D009EA29DB8227BB94856780C8 /* ARDAppClient.m in Sources */,
 				C5FA4B184933D586B8FF23AECBBB40CF /* ARDMessageResponse.m in Sources */,
 				CF8DB56B03E6ABF8726E8F3D310F3AEF /* ARDRegisterResponse.m in Sources */,
-				03FD2AF81E71ACA300611005 /* PKPushRegistry.m in Sources */,
+				03FD2AFF1E728AB900611005 /* ADCallKitManager.m in Sources */,
 				E0AE90FE3802BDA9EC3FED492A392563 /* ARDSignalingMessage.m in Sources */,
 				27CDCB1367EE22B4DD7FCE7A9A4ADA1F /* ARDUtilities.m in Sources */,
 				78A401AA5A4827900F9ACE0E6695457A /* ARDWebSocketChannel.m in Sources */,
