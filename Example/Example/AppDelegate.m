@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
+#import "ADCallKitManager.h"
 #import <PushKit/PushKit.h>
 @interface AppDelegate () <UISplitViewControllerDelegate,PKPushRegistryDelegate>
 
@@ -22,6 +23,8 @@
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
      [self voipRegistration];
+    
+    [[ADCallKitManager sharedInstance] setupWithAppName:@"Bolo" supportsVideo:YES actionNotificationBlock:^(CXCallAction * _Nonnull action, ADCallActionType actionType) { }];
     return YES;
 }
 
