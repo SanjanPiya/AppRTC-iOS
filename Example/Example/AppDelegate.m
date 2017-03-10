@@ -8,13 +8,12 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
-
-@interface AppDelegate () <UISplitViewControllerDelegate>
+#import <PushKit/PushKit.h>
+@interface AppDelegate () <UISplitViewControllerDelegate,PKPushRegistryDelegate>
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -22,7 +21,47 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+     [self voipRegistration];
     return YES;
+}
+
+// Register for VoIP notifications
+- (void) voipRegistration {
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    // Create a push registry object
+    PKPushRegistry * voipRegistry = [[PKPushRegistry alloc] initWithQueue: mainQueue];
+    // Set the registry's delegate to self
+    voipRegistry.delegate = self;
+    // Set the push type to VoIP
+    voipRegistry.desiredPushTypes = [NSSet setWithObject:PKPushTypeVoIP];
+}
+
+// Handle updated push credentials
+- (void) pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials: (PKPushCredentials *)credentials forType:(NSString *)type {
+    // Register VoIP push token (a property of PKPushCredentials) with server
+    if(self.client == nil){
+        self.client = [[ARDAppClient alloc] initWithDelegate:self];
+        // [self.client connectToWebsocket : false];
+        NSString *token = @"test";
+        NSData *tokenData = [credentials token];
+    
+        token = [tokenData base64EncodedStringWithOptions:nil];
+        [self.client registerWithSwift: token];
+        
+    }
+    
+        NSLog(@"didUpdatePushCredentials: token:%@ type:",[credentials token], type);
+}
+
+- (void) pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(PKPushType)type {
+      NSLog(@"didInvalidatePushTokenForType:%@ type:", type);
+}
+
+// Handle incoming pushes
+- (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
+    // Process the received push
+    
+      NSLog(@"pushRegistry: token:%@ ",[payload dictionaryPayload]);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

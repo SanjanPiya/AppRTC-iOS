@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARDAppClient.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) ARDAppClient *client;
 
 @end
 

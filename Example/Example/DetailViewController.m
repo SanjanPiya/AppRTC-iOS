@@ -7,6 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#import "ARDAppClient.h"
+#import "ARTCVideoChatViewController.h"
+
 
 @interface DetailViewController ()
 
@@ -44,21 +47,14 @@
 }
 
 - (IBAction)press:(id)sender {
-   /* UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TestLocalization" bundle:[NSBundle mainBundle]];
-    UIViewController *testController = [storyboard instantiateInitialViewController];
-    [self presentViewController:testController animated:YES completion:nil];*/
-    
 
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[self class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
+    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSCWebRTC"
                                                          bundle:bundle];
-    
-   /* UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TestLocalization"
-                                                         bundle:bundle];
-    */
-    UIViewController *testController = [storyboard instantiateInitialViewController];
-    [self presentViewController:testController animated:YES completion:nil];
+//    UIViewController *testController = [storyboard instantiateInitialViewController];
+    UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"Video"];
+    [self presentViewController:uvc animated:YES completion:nil];
 }
 
 @end

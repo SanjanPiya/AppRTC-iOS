@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '8.1'
   s.requires_arc = true
+  s.dependency  'thrift'
   s.dependency  'WebRTC'
   s.dependency  'CocoaLumberjack'
   s.dependency  'SocketRocket'

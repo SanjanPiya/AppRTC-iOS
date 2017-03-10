@@ -11,6 +11,7 @@
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 
+
 @implementation ARTCRoomViewController
 
 - (void)viewDidLoad {
@@ -18,27 +19,18 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+   
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 
-    // Set the application defaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"support"
-                                                           forKey:@"MY_USERNAME"];
     
-    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://webrtc.a-fk.de/jWebrtc"
-                                                            forKey:@"SERVER_HOST_URL"];
-    
-    [defaults registerDefaults:appDefaults];
-    [defaults registerDefaults:appDefaults2];
-    [defaults synchronize];
-    
+    NSLog(@"connecting to the signaling server");
     //Connect to the room
     if(self.client == nil){
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
         [self.client connectToWebsocket : false];
     }
     
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

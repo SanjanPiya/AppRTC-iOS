@@ -8,8 +8,10 @@ PODS:
   - mscrtc (0.0.1):
     - CocoaLumberjack
     - SocketRocket
+    - thrift
     - WebRTC
   - SocketRocket (0.5.1)
+  - thrift (0.10.0)
   - WebRTC (57.5.16123)
 
 DEPENDENCIES:
@@ -21,10 +23,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  mscrtc: a44ac10e4cd6f3b26de5616abf7c1fefa2dea541
+  mscrtc: b76caa4319b06dea5ddfd60da1b7b25b4d711202
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  thrift: 1259c3cde97effc59429cade899fb913f655a7cc
   WebRTC: c05e75588769c79b0db6eb007646718751e4f108
 
-PODFILE CHECKSUM: e1e2c18d887f0ea0379b53a4845d7147d1603f88
+PODFILE CHECKSUM: ea12f0dab166741ab7814e88d409894e14f4a5f0
 
 COCOAPODS: 1.2.0

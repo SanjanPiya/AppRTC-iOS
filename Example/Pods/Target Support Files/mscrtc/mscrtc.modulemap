@@ -1,0 +1,6 @@
+framework module mscrtc {
+  umbrella header "mscrtc-umbrella.h"
+
+  export *
+  module * { export * }
+}
