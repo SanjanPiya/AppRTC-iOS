@@ -17,6 +17,9 @@
   },
   "requires_arc": true,
   "dependencies": {
+    "thrift": [
+
+    ],
     "WebRTC": [
 
     ],

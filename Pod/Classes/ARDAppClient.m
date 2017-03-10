@@ -39,6 +39,11 @@
 #import "NBMPeerConnection.h"
 #import "NBMMediaConfiguration.h"
 #import <WebRTC/RTCPeerConnection.h>
+#import "TBinaryProtocol.h"
+
+
+#import "TSocketTransport.h"
+#import "Webrtc.h"
 
 static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
@@ -126,6 +131,18 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
     _isSpeakerEnabled = YES;
       
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"support"
+                                                              forKey:@"MY_USERNAME"];
+      
+    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.43.151/jWebrtc"
+                                                               forKey:@"SERVER_HOST_URL"];
+      
+    [defaults registerDefaults:appDefaults];
+    [defaults registerDefaults:appDefaults2];
+    [defaults synchronize];
+      
     [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(orientationChanged:)
                                                    name:@"UIDeviceOrientationDidChangeNotification"
@@ -160,12 +177,35 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect : false useCallback: false];
 }
 
+- (void)registerWithSwift : (NSString *)token {
+    //172.20.10.6
+    //192.168.43.151
+    TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151"
+                                                                              port:9090];
+    // Talk to a server via socket, using a binary protocol
+    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
+    
+    WebrtcClient *client = [[WebrtcClient alloc] initWithProtocol:protocol];
+    
+    NSError *err = [NSError errorWithDomain:@"webrtc"
+                                       code:100
+                                   userInfo:@{
+                                              NSLocalizedDescriptionKey:@"Error while talking to thrift server during registration"
+                                              }];
+    RegisterUserId *registerUser = [[RegisterUserId alloc] initWithUserId:@"iphone" firebaseToken:token];
+    RegisterResult *result = [client registerUserId:registerUser error:&err];
+    
+    NSLog(@"RegisterUserId returned: %@",[result response]);
+    
+}
+
 - (void)connectToWebsocket : (BOOL) reconnect {
     
     if (_channel != nil && !reconnect) {  //disconnect from call not from colider
         NSLog(@"don't connect again because channel is not nil");
         return;
     }
+    
     _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
     _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
     
@@ -186,7 +226,33 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect:true useCallback:false];
     _channel = nil;
 }
-
+- (void)sendCallOverSwift{
+    
+    TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151" port:9090];
+    //[[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]
+    
+    // Talk to a server via socket, using a binary protocol
+    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
+    
+    WebrtcClient *client = [[WebrtcClient alloc] initWithProtocol:protocol];
+    
+    NSString *fromName = @"iphone";
+    NSString *toName = @"99999";
+    NSString *fromUUID = @"iphone";
+    NSString *toUUID = @"99999";
+    
+    NSError *err = [NSError errorWithDomain:@"webrtc"
+                                       code:100
+                                   userInfo:@{
+                                              NSLocalizedDescriptionKey:@"Error while talking to thrift server while making a call"
+                                              }];
+    
+    Call *call = [[Call alloc] initWithFromName:fromName toName:toName fromUUID:fromUUID toUUID:toUUID];
+    
+    CallResult *result = [client call:call error:&err];
+    NSLog(@"call returned: %@",[result response]);
+    
+}
 
 - (void)call:(NSString *)from : (NSString *)to{
     self.to = to;

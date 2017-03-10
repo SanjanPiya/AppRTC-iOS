@@ -8,6 +8,7 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "ARDAppClient.h"
 
 @interface MasterViewController ()
 
@@ -22,6 +23,12 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.preferredContentSize = CGSizeMake(320.0, 600.0);
     }
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+     [super viewWillAppear:animated];
+    
+
 }
 
 - (void)viewDidLoad {

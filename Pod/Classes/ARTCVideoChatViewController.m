@@ -69,6 +69,12 @@
     [self.localView setDelegate:self];
     [self.screenView setDelegate:self];
     
+    if(self.client == nil){
+        self.client = [[ARDAppClient alloc] initWithDelegate:self];
+        [self.client connectToWebsocket : false];
+        [self.client sendCallOverSwift];
+        
+    }
     
     NSString *callingString;
     
@@ -77,13 +83,11 @@
         [self.urlLabel setText: callingString];
         NSLog(@"%@", callingString);
         [self.client call: self.client.from:  self.client.to];
-        
     }else{
         callingString = [NSString stringWithFormat:@"call from %@", self.client.to];
         [self.urlLabel setText: callingString];
         NSLog(@"%@", callingString);
         [self.client startSignalingIfReady];
-        
     }
 
 }
