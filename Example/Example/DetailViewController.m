@@ -9,7 +9,7 @@
 #import "DetailViewController.h"
 #import "ARDAppClient.h"
 #import "ARTCVideoChatViewController.h"
-#import "ARDCallKitManager.h"
+#import "ADCallKitManager.h"
 
 @interface DetailViewController ()
 
