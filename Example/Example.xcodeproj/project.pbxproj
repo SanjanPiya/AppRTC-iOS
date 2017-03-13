@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FD2AFA1E71B4C700611005 /* PushKit.framework */; };
-		9084D686E782EB305F960DD5 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA98F6DD7ED1F3E56F94C666 /* Pods_Example.framework */; };
+		B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F991EEF435C6314A71EC2B54 /* Pods_Example.framework */; };
 		B6F245341A1238440074C6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245331A1238440074C6E1 /* main.m */; };
 		B6F245371A1238440074C6E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245361A1238440074C6E1 /* AppDelegate.m */; };
 		B6F2453A1A1238440074C6E1 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245391A1238440074C6E1 /* MasterViewController.m */; };
@@ -51,7 +51,7 @@
 		B6F245501A1238450074C6E1 /* ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTests.m; sourceTree = "<group>"; };
 		B6F2455F1A1246F40074C6E1 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6F245601A1246F40074C6E1 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		FA98F6DD7ED1F3E56F94C666 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F991EEF435C6314A71EC2B54 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */,
-				9084D686E782EB305F960DD5 /* Pods_Example.framework in Frameworks */,
+				B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				03FD2AFA1E71B4C700611005 /* PushKit.framework */,
-				FA98F6DD7ED1F3E56F94C666 /* Pods_Example.framework */,
+				F991EEF435C6314A71EC2B54 /* Pods_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,7 +204,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = furryfishapps;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					B6F2452D1A1238440074C6E1 = {
 						CreatedOnToolsVersion = 6.1;
@@ -386,7 +386,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -435,7 +435,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

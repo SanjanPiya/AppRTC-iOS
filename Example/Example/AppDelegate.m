@@ -22,9 +22,15 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
-     [self voipRegistration];
     
-    [[ADCallKitManager sharedInstance] setupWithAppName:@"Bolo" supportsVideo:YES actionNotificationBlock:^(CXCallAction * _Nonnull action, ADCallActionType actionType) { }];
+    [self voipRegistration];
+    
+    [[ADCallKitManager sharedInstance] setupWithAppName:@"MSC" supportsVideo:YES actionNotificationBlock:^(CXCallAction * _Nonnull action, ADCallActionType actionType) {
+    
+     NSLog(@"setupWithAppName: action %@ %d ",[action callUUID], actionType  );
+    
+    }];
+    
     return YES;
 }
 
@@ -43,6 +49,7 @@
 - (void) pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials: (PKPushCredentials *)credentials forType:(NSString *)type {
     // Register VoIP push token (a property of PKPushCredentials) with server
     if(self.client == nil){
+        
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
         // [self.client connectToWebsocket : false];
         NSString *token = @"test";
@@ -53,7 +60,7 @@
         
     }
     
-        NSLog(@"didUpdatePushCredentials: token:%@ type:",[credentials token], type);
+    NSLog(@"didUpdatePushCredentials: token:%@ type:",[credentials token], type);
 }
 
 - (void) pushRegistry:(PKPushRegistry *)registry didInvalidatePushTokenForType:(PKPushType)type {
@@ -64,7 +71,10 @@
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
     // Process the received push
     
-      NSLog(@"pushRegistry: token:%@ ",[payload dictionaryPayload]);
+    NSLog(@"pushRegistry: data:%@ ",[payload dictionaryPayload]);
+   // ADContact *contact = [ADContact initWithUniqueIdentifier:@"iphone"];
+    [[ADCallKitManager sharedInstance] reportIncomingCallWithContact:nil completion:nil];
+ 
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
