@@ -25,7 +25,7 @@
     
     [self voipRegistration];
     
-    [[ADCallKitManager sharedInstance] setupWithAppName:@"MSC" supportsVideo:YES actionNotificationBlock:^(CXCallAction * _Nonnull action, ADCallActionType actionType) {
+    [[ADCallKitManager sharedInstance] setupWithAppName:@"MSCWebRTC" supportsVideo:YES actionNotificationBlock:^(CXCallAction * _Nonnull action, ADCallActionType actionType) {
     
      NSLog(@"setupWithAppName: action %@ %d ",[action callUUID], actionType  );
     
@@ -52,11 +52,11 @@
         
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
         // [self.client connectToWebsocket : false];
-        NSString *token = @"test";
+       
         NSData *tokenData = [credentials token];
-    
-        token = [tokenData base64EncodedStringWithOptions:nil];
-        [self.client registerWithSwift: token];
+       
+        NSString *token =  [self stringWithDeviceToken: tokenData];
+        [self.client registerWithSwift: @"99999"  :token ];
         
     }
     
@@ -70,10 +70,9 @@
 // Handle incoming pushes
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
     // Process the received push
-    
-    NSLog(@"pushRegistry: data:%@ ",[payload dictionaryPayload]);
-   // ADContact *contact = [ADContact initWithUniqueIdentifier:@"iphone"];
-    [[ADCallKitManager sharedInstance] reportIncomingCallWithContact:nil completion:nil];
+    NSString *fromName = [[payload dictionaryPayload] objectForKey:@"fromName"];
+    NSLog(@"PushKit data fromName: %@ ",fromName);
+    [[ADCallKitManager sharedInstance] reportIncomingCallWithContact:fromName completion:nil];
  
 }
 
@@ -108,6 +107,19 @@
     } else {
         return NO;
     }
+}
+
+#pragma mark - utils
+
+- (NSString *)stringWithDeviceToken:(NSData *)deviceToken {
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
+    }
+    
+    return [token copy];
 }
 
 @end
