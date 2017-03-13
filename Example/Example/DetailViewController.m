@@ -9,7 +9,7 @@
 #import "DetailViewController.h"
 #import "ARDAppClient.h"
 #import "ARTCVideoChatViewController.h"
-
+#import "ARDCallKitManager.h"
 
 @interface DetailViewController ()
 
@@ -48,13 +48,42 @@
 
 - (IBAction)press:(id)sender {
 
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
     
+    /**
+     * Start VideoChatViewController in MscWebRTC Pod
+    
+    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSCWebRTC"
                                                          bundle:bundle];
-//    UIViewController *testController = [storyboard instantiateInitialViewController];
     UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"Video"];
     [self presentViewController:uvc animated:YES completion:nil];
+     */
+    
+    /**
+     * Report Outgoing-Call to Callkit
+     */
+    
+  
+    ADCallKitManagerCompletion startCallcompletion =^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"requestTransaction error %@", error);
+        }
+    };
+    
+    NSUUID *callUUID = [[ADCallKitManager sharedInstance] reportOutgoingCallWithContact:@"nico krause"
+                                                          completion:startCallcompletion];
+    
+    //[[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
+    //[[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnected];
+    
+    ADCallKitManagerCompletion endCallcompletion =^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"requestTransaction error %@", error);
+        }
+        [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateEnded];
+    };
+    
+    [[ADCallKitManager sharedInstance] endCall:callUUID completion:endCallcompletion];
 }
 
 @end

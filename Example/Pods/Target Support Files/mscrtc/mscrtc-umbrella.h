@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "ADCallKitManager.h"
 #import "ARDAppClient.h"
 #import "ARDMessageResponse.h"
 #import "ARDRegisterResponse.h"
