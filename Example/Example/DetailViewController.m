@@ -17,6 +17,7 @@
 
 @implementation DetailViewController
 
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(id)newDetailItem {
@@ -47,43 +48,42 @@
 }
 
 - (IBAction)press:(id)sender {
-
-    
-    /**
-     * Start VideoChatViewController in MscWebRTC Pod
-    
-    NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSCWebRTC"
-                                                         bundle:bundle];
-    UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"Video"];
-    [self presentViewController:uvc animated:YES completion:nil];
-     */
-    
     /**
      * Report Outgoing-Call to Callkit
      */
-    
-  
     ADCallKitManagerCompletion startCallcompletion =^(NSError * _Nullable error) {
         if (error) {
             NSLog(@"requestTransaction error %@", error);
+        }else{
+            //start signaling
+            
+            NSString *from = @"999999";
+            NSString *to = @"0015537";
+            NSString *fromUUID = @"999999";
+            NSString *toUUID = @"0015537";
+           
+            
+            if(self.client == nil){
+                self.client = [[ARDAppClient alloc] initWithDelegate:[ADCallKitManager sharedInstance]];
+                [self.client connectToWebsocket : false : fromUUID];
+                [self.client sendCallOverSwift :  from : to : fromUUID : toUUID];
+            }
         }
     };
     
     NSUUID *callUUID = [[ADCallKitManager sharedInstance] reportOutgoingCallWithContact:@"nico krause"
                                                           completion:startCallcompletion];
     
-    //[[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
+    [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
     //[[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnected];
     
-    ADCallKitManagerCompletion endCallcompletion =^(NSError * _Nullable error) {
+  /*  ADCallKitManagerCompletion endCallcompletion =^(NSError * _Nullable error) {
         if (error) {
             NSLog(@"requestTransaction error %@", error);
         }
         [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateEnded];
     };
     
-    [[ADCallKitManager sharedInstance] endCall:callUUID completion:endCallcompletion];
+    [[ADCallKitManager sharedInstance] endCall:callUUID completion:endCallcompletion];*/
 }
-
 @end

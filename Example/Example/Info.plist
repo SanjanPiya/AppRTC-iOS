@@ -60,5 +60,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSCameraUsageDescription</key>
+    <string>Die Kamera ist notwendig um Videotelefonate durchzuführen.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Das Mikrofon ist notwendig um Telefonate durchzuführen.</string>
 </dict>
 </plist>
