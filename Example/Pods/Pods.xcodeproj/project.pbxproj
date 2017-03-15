@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01C9EE2B9E135A1A0330103324562109 /* NBMMediaConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D01204950FC435C0DDD6B204DC4B4353 /* NBMMediaConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03AA9EC51E769B1000237343 /* MSCWebRTC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F75BC894A92B5E8BE3B1A9AB845C97 /* MSCWebRTC.storyboard */; };
 		0596680FB743918F21EF9DFE8CF0B0AE /* DDDispatchQueueLogFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = BB76D003ABF267C127FF8E78A692AF1F /* DDDispatchQueueLogFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B15BA5156B6B134DAFC2A379A8EBF20 /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EE9E3343DA6C9BA03B1096247923EC86 /* DDFileLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,14 +17,11 @@
 		14650955D5D837C64B4BD41EF5D1738A /* TApplicationError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5132160A08BE42A6C1B7EBF982E042 /* TApplicationError.m */; };
 		1632F53B55C1FEDE2B4AC3DB65EED8E0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68A92177924A3A91D24C31CBA122802 /* CFNetwork.framework */; };
 		16A9456AC69D548E659F1A1749CF0C76 /* THTTPSessionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A7B252FA31AD5983E1DC8EB0A68DD5 /* THTTPSessionTransport.m */; };
-		1733A1F31D9314273768D24F419B5B18 /* NBMPeerConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = D46032FECB809F823F4A5A37214C1AD9 /* NBMPeerConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		187B3DEE3BB3B446FDED42EE7F8A5152 /* TSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE7365F51C33637482D32E2A7A5F112 /* TSerializable.swift */; };
 		1971DE9977BCA4E25BCA6914F54E6103 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C215116C7B87191FB9C7C582C5BB0DAC /* SRWebSocket.m */; };
 		1B287A0F2082DC8772C263350009AEF9 /* TNSFileHandleTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C696019FEAFADBAA888B313E71EA64 /* TNSFileHandleTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1DBDBA7B8A73444CE50CE4AE104F381E /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A4E963808B89177E5664B0AF30025D /* RTCMediaStream+Configuration.m */; };
-		1EEC7358C147ABDCED0639DC20564AF0 /* NBMEAGLVideoViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B5B83BBFDA806EF850F8886A4BBA8D /* NBMEAGLVideoViewContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1EEEDC1771C88942003160F599DD4D28 /* TFramedTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 158949CB0526E691987006C9B9FE35D0 /* TFramedTransport.m */; };
-		21A7FEC872836CC802E721731D0A7154 /* NBMSessionDescriptionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818528C7A6E3245AC12FCA9137AA94F /* NBMSessionDescriptionFactory.m */; };
 		225F455F861B5F6A4528FFDE4A4E9101 /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = F62D8C9E54F05B2D03C6F34DD2E5842C /* ARDMessageResponse.m */; };
 		226E6A6E6B7FCE8629500B86769CB6A7 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1603A9D0BCD6B6055F9A158E65DAEBB1 /* DDMultiFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		23E7A2C0680FB9ACE9329F8F2E5E3DFD /* SocketRocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C04F64B426A878753A9F6D23921B7D65 /* SocketRocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,8 +31,6 @@
 		264EB0DE64BCC7EAA381FFB14CC3629C /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D415EE4023930BDF4BFF12E487FFC56F /* ADCallKitManager.m */; };
 		2D01301DFD0DB4E68B31FBDC2542706C /* TProtocolError.h in Headers */ = {isa = PBXBuildFile; fileRef = B9297C8035D8433C17E9F1CA9C82AFA5 /* TProtocolError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DB886C9EA32C4DB91EFBEAA7005B6A6 /* ARTCVideoChatViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C57AF6F66AACB2805F0D0FE998B9346 /* ARTCVideoChatViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		315C73BF9790745CC225F1265EC07E4D /* NBMError.h in Headers */ = {isa = PBXBuildFile; fileRef = A04B489F41CA0E2F02B5CBD086C0A0D7 /* NBMError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3281EB38CC213BC76F1EF8B83093F2C3 /* NBMEAGLVideoViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D74194E58C01EF637B9EBF172449712 /* NBMEAGLVideoViewContainer.m */; };
 		333AE5C240EE2869BB3FEF907F51077B /* SocketRocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D74E471CC80060666C542663F6F313E0 /* SocketRocket-dummy.m */; };
 		344748315F81A51D801843A8102355CB /* TSSLSocketTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DD60D8083A0B47CEEB5B9F26F992AD /* TSSLSocketTransport.m */; };
 		35200472DC769E59F9E24D4CF21A8477 /* TAsyncTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 177385ACD6206002AE5C3BF654D9B170 /* TAsyncTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,20 +45,15 @@
 		44A701DC557B68C298E1D805B125F908 /* ARDWebSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B17ACA24A8085C00C3410BD87F90152C /* ARDWebSocketChannel.m */; };
 		4624AB4FC86F6E80687ADB4AC6497310 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2D243B133CC7E377F47B15F49BD6E9D2 /* en.lproj */; };
 		46BCF6AD09D0E803C4668842D2EF119D /* DDLegacyMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = FDA5F3E9C9D8047DE4721DA8615CF069 /* DDLegacyMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		497107AACB3AC2C4878849FD1D5272FD /* NBMRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 656B6E51D7974ED4FF816BF070617A2C /* NBMRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C75A446713FF06A8CC2DAA89D8E18E8 /* NBMEAGLRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 45DBBDE07891243FD7037957DC0E2B6D /* NBMEAGLRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C496B6A14E982C5C09CC54DE00F90B /* DDMultiFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 704F64257753FA911047FC148C80658C /* DDMultiFormatter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53D4700D729CB4E20F430F66E528E866 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6699A32E4F0168893F41B84079586DE9 /* DDDispatchQueueLogFormatter.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		546870E42CFA2A2CA058F3C028091B59 /* TBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F13C0FED6D5B551621AC63DAEE23146A /* TBaseClient.m */; };
 		55ABA070EE224BDFAED54A74B7389704 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE27C9A4AEA1E332F492B0907CE73B /* DDASLLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		56AAACD08ECA91CA7C202C7AB3136100 /* NBMPeerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8740476FAC98108B8BB61A66853694CD /* NBMPeerConnection.m */; };
 		593EFFE313DFD848CB4ECFA2DEBD07A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD83CEC1120605F0F6AF85A9891CA816 /* Foundation.framework */; };
 		5ABBE8201C3287C589A971D570ACD468 /* thrift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6F21695098A47A5D28667470575894 /* thrift-dummy.m */; };
 		5B7F09CFE69DED1F7B2CF964EB5E44DC /* TProtocolDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F619CA99476F965582B55BC092E190 /* TProtocolDecorator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5CD36EA4E35F7553EE28D7190E16A75A /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 251633BB0FEBF8659CCD8773DE1BAC9F /* ARDRegisterResponse.m */; };
-		5DD60AD5992CBDAD57DE6FE3E3A73335 /* NBMLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 097A7CE2B1E143636D1B02AC9CD7E03A /* NBMLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5E595B7D1C1AE93B2BCD7757D137B84F /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 204D8BD7C50DAE7AD3B8BC5A887E931C /* CocoaLumberjack.framework */; };
-		5EBC814E0218B64103FD706A1ACF8701 /* NBMMediaConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C581983A68E1701FF9BB5394BCC5AEE /* NBMMediaConfiguration.m */; };
 		5F4D28A09FC2A102B0F35F1DAD7CC6AE /* thrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E1E1C3D40307672C5C650C0128D454 /* thrift.framework */; };
 		5F8D75561BFCF43B6E23EC437D73D19F /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = D0BC7858A6DC0C34EC1CAFBA90F51F00 /* DDASLLogCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FFB047F8C774F98374998C1226FE34B /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F94AFC35687407B280FD8A4B16160E /* ARTCRoomViewController.m */; };
@@ -87,9 +76,7 @@
 		7F1471648F837BE2BDD6E1E1901026C7 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A4B1A63F767C980D0A8599F392278 /* TProtocolUtil.m */; };
 		82A125708248989A8DF8BCC16F9873CF /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */; };
 		881B705B962BA5F308D1AB7A65ECB58B /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C905AB98CC632ECE5D4BD0AD541DF319 /* DDTTYLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8A24A718161DE1084E404699DD1085B1 /* NBMSessionDescriptionFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 08091F25B44D31029ED4F3F8AC0AE99A /* NBMSessionDescriptionFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8AF4D28380920469E8CC0120DFBE0562 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8BCB8E7FB25B7A1B521B070E94AB3D2F /* NBMWebRTCPeer.h in Headers */ = {isa = PBXBuildFile; fileRef = 837421B3764829AEFC8E50EDAC305611 /* NBMWebRTCPeer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F6F33149031E459672A479571CCB805 /* ARDWebSocketChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E5330ED4065548A178B9F13A28D18 /* ARDWebSocketChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8F76C5F37E8242B88EF6C49529A86943 /* DDASLLogCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C51E42661974B5C66A49FD39B23B /* DDASLLogCapture.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		918EEE473FCCA0473ECEB9DC6661F8A2 /* TMemoryBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9665051659614FFCC6521E06D0AB60AD /* TMemoryBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,17 +94,14 @@
 		A57E354FAC19275EAA31D8AD53BF5A1D /* TMultiplexedProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D99CB8A1CCED44B844A2326CD1855DE /* TMultiplexedProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5ED9D18B8BFC63C776C0CEF9B2379B2 /* TError.m in Sources */ = {isa = PBXBuildFile; fileRef = 127D1D99BE63476477209FE2298D62F3 /* TError.m */; };
 		A600C3B1FEE53DA78D8D43ACB018E147 /* mscrtc-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E62FFCD1EB0B13AAFF2CD318EEF5FEE /* mscrtc-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7C5D21AFCC73A1A483097D075B22742 /* NBMEAGLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF89A1ABC1611CEFF2D489C1430F8E /* NBMEAGLRenderer.m */; };
 		A7D7D186795D79B4560D79E954F22C55 /* TProtocolFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6975E77E1C0E4E8051F297B99D5031 /* TProtocolFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A836C66F6720AB4EB73EC01AB924667B /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE29D9E93751ED51DC0F8613757D739 /* ARDAppClient.m */; };
 		A8644BCBE74068EF67A9EC4A616047C7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68A92177924A3A91D24C31CBA122802 /* CFNetwork.framework */; };
 		A88735B5E037957D6E07050BA32C5758 /* TSSLSocketTransportError.h in Headers */ = {isa = PBXBuildFile; fileRef = 5730B1853EE46434F494ADB26FAA5025 /* TSSLSocketTransportError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9112BB164D2FA6EF3ACB7526F43DE1B /* NBMWebRTCPeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF5AF455407E2804E010FC20CEC3E8 /* NBMWebRTCPeer.m */; };
 		AA23197D2136922AFC3D6B6847CCF090 /* THTTPTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 309DF837066D6FE0965650AB4F68F2F3 /* THTTPTransport.m */; };
 		AAA239616D11FA19422A9199BFFF0392 /* TTransportError.m in Sources */ = {isa = PBXBuildFile; fileRef = E488DF1F93FB5E0D185F3AF66952F14D /* TTransportError.m */; };
 		ACFCECD9B899CE625703E9C3FE695CD7 /* TNSStreamTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 11CD9571158439E8B765F766A4E9FBA3 /* TNSStreamTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AECAF3ACD701CF8FB06FC9CE94E4D78D /* TCompactProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = F363CE0F433995D4F8DFA7A669771167 /* TCompactProtocol.m */; };
-		AF76A3FC5C2806430A82361CF7994859 /* NBMTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = B22E19353A910E5E1379019EADA5AF4C /* NBMTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B15B063BC12B341A0DF16066333AA525 /* ARDUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 2115CA48D31CBBB04D77EC2A6D01546B /* ARDUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1B5BE270DACA8CEA4A32F5E068D71E6 /* TProtocolUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = A40C85A0705012D1640BC03C7E491B74 /* TProtocolUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B214368E84773935BB3C540587C58341 /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A33F31DFCD28B3CCC485FB178B0013B /* ARDUtilities.m */; };
@@ -154,7 +138,6 @@
 		F65A953062DB6CEC6D0F6D284E369185 /* THTTPTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = AF87AB167FCC86943167041F0516E0B0 /* THTTPTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8061A570833CCCB74CC5C3031930D38 /* Webrtc.h in Headers */ = {isa = PBXBuildFile; fileRef = E743CC146FB1DCD9E1366278F2A10A80 /* Webrtc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F88451B1EEBC1D424B9EF2FB6265ED5E /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 75EBC7CE14D401C9E2AE455CD80649AB /* SRWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F96C0A54459FF3C6E803E9B535EA4F85 /* NBMError.m in Sources */ = {isa = PBXBuildFile; fileRef = 69296431CED7FEFAD0615BED493A8EE6 /* NBMError.m */; };
 		FB29A410E053C07638AB63F121E0299A /* TSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886057A27254EC20BD8E2B61F2C2804D /* TSet.swift */; };
 		FF85475B2A954B2FB545A9D8F6CF1C43 /* mscrtc-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E28217ED1ACAE6B837A05EE7A9B06530 /* mscrtc-dummy.m */; };
 /* End PBXBuildFile section */
@@ -221,12 +204,9 @@
 /* Begin PBXFileReference section */
 		01E6907CF2644EB1CF8E23F708A3DA0B /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
 		064235CD5F6B19FFDED7823CA4DE382E /* thrift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "thrift-prefix.pch"; sourceTree = "<group>"; };
-		08091F25B44D31029ED4F3F8AC0AE99A /* NBMSessionDescriptionFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMSessionDescriptionFactory.h; sourceTree = "<group>"; };
-		097A7CE2B1E143636D1B02AC9CD7E03A /* NBMLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMLog.h; sourceTree = "<group>"; };
 		0AA0C51E42661974B5C66A49FD39B23B /* DDASLLogCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDASLLogCapture.m; path = Classes/DDASLLogCapture.m; sourceTree = "<group>"; };
 		0AC47F5B360FB3FA92A7ED87CF6B23D0 /* SocketRocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SocketRocket.xcconfig; sourceTree = "<group>"; };
 		0C9A4B1A63F767C980D0A8599F392278 /* TProtocolUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TProtocolUtil.m; path = lib/cocoa/src/protocol/TProtocolUtil.m; sourceTree = "<group>"; };
-		0D74194E58C01EF637B9EBF172449712 /* NBMEAGLVideoViewContainer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMEAGLVideoViewContainer.m; sourceTree = "<group>"; };
 		0DE8D9E2B0B2BB9312BB2D68256FE002 /* TMultiplexedProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TMultiplexedProtocol.m; path = lib/cocoa/src/protocol/TMultiplexedProtocol.m; sourceTree = "<group>"; };
 		119072C64A19799964E1620D83F514FB /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
 		11CD9571158439E8B765F766A4E9FBA3 /* TNSStreamTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TNSStreamTransport.h; path = lib/cocoa/src/transport/TNSStreamTransport.h; sourceTree = "<group>"; };
@@ -250,7 +230,6 @@
 		28F10F3F412FD056E8BB81E8A2AD4BA7 /* SocketRocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SocketRocket.h; path = SocketRocket/SocketRocket.h; sourceTree = "<group>"; };
 		2937745B3385F6531BBF3D2B241C0FF6 /* TSharedProcessorFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSharedProcessorFactory.h; path = lib/cocoa/src/TSharedProcessorFactory.h; sourceTree = "<group>"; };
 		29C34F135F26585B1BFF5D434612FA10 /* TProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TProtocol.swift; path = lib/cocoa/src/TProtocol.swift; sourceTree = "<group>"; };
-		2BFF5AF455407E2804E010FC20CEC3E8 /* NBMWebRTCPeer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMWebRTCPeer.m; sourceTree = "<group>"; };
 		2D243B133CC7E377F47B15F49BD6E9D2 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		302710FD181A7BB4F8575072483C74B1 /* TCompactProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCompactProtocol.h; path = lib/cocoa/src/protocol/TCompactProtocol.h; sourceTree = "<group>"; };
 		309DF837066D6FE0965650AB4F68F2F3 /* THTTPTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = THTTPTransport.m; path = lib/cocoa/src/transport/THTTPTransport.m; sourceTree = "<group>"; };
@@ -261,9 +240,7 @@
 		3DF58A4E3F70C4E36B72531D5750D37E /* CocoaLumberjack-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CocoaLumberjack-dummy.m"; sourceTree = "<group>"; };
 		3E2943F584DA204671FBF28454762CC0 /* TNSStreamTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TNSStreamTransport.m; path = lib/cocoa/src/transport/TNSStreamTransport.m; sourceTree = "<group>"; };
 		4508290925BF50AEE0C77F90DB07F3F3 /* TProcessorFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProcessorFactory.h; path = lib/cocoa/src/TProcessorFactory.h; sourceTree = "<group>"; };
-		45DBBDE07891243FD7037957DC0E2B6D /* NBMEAGLRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMEAGLRenderer.h; sourceTree = "<group>"; };
 		4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = mscrtc.xcconfig; sourceTree = "<group>"; };
-		4C581983A68E1701FF9BB5394BCC5AEE /* NBMMediaConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMMediaConfiguration.m; sourceTree = "<group>"; };
 		4E6F07E944AB82ADBEB9072DBECADD8A /* CocoaLumberjack-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaLumberjack-umbrella.h"; sourceTree = "<group>"; };
 		4E759C0B8813F4C6ADC42568212872C7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		552550F3F912264E5D073F8893691F88 /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -276,18 +253,14 @@
 		60BBB541DDCD1D21832459CC4383596F /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		62E8CD563DB852D5948659B4EB56D110 /* mscrtc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mscrtc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62EC5BA662E86508562F0C104362C9AA /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		656B6E51D7974ED4FF816BF070617A2C /* NBMRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMRenderer.h; sourceTree = "<group>"; };
 		659E5330ED4065548A178B9F13A28D18 /* ARDWebSocketChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDWebSocketChannel.h; sourceTree = "<group>"; };
 		65A4E963808B89177E5664B0AF30025D /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
 		6699A32E4F0168893F41B84079586DE9 /* DDDispatchQueueLogFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDDispatchQueueLogFormatter.m; path = Classes/Extensions/DDDispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		67DD60D8083A0B47CEEB5B9F26F992AD /* TSSLSocketTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSSLSocketTransport.m; path = lib/cocoa/src/transport/TSSLSocketTransport.m; sourceTree = "<group>"; };
 		67F94AFC35687407B280FD8A4B16160E /* ARTCRoomViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomViewController.m; sourceTree = "<group>"; };
-		6818528C7A6E3245AC12FCA9137AA94F /* NBMSessionDescriptionFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMSessionDescriptionFactory.m; sourceTree = "<group>"; };
-		69296431CED7FEFAD0615BED493A8EE6 /* NBMError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMError.m; sourceTree = "<group>"; };
 		699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
 		6B5132160A08BE42A6C1B7EBF982E042 /* TApplicationError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TApplicationError.m; path = lib/cocoa/src/TApplicationError.m; sourceTree = "<group>"; };
 		6B8E8F0310CE2E4F495371662C812B4D /* TSSLSocketTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSSLSocketTransport.h; path = lib/cocoa/src/transport/TSSLSocketTransport.h; sourceTree = "<group>"; };
-		6ECF89A1ABC1611CEFF2D489C1430F8E /* NBMEAGLRenderer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMEAGLRenderer.m; sourceTree = "<group>"; };
 		704F64257753FA911047FC148C80658C /* DDMultiFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDMultiFormatter.h; path = Classes/Extensions/DDMultiFormatter.h; sourceTree = "<group>"; };
 		74035CD4E4E121F2967A7718859717FE /* TProtocolError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TProtocolError.m; path = lib/cocoa/src/protocol/TProtocolError.m; sourceTree = "<group>"; };
 		75EBC7CE14D401C9E2AE455CD80649AB /* SRWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
@@ -299,8 +272,6 @@
 		822BD2B190B9FC4242CCCCDE56772844 /* TStruct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TStruct.swift; path = lib/cocoa/src/TStruct.swift; sourceTree = "<group>"; };
 		829CF06422C9CD29B97D86BB3D725A1E /* CocoaLumberjack.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaLumberjack.xcconfig; sourceTree = "<group>"; };
 		834B78611365CB71F753896DD33CA502 /* ARDSignalingMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDSignalingMessage.m; sourceTree = "<group>"; };
-		837421B3764829AEFC8E50EDAC305611 /* NBMWebRTCPeer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMWebRTCPeer.h; sourceTree = "<group>"; };
-		8740476FAC98108B8BB61A66853694CD /* NBMPeerConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NBMPeerConnection.m; sourceTree = "<group>"; };
 		886057A27254EC20BD8E2B61F2C2804D /* TSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TSet.swift; path = lib/cocoa/src/TSet.swift; sourceTree = "<group>"; };
 		8A33F31DFCD28B3CCC485FB178B0013B /* ARDUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
 		8C00EA82FBE7E27E7E260FA95DB0E0D5 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = Classes/DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
@@ -323,7 +294,6 @@
 		9A6975E77E1C0E4E8051F297B99D5031 /* TProtocolFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolFactory.h; path = lib/cocoa/src/protocol/TProtocolFactory.h; sourceTree = "<group>"; };
 		9A8FCDE8CFE3B4FCEF6DE0103794229D /* ARDMessageResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
 		9F629A7E92886BAF48F9234A0E9EE968 /* CocoaLumberjack.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CocoaLumberjack.modulemap; sourceTree = "<group>"; };
-		A04B489F41CA0E2F02B5CBD086C0A0D7 /* NBMError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMError.h; sourceTree = "<group>"; };
 		A40C85A0705012D1640BC03C7E491B74 /* TProtocolUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolUtil.h; path = lib/cocoa/src/protocol/TProtocolUtil.h; sourceTree = "<group>"; };
 		A551099BA0F3C9E552811760DAD45DDD /* TSocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSocketServer.h; path = lib/cocoa/src/server/TSocketServer.h; sourceTree = "<group>"; };
 		A630E2EA20C005CC19C44E21092A6120 /* TBinary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TBinary.swift; path = lib/cocoa/src/TBinary.swift; sourceTree = "<group>"; };
@@ -335,7 +305,6 @@
 		B06DEA8D5AC09541FEDF7E6D28C27307 /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
 		B17ACA24A8085C00C3410BD87F90152C /* ARDWebSocketChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDWebSocketChannel.m; sourceTree = "<group>"; };
 		B22976355FEE478C16A082D8F4E387D3 /* DDFileLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = Classes/DDFileLogger.m; sourceTree = "<group>"; };
-		B22E19353A910E5E1379019EADA5AF4C /* NBMTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMTypes.h; sourceTree = "<group>"; };
 		B3DBF7581113B02A7086DB950D903529 /* DDContextFilterLogFormatter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDContextFilterLogFormatter.h; path = Classes/Extensions/DDContextFilterLogFormatter.h; sourceTree = "<group>"; };
 		B64C9906F7474C62D4575F0F839F0998 /* ARDAppClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
 		B667844952BF37954F8D9A2DA40FA8C5 /* DDLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = Classes/DDLog.m; sourceTree = "<group>"; };
@@ -348,7 +317,6 @@
 		BD83CEC1120605F0F6AF85A9891CA816 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BFE7365F51C33637482D32E2A7A5F112 /* TSerializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TSerializable.swift; path = lib/cocoa/src/TSerializable.swift; sourceTree = "<group>"; };
 		C04F64B426A878753A9F6D23921B7D65 /* SocketRocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-umbrella.h"; sourceTree = "<group>"; };
-		C1B5B83BBFDA806EF850F8886A4BBA8D /* NBMEAGLVideoViewContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMEAGLVideoViewContainer.h; sourceTree = "<group>"; };
 		C215116C7B87191FB9C7C582C5BB0DAC /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
 		C2DDF3EBCA5F0A732F91DB55B36EB9D7 /* TApplicationError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TApplicationError.h; path = lib/cocoa/src/TApplicationError.h; sourceTree = "<group>"; };
 		C905AB98CC632ECE5D4BD0AD541DF319 /* DDTTYLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = Classes/DDTTYLogger.m; sourceTree = "<group>"; };
@@ -358,10 +326,8 @@
 		CB9010E75755E458205A21C30A255951 /* TSocketTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSocketTransport.h; path = lib/cocoa/src/transport/TSocketTransport.h; sourceTree = "<group>"; };
 		CCA0250D4FB40ADA39AE2E5169CD2382 /* SocketRocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SocketRocket.modulemap; sourceTree = "<group>"; };
 		CE4447E5F7F049E1FF28A81A9FB89AAE /* MSCWebRTC.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = MSCWebRTC.storyboard; path = Base.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
-		D01204950FC435C0DDD6B204DC4B4353 /* NBMMediaConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMMediaConfiguration.h; sourceTree = "<group>"; };
 		D0BC7858A6DC0C34EC1CAFBA90F51F00 /* DDASLLogCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDASLLogCapture.h; path = Classes/DDASLLogCapture.h; sourceTree = "<group>"; };
 		D415EE4023930BDF4BFF12E487FFC56F /* ADCallKitManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ADCallKitManager.m; sourceTree = "<group>"; };
-		D46032FECB809F823F4A5A37214C1AD9 /* NBMPeerConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NBMPeerConnection.h; sourceTree = "<group>"; };
 		D5C90010BBE1C60E650DBEFB51A22C0C /* DDTTYLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = Classes/DDTTYLogger.h; sourceTree = "<group>"; };
 		D68A92177924A3A91D24C31CBA122802 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		D74E471CC80060666C542663F6F313E0 /* SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SocketRocket-dummy.m"; sourceTree = "<group>"; };
@@ -789,23 +755,6 @@
 				67F94AFC35687407B280FD8A4B16160E /* ARTCRoomViewController.m */,
 				5C57AF6F66AACB2805F0D0FE998B9346 /* ARTCVideoChatViewController.h */,
 				312DA6FF79361AE9FD052485994ECA5C /* ARTCVideoChatViewController.m */,
-				45DBBDE07891243FD7037957DC0E2B6D /* NBMEAGLRenderer.h */,
-				6ECF89A1ABC1611CEFF2D489C1430F8E /* NBMEAGLRenderer.m */,
-				C1B5B83BBFDA806EF850F8886A4BBA8D /* NBMEAGLVideoViewContainer.h */,
-				0D74194E58C01EF637B9EBF172449712 /* NBMEAGLVideoViewContainer.m */,
-				A04B489F41CA0E2F02B5CBD086C0A0D7 /* NBMError.h */,
-				69296431CED7FEFAD0615BED493A8EE6 /* NBMError.m */,
-				097A7CE2B1E143636D1B02AC9CD7E03A /* NBMLog.h */,
-				D01204950FC435C0DDD6B204DC4B4353 /* NBMMediaConfiguration.h */,
-				4C581983A68E1701FF9BB5394BCC5AEE /* NBMMediaConfiguration.m */,
-				D46032FECB809F823F4A5A37214C1AD9 /* NBMPeerConnection.h */,
-				8740476FAC98108B8BB61A66853694CD /* NBMPeerConnection.m */,
-				656B6E51D7974ED4FF816BF070617A2C /* NBMRenderer.h */,
-				08091F25B44D31029ED4F3F8AC0AE99A /* NBMSessionDescriptionFactory.h */,
-				6818528C7A6E3245AC12FCA9137AA94F /* NBMSessionDescriptionFactory.m */,
-				B22E19353A910E5E1379019EADA5AF4C /* NBMTypes.h */,
-				837421B3764829AEFC8E50EDAC305611 /* NBMWebRTCPeer.h */,
-				2BFF5AF455407E2804E010FC20CEC3E8 /* NBMWebRTCPeer.m */,
 				9453AD324E1254BD4E4C66A25EA6B6D2 /* RTCMediaStream+Configuration.h */,
 				65A4E963808B89177E5664B0AF30025D /* RTCMediaStream+Configuration.m */,
 				E743CC146FB1DCD9E1366278F2A10A80 /* Webrtc.h */,
@@ -860,16 +809,6 @@
 				D6F46314FF2B09D3BC6A53439A7A865E /* ARTCRoomViewController.h in Headers */,
 				2DB886C9EA32C4DB91EFBEAA7005B6A6 /* ARTCVideoChatViewController.h in Headers */,
 				A600C3B1FEE53DA78D8D43ACB018E147 /* mscrtc-umbrella.h in Headers */,
-				4C75A446713FF06A8CC2DAA89D8E18E8 /* NBMEAGLRenderer.h in Headers */,
-				1EEC7358C147ABDCED0639DC20564AF0 /* NBMEAGLVideoViewContainer.h in Headers */,
-				315C73BF9790745CC225F1265EC07E4D /* NBMError.h in Headers */,
-				5DD60AD5992CBDAD57DE6FE3E3A73335 /* NBMLog.h in Headers */,
-				01C9EE2B9E135A1A0330103324562109 /* NBMMediaConfiguration.h in Headers */,
-				1733A1F31D9314273768D24F419B5B18 /* NBMPeerConnection.h in Headers */,
-				497107AACB3AC2C4878849FD1D5272FD /* NBMRenderer.h in Headers */,
-				8A24A718161DE1084E404699DD1085B1 /* NBMSessionDescriptionFactory.h in Headers */,
-				AF76A3FC5C2806430A82361CF7994859 /* NBMTypes.h in Headers */,
-				8BCB8E7FB25B7A1B521B070E94AB3D2F /* NBMWebRTCPeer.h in Headers */,
 				60ED80EE0DB786279934E31C1D6A90FA /* RTCMediaStream+Configuration.h in Headers */,
 				F8061A570833CCCB74CC5C3031930D38 /* Webrtc.h in Headers */,
 			);
@@ -1205,13 +1144,6 @@
 				5FFB047F8C774F98374998C1226FE34B /* ARTCRoomViewController.m in Sources */,
 				0DC54F7F1E330A5910717447D2DF33E8 /* ARTCVideoChatViewController.m in Sources */,
 				FF85475B2A954B2FB545A9D8F6CF1C43 /* mscrtc-dummy.m in Sources */,
-				A7C5D21AFCC73A1A483097D075B22742 /* NBMEAGLRenderer.m in Sources */,
-				3281EB38CC213BC76F1EF8B83093F2C3 /* NBMEAGLVideoViewContainer.m in Sources */,
-				F96C0A54459FF3C6E803E9B535EA4F85 /* NBMError.m in Sources */,
-				5EBC814E0218B64103FD706A1ACF8701 /* NBMMediaConfiguration.m in Sources */,
-				56AAACD08ECA91CA7C202C7AB3136100 /* NBMPeerConnection.m in Sources */,
-				21A7FEC872836CC802E721731D0A7154 /* NBMSessionDescriptionFactory.m in Sources */,
-				A9112BB164D2FA6EF3ACB7526F43DE1B /* NBMWebRTCPeer.m in Sources */,
 				1DBDBA7B8A73444CE50CE4AE104F381E /* RTCMediaStream+Configuration.m in Sources */,
 				7C2B09CFDF993259E50FE13341F9AF8D /* Webrtc.m in Sources */,
 			);

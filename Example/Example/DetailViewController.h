@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARDAppClient.h"
 
-@interface DetailViewController : UIViewController
 
+@interface DetailViewController : UIViewController 
+
+@property (strong, nonatomic) ARDAppClient *client;
 @property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
