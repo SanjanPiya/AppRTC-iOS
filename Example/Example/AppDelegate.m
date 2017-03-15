@@ -53,6 +53,7 @@
             
         }else{
              NSLog(@"ADCallKitManager: other action action %@ %ld ",[action callUUID], (long)actionType  );
+            [self.client disconnect];
         }
     
     

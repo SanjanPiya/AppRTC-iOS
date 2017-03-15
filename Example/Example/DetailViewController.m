@@ -54,6 +54,7 @@
     ADCallKitManagerCompletion startCallcompletion =^(NSError * _Nullable error) {
         if (error) {
             NSLog(@"requestTransaction error %@", error);
+             [self.client disconnect];
         }else{
             //start signaling
             
