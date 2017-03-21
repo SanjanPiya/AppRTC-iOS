@@ -15,8 +15,8 @@ it, simply add the following line to your Podfile:
     pod "mscrtc"
 
 ##	Components
-    1. Code for outgoing calls
-    1.1 add incoming call request notification
+1. Code for outgoing calls
+1.1 add incoming call request notification
 ```objectivec
     - (void)viewDidLoad {
 
@@ -27,7 +27,7 @@ it, simply add the following line to your Podfile:
                                                object:nil];
      }
 
-	 /**
+	/**
   	 * Start VideoChatViewController in MscWebRTC Pod by looking for its storyboard
 	 */
      - (void) incomingCallRequest {
@@ -53,7 +53,7 @@ it, simply add the following line to your Podfile:
      // [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self];
 }
 ```
-###1.2 add code for the call button
+1.2 add code for the call button
 ```objectivec
 - (IBAction)call:{  //call
     /**
@@ -88,7 +88,7 @@ it, simply add the following line to your Podfile:
 
 
 
-###2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
+    2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
 ```
 #import "ADCallKitManager.h"
 #import <PushKit/PushKit.h>
