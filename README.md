@@ -88,7 +88,7 @@ it, simply add the following line to your Podfile:
 
 
 
-    2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
+2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
 ```objectivec
 #import "ADCallKitManager.h"
 #import <PushKit/PushKit.h>
