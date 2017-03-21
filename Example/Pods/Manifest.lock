@@ -1,12 +1,5 @@
 PODS:
-  - CocoaLumberjack (3.1.0):
-    - CocoaLumberjack/Default (= 3.1.0)
-    - CocoaLumberjack/Extensions (= 3.1.0)
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Extensions (3.1.0):
-    - CocoaLumberjack/Default
   - mscrtc (0.0.1):
-    - CocoaLumberjack
     - SocketRocket
     - thrift
     - WebRTC
@@ -22,8 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  mscrtc: b76caa4319b06dea5ddfd60da1b7b25b4d711202
+  mscrtc: 233ad37d9a8806ab1d911e48738533233e4a4ca0
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   thrift: 1259c3cde97effc59429cade899fb913f655a7cc
   WebRTC: c05e75588769c79b0db6eb007646718751e4f108
