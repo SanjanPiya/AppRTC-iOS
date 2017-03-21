@@ -15,22 +15,23 @@ it, simply add the following line to your Podfile:
     pod "mscrtc"
 
 ##	Components
-#1. Code for outgoing calls
-#1.1 add incoming call request notification to 
-´´´
+
+###1. Code for outgoing calls
+###1.1 add incoming call request notification to 
+```
 - (void)viewDidLoad {
 
-//IncomingCallRequestNotification is when the called person calls us back (thats why its called incoming call)
-[[NSNotificationCenter defaultCenter] addObserver:self
+     //IncomingCallRequestNotification is when the called person calls us back (thats why its called incoming call)
+     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(incomingCallRequest)
                                                  name:@"IncomingCallRequestNotification"
                                                object:nil];
-}
+     }
 
-/**
-  * Start VideoChatViewController in MscWebRTC Pod by looking for its storyboard
-*/
-- (void) incomingCallRequest {
+	 /**
+  	 * Start VideoChatViewController in MscWebRTC Pod by looking for its storyboard
+	 */
+     - (void) incomingCallRequest {
 
      NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
     
@@ -52,10 +53,9 @@ it, simply add the following line to your Podfile:
      //or checkout standard seq
      // [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self];
 }
-
-´´´
-##1.2 add code for the call button
-´´´
+```
+###1.2 add code for the call button
+```
 - (IBAction)call:{  //call
     /**
      * Report Outgoing-Call to Callkit
@@ -86,12 +86,12 @@ it, simply add the following line to your Podfile:
     
     [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
 }
-´´´
+```
 
 
 
-#2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
-´´´
+###2. Code for incoming calls (AppDelegate.m) for CallKit and PushKit
+```
 #import "ADCallKitManager.h"
 #import <PushKit/PushKit.h>
 #import "ARTCVideoChatViewController.h"
@@ -185,9 +185,8 @@ it, simply add the following line to your Podfile:
     [[ADCallKitManager sharedInstance] reportIncomingCallWithContact:fromName
                                                           completion:startIncomingCallcompletion];
  
-}
-
-´´´
+}	
+```
 
 
 ## Author
