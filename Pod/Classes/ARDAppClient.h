@@ -45,9 +45,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 
 - (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state;
 - (void)appClient:(ARDAppClient *)client didChangeSignalingState:(ARDAppClientState)state;
-
-- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from : (BOOL) activeCall;
-- (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from;
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from ;
 @end
 
 @protocol ARDAppClientUpdateUserTableDelegate <NSObject>
@@ -67,7 +65,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, strong) NSString *serverHostUrl;
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
-@property(nonatomic, assign) BOOL isInitiator;
+@property(nonatomic, assign) BOOL isInitiator; //we are calling
+@property(nonatomic, assign) BOOL isPushKitConfig; //we use push messages in order to call in
+
 @property(nonatomic, assign) BOOL isCallbackMode;
 
 @property (nonatomic, assign) CGSize localVideoSize;
@@ -102,12 +102,12 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
-- (void)registerWithSwift :(NSString*) token;
-- (void)connectToWebsocket: (BOOL) reconnect;
+- (void)registerWithSwift :(NSString *)userId : (NSString*) token;
+- (void)connectToWebsocket: (BOOL) reconnect : (NSString *) from;
 - (void)startSignalingIfReady;
 - (void)startSignalingScreensharing;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
-- (void)sendCallOverSwift;
+- (void)sendCallOverThrift :(NSString *) fromName :(NSString *) toName : (NSString *) fromUUID : (NSString *) toUUID;
 - (void)disconnect;
 
 //- (RTCMediaConstraints *)connectionConstraints;

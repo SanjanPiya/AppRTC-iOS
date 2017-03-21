@@ -75,6 +75,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
       
     NSLog(@"Opening WebSocket.");
     [_socket open];
+ 
   }
   return self;
 }
@@ -119,13 +120,24 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
     }
 }
 
-- (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description{
+- (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description : (Boolean) direct{
     if (_state == kARDWebSocketChannelStateOpen) {
         
-        NSDictionary *callMessage = @{ @"id": @"call",
+        NSDictionary *addDirect =  @{ @"direct": @"true" };
+        
+        NSMutableDictionary *callMessage = @{ @"id": @"call",
                                        @"to": to,
                                        @"from": from,
+                                    @"direct": @"true",
                                        @"sdpOffer": description.description };
+        
+        //we don't want a "call answer dialog" on the other side.
+        //so we manipulate the other party to see us directly
+        
+        if(direct==YES){
+         //   [callMessage addEntriesFromDictionary:addDirect];
+        }
+
         
         NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
                                                           options:NSJSONWritingPrettyPrinted
@@ -154,23 +166,6 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
     }
 }
 
-- (void)incomingScreenCallResponse:(NSString *)from : (RTCSessionDescription *) description{
-    
-    if (_state == kARDWebSocketChannelStateOpen) {
-        
-        NSDictionary *callMessage = @{ @"id": @"incomingScreenCallResponse",
-                                       @"from": from,
-                                       @"callResponse": @"accept",
-                                       @"sdpOffer": description.description };
-        
-        
-        NSData *message = [NSJSONSerialization dataWithJSONObject:callMessage
-                                                          options:NSJSONWritingPrettyPrinted
-                                                            error:nil];
-        
-        [self sendData: message];
-    }
-}
 
 - (void)sendData:(NSData *)data {
     NSString *messageString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

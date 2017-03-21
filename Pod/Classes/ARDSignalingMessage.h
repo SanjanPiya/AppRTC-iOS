@@ -76,21 +76,12 @@ typedef enum {
 - (instancetype)initWithDescription:(RTCSessionDescription *)description;
 @end
 
-@interface ARDStartScreenCommunicationMessage : ARDSignalingMessage
-@property(nonatomic, readonly) RTCSessionDescription *sessionDescription;
-- (instancetype)initWithDescription:(RTCSessionDescription *)description;
-@end
-
 @interface ARDIncomingCallMessage : ARDSignalingMessage
 @property(nonatomic, readonly) NSString *from;
-@property(nonatomic, readonly) bool activeCall;
-- (instancetype)initWithFromAndType:(NSString *) callFrom setActiveCall: (bool) activeCall;
+@property(nonatomic, readonly) Boolean directCall;
+- (instancetype)initWithFromAndType:(NSString *) callFrom setDirectCall: (Boolean) directCall;
 @end
 
-@interface ARDIncomingScreenCallMessage : ARDSignalingMessage
-@property(nonatomic, readonly) NSString *from;
-- (instancetype)initWithString:(NSString *)from;
-@end
 
 @interface ARDRegisteredUserMessage : ARDSignalingMessage
 @property(nonatomic, readonly) NSArray *registeredUsers;
@@ -98,10 +89,6 @@ typedef enum {
 @end
 
 @interface ARDICECandidateMessage : ARDSignalingMessage
-@property(nonatomic, readonly) RTCIceCandidate *candidate;
-- (instancetype)initWithCandidate:(RTCIceCandidate *)candidate;
-@end
-@interface ARDICEScreenCandidateMessage : ARDSignalingMessage
 @property(nonatomic, readonly) RTCIceCandidate *candidate;
 - (instancetype)initWithCandidate:(RTCIceCandidate *)candidate;
 @end
