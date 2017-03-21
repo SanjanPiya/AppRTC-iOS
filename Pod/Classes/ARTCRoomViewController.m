@@ -27,7 +27,7 @@
     //Connect to the room
     if(self.client == nil){
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
-        [self.client connectToWebsocket : false];
+        [self.client connectToWebsocket : false : nil];
     }
     
     [super viewWillAppear:animated];
@@ -94,13 +94,13 @@
     }
 }
 
-- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from : (BOOL) activeCall{
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
     NSLog(@" incoming call from %@",from);
     NSString *message =  [NSString stringWithFormat:@"incoming call from %@", from];
     
     self.client.to = from;
     self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
-    if(!activeCall){
+    if(false){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Incoming call..."
                                                         message:message
                                                        delegate:self

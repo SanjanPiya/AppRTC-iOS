@@ -52,18 +52,7 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     
-    //Getting when app goes into background
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(enterBackground:)
-                                                 name:@"UIApplicationDidEnterBackgroundNotification"
-                                               object:nil];
-    
-    //Getting when app comes back from background
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(returnFromBackground:)
-                                                 name:@"UIApplicationDidBecomeActiveNotification"
-                                               object:nil];
-    
+
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     [self.remoteView setDelegate:self];
     [self.localView setDelegate:self];
@@ -71,9 +60,7 @@
     
     if(self.client == nil){
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
-        [self.client connectToWebsocket : false];
-        [self.client sendCallOverSwift];
-        
+        [self.client connectToWebsocket : false : nil];
     }
     
     NSString *callingString;
@@ -250,15 +237,20 @@
             break;
     }
 }
+/*
+  not necessary anymore when calling over pushkit - if app goes into background all calls and signaling should already be cancelled and its not necessary to start signaling as soon as the app comes back from background
+ 
 - (void)enterBackground:(NSNotification *)notification{
       [self.client disconnect];
     
 }
+
+
 - (void)returnFromBackground:(NSNotification *)notification{
     
-    [self.client connectToWebsocket:true];
+    [self.client connectToWebsocket:true:nil];
     
-}
+} */
 - (void)orientationChanged:(NSNotification *)notification{
    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)

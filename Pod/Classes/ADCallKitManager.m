@@ -6,6 +6,7 @@
 #import "ADCallKitManager.h"
 #import <Intents/Intents.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation CXTransaction (ADPrivateAdditions)
@@ -48,11 +49,6 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     
     self.provider = [[CXProvider alloc] initWithConfiguration:configuration];
     [self.provider setDelegate:self queue:self.completionQueue ? self.completionQueue : dispatch_get_main_queue()];
-    
-    if (CXProvider.authorizationStatus == CXAuthorizationStatusNotDetermined) {
-        [self.provider requestAuthorization];
-    }
-    
     self.callController = [[CXCallController alloc] initWithQueue:dispatch_get_main_queue()];
     self.actionNotificationBlock = actionNotificationBlock;
 }
@@ -64,25 +60,29 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     }
 }
 
-- (NSUUID *)reportIncomingCallWithContact:(id<ADContactProtocol>)contact completion:(ADCallKitManagerCompletion)completion {
+- (NSUUID *)reportIncomingCallWithContact:(NSString *)contact completion:(ADCallKitManagerCompletion)completion {
     NSUUID *callUUID = [NSUUID UUID];
     
     CXCallUpdate *callUpdate = [[CXCallUpdate alloc] init];
-    callUpdate.callerIdentifier = [contact uniqueIdentifier];
-    callUpdate.localizedCallerName = [contact displayName];
+    callUpdate.localizedCallerName = contact;
+    //callUpdate.callerIdentifier = [contact uniqueIdentifier];
+   // callUpdate.localizedCallerName = [contact displayName];
     [self.provider reportNewIncomingCallWithUUID:callUUID update:callUpdate completion:completion];
     return callUUID;
 }
 
-- (NSUUID *)reportOutgoingCallWithContact:(id<ADContactProtocol>)contact completion:(ADCallKitManagerCompletion)completion {
+- (NSUUID *)reportOutgoingCallWithContact:(NSString *)contact completion:(ADCallKitManagerCompletion)completion{
     NSUUID *callUUID = [NSUUID UUID];
-    
-    CXStartCallAction *action = [[CXStartCallAction alloc] initWithCallUUID:callUUID];
-    action.contactIdentifier = [contact uniqueIdentifier];
-    action.destination = [contact phoneNumber];
+    CXHandle *cxHandle = [[CXHandle alloc] initWithType: CXHandleTypeGeneric value: contact ];
 
-    [self.callController requestTransaction:[CXTransaction transactionWithActions:@[action]] completion:completion];
+    CXStartCallAction *action = [[CXStartCallAction alloc] initWithCallUUID:callUUID handle:cxHandle];
+    action.video = YES;
+    CXTransaction* transaction = [[CXTransaction alloc] initWithAction:action];
+   
+    [self.callController requestTransaction:transaction completion:completion];
+
     return callUUID;
+
 }
 
 - (void)updateCall:(NSUUID *)callUUID state:(ADCallState)state {
@@ -107,17 +107,17 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     }
 }
 
+
 - (void)mute:(BOOL)mute callUUID:(NSUUID *)callUUID completion:(ADCallKitManagerCompletion)completion {
-    CXSetMutedCallAction *action = [[CXSetMutedCallAction alloc] initWithCallUUID:callUUID];
-    action.muted = mute;
+    
+    CXSetMutedCallAction *action = [[CXSetMutedCallAction alloc] initWithCallUUID:callUUID muted:mute];
     
     [self.callController requestTransaction:[CXTransaction transactionWithActions:@[action]] completion:completion];
 }
 
 - (void)hold:(BOOL)hold callUUID:(NSUUID *)callUUID completion:(ADCallKitManagerCompletion)completion {
-    CXSetHeldCallAction *action = [[CXSetHeldCallAction alloc] initWithCallUUID:callUUID];
-    action.onHold = hold;
-    
+    CXSetHeldCallAction *action = [[CXSetHeldCallAction alloc] initWithCallUUID:callUUID onHold:hold];
+
     [self.callController requestTransaction:[CXTransaction transactionWithActions:@[action]] completion:completion];
 }
 
@@ -125,6 +125,30 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     CXEndCallAction *action = [[CXEndCallAction alloc] initWithCallUUID:callUUID];
     
     [self.callController requestTransaction:[CXTransaction transactionWithActions:@[action]] completion:completion];
+}
+
+#pragma mark - ARDAppClientDelegate
+
+- (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
+    switch (state) {
+        case kARDAppClientStateConnected:
+            NSLog(@"Client connected.");
+            break;
+        case kARDAppClientStateConnecting:
+            NSLog(@"Client connecting.");
+            break;
+        case kARDAppClientIceFinished:
+            NSLog(@"ICE  finished");
+            break;
+        case kARDAppClientStateDisconnected:
+            NSLog(@"Client disconnected.");
+            break;
+    }
+}
+- (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
+    NSLog(@" incoming call from %@",from);
+    
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"IncomingCallRequestNotification" object:from];
 }
 
 #pragma mark - CXProviderDelegate
@@ -146,7 +170,8 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     if (self.actionNotificationBlock) {
         self.actionNotificationBlock(action, ADCallActionTypeStart);
     }
-    if (action.destination) {
+
+    if ([action handle]) {
         [action fulfill];
     } else {
         [action fail];

@@ -35,13 +35,8 @@
 #import "ARDUtilities.h"
 #import "ARDWebSocketChannel.h"
 #import <WebRTC/WebRTC.h>
-#import "NBMWebRTCPeer.h"
-#import "NBMPeerConnection.h"
-#import "NBMMediaConfiguration.h"
 #import <WebRTC/RTCPeerConnection.h>
 #import "TBinaryProtocol.h"
-
-
 #import "TSocketTransport.h"
 #import "Webrtc.h"
 
@@ -78,7 +73,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @property(nonatomic, strong) RTCVideoTrack *defaultVideoTrack;
 @property(nonatomic, strong) RTCVideoTrack *defaultScreenTrack;
 
-@property (nonatomic, strong) NBMWebRTCPeer *webRTCPeer;
 @end
 
 @implementation ARDAppClient
@@ -98,6 +92,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize from = _from;
 @synthesize to = _to;
 @synthesize isInitiator = _isInitiator;
+@synthesize isPushKitConfig = _isPushKitConfig;
 @synthesize isSpeakerEnabled = _isSpeakerEnabled;
 @synthesize iceServers = _iceServers;
 @synthesize webSocketURL = _websocketURL;
@@ -148,15 +143,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                                    name:@"UIDeviceOrientationDidChangeNotification"
                                                  object:nil];
       
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(connectToWebsocket:)
-                                                   name:@"UIApplicationDidBecomeActiveNotification"
-                                                 object:nil];
-      
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(disconnect)
-                                                   name:@"UIApplicationDidEnterBackgroundNotification"
-                                                 object:nil];
     //get default orientation and store it so it cannot be overwritten by other orientations
       
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -177,7 +163,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect : false useCallback: false];
 }
 
-- (void)registerWithSwift : (NSString *)token {
+- (void)registerWithSwift : (NSString *)userId : (NSString *)token {
+    self.from = userId;
     //172.20.10.6
     //192.168.43.151
     TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151"
@@ -192,22 +179,29 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                    userInfo:@{
                                               NSLocalizedDescriptionKey:@"Error while talking to thrift server during registration"
                                               }];
-    RegisterUserId *registerUser = [[RegisterUserId alloc] initWithUserId:@"iphone" firebaseToken:token];
+    RegisterUserId *registerUser = [[RegisterUserId alloc] initWithUserId:self.from firebaseToken:token];
     RegisterResult *result = [client registerUserId:registerUser error:&err];
     
     NSLog(@"RegisterUserId returned: %@",[result response]);
     
 }
 
-- (void)connectToWebsocket : (BOOL) reconnect {
-    
+- (void)connectToWebsocket: (BOOL) reconnect : (NSString *) from{
+    if(from!=nil){
+            self.from = from;
+    }
+
     if (_channel != nil && !reconnect) {  //disconnect from call not from colider
         NSLog(@"don't connect again because channel is not nil");
         return;
     }
     
     _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
-    _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    
+    if(_from == nil){
+        _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
+    }
+    
     
     NSLog(@"called connectToWebsocket to %@ with user: %@",_websocketURL,_from);
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
@@ -215,6 +209,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     __weak ARDAppClient *weakSelf = self;
     ARDAppClient *strongSelf = weakSelf;
+   // _channel._state = kARDWebSocketChannelStateOpen; //= kARDWebSocketChannelStateOpen;
     [strongSelf registerWithColliderIfReady];
     
     [_channel getAppConfig];
@@ -226,7 +221,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect:true useCallback:false];
     _channel = nil;
 }
-- (void)sendCallOverSwift{
+- (void)sendCallOverThrift :(NSString *) fromName :(NSString *) toName : (NSString *) fromUUID : (NSString *) toUUID{
     
     TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151" port:9090];
     //[[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]
@@ -235,12 +230,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
     
     WebrtcClient *client = [[WebrtcClient alloc] initWithProtocol:protocol];
-    
-    NSString *fromName = @"iphone";
-    NSString *toName = @"99999";
-    NSString *fromUUID = @"iphone";
-    NSString *toUUID = @"99999";
-    
+        
     NSError *err = [NSError errorWithDomain:@"webrtc"
                                        code:100
                                    userInfo:@{
@@ -251,6 +241,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     CallResult *result = [client call:call error:&err];
     NSLog(@"call returned: %@",[result response]);
+
     
 }
 
@@ -285,11 +276,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
 }
 
-- (void)startSignalingScreensharing{
-    [self sendOfferScreensharing];
-}
-
-
 - (void)sendOffer {
     [_peerConnection offerForConstraints:[self offerConstraints] completionHandler:^(RTCSessionDescription * _Nullable sdp, NSError * _Nullable error) {
         
@@ -298,33 +284,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
     }];
 }
 
-- (void)sendOfferScreensharing {
-        
-    NBMMediaConfiguration *defaultConfig = [NBMMediaConfiguration defaultConfiguration];
-    NBMWebRTCPeer *webRTCManager = [[NBMWebRTCPeer alloc] initWithDelegate:(id) self configuration:defaultConfig];
-    
-    if (!webRTCManager) {
-        /*    NSError *retryError = [NSError errorWithDomain:@"it.nubomedia.NBMRoomManager"
-         code:0
-         userInfo:@{NSLocalizedDescriptionKey: @"Impossible to setup local media stream, check AUDIO & VIDEO permission"}];*/
-        //  [self.delegate roomManager:self didFailWithError:retryError];
-        return;
-    }
-   
-    self.webRTCPeer = webRTCManager;
-    self.webRTCPeer.iceServers = self.iceServers;
-    [self.webRTCPeer generateOffer:@"screensharing"];  //we use 'screensharing' as connectionId since we are not using more then one right now. (no conferences!)
-}
-
-
-
-
 - (void)setState:(ARDAppClientState)state {
     if (_state == state) {
         return;
     }
     NSLog(@"changed state ");
     _state = state;
+    
     [_delegate appClient:self didChangeState:_state];
 }
 
@@ -353,28 +319,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     }
 }
 
-- (void)disconnectScreen: (BOOL) ownDisconnect {
-    
-    if(self.webRTCPeer){
-        [self.remoteVideoTrack removeRenderer:self.screenView];
-        self.screenView.layer.hidden = true;   // [self.screenView renderFrame:nil];
-        [self.screenVideoTrack removeRenderer:self.remoteView];
-        self.screenVideoTrack = nil;
-
-        [self.remoteVideoTrack addRenderer:self.remoteView];
-    
-        [UIView animateWithDuration:0.4f animations:^{
-        
-            [UIApplication sharedApplication].idleTimerDisabled = YES;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
-        
-        }];
-    
-   
-        [self.webRTCPeer closeConnectionWithConnectionId: @"screensharing"];
-        self.webRTCPeer = nil;
-    }
-}
 
 - (void)disconnect: (BOOL) ownDisconnect  useCallback: (BOOL) sendCallback {
     
@@ -399,78 +343,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _hasReceivedSdp = NO;
     _messageQueue = [NSMutableArray array];
     _peerConnection = nil;
-    
-    if(self.webRTCPeer)  [self disconnectScreen: false];
+
     self.state = kARDAppClientStateDisconnected;
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
-#pragma mark - NBMWebRTCPeerDelegate
 
-- (void)webRTCPeer:(NBMWebRTCPeer *)peer didGenerateOffer:(RTCSessionDescription *)sdpOffer forConnection:(NBMPeerConnection *)connection {
-    NSLog(@"offer generated after incoming %@ connection",[connection connectionId]);
-    [_channel incomingScreenCallResponse: _to:  sdpOffer];
-}
-
-- (void)webRTCPeer:(NBMWebRTCPeer *)peer hasICECandidate:(RTCIceCandidate *)candidate forConnection:(NBMPeerConnection *)connection{
-    NSLog(@"hasICECandidate after incoming %@ connection",[connection connectionId]);
-    ARDICECandidateMessage *message =  [[ARDICECandidateMessage alloc] initWithCandidate:candidate];
-    
-    [self sendSignalingMessage:message];
-    
-}
-
-- (void)webrtcPeer:(NBMWebRTCPeer *)peer iceStatusChanged:(RTCIceConnectionState)state ofConnection:(NBMPeerConnection *)connection{
-    
-    if(state == RTCIceGatheringStateNew) NSLog(@"screensharing RTCIceGatheringStateNew");
-    else if(state == RTCIceConnectionStateChecking) NSLog(@"screensharing RTCIceConnectionStateChecking");
-    else if(state == RTCIceConnectionStateCompleted) NSLog(@"screensharing RTCIceConnectionStateCompleted");
-    else if(state == RTCIceConnectionStateConnected) {
-        
-        self.screenView.layer.zPosition = MAXFLOAT;
-        self.screenView.layer.hidden = false;
-        NSLog(@"screensharing RTCIceConnectionStateConnected");
-    }
-    else if(state == RTCIceConnectionStateFailed){
-            [self disconnectScreen:false];
-            NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
-    }
-    else if(state == RTCIceConnectionStateDisconnected) {
-        [self disconnectScreen:false];
-        NSLog(@"screensharing RTCIceConnectionStateDisconnected ");
-    }
-    else if(state == RTCIceConnectionStateClosed) NSLog(@"screensharing RTCIceConnectionStateClosed ");
-    else if(state == RTCIceConnectionStateCount) NSLog(@"screensharing RTCIceConnectionStateCount ");
-    else if(state == RTCIceGatheringStateNew) NSLog(@"screensharing RTCIceGatheringStateNew");
-    else if(state == RTCIceGatheringStateComplete) NSLog(@"screensharing RTCIceGatheringStateComplete");
-    else if(state == RTCIceGatheringStateGathering) NSLog(@"screensharing RTCIceGatheringStateGathering");
-    else  NSLog(@"iceStatusChanged after incoming %@ connection to: %li",[connection connectionId], (long)state);
-
-}
-
-- (void)webRTCPeer:(NBMWebRTCPeer *)peer didAddStream:(RTCMediaStream *)remoteStream ofConnection:(NBMPeerConnection *)connection{
-    self.screenStream = remoteStream;
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Received %lu video tracks and %lu audio tracks",
-              (unsigned long)remoteStream.videoTracks.count,
-              (unsigned long)remoteStream.audioTracks.count);
-        
-     if(self.screenStream){
-         if (self.screenStream.videoTracks.count) {
-             RTCVideoTrack *videoTrack = self.screenStream.videoTracks[0];
-             [self didReceiveScreenVideoTrack:videoTrack];
-         }
-     }
-    });
-}
-
-- (void)webRTCPeer:(NBMWebRTCPeer *)peer didRemoveStream:(RTCMediaStream *)remoteStream ofConnection:(NBMPeerConnection *)connection{
-    NSLog(@"didRemoveStream in %@ connection", connection);
-    
-    self.screenStream = nil;
-}
 
 #pragma mark - ARDWebSocketChannelDelegate
 
@@ -487,10 +366,11 @@ NSString const *kARDSignalingCandidate = @"candidate";
           [_registeredUserdelegate removeRegisteredUser:_from];
           break;
     case kARDSignalingMessageTypeRegister:
-         
+         NSLog(@"Registrierung wurde angenommen nun sollte Call aufgebaut werden! ");
           break;
     case kARDSignalingMessageTypeRegisterResponse:
-          // [_registeredUserdelegate updateTable:((ARDRegisteredUserMessage *)message).registeredUsers];
+        //   [_delegate appClient: call: ((ARDRegisterResponse *)message).roomId];
+        NSLog(@"Registrierung wurde angenommen nun sollte Call aufgebaut werden, wenn der Call vom CallKit angenommen wurde. ");
           break;
     case kARDSignalingMessageTypeResponse:
           //what should have been happening here?
@@ -499,18 +379,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
           _isInitiator = FALSE;
           _to = ((ARDIncomingCallMessage *)message).from; //the guy who is calling is "from" but its the new "to"!
           _hasReceivedSdp = YES;
-          [_delegate appClient:self incomingCallRequest: ((ARDIncomingCallMessage *)message).from: ((ARDIncomingCallMessage *)message).activeCall];
-          break;
-    case kARDSignalingMessageIncomingScreenCall:
-          _hasReceivedScreenSdp = YES;
-          [_delegate appClient:self incomingScreenCallRequest: ((ARDIncomingScreenCallMessage *)message).from];
+          Boolean directCall =  ((ARDIncomingCallMessage *)message).directCall;
+          [_delegate appClient:self incomingCallRequest: _to];
           break;
     case kARDSignalingMessageTypeCallback:
           
           break;
     case kARDSignalingMessageIncomingResponseCall:
-    case kARDSignalingMessageIncomingScreenResponseCall:
-           //what should have been happening here?
            [_messageQueue addObject:message];
           break;
     case kARDSignalingMessageStartCommunication:
@@ -707,10 +582,10 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     [peerConnection setLocalDescription:sdp completionHandler:^(NSError * _Nullable error) {
           
-          if(!self.isInitiator){
+          if(!self.isInitiator){ //if this is a pushKitConfig - isInitiator is true although we got called! We got the call by PushKit and now establish call from "our" side. this time we manipulate the JSON for 'call' so the other party is not asking to answer or hangup the call anymore. (comprende?)
               [_channel incomingCallResponse: _to:  sdp];
           }else{
-              [_channel call: _from: _to : sdp];
+              [_channel call: _from: _to : sdp : self.isPushKitConfig];
           }
     }];
       
@@ -740,7 +615,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 #pragma mark - Private
 
 - (BOOL)isRegisteredWithWebsocketServer {
-    return _channel.state == kARDWebSocketChannelStateOpen || _channel.state == kARDWebSocketChannelStateRegistered;
+   return _channel.state == kARDWebSocketChannelStateOpen || _channel.state == kARDWebSocketChannelStateRegistered;
 }
 
 - (BOOL)startLocalMedia
@@ -815,12 +690,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
             }];
             break;
         }
-        case kARDSignalingMessageStartScreenCommunication:{
-            ARDStartScreenCommunicationMessage *sdpMessage = (ARDStartScreenCommunicationMessage *) message;
-            
-            [self.webRTCPeer processAnswer:sdpMessage.sessionDescription connectionId:@"screensharing"];
-            break;
-        }
         case kARDSignalingMessageTypeCandidate: {
 
           ARDICECandidateMessage *candidateMessage =  (ARDICECandidateMessage *)message;
@@ -828,26 +697,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
         
           break;
         }
-        case kARDSignalingMessageTypeScreenCandidate: {
-            
-            ARDICEScreenCandidateMessage *candidateMessage =  (ARDICEScreenCandidateMessage *)message;
-            [self.webRTCPeer addICECandidate:candidateMessage.candidate connectionId:@"screensharing"];
-            
-            break;
-        }
         case kARDSignalingMessageTypeBye:{
          
           ARDByeMessage *byeMessage = (ARDByeMessage *) message;
            
           [self disconnect : false useCallback: byeMessage.callback];
           break;
-        }
-        case kARDSignalingMessageTypeScreenBye: {
-            
-            // Other client disconnected.
-            [self disconnectScreen : false];
-            
-            break;
         }
     }
 }

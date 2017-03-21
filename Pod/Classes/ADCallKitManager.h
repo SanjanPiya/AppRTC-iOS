@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CallKit/CallKit.h>
+#import "ARDAppClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,13 +29,6 @@ typedef NS_ENUM(NSInteger, ADCallState) {
 typedef void(^ADCallKitManagerCompletion)(NSError * _Nullable error);
 typedef void(^ADCallKitActionNotificationBlock)(CXCallAction * action, ADCallActionType actionType);
 
-@protocol ADContactProtocol <NSObject>
-
-- (NSString *)uniqueIdentifier;
-- (NSString *)displayName;
-- (NSString *)phoneNumber;
-
-@end
 
 @class ADUser;
 @interface ADCallKitManager : NSObject
@@ -44,10 +38,9 @@ typedef void(^ADCallKitActionNotificationBlock)(CXCallAction * action, ADCallAct
 + (ADCallKitManager *)sharedInstance;
 - (void)setupWithAppName:(NSString *)appName supportsVideo:(BOOL)supportsVideo actionNotificationBlock:(ADCallKitActionNotificationBlock)actionNotificationBlock;
 
-- (NSUUID *)reportIncomingCallWithContact:(id<ADContactProtocol>)contact completion:(ADCallKitManagerCompletion)completion;
-- (NSUUID *)reportOutgoingCallWithContact:(id<ADContactProtocol>)contact completion:(ADCallKitManagerCompletion)completion;
+- (NSUUID *)reportIncomingCallWithContact:(NSString *)contact completion:(ADCallKitManagerCompletion)completion;
+- (NSUUID *)reportOutgoingCallWithContact:(NSString *)contact completion:(ADCallKitManagerCompletion)completion;
 - (void)updateCall:(NSUUID *)callUUID state:(ADCallState)state;
-
 - (void)mute:(BOOL)mute callUUID:(NSUUID *)callUUID completion:(ADCallKitManagerCompletion)completion;
 - (void)hold:(BOOL)hold callUUID:(NSUUID *)callUUID completion:(ADCallKitManagerCompletion)completion;
 - (void)endCall:(NSUUID *)callUUID completion:(ADCallKitManagerCompletion)completion;

@@ -30,16 +30,23 @@
 }
 
 - (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+
+    //IncomingCallRequestNotification is when the called person calls us back (thats why its called incoming call)
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(incomingCallRequest)
+                                                 name:@"IncomingCallRequestNotification"
+                                               object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    // Update the user interface for the detail item.
+    if (self.detailItem) {
+        self.detailDescriptionLabel.text = [self.detailItem description];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +54,54 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)press:(id)sender {
+- (void) incomingCallRequest {
+    /**
+     * Start VideoChatViewController in MscWebRTC Pod by looking for its storyboard
+     */
+     NSBundle *bundle = [NSBundle bundleWithURL:[[NSBundle bundleForClass:[ARDAppClient class]] URLForResource:@"mscrtc" withExtension:@"bundle"]];
+    
+     UIStoryboard *storyboard = [UIStoryboard
+                                 storyboardWithName:@"MSCWebRTC" bundle:bundle];
+    
+     UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"Video"];
+     
+     UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:uvc];
+     
+     ARTCVideoChatViewController *videoChatViewController = navCon.viewControllers[0];
+     videoChatViewController.client = self.client;
+    
+     [self presentViewController:navCon animated:YES completion:nil];
+    
+     //if there is no controller here try this
+     //[self.window.rootViewController presentViewController:navCon animated:YES completion:nil];
+    
+     //or checkout standard seq
+     // [self performSegueWithIdentifier:@"ARTCVideoChatViewController" sender:self];
+}
+
+/*
+- (void)someMethod
+{
+    [self methodAWithCompletion:^(BOOL success) {
+        // check if thing worked.
+    }];
+}
+
+- (void)methodAWithCompletion:(void (^) (BOOL success))completion
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, kNilOptions), ^{
+        
+        // go do something asynchronous...
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            completion(true);
+            
+        });
+    });
+}*/
+
+- (IBAction)press:(id)sender {  //call
     /**
      * Report Outgoing-Call to Callkit
      */
@@ -60,14 +114,14 @@
             
             NSString *from = @"999999";
             NSString *to = @"0015537";
-            NSString *fromUUID = @"999999";
-            NSString *toUUID = @"0015537";
+            NSString *fromUUID = [[NSUUID UUID] UUIDString];
+            NSString *toUUID = [[NSUUID UUID] UUIDString];
            
             
             if(self.client == nil){
                 self.client = [[ARDAppClient alloc] initWithDelegate:[ADCallKitManager sharedInstance]];
                 [self.client connectToWebsocket : false : fromUUID];
-                [self.client sendCallOverSwift :  from : to : fromUUID : toUUID];
+                [self.client sendCallOverThrift :  from : to : fromUUID : toUUID];
             }
         }
     };
@@ -76,15 +130,6 @@
                                                           completion:startCallcompletion];
     
     [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
-    //[[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnected];
-    
-  /*  ADCallKitManagerCompletion endCallcompletion =^(NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"requestTransaction error %@", error);
-        }
-        [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateEnded];
-    };
-    
-    [[ADCallKitManager sharedInstance] endCall:callUUID completion:endCallcompletion];*/
 }
+
 @end
