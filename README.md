@@ -15,11 +15,10 @@ it, simply add the following line to your Podfile:
     pod "mscrtc"
 
 ##	Components
-
-###1. Code for outgoing calls
-###1.1 add incoming call request notification to 
-```
-- (void)viewDidLoad {
+    1. Code for outgoing calls
+    1.1 add incoming call request notification
+```objectivec
+    - (void)viewDidLoad {
 
      //IncomingCallRequestNotification is when the called person calls us back (thats why its called incoming call)
      [[NSNotificationCenter defaultCenter] addObserver:self
@@ -55,7 +54,7 @@ it, simply add the following line to your Podfile:
 }
 ```
 ###1.2 add code for the call button
-```
+```objectivec
 - (IBAction)call:{  //call
     /**
      * Report Outgoing-Call to Callkit
