@@ -23,9 +23,6 @@
     "WebRTC": [
 
     ],
-    "CocoaLumberjack": [
-
-    ],
     "SocketRocket": [
 
     ]
@@ -33,7 +30,7 @@
   "source_files": "Pod/Classes",
   "resource_bundles": {
     "mscrtc": [
-      "Pod/**/*.{lproj,storyboard}"
+      "Pod/**/*.{lproj,storyboard,xcassets}"
     ]
   }
 }
