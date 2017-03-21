@@ -65,11 +65,10 @@ it, simply add the following line to your Podfile:
              [self.client disconnect];
         }else{
             //start signaling
-            
             NSString *from = @"999999";
             NSString *to = @"0015537";
-            NSString *fromUUID = @"UUID---999999"; //this must be a generated UUID before calling
-            NSString *toUUID = @"UUID----0015537"; //this must be a generated UUID before calling
+            NSString *fromUUID = [[NSUUID UUID] UUIDString];
+            NSString *toUUID = [[NSUUID UUID] UUIDString];
            
             
             if(self.client == nil){
