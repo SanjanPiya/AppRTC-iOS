@@ -26,11 +26,10 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency  'thrift'
   s.dependency  'WebRTC'
-  s.dependency  'CocoaLumberjack'
   s.dependency  'SocketRocket'
   s.source_files = 'Pod/Classes'
   s.resource_bundles = {
-    'mscrtc' => ['Pod/**/*.{lproj,storyboard}']
+    'mscrtc' => ['Pod/**/*.{lproj,storyboard,xcassets}']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
