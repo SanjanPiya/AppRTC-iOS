@@ -162,6 +162,7 @@
 
 /* Begin PBXFileReference section */
 		01E6907CF2644EB1CF8E23F708A3DA0B /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
+		034D9B421E83980600A23E61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
 		039A102E157520C4E281E37495576529 /* TSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TSet.swift; path = lib/cocoa/src/TSet.swift; sourceTree = "<group>"; };
 		050B9B5ABC7B231A3A79BDDD35D9D953 /* TNSFileHandleTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TNSFileHandleTransport.m; path = lib/cocoa/src/transport/TNSFileHandleTransport.m; sourceTree = "<group>"; };
 		054BC80945B2A3C8666A7681B887AA9B /* mscrtc.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mscrtc.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,7 +200,6 @@
 		45A2D37B564FDC874A3AE3E234F45E48 /* ARDRegisterResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDRegisterResponse.m; sourceTree = "<group>"; };
 		46BA7EADD52808BE172B99AA0A27A99F /* ARDUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
 		4880B3344B2965902431D13FF657EAEB /* TApplicationError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TApplicationError.h; path = lib/cocoa/src/TApplicationError.h; sourceTree = "<group>"; };
-		4941948954B77DB0DF8C5E5B19F9188A /* MSCWebRTC.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = MSCWebRTC.storyboard; path = Base.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
 		494257BB1E5D7A38798F73AEE93DE4D4 /* TBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TBase.h; path = lib/cocoa/src/protocol/TBase.h; sourceTree = "<group>"; };
 		4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = mscrtc.xcconfig; sourceTree = "<group>"; };
 		4C9A9786EA219789E7E8DFA862A9E1DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
@@ -269,7 +269,6 @@
 		E0CF5889715DD6423AE83C92B9427DC8 /* TMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TMap.swift; path = lib/cocoa/src/TMap.swift; sourceTree = "<group>"; };
 		E1208596E4A2AA4C784EA58CF4B3CF58 /* ARTCVideoChatViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCVideoChatViewController.h; sourceTree = "<group>"; };
 		E129F0632DAAED1EE798CF18D78F222E /* TCompactProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCompactProtocol.h; path = lib/cocoa/src/protocol/TCompactProtocol.h; sourceTree = "<group>"; };
-		E17A507AB112640D2576CF477611410E /* MSCWebRTC.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = MSCWebRTC.storyboard; path = de.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
 		E1A26C1F06B8A7B94466FA7EEF3EF209 /* TMultiplexedProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TMultiplexedProtocol.h; path = lib/cocoa/src/protocol/TMultiplexedProtocol.h; sourceTree = "<group>"; };
 		E1A59C7EDC6C0FD411ED8F088B845D53 /* TBaseClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TBaseClient.m; path = lib/cocoa/src/TBaseClient.m; sourceTree = "<group>"; };
 		E28217ED1ACAE6B837A05EE7A9B06530 /* mscrtc-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "mscrtc-dummy.m"; sourceTree = "<group>"; };
@@ -1000,8 +999,7 @@
 		90E0315506659AB3CE2101F0A96E0E70 /* MSCWebRTC.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4941948954B77DB0DF8C5E5B19F9188A /* MSCWebRTC.storyboard */,
-				E17A507AB112640D2576CF477611410E /* MSCWebRTC.storyboard */,
+				034D9B421E83980600A23E61 /* en */,
 			);
 			name = MSCWebRTC.storyboard;
 			path = .;
