@@ -63,7 +63,7 @@
      UIStoryboard *storyboard = [UIStoryboard
                                  storyboardWithName:@"MSCWebRTC" bundle:bundle];
     
-     UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"Video"];
+     UIViewController *uvc = [storyboard instantiateViewControllerWithIdentifier:@"video"];
      
      UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:uvc];
      
@@ -130,6 +130,8 @@
                                                           completion:startCallcompletion];
     
     [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
+    
+    [self incomingCallRequest]; //just to test the icons remove from here again!
 }
 
 @end
