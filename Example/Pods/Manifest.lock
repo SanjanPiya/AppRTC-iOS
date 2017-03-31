@@ -1,10 +1,8 @@
 PODS:
-  - mscrtc (0.0.1):
+  - mscrtc (0.0.2):
     - SocketRocket
-    - thrift
     - WebRTC
   - SocketRocket (0.5.1)
-  - thrift (0.10.0)
   - WebRTC (57.5.16123)
 
 DEPENDENCIES:
@@ -15,9 +13,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mscrtc: 233ad37d9a8806ab1d911e48738533233e4a4ca0
+  mscrtc: 7d269c44075767ef92154a8aec317c758c35eb76
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
-  thrift: 1259c3cde97effc59429cade899fb913f655a7cc
   WebRTC: c05e75588769c79b0db6eb007646718751e4f108
 
 PODFILE CHECKSUM: 00378384eec6f629814a1d3a17d20b1bbab9e8d7

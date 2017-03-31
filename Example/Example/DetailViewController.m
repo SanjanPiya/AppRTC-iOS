@@ -120,8 +120,8 @@
             
             if(self.client == nil){
                 self.client = [[ARDAppClient alloc] initWithDelegate:[ADCallKitManager sharedInstance]];
-                [self.client connectToWebsocket : false : fromUUID];
-                [self.client sendCallOverThrift :  from : to : fromUUID : toUUID];
+                [self.client connect : false : fromUUID];
+                //[self.client sendCallOverThrift :  from : to : fromUUID : toUUID];
             }
         }
     };

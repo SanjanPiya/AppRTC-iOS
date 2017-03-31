@@ -86,7 +86,7 @@
         
         NSData *tokenData = [credentials token];
         NSString *token =  [self stringWithDeviceToken: tokenData];
-        [self.client registerWithSwift:  myUserId :token ];
+      //  [self.client registerWithSwift:  myUserId :token ];
     }
     
     NSLog(@"didUpdatePushCredentials: token:%@ type:%@",[credentials token], type);

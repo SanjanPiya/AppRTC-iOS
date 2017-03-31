@@ -7,339 +7,191 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03397F76A69B22126DF78FF0C60539A0 /* TCompactProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E129F0632DAAED1EE798CF18D78F222E /* TCompactProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		056DD7004A39425A1DE024E6ED2E56A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */; };
-		0990A7F8E10EE5D55A4C693C77FBBAF0 /* TApplicationError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7BDD062B6FF7A1A4969FC425066F5D /* TApplicationError.m */; };
-		0A87DF2F34F9B3AC62DF16288B2E13D8 /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = E99E0396617B62B9CFFDD7F68B908C4B /* RTCMediaStream+Configuration.m */; };
-		0E7BC7677A09C126EF263B8AC27BCF37 /* Webrtc.h in Headers */ = {isa = PBXBuildFile; fileRef = C4D0667FBCDE2298BEF654A190CCA248 /* Webrtc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0F40F646AE54250518162E6C33A068F0 /* TSSLSocketTransportError.h in Headers */ = {isa = PBXBuildFile; fileRef = 7642FC6C94081C4C68175C8F69B218AC /* TSSLSocketTransportError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0F97A28DA43F6A1F6BF17A6B4D65D5D3 /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 61CC18DA755F4E0E345AB7E939B5BB3F /* TSharedProcessorFactory.m */; };
-		10DAA0DFDE315BFD24A6F1F8D74078C1 /* ARTCVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A88053D3D968A9FB2CEDE5A83510B128 /* ARTCVideoChatViewController.m */; };
-		134DFCDBC84A16C1D4BE587BED579C64 /* TEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6838DD596B1FD7573EB4EFABD1FCD16 /* TEnum.swift */; };
-		13EDACE19CD1964B9445A29727FD5FDF /* TProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3761BC0207B88F8F2E42DB9EBAD207B7 /* TProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		172FC5FA3BB723222D6B91795DF6EF5D /* ARDWebSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F4D5E6DBD99EB2434AC2DB3BC3E313 /* ARDWebSocketChannel.m */; };
-		1B81487BC632D4DF2109846BFDC616C3 /* TBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A59C7EDC6C0FD411ED8F088B845D53 /* TBaseClient.m */; };
-		1E308E6EBEB152135DD1D1A045A3A114 /* ARDSignalingMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 54E2C63AF1AB08F2408A9CDBEC18AE79 /* ARDSignalingMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FA5DFF276B4038DF3A27BEA9400B872 /* TBinary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C7AA1B501F83A8EE179DEF6FBC30C3 /* TBinary.swift */; };
-		25011DDBBE6EED426B1A46F912CBCE0B /* ARDUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = FD090817907261D210A0A7F4F80D1F34 /* ARDUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2623ADA56E8A53E38652F7CB850CACCF /* TSSLSocketTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = F5203B508D6BA517871E4DCB949F64E1 /* TSSLSocketTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2807522B358975C8DC781D00A10F743C /* ARDMessageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3332A874E1C37CF499434BD75016EB1D /* ARDMessageResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CBEB936D911B0D3D96DDB7289550328 /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C48D23D8EF1EF5858619A6734171B72 /* ARDMessageResponse.m */; };
-		3083D7CBAD0586D53DBA6870B673E251 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16E72BE27849C366A750DF9B0FC67237 /* Security.framework */; };
-		32CFF80A91E699885857B4F9E3CE9F29 /* ARTCRoomViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C771A8432F3B11EB84E707D07146BD2 /* ARTCRoomViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		33412F7CF1DB88A53EE015339663D3A9 /* TAsyncTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 44174865CEAD324CD4913A2994BFE3C7 /* TAsyncTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		341F6273855372AE4BD043337BB677D3 /* ARTCVideoChatViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E1208596E4A2AA4C784EA58CF4B3CF58 /* ARTCVideoChatViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3449C02CBD7F3BBBD61DF057E26611A3 /* TProtocolUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AF24035AF686DC1F716E197D69683CD /* TProtocolUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		35FEE9883BC448EB10649FD94B36FC7B /* ARTCRoomTextInputViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F91632979928DC57CFD24DBAA4F8E3C1 /* ARTCRoomTextInputViewCell.m */; };
-		363ACD47CB16E58BB497E86E64C2CA5D /* TBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 494257BB1E5D7A38798F73AEE93DE4D4 /* TBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3B021417104E588CD1817608068086A1 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E4B1DC900333827F6282B023DF444B /* TMemoryBuffer.m */; };
-		3C9F3944DDFBFC8057A838B08D18D6AE /* TProtocolError.m in Sources */ = {isa = PBXBuildFile; fileRef = F63986AF3C4D65ED3CA05FF201102E5B /* TProtocolError.m */; };
-		3D9370B34929019B22F43DC3FDE55C57 /* thrift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EF292C354B632BA67D787066A91FD18 /* thrift.framework */; };
-		3EA7338FCE56B308406B854005622A8E /* TSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039A102E157520C4E281E37495576529 /* TSet.swift */; };
-		42BAF031897410C7A25A795997E8465B /* TTransportError.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC9ACCC0E820A27313001B8648AC0B0 /* TTransportError.m */; };
-		49537ECFB5BC82330F434CD7BD701BDF /* THTTPTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 321D5EE0F4325C7DFDD7FC536062A944 /* THTTPTransport.m */; };
-		4B6BFCF289D13B80C699621CDCC70D98 /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */; };
-		4B99B3EE627147BBE11591E424193408 /* TSocketTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D4AC8DF6DFDABB775D4130BEC00E296 /* TSocketTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C5C7B6C03CF303DB68418F2831F6F0F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9A9786EA219789E7E8DFA862A9E1DD /* CFNetwork.framework */; };
-		4FDFD2991669A4858EDB4D0E2FAE08CD /* TNSStreamTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = D2AD1475E9C53BA8C1D9805B56413FFF /* TNSStreamTransport.m */; };
-		509A29FE61E981E907EA36E78C54F359 /* ARDAppClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7C1EC06B821A61E1C6F62B74687689 /* ARDAppClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		531762266CE93D32D4BF21BC113D18F8 /* thrift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A4D05338A7C01832F951134DF9DEAE87 /* thrift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		53554F85C2745AB54A14EADC906335C9 /* TSocketTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = B656CFE38329384D84CB428B1EB42742 /* TSocketTransport.m */; };
-		559A273F877A12EDFB30B6C054C6BF2E /* TProtocolDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 61F1134DD959C412FD656462F236A98F /* TProtocolDecorator.m */; };
-		59D204C6851A88EB1D874B6A70BA4A46 /* TFramedTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F391D6EAD044E20EF1C553D01C4929 /* TFramedTransport.m */; };
-		5A491082C3C12711FAAE9DB066BD75DD /* TError.m in Sources */ = {isa = PBXBuildFile; fileRef = 547AB6E0C51B5AA3ACFD30437B6C042E /* TError.m */; };
-		5A736632001A12D58F321672EBDEA9D6 /* TMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF5889715DD6423AE83C92B9427DC8 /* TMap.swift */; };
-		5CF562A043D61BFC288F517BA9CD74BE /* TTransportError.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D682419B6635C5B03123F6F0C622A9 /* TTransportError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5F3A509A2E1817613C57F59DD2B0313A /* ARDSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2E3F277582E36111C457D76B9D9A5E /* ARDSignalingMessage.m */; };
-		5F40B8CBF8AFDFBF7456E981BFEF7A2F /* SocketRocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13EF96FDA05BF4A3FE5F000404EE5743 /* SocketRocket-dummy.m */; };
-		628997CE08E20B1F85E000F35C83A431 /* Webrtc.m in Sources */ = {isa = PBXBuildFile; fileRef = EB829479C2F8ADBFD8CF127B5249019B /* Webrtc.m */; };
-		62D1C0C5EFBCEC141BCB398D02D11773 /* TProtocolError.h in Headers */ = {isa = PBXBuildFile; fileRef = C08B70FF39356B0D5324846CE72F465E /* TProtocolError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		648019FD9FEF28C3265FE67AF3062FD7 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCC7AC79A02AC7DB2E7053A29E64A87 /* TBinaryProtocol.m */; };
-		64C7777C1052DB166DE81D0771720D22 /* TProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807C79587724A90763F75AE440FB24C /* TProtocol.swift */; };
-		671FAC5F24C2B68B59DE890853ECF399 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = FD980760D8176A21975D1FD310EBB68E /* TProtocolUtil.m */; };
-		67A6B3363E405DAB0997495ECB10D917 /* TError.h in Headers */ = {isa = PBXBuildFile; fileRef = 15637DA40A98386D9A699F6E511C507C /* TError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B5D92EB52A5938E4A7E59AA39744E4C /* TNSStreamTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = BB0BB8A7D44468A62A272F54BC3C029D /* TNSStreamTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		778F6296B14A3EABB4088093863C4A35 /* MSCWebRTC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E0315506659AB3CE2101F0A96E0E70 /* MSCWebRTC.storyboard */; };
-		779564C7FADD27694E3678B2AD7A583E /* TSharedProcessorFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA27CFE08D1FE8CDB68096607CDAE7C /* TSharedProcessorFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7B6D634D9CD2A17CDCB39A2B16537904 /* thrift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 800641B117314E944F21AB01BFCB0459 /* thrift-dummy.m */; };
-		7F14185E081E6BDAA88EAEBA07DDE7D1 /* TBaseClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 07421BD82058CEC0528BEAAB73FFF6A7 /* TBaseClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		831C2AE26DE5CC473195ED92FFBC7A75 /* TNSFileHandleTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = BAB81067B1BBB9ADE480A7391A9A0038 /* TNSFileHandleTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83AF522D3B3BC387640E67DC850E2A30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */; };
-		880E1D9A2A3DF031817A8B530B8F0138 /* TSSLSocketTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 32242B3823B4FEA752080D4248741B7C /* TSSLSocketTransport.m */; };
-		8B898D8AF89BC8A0FA37133C15FBBA3B /* TFramedTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A6A658346ED4E4554201E42CC4C5B8 /* TFramedTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8C4EA0E3941E097985F19D39167DEECF /* TMultiplexedProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5568FBA46246924F26F73E71C231AE92 /* TMultiplexedProtocol.m */; };
-		8D06156AA668EF9741C2F7CE66BF1305 /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8650EAEA41AE95C2697BA8DE86317FC9 /* ARDAppClient.m */; };
-		9041BBEA14B40B2E28A147352E6D77A6 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DB0BA2024659B8399022C3313ABE24 /* SRWebSocket.m */; };
-		926D3269FF5BCD09D3677BD4087EA338 /* mscrtc-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E62FFCD1EB0B13AAFF2CD318EEF5FEE /* mscrtc-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		962FC28CBA129D9D50BD3922783800FA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */; };
-		97088B1C031B50A30E391DB54DCFEDF0 /* TBinaryProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F83CEF100594A99B37BDBA8539F2679 /* TBinaryProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		977D6AC26AA72BB273E8FDB10AD34F25 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD267C6D29D130E54293A08934251983 /* Images.xcassets */; };
-		98BBBE8FB175315D1B71B9E7C53C183B /* TCompactProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 901C7B61AE5F18DC798499828E290238 /* TCompactProtocol.m */; };
-		9A74CA6E0BBCCACC4A35B8825ADD4E2D /* RTCMediaStream+Configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = 34F4B115CB6EA85D662AC676411CAD4B /* RTCMediaStream+Configuration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9CBB8A03758A60821CEFD4FD126D13D0 /* THTTPTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A43F9BB781D5B0DC4F44C59DB1D6F0B /* THTTPTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A010904CA3C94B08E158CCB763AC300B /* TSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F6465514CEC7CE965F5F96929A52A070 /* TSocketServer.m */; };
-		A0A1A0A28E6B54B2DB57DCCF098F7D6F /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 1249351232AA2FA7AFEEB99F693CA1ED /* SRWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A28BAE63FE996C9B27B75ADB1AE3063C /* mscrtc-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E28217ED1ACAE6B837A05EE7A9B06530 /* mscrtc-dummy.m */; };
-		A4535CCECFDC68F5DF821889E5885579 /* TSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C491C314E0E18F3BDB5602140688F75 /* TSerializable.swift */; };
-		A4AEBA19D72D265FD8305B648D580673 /* TProtocolFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 126426BB87D5F69BCFCD15C3BF62656D /* TProtocolFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A80272F17C3E37D32713690C7ED49BC8 /* ADCallKitManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B6E4FFDB5179B82E08841DE68028A2C3 /* ADCallKitManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE823999CB83AF929FA658EFD10B9DAF /* SocketRocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B3A78D2EB81BFFBAE1357E6B8DFE5E82 /* SocketRocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AED389FDF4721B65D3A6BE33958969B7 /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0BCFBAB4700597C0CAA827F49580B0 /* ARTCRoomViewController.m */; };
-		AFE48A7C0017D9C1AC4349ABA5984BD6 /* TStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EB8556CE6F8DC3C56B069D7C90B23B /* TStruct.swift */; };
-		B07C4CEB1BEBAEEB87FA8CC62BCB3D22 /* TApplicationError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4880B3344B2965902431D13FF657EAEB /* TApplicationError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B7207FCCD69495262B41B8421670B10B /* TTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = CCFBE418A262B94E923FE1CC4537BEB8 /* TTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B8375BDFF3BF7B9B3914C00E48A1C649 /* TProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E3C3F6BDA28EAF41E8C42BB1FE392670 /* TProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C4CF89D038597594FBA4179AA1F3F2A2 /* TMemoryBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A01257BA0EEBEE8D2790B6EEB15F5D1 /* TMemoryBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C602E9995850FB23189A5542F581B083 /* SocketRocket.h in Headers */ = {isa = PBXBuildFile; fileRef = B7446167DBCC311A22B777AAF0A132DC /* SocketRocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE0D66D674B879001D43D1BA86C78338 /* TSSLSocketTransportError.m in Sources */ = {isa = PBXBuildFile; fileRef = 598637EB4DD7ED13C039795C33A3EA7A /* TSSLSocketTransportError.m */; };
-		CED38567DAB992B94D573A4BDE97B4B7 /* TNSFileHandleTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 050B9B5ABC7B231A3A79BDDD35D9D953 /* TNSFileHandleTransport.m */; };
-		D14085604A086B87682B04AE3EB8513D /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A2D37B564FDC874A3AE3E234F45E48 /* ARDRegisterResponse.m */; };
-		D3C55CD90FD2A30B47981492D8510FC7 /* Thrift.h in Headers */ = {isa = PBXBuildFile; fileRef = 95807B75C0928F80B1FB035D0C843F5F /* Thrift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D6D0AB36EB7651C2C9A06B4F8744D014 /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 43965AA2EF4A8542B621E8479C9419AE /* ADCallKitManager.m */; };
-		E12BF01BDCF32C7CBDC8EA324D1ACA73 /* THTTPSessionTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 7345E13DA05BD54D4BDAFBCFD97B6A41 /* THTTPSessionTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2EC6B4F131FF3FEA12D93023B787D21 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F911EFFE1562F7FE14B436B1A8E7375C /* en.lproj */; };
-		E3352D687749170299127EDC6D09B274 /* mscrtc.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 054BC80945B2A3C8666A7681B887AA9B /* mscrtc.bundle */; };
-		E5723466D59E6F464735BF11EF5AFBA7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9A9786EA219789E7E8DFA862A9E1DD /* CFNetwork.framework */; };
-		E609849805033324F8ACF6E9C352ABDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */; };
-		E74952496596B9FE51833DEE13CED0A8 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBBE65820FCFCFF503472B38BC757A82 /* TProtocolDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F2EF679BFEB5B6F5634B2EB03311A95 /* TProtocolDecorator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ECC42DD67975B01F376612573F8967AC /* ARDRegisterResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 10C40A7A04303F204F01C3A69F918895 /* ARDRegisterResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EED1AF381989FEE40D5D965F0B41C571 /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BA7EADD52808BE172B99AA0A27A99F /* ARDUtilities.m */; };
-		F1FC94F45665C7F2886A81BBE3EE9385 /* TSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = C816A13E8D5CD3A9713B1B48A6E0F7A0 /* TSocketServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F3AC0F26C23961E179069FC5B0185163 /* TProcessorFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 898209C88AF9E48DEA7CB0837DD6E2C3 /* TProcessorFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F47C830F526977CADB002A5248FA5315 /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EDE08CCDBA7E795C4AEE3AE23C120A4 /* SocketRocket.framework */; };
-		F5A5D25B29D23CB4726E2399F92C87EB /* TMultiplexedProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A26C1F06B8A7B94466FA7EEF3EF209 /* TMultiplexedProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7DDF84A0DC19E313922DB9D9A5BD63E /* TList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20145C071F941B015FFF8409FA1E1F0D /* TList.swift */; };
-		FB8B8B9043604D67B2CDA6BC7C6FF94B /* ARTCRoomTextInputViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DA3C70EA1024705CFF4E337E8B4D6AF /* ARTCRoomTextInputViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FBF5112F67868457285A57805BA8182C /* THTTPSessionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC6A5D980A9012D9E2475C75E571501 /* THTTPSessionTransport.m */; };
-		FE2766BE7C7FA803E0CD4F59DDAB16CE /* ARDWebSocketChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 52AA2987E49866B3C320DE677295C6BF /* ARDWebSocketChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		019F9002F95297411E06563CB084E5FC /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA45DB3EC5BD8343FDFBC53831394EE /* SocketRocket.framework */; };
+		01B6B607E347814E4AE7A9CE5BAC1252 /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 055BCAB66A1BED3A46EBB57BD24E75F8 /* ADCallKitManager.m */; };
+		1065411516255B3A434EC0B80D3BC7B7 /* SRWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = A55DE51FA5188756A8615CD3CCCB36B5 /* SRWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		10F1643A1FF0237DF174372C1EE1FFE9 /* ARDSignalingMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = E30ED79733AE94E4DCF3A4E26E1DEF32 /* ARDSignalingMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17D09D473CAD508BC1A6C2C994BDC74B /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 187060D01B690AF537FF48E66B9CB70A /* ARDMessageResponse.m */; };
+		18395E77DE351546B3487B98168D6B82 /* SocketRocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F9F53BEE0F67B4F013AE98837D48B9 /* SocketRocket-dummy.m */; };
+		1B1F1F9308F762CBC615B958BD1112AB /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */; };
+		2AC81FF4B6511E624E9BCF45704952E8 /* ARDUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 7647B2AD028D84BC4C8D9F126636669F /* ARDUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2AD36456705B5064453C970141ECBB1B /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D74685F74F4C16FAE38ACA79ED6F9114 /* ARTCRoomViewController.m */; };
+		2BB57C838D8EAF78E1F44247772B6288 /* ARTCRoomViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E0F102EB1F0712DCD0FF3EA9A260A302 /* ARTCRoomViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		35A1AB518EE901AA3E1712A62BFE52C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004419CBD8D136BA37092DE6D41B095F /* Foundation.framework */; };
+		38D7177B4FE6CE6AFE782E99A6514DF4 /* ADCallKitManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 334C1D9D42CCAEF01D9EF63D76A6AE5E /* ADCallKitManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A896F4CF62DB5F0FAD8D612E0159AC2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A908D24EB91BDC447C158D0A5397A10 /* CFNetwork.framework */; };
+		486735634BCE69FE656A833D7F94C36C /* ARDWebSocketChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 75899518887745A73DD03C7AFBEF5E40 /* ARDWebSocketChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		48A727C50910B55AC6E8EF6BF3E5719B /* ARTCVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7FA2C98129C3428F084D356CEB9518 /* ARTCVideoChatViewController.m */; };
+		48DFA583741FA5B9FC543C6ABD8D92CD /* ARTCVideoChatViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1746A104141CAD00F545DA1FA43B145E /* ARTCVideoChatViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53060CF6AE02C311A4CEEB8A4AC5E32C /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FCCEE425C4B67F56F910ADC714FB84 /* ARDAppClient.m */; };
+		56D3356E663F88529C5A516DC9ADBF6E /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = D328BCB5AF954E6295430E7BEF101C9B /* ARDUtilities.m */; };
+		576AD510BECD81382F295272DE8E014C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004419CBD8D136BA37092DE6D41B095F /* Foundation.framework */; };
+		5911D2C0F6157042D4AA8ACB21B35C93 /* RTCMediaStream+Configuration.h in Headers */ = {isa = PBXBuildFile; fileRef = C0C927FBA4148B1447D658AFCFDDDA8E /* RTCMediaStream+Configuration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A6BC569799725CCE2A2B4192DF18DA4 /* ARTCRoomTextInputViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F41B0A66ADF8D200C17050519A3F0F /* ARTCRoomTextInputViewCell.m */; };
+		5D5654AB3F6F370117D463698319F753 /* mscrtc-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E62FFCD1EB0B13AAFF2CD318EEF5FEE /* mscrtc-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5EC21B03860E7C068482D6684BFF3977 /* ARTCRoomTextInputViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F2CE37FD5350C8BF1DD154EB1385C2D5 /* ARTCRoomTextInputViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5EF8E5698AC64AB85935530179C67667 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E4C149E781FB30B931C8BD1E1CB818 /* Security.framework */; };
+		6116667BBF98CB26085255645C48C03C /* SocketRocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CB93BBEA29FD913A5FA1483DD0F52F /* SocketRocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69B68959E794563820F1D16C2360F91D /* ARDSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F1CAEE4DEB8DE4AE6C6A770C81B06 /* ARDSignalingMessage.m */; };
+		6EA4AE551562ED1B41C39ABB7AC611F5 /* MSCWebRTC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC4EC525C9FCA38CDB9D880D7C861ED /* MSCWebRTC.storyboard */; };
+		74B0A5DCE022C4F9641AD5C884C19238 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 990D73CFA33B57CA0FD30C111B20291E /* en.lproj */; };
+		8869601F33739292337B931F40836BEC /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E02787868027EC9B1AEF9538F3B70DBE /* SRWebSocket.m */; };
+		903EAE2B7FF43F66768A0354FA660B24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3C81CDCB1419FB3717C4E4C07C7D4CB /* Images.xcassets */; };
+		AAE68174FCBCCADCF9F9D4A59D396151 /* ARDWebSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F84B37739500BDF34ACE16451CDB36 /* ARDWebSocketChannel.m */; };
+		BC261FE1DADF6FEE720A4B10916B0304 /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D3C1F316C3318A1D79065AB6B93F0 /* ARDRegisterResponse.m */; };
+		C13DC05643449FDFB8326A58F02A61D4 /* mscrtc-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E28217ED1ACAE6B837A05EE7A9B06530 /* mscrtc-dummy.m */; };
+		C3E1F24D4DBA74C73B071245678A4785 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C470840DB791C1FCA05698C462B92C18 /* SocketRocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCF44ADF8EAAEA86EB56F215EA1BBE8 /* SocketRocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D17CBDD831EBF96C00AB9347C595D /* ARDAppClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B9852D0359CC6D804A9E61912827AB3F /* ARDAppClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB63A4CA8AEA6281F05EF111C5542E86 /* mscrtc.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A3CD3D6125A8B25280B8C5338E9ADE9B /* mscrtc.bundle */; };
+		D126E93251BFE446616B08ADF0F8CFAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004419CBD8D136BA37092DE6D41B095F /* Foundation.framework */; };
+		D2A2996BFFADD0B7CFAABB4C94DBB1F0 /* ARDMessageResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E063F5E7543579830C8285559ABC562 /* ARDMessageResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3792554D073F51DE95447EBD54DAA29 /* ARDRegisterResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D986059F7A513713F4B8150FBE340A3 /* ARDRegisterResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB40CC1A22B97CCD43B5EFE43CE5C75B /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2689A47DF71B63DBD409C9C26E4B2E /* RTCMediaStream+Configuration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2C0A81F430EFAFCAB317D6E7ECD8B693 /* PBXContainerItemProxy */ = {
+		32D122B5BA012CCB57777A355DBE4EED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 628EAAF8F239A793B5B24FCE52DAD6E7;
-			remoteInfo = "mscrtc-mscrtc";
-		};
-		5C1826735C1CD6945B65B3535B6C9048 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 62F5C3796638CC63A5520161A0367CCB;
-			remoteInfo = thrift;
-		};
-		C3B22BC50A7E3B4E012D98FB3DC42BE7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 62F5C3796638CC63A5520161A0367CCB;
-			remoteInfo = thrift;
-		};
-		DAA09B83C18ED00B8864B84FDA786278 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B42ECEB74804B9BBCCEAA1DCF16296BE;
-			remoteInfo = SocketRocket;
-		};
-		E9FBF42D882B8EDEFB5BFB555321046C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B0C13420E1D357B949913D5B86899FFA;
+			remoteGlobalIDString = 87F461D418681B815BE800D458406462;
 			remoteInfo = mscrtc;
 		};
-		F706E89B0CCC746FE9B421C6126428B4 /* PBXContainerItemProxy */ = {
+		98432EAB8CF33A74D0B23B85033AC0D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B42ECEB74804B9BBCCEAA1DCF16296BE;
+			remoteGlobalIDString = 060BB466993B8ABFCBF20D0BAACEE528;
+			remoteInfo = "mscrtc-mscrtc";
+		};
+		BFC7ECE37C2BAE39BE576562970A2799 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89338830BEEB2E6BF4E36732545E4FD1;
+			remoteInfo = SocketRocket;
+		};
+		D6FF7A9F32322E68EB4899B33F3C8E9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89338830BEEB2E6BF4E36732545E4FD1;
 			remoteInfo = SocketRocket;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004419CBD8D136BA37092DE6D41B095F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		00E03C01EDBBFAD9F9C743D32489FD34 /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SocketRocket.framework; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E6907CF2644EB1CF8E23F708A3DA0B /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
-		034D9B421E83980600A23E61 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
-		039A102E157520C4E281E37495576529 /* TSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TSet.swift; path = lib/cocoa/src/TSet.swift; sourceTree = "<group>"; };
-		050B9B5ABC7B231A3A79BDDD35D9D953 /* TNSFileHandleTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TNSFileHandleTransport.m; path = lib/cocoa/src/transport/TNSFileHandleTransport.m; sourceTree = "<group>"; };
-		054BC80945B2A3C8666A7681B887AA9B /* mscrtc.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mscrtc.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		07421BD82058CEC0528BEAAB73FFF6A7 /* TBaseClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TBaseClient.h; path = lib/cocoa/src/TBaseClient.h; sourceTree = "<group>"; };
-		0C177A0ECF1A4E0AB9DB10E779A87FC8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EDE08CCDBA7E795C4AEE3AE23C120A4 /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		10C40A7A04303F204F01C3A69F918895 /* ARDRegisterResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDRegisterResponse.h; sourceTree = "<group>"; };
-		119072C64A19799964E1620D83F514FB /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
-		1249351232AA2FA7AFEEB99F693CA1ED /* SRWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
-		126426BB87D5F69BCFCD15C3BF62656D /* TProtocolFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolFactory.h; path = lib/cocoa/src/protocol/TProtocolFactory.h; sourceTree = "<group>"; };
-		1388E48B63C6DBCCD7B3E53E3D9834A9 /* thrift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = thrift.modulemap; sourceTree = "<group>"; };
-		13EF96FDA05BF4A3FE5F000404EE5743 /* SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SocketRocket-dummy.m"; sourceTree = "<group>"; };
+		055BCAB66A1BED3A46EBB57BD24E75F8 /* ADCallKitManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ADCallKitManager.m; sourceTree = "<group>"; };
+		07CB93BBEA29FD913A5FA1483DD0F52F /* SocketRocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-umbrella.h"; sourceTree = "<group>"; };
+		119072C64A19799964E1620D83F514FB /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
 		149054C495E8EC590CAB4C524133016F /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		15637DA40A98386D9A699F6E511C507C /* TError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TError.h; path = lib/cocoa/src/TError.h; sourceTree = "<group>"; };
-		16E72BE27849C366A750DF9B0FC67237 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		20145C071F941B015FFF8409FA1E1F0D /* TList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TList.swift; path = lib/cocoa/src/TList.swift; sourceTree = "<group>"; };
-		2A43F9BB781D5B0DC4F44C59DB1D6F0B /* THTTPTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = THTTPTransport.h; path = lib/cocoa/src/transport/THTTPTransport.h; sourceTree = "<group>"; };
-		2A7C1EC06B821A61E1C6F62B74687689 /* ARDAppClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
-		2AF24035AF686DC1F716E197D69683CD /* TProtocolUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolUtil.h; path = lib/cocoa/src/protocol/TProtocolUtil.h; sourceTree = "<group>"; };
-		2CC6A5D980A9012D9E2475C75E571501 /* THTTPSessionTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = THTTPSessionTransport.m; path = lib/cocoa/src/transport/THTTPSessionTransport.m; sourceTree = "<group>"; };
-		2DA3C70EA1024705CFF4E337E8B4D6AF /* ARTCRoomTextInputViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCRoomTextInputViewCell.h; sourceTree = "<group>"; };
-		2E36A01630AFE6066AE36E184B43B207 /* SocketRocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SocketRocket.xcconfig; sourceTree = "<group>"; };
-		321D5EE0F4325C7DFDD7FC536062A944 /* THTTPTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = THTTPTransport.m; path = lib/cocoa/src/transport/THTTPTransport.m; sourceTree = "<group>"; };
-		32242B3823B4FEA752080D4248741B7C /* TSSLSocketTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSSLSocketTransport.m; path = lib/cocoa/src/transport/TSSLSocketTransport.m; sourceTree = "<group>"; };
-		3332A874E1C37CF499434BD75016EB1D /* ARDMessageResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
-		34F4B115CB6EA85D662AC676411CAD4B /* RTCMediaStream+Configuration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+Configuration.h"; sourceTree = "<group>"; };
-		3761BC0207B88F8F2E42DB9EBAD207B7 /* TProcessor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProcessor.h; path = lib/cocoa/src/TProcessor.h; sourceTree = "<group>"; };
-		38F92F27F13CDA4D2F0EA120436D247F /* thrift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = thrift.xcconfig; sourceTree = "<group>"; };
-		3C24F07E3222E2EFDF0D30682939AEB9 /* SocketRocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SocketRocket.modulemap; sourceTree = "<group>"; };
-		40DB0BA2024659B8399022C3313ABE24 /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
-		416982EE66541B956F2208832CC84A6B /* thrift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = thrift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43965AA2EF4A8542B621E8479C9419AE /* ADCallKitManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ADCallKitManager.m; sourceTree = "<group>"; };
-		44174865CEAD324CD4913A2994BFE3C7 /* TAsyncTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TAsyncTransport.h; path = lib/cocoa/src/transport/TAsyncTransport.h; sourceTree = "<group>"; };
-		45A2D37B564FDC874A3AE3E234F45E48 /* ARDRegisterResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDRegisterResponse.m; sourceTree = "<group>"; };
-		46BA7EADD52808BE172B99AA0A27A99F /* ARDUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
-		4880B3344B2965902431D13FF657EAEB /* TApplicationError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TApplicationError.h; path = lib/cocoa/src/TApplicationError.h; sourceTree = "<group>"; };
-		494257BB1E5D7A38798F73AEE93DE4D4 /* TBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TBase.h; path = lib/cocoa/src/protocol/TBase.h; sourceTree = "<group>"; };
+		1746A104141CAD00F545DA1FA43B145E /* ARTCVideoChatViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCVideoChatViewController.h; sourceTree = "<group>"; };
+		187060D01B690AF537FF48E66B9CB70A /* ARDMessageResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDMessageResponse.m; sourceTree = "<group>"; };
+		2A908D24EB91BDC447C158D0A5397A10 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		32529CBBDB0FB8FD04805EB8DA60F856 /* SocketRocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SocketRocket.xcconfig; sourceTree = "<group>"; };
+		334C1D9D42CCAEF01D9EF63D76A6AE5E /* ADCallKitManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ADCallKitManager.h; sourceTree = "<group>"; };
+		3E2689A47DF71B63DBD409C9C26E4B2E /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
+		42FCCEE425C4B67F56F910ADC714FB84 /* ARDAppClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDAppClient.m; sourceTree = "<group>"; };
+		44CADCDA68DF8CB915980D6D3EB2C5ED /* mscrtc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = mscrtc.framework; path = mscrtc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = mscrtc.xcconfig; sourceTree = "<group>"; };
-		4C9A9786EA219789E7E8DFA862A9E1DD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		4CCC7AC79A02AC7DB2E7053A29E64A87 /* TBinaryProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TBinaryProtocol.m; path = lib/cocoa/src/protocol/TBinaryProtocol.m; sourceTree = "<group>"; };
-		4F83CEF100594A99B37BDBA8539F2679 /* TBinaryProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TBinaryProtocol.h; path = lib/cocoa/src/protocol/TBinaryProtocol.h; sourceTree = "<group>"; };
-		52AA2987E49866B3C320DE677295C6BF /* ARDWebSocketChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDWebSocketChannel.h; sourceTree = "<group>"; };
-		547AB6E0C51B5AA3ACFD30437B6C042E /* TError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TError.m; path = lib/cocoa/src/TError.m; sourceTree = "<group>"; };
-		54E2C63AF1AB08F2408A9CDBEC18AE79 /* ARDSignalingMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDSignalingMessage.h; sourceTree = "<group>"; };
+		4D986059F7A513713F4B8150FBE340A3 /* ARDRegisterResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDRegisterResponse.h; sourceTree = "<group>"; };
+		5054ADD9ACEA46BCC8CC42F56761546F /* SocketRocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SocketRocket.modulemap; sourceTree = "<group>"; };
+		545FC9E866679CF6489894E489EE65B1 /* MSCWebRTC.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; name = MSCWebRTC.storyboard; path = Base.lproj/MSCWebRTC.storyboard; sourceTree = "<group>"; };
 		552550F3F912264E5D073F8893691F88 /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
-		5568FBA46246924F26F73E71C231AE92 /* TMultiplexedProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TMultiplexedProtocol.m; path = lib/cocoa/src/protocol/TMultiplexedProtocol.m; sourceTree = "<group>"; };
-		598637EB4DD7ED13C039795C33A3EA7A /* TSSLSocketTransportError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSSLSocketTransportError.m; path = lib/cocoa/src/transport/TSSLSocketTransportError.m; sourceTree = "<group>"; };
-		5CA2749AA40B20D7D85C0228547A0DD4 /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61CC18DA755F4E0E345AB7E939B5BB3F /* TSharedProcessorFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSharedProcessorFactory.m; path = lib/cocoa/src/TSharedProcessorFactory.m; sourceTree = "<group>"; };
-		61F1134DD959C412FD656462F236A98F /* TProtocolDecorator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TProtocolDecorator.m; path = lib/cocoa/src/protocol/TProtocolDecorator.m; sourceTree = "<group>"; };
-		639F1E1D53BF7105E7C038AFACB784AA /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
-		64A6A658346ED4E4554201E42CC4C5B8 /* TFramedTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TFramedTransport.h; path = lib/cocoa/src/transport/TFramedTransport.h; sourceTree = "<group>"; };
+		5FA45DB3EC5BD8343FDFBC53831394EE /* SocketRocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SocketRocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
-		6A01257BA0EEBEE8D2790B6EEB15F5D1 /* TMemoryBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TMemoryBuffer.h; path = lib/cocoa/src/transport/TMemoryBuffer.h; sourceTree = "<group>"; };
-		6A2E3F277582E36111C457D76B9D9A5E /* ARDSignalingMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDSignalingMessage.m; sourceTree = "<group>"; };
-		6A8FA0FC772CD0C9DDBAA58154883943 /* mscrtc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mscrtc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B80A9117A72333D3039473511DA77CC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6B9F3AFC72ABB9A2151D866F460CDBA0 /* thrift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "thrift-prefix.pch"; sourceTree = "<group>"; };
-		6D7BDD062B6FF7A1A4969FC425066F5D /* TApplicationError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TApplicationError.m; path = lib/cocoa/src/TApplicationError.m; sourceTree = "<group>"; };
-		7345E13DA05BD54D4BDAFBCFD97B6A41 /* THTTPSessionTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = THTTPSessionTransport.h; path = lib/cocoa/src/transport/THTTPSessionTransport.h; sourceTree = "<group>"; };
-		734BB70D0DFC1A1ABDAB7130CC95B34E /* SocketRocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-prefix.pch"; sourceTree = "<group>"; };
-		7642FC6C94081C4C68175C8F69B218AC /* TSSLSocketTransportError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSSLSocketTransportError.h; path = lib/cocoa/src/transport/TSSLSocketTransportError.h; sourceTree = "<group>"; };
+		6E063F5E7543579830C8285559ABC562 /* ARDMessageResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
+		75899518887745A73DD03C7AFBEF5E40 /* ARDWebSocketChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDWebSocketChannel.h; sourceTree = "<group>"; };
+		7647B2AD028D84BC4C8D9F126636669F /* ARDUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDUtilities.h; sourceTree = "<group>"; };
 		764D33E23CE6C1111110B04F5CBADADB /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		7C491C314E0E18F3BDB5602140688F75 /* TSerializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TSerializable.swift; path = lib/cocoa/src/TSerializable.swift; sourceTree = "<group>"; };
-		7C771A8432F3B11EB84E707D07146BD2 /* ARTCRoomViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCRoomViewController.h; sourceTree = "<group>"; };
-		800641B117314E944F21AB01BFCB0459 /* thrift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "thrift-dummy.m"; sourceTree = "<group>"; };
-		8650EAEA41AE95C2697BA8DE86317FC9 /* ARDAppClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDAppClient.m; sourceTree = "<group>"; };
-		898209C88AF9E48DEA7CB0837DD6E2C3 /* TProcessorFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProcessorFactory.h; path = lib/cocoa/src/TProcessorFactory.h; sourceTree = "<group>"; };
-		8D4AC8DF6DFDABB775D4130BEC00E296 /* TSocketTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSocketTransport.h; path = lib/cocoa/src/transport/TSocketTransport.h; sourceTree = "<group>"; };
+		81F84B37739500BDF34ACE16451CDB36 /* ARDWebSocketChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDWebSocketChannel.m; sourceTree = "<group>"; };
+		8749E9F54167DAA883FC6A7294A8B778 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		87E4C149E781FB30B931C8BD1E1CB818 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8E62FFCD1EB0B13AAFF2CD318EEF5FEE /* mscrtc-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "mscrtc-umbrella.h"; sourceTree = "<group>"; };
-		901C7B61AE5F18DC798499828E290238 /* TCompactProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TCompactProtocol.m; path = lib/cocoa/src/protocol/TCompactProtocol.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		95807B75C0928F80B1FB035D0C843F5F /* Thrift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Thrift.h; path = lib/cocoa/src/Thrift.h; sourceTree = "<group>"; };
-		98F391D6EAD044E20EF1C553D01C4929 /* TFramedTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TFramedTransport.m; path = lib/cocoa/src/transport/TFramedTransport.m; sourceTree = "<group>"; };
-		9BC9ACCC0E820A27313001B8648AC0B0 /* TTransportError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TTransportError.m; path = lib/cocoa/src/transport/TTransportError.m; sourceTree = "<group>"; };
-		9C48D23D8EF1EF5858619A6734171B72 /* ARDMessageResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDMessageResponse.m; sourceTree = "<group>"; };
-		9EF292C354B632BA67D787066A91FD18 /* thrift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = thrift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F2EF679BFEB5B6F5634B2EB03311A95 /* TProtocolDecorator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolDecorator.h; path = lib/cocoa/src/protocol/TProtocolDecorator.h; sourceTree = "<group>"; };
-		A0E4B1DC900333827F6282B023DF444B /* TMemoryBuffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TMemoryBuffer.m; path = lib/cocoa/src/transport/TMemoryBuffer.m; sourceTree = "<group>"; };
-		A0F4D5E6DBD99EB2434AC2DB3BC3E313 /* ARDWebSocketChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDWebSocketChannel.m; sourceTree = "<group>"; };
-		A4C7AA1B501F83A8EE179DEF6FBC30C3 /* TBinary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TBinary.swift; path = lib/cocoa/src/TBinary.swift; sourceTree = "<group>"; };
-		A4D05338A7C01832F951134DF9DEAE87 /* thrift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "thrift-umbrella.h"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		96F41B0A66ADF8D200C17050519A3F0F /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
+		990D73CFA33B57CA0FD30C111B20291E /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = en.lproj; sourceTree = "<group>"; };
+		9A4D3C1F316C3318A1D79065AB6B93F0 /* ARDRegisterResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDRegisterResponse.m; sourceTree = "<group>"; };
+		9BCF44ADF8EAAEA86EB56F215EA1BBE8 /* SocketRocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SocketRocket.h; path = SocketRocket/SocketRocket.h; sourceTree = "<group>"; };
+		9D7F1CAEE4DEB8DE4AE6C6A770C81B06 /* ARDSignalingMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDSignalingMessage.m; sourceTree = "<group>"; };
+		A3CD3D6125A8B25280B8C5338E9ADE9B /* mscrtc.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = mscrtc.bundle; path = mscrtc.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		A55DE51FA5188756A8615CD3CCCB36B5 /* SRWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
 		A661FECCEBFF9D01869EE3B29C4C1EFF /* Pods-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A88053D3D968A9FB2CEDE5A83510B128 /* ARTCVideoChatViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCVideoChatViewController.m; sourceTree = "<group>"; };
-		B3A78D2EB81BFFBAE1357E6B8DFE5E82 /* SocketRocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-umbrella.h"; sourceTree = "<group>"; };
-		B656CFE38329384D84CB428B1EB42742 /* TSocketTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSocketTransport.m; path = lib/cocoa/src/transport/TSocketTransport.m; sourceTree = "<group>"; };
-		B6838DD596B1FD7573EB4EFABD1FCD16 /* TEnum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TEnum.swift; path = lib/cocoa/src/TEnum.swift; sourceTree = "<group>"; };
-		B6E4FFDB5179B82E08841DE68028A2C3 /* ADCallKitManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ADCallKitManager.h; sourceTree = "<group>"; };
-		B7446167DBCC311A22B777AAF0A132DC /* SocketRocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SocketRocket.h; path = SocketRocket/SocketRocket.h; sourceTree = "<group>"; };
+		B7E71051D70FFAA85131848965CF139D /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Example.framework; path = "Pods-Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B88B4F4A948D9AF38CF5D37FD8CC1FE8 /* SocketRocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-prefix.pch"; sourceTree = "<group>"; };
+		B9852D0359CC6D804A9E61912827AB3F /* ARDAppClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
 		B9DE0DF29F5301F74417DE32F3B899F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAB81067B1BBB9ADE480A7391A9A0038 /* TNSFileHandleTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TNSFileHandleTransport.h; path = lib/cocoa/src/transport/TNSFileHandleTransport.h; sourceTree = "<group>"; };
-		BB0BB8A7D44468A62A272F54BC3C029D /* TNSStreamTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TNSStreamTransport.h; path = lib/cocoa/src/transport/TNSStreamTransport.h; sourceTree = "<group>"; };
-		BD267C6D29D130E54293A08934251983 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C08B70FF39356B0D5324846CE72F465E /* TProtocolError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocolError.h; path = lib/cocoa/src/protocol/TProtocolError.h; sourceTree = "<group>"; };
-		C4D0667FBCDE2298BEF654A190CCA248 /* Webrtc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Webrtc.h; sourceTree = "<group>"; };
-		C816A13E8D5CD3A9713B1B48A6E0F7A0 /* TSocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSocketServer.h; path = lib/cocoa/src/server/TSocketServer.h; sourceTree = "<group>"; };
+		BC7FA2C98129C3428F084D356CEB9518 /* ARTCVideoChatViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCVideoChatViewController.m; sourceTree = "<group>"; };
+		C0C927FBA4148B1447D658AFCFDDDA8E /* RTCMediaStream+Configuration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+Configuration.h"; sourceTree = "<group>"; };
+		C6F9F53BEE0F67B4F013AE98837D48B9 /* SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SocketRocket-dummy.m"; sourceTree = "<group>"; };
 		C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Example-umbrella.h"; sourceTree = "<group>"; };
-		CCFBE418A262B94E923FE1CC4537BEB8 /* TTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTransport.h; path = lib/cocoa/src/transport/TTransport.h; sourceTree = "<group>"; };
-		CDA27CFE08D1FE8CDB68096607CDAE7C /* TSharedProcessorFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSharedProcessorFactory.h; path = lib/cocoa/src/TSharedProcessorFactory.h; sourceTree = "<group>"; };
-		D2AD1475E9C53BA8C1D9805B56413FFF /* TNSStreamTransport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TNSStreamTransport.m; path = lib/cocoa/src/transport/TNSStreamTransport.m; sourceTree = "<group>"; };
-		D807C79587724A90763F75AE440FB24C /* TProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TProtocol.swift; path = lib/cocoa/src/TProtocol.swift; sourceTree = "<group>"; };
+		D328BCB5AF954E6295430E7BEF101C9B /* ARDUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
+		D3C81CDCB1419FB3717C4E4C07C7D4CB /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D74685F74F4C16FAE38ACA79ED6F9114 /* ARTCRoomViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomViewController.m; sourceTree = "<group>"; };
 		DBF352B1943784F5B28264FE1E63313D /* mscrtc-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "mscrtc-prefix.pch"; sourceTree = "<group>"; };
-		E0CF5889715DD6423AE83C92B9427DC8 /* TMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TMap.swift; path = lib/cocoa/src/TMap.swift; sourceTree = "<group>"; };
-		E1208596E4A2AA4C784EA58CF4B3CF58 /* ARTCVideoChatViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCVideoChatViewController.h; sourceTree = "<group>"; };
-		E129F0632DAAED1EE798CF18D78F222E /* TCompactProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCompactProtocol.h; path = lib/cocoa/src/protocol/TCompactProtocol.h; sourceTree = "<group>"; };
-		E1A26C1F06B8A7B94466FA7EEF3EF209 /* TMultiplexedProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TMultiplexedProtocol.h; path = lib/cocoa/src/protocol/TMultiplexedProtocol.h; sourceTree = "<group>"; };
-		E1A59C7EDC6C0FD411ED8F088B845D53 /* TBaseClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TBaseClient.m; path = lib/cocoa/src/TBaseClient.m; sourceTree = "<group>"; };
+		E02787868027EC9B1AEF9538F3B70DBE /* SRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
+		E0F102EB1F0712DCD0FF3EA9A260A302 /* ARTCRoomViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCRoomViewController.h; sourceTree = "<group>"; };
 		E28217ED1ACAE6B837A05EE7A9B06530 /* mscrtc-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "mscrtc-dummy.m"; sourceTree = "<group>"; };
-		E3C3F6BDA28EAF41E8C42BB1FE392670 /* TProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TProtocol.h; path = lib/cocoa/src/protocol/TProtocol.h; sourceTree = "<group>"; };
+		E30ED79733AE94E4DCF3A4E26E1DEF32 /* ARDSignalingMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDSignalingMessage.h; sourceTree = "<group>"; };
 		E512A5F985F876750237FD237C3AEEDA /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		E8EB8556CE6F8DC3C56B069D7C90B23B /* TStruct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TStruct.swift; path = lib/cocoa/src/TStruct.swift; sourceTree = "<group>"; };
-		E99E0396617B62B9CFFDD7F68B908C4B /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
-		EB829479C2F8ADBFD8CF127B5249019B /* Webrtc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Webrtc.m; sourceTree = "<group>"; };
+		EAF8003E1DF3B24C27E3CA2063D214A7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC27451C67C5B8BDDBF903E772EAB0DA /* ResourceBundle-mscrtc-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-mscrtc-Info.plist"; sourceTree = "<group>"; };
 		EFFB74AAA6B2AE8DABF0E88E61E09178 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4D682419B6635C5B03123F6F0C622A9 /* TTransportError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTransportError.h; path = lib/cocoa/src/transport/TTransportError.h; sourceTree = "<group>"; };
-		F5203B508D6BA517871E4DCB949F64E1 /* TSSLSocketTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TSSLSocketTransport.h; path = lib/cocoa/src/transport/TSSLSocketTransport.h; sourceTree = "<group>"; };
-		F63986AF3C4D65ED3CA05FF201102E5B /* TProtocolError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TProtocolError.m; path = lib/cocoa/src/protocol/TProtocolError.m; sourceTree = "<group>"; };
-		F6465514CEC7CE965F5F96929A52A070 /* TSocketServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TSocketServer.m; path = lib/cocoa/src/server/TSocketServer.m; sourceTree = "<group>"; };
-		F911EFFE1562F7FE14B436B1A8E7375C /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
-		F91632979928DC57CFD24DBAA4F8E3C1 /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
-		FB0BCFBAB4700597C0CAA827F49580B0 /* ARTCRoomViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomViewController.m; sourceTree = "<group>"; };
-		FD090817907261D210A0A7F4F80D1F34 /* ARDUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARDUtilities.h; sourceTree = "<group>"; };
-		FD980760D8176A21975D1FD310EBB68E /* TProtocolUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TProtocolUtil.m; path = lib/cocoa/src/protocol/TProtocolUtil.m; sourceTree = "<group>"; };
-		FF0B8213F1D19133F387E69E01C08849 /* mscrtc.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = mscrtc.modulemap; sourceTree = "<group>"; };
-		FF22E9DD89E5107D092724AADC9597FC /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CE37FD5350C8BF1DD154EB1385C2D5 /* ARTCRoomTextInputViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTCRoomTextInputViewCell.h; sourceTree = "<group>"; };
+		FF0B8213F1D19133F387E69E01C08849 /* mscrtc.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = mscrtc.modulemap; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4A016D430FE60BFB950F01A9B10A4428 /* Frameworks */ = {
+		23F3FDCEB41EBFD3DC25830A9AB1D372 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E609849805033324F8ACF6E9C352ABDC /* Foundation.framework in Frameworks */,
-				F47C830F526977CADB002A5248FA5315 /* SocketRocket.framework in Frameworks */,
-				3D9370B34929019B22F43DC3FDE55C57 /* thrift.framework in Frameworks */,
+				35A1AB518EE901AA3E1712A62BFE52C9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F9BF21A121D57652FB8469D23C8DEC5 /* Frameworks */ = {
+		6447D4BDE8E9ACF0FEF48FA8DAED9A29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C5C7B6C03CF303DB68418F2831F6F0F /* CFNetwork.framework in Frameworks */,
-				83AF522D3B3BC387640E67DC850E2A30 /* Foundation.framework in Frameworks */,
-				3083D7CBAD0586D53DBA6870B673E251 /* Security.framework in Frameworks */,
+				D126E93251BFE446616B08ADF0F8CFAD /* Foundation.framework in Frameworks */,
+				019F9002F95297411E06563CB084E5FC /* SocketRocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C3E84E2D587872534A1B6FAADD9E83AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E5723466D59E6F464735BF11EF5AFBA7 /* CFNetwork.framework in Frameworks */,
-				962FC28CBA129D9D50BD3922783800FA /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E6D10C4C235263C14919889675EBEF69 /* Frameworks */ = {
+		B427EEBB9F511D60ACE304EA64F35F8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67751A1D17C14412C3B72BB34331F42 /* Frameworks */ = {
+		F2B93CA5A655634B2CD5FDDAA7D286F9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				056DD7004A39425A1DE024E6ED2E56A5 /* Foundation.framework in Frameworks */,
+				3A896F4CF62DB5F0FAD8D612E0159AC2 /* CFNetwork.framework in Frameworks */,
+				576AD510BECD81382F295272DE8E014C /* Foundation.framework in Frameworks */,
+				5EF8E5698AC64AB85935530179C67667 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BCEBE9D38D6453FC1223B72B412E5B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5FA45DB3EC5BD8343FDFBC53831394EE /* SocketRocket.framework */,
+				5539B0F9FCD07253A949FDC7AFF88621 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		156ECB9D51638468346815D1C386B54B /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,160 +200,21 @@
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		18B4E6B024328AF5A59663505299F420 /* Classes */ = {
+		21DBBF316CABF4017A3CAC08E8F231CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6E4FFDB5179B82E08841DE68028A2C3 /* ADCallKitManager.h */,
-				43965AA2EF4A8542B621E8479C9419AE /* ADCallKitManager.m */,
-				2A7C1EC06B821A61E1C6F62B74687689 /* ARDAppClient.h */,
-				8650EAEA41AE95C2697BA8DE86317FC9 /* ARDAppClient.m */,
-				3332A874E1C37CF499434BD75016EB1D /* ARDMessageResponse.h */,
-				9C48D23D8EF1EF5858619A6734171B72 /* ARDMessageResponse.m */,
-				10C40A7A04303F204F01C3A69F918895 /* ARDRegisterResponse.h */,
-				45A2D37B564FDC874A3AE3E234F45E48 /* ARDRegisterResponse.m */,
-				54E2C63AF1AB08F2408A9CDBEC18AE79 /* ARDSignalingMessage.h */,
-				6A2E3F277582E36111C457D76B9D9A5E /* ARDSignalingMessage.m */,
-				FD090817907261D210A0A7F4F80D1F34 /* ARDUtilities.h */,
-				46BA7EADD52808BE172B99AA0A27A99F /* ARDUtilities.m */,
-				52AA2987E49866B3C320DE677295C6BF /* ARDWebSocketChannel.h */,
-				A0F4D5E6DBD99EB2434AC2DB3BC3E313 /* ARDWebSocketChannel.m */,
-				2DA3C70EA1024705CFF4E337E8B4D6AF /* ARTCRoomTextInputViewCell.h */,
-				F91632979928DC57CFD24DBAA4F8E3C1 /* ARTCRoomTextInputViewCell.m */,
-				7C771A8432F3B11EB84E707D07146BD2 /* ARTCRoomViewController.h */,
-				FB0BCFBAB4700597C0CAA827F49580B0 /* ARTCRoomViewController.m */,
-				E1208596E4A2AA4C784EA58CF4B3CF58 /* ARTCVideoChatViewController.h */,
-				A88053D3D968A9FB2CEDE5A83510B128 /* ARTCVideoChatViewController.m */,
-				34F4B115CB6EA85D662AC676411CAD4B /* RTCMediaStream+Configuration.h */,
-				E99E0396617B62B9CFFDD7F68B908C4B /* RTCMediaStream+Configuration.m */,
-				C4D0667FBCDE2298BEF654A190CCA248 /* Webrtc.h */,
-				EB829479C2F8ADBFD8CF127B5249019B /* Webrtc.m */,
+				A3CD3D6125A8B25280B8C5338E9ADE9B /* mscrtc.bundle */,
+				44CADCDA68DF8CB915980D6D3EB2C5ED /* mscrtc.framework */,
+				B7E71051D70FFAA85131848965CF139D /* Pods_Example.framework */,
+				00E03C01EDBBFAD9F9C743D32489FD34 /* SocketRocket.framework */,
 			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		19269815A3AD622319E839A2C48D278E /* SocketRocket */ = {
-			isa = PBXGroup;
-			children = (
-				B7446167DBCC311A22B777AAF0A132DC /* SocketRocket.h */,
-				1249351232AA2FA7AFEEB99F693CA1ED /* SRWebSocket.h */,
-				40DB0BA2024659B8399022C3313ABE24 /* SRWebSocket.m */,
-				C06C260979FC1DC1DCA6391D88F4A146 /* Support Files */,
-			);
-			path = SocketRocket;
-			sourceTree = "<group>";
-		};
-		2B1A53564912A567CBEAED1DE709169D /* thrift */ = {
-			isa = PBXGroup;
-			children = (
-				4880B3344B2965902431D13FF657EAEB /* TApplicationError.h */,
-				6D7BDD062B6FF7A1A4969FC425066F5D /* TApplicationError.m */,
-				44174865CEAD324CD4913A2994BFE3C7 /* TAsyncTransport.h */,
-				494257BB1E5D7A38798F73AEE93DE4D4 /* TBase.h */,
-				07421BD82058CEC0528BEAAB73FFF6A7 /* TBaseClient.h */,
-				E1A59C7EDC6C0FD411ED8F088B845D53 /* TBaseClient.m */,
-				A4C7AA1B501F83A8EE179DEF6FBC30C3 /* TBinary.swift */,
-				4F83CEF100594A99B37BDBA8539F2679 /* TBinaryProtocol.h */,
-				4CCC7AC79A02AC7DB2E7053A29E64A87 /* TBinaryProtocol.m */,
-				E129F0632DAAED1EE798CF18D78F222E /* TCompactProtocol.h */,
-				901C7B61AE5F18DC798499828E290238 /* TCompactProtocol.m */,
-				B6838DD596B1FD7573EB4EFABD1FCD16 /* TEnum.swift */,
-				15637DA40A98386D9A699F6E511C507C /* TError.h */,
-				547AB6E0C51B5AA3ACFD30437B6C042E /* TError.m */,
-				64A6A658346ED4E4554201E42CC4C5B8 /* TFramedTransport.h */,
-				98F391D6EAD044E20EF1C553D01C4929 /* TFramedTransport.m */,
-				95807B75C0928F80B1FB035D0C843F5F /* Thrift.h */,
-				7345E13DA05BD54D4BDAFBCFD97B6A41 /* THTTPSessionTransport.h */,
-				2CC6A5D980A9012D9E2475C75E571501 /* THTTPSessionTransport.m */,
-				2A43F9BB781D5B0DC4F44C59DB1D6F0B /* THTTPTransport.h */,
-				321D5EE0F4325C7DFDD7FC536062A944 /* THTTPTransport.m */,
-				20145C071F941B015FFF8409FA1E1F0D /* TList.swift */,
-				E0CF5889715DD6423AE83C92B9427DC8 /* TMap.swift */,
-				6A01257BA0EEBEE8D2790B6EEB15F5D1 /* TMemoryBuffer.h */,
-				A0E4B1DC900333827F6282B023DF444B /* TMemoryBuffer.m */,
-				E1A26C1F06B8A7B94466FA7EEF3EF209 /* TMultiplexedProtocol.h */,
-				5568FBA46246924F26F73E71C231AE92 /* TMultiplexedProtocol.m */,
-				BAB81067B1BBB9ADE480A7391A9A0038 /* TNSFileHandleTransport.h */,
-				050B9B5ABC7B231A3A79BDDD35D9D953 /* TNSFileHandleTransport.m */,
-				BB0BB8A7D44468A62A272F54BC3C029D /* TNSStreamTransport.h */,
-				D2AD1475E9C53BA8C1D9805B56413FFF /* TNSStreamTransport.m */,
-				3761BC0207B88F8F2E42DB9EBAD207B7 /* TProcessor.h */,
-				898209C88AF9E48DEA7CB0837DD6E2C3 /* TProcessorFactory.h */,
-				E3C3F6BDA28EAF41E8C42BB1FE392670 /* TProtocol.h */,
-				D807C79587724A90763F75AE440FB24C /* TProtocol.swift */,
-				9F2EF679BFEB5B6F5634B2EB03311A95 /* TProtocolDecorator.h */,
-				61F1134DD959C412FD656462F236A98F /* TProtocolDecorator.m */,
-				C08B70FF39356B0D5324846CE72F465E /* TProtocolError.h */,
-				F63986AF3C4D65ED3CA05FF201102E5B /* TProtocolError.m */,
-				126426BB87D5F69BCFCD15C3BF62656D /* TProtocolFactory.h */,
-				2AF24035AF686DC1F716E197D69683CD /* TProtocolUtil.h */,
-				FD980760D8176A21975D1FD310EBB68E /* TProtocolUtil.m */,
-				7C491C314E0E18F3BDB5602140688F75 /* TSerializable.swift */,
-				039A102E157520C4E281E37495576529 /* TSet.swift */,
-				CDA27CFE08D1FE8CDB68096607CDAE7C /* TSharedProcessorFactory.h */,
-				61CC18DA755F4E0E345AB7E939B5BB3F /* TSharedProcessorFactory.m */,
-				C816A13E8D5CD3A9713B1B48A6E0F7A0 /* TSocketServer.h */,
-				F6465514CEC7CE965F5F96929A52A070 /* TSocketServer.m */,
-				8D4AC8DF6DFDABB775D4130BEC00E296 /* TSocketTransport.h */,
-				B656CFE38329384D84CB428B1EB42742 /* TSocketTransport.m */,
-				F5203B508D6BA517871E4DCB949F64E1 /* TSSLSocketTransport.h */,
-				32242B3823B4FEA752080D4248741B7C /* TSSLSocketTransport.m */,
-				7642FC6C94081C4C68175C8F69B218AC /* TSSLSocketTransportError.h */,
-				598637EB4DD7ED13C039795C33A3EA7A /* TSSLSocketTransportError.m */,
-				E8EB8556CE6F8DC3C56B069D7C90B23B /* TStruct.swift */,
-				CCFBE418A262B94E923FE1CC4537BEB8 /* TTransport.h */,
-				F4D682419B6635C5B03123F6F0C622A9 /* TTransportError.h */,
-				9BC9ACCC0E820A27313001B8648AC0B0 /* TTransportError.m */,
-				402F2941CB7A07153C62F0DC2EC0F2AB /* Support Files */,
-			);
-			path = thrift;
-			sourceTree = "<group>";
-		};
-		2CFB663DCF34384C3386091E8DAB00C0 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				4C9A9786EA219789E7E8DFA862A9E1DD /* CFNetwork.framework */,
-				17500A6A7EE035F6EFDF2D3B1FCAE41F /* Foundation.framework */,
-				16E72BE27849C366A750DF9B0FC67237 /* Security.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		3F046CB5104157EA39EFA77E5D644924 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				18B4E6B024328AF5A59663505299F420 /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		402F2941CB7A07153C62F0DC2EC0F2AB /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0C177A0ECF1A4E0AB9DB10E779A87FC8 /* Info.plist */,
-				1388E48B63C6DBCCD7B3E53E3D9834A9 /* thrift.modulemap */,
-				38F92F27F13CDA4D2F0EA120436D247F /* thrift.xcconfig */,
-				800641B117314E944F21AB01BFCB0459 /* thrift-dummy.m */,
-				6B9F3AFC72ABB9A2151D866F460CDBA0 /* thrift-prefix.pch */,
-				A4D05338A7C01832F951134DF9DEAE87 /* thrift-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/thrift";
-			sourceTree = "<group>";
-		};
-		456DCA8E94658AC9D74B3F5864EC1B4E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				19269815A3AD622319E839A2C48D278E /* SocketRocket */,
-				2B1A53564912A567CBEAED1DE709169D /* thrift */,
-				A73A20F72FA46AA5F868CEEE22A50B4E /* WebRTC */,
-			);
-			name = Pods;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		48981C2F5AFA8C88D2DADF68D3C41F48 /* mscrtc */ = {
 			isa = PBXGroup;
 			children = (
-				3F046CB5104157EA39EFA77E5D644924 /* Pod */,
+				69FE4312AE177FCC453880B0D8E4BBFC /* Pod */,
 				EC8B32D2B59AE7F246E9F7AA9FC2F54B /* Resources */,
 				51815DBC302F82B65EE9ECFCC639AB2D /* Support Files */,
 			);
@@ -524,6 +237,25 @@
 			path = "Example/Pods/Target Support Files/mscrtc";
 			sourceTree = "<group>";
 		};
+		5539B0F9FCD07253A949FDC7AFF88621 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A908D24EB91BDC447C158D0A5397A10 /* CFNetwork.framework */,
+				004419CBD8D136BA37092DE6D41B095F /* Foundation.framework */,
+				87E4C149E781FB30B931C8BD1E1CB818 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		69FE4312AE177FCC453880B0D8E4BBFC /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				78B8CD0BECC8C89A14490D2591AF64C1 /* Classes */,
+			);
+			name = Pod;
+			path = Pod;
+			sourceTree = "<group>";
+		};
 		6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,86 +264,109 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
+		6FA934DC6F0B62C3529850B94B3C1C8B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				156ECB9D51638468346815D1C386B54B /* Development Pods */,
-				A7A11E3389D18F89C8518A67CC09E06A /* Frameworks */,
-				456DCA8E94658AC9D74B3F5864EC1B4E /* Pods */,
-				EC2EC4C2779D09A9A66DAD509BB4E84C /* Products */,
-				6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		8460DA119E4E106E95E6133A4FBD5D81 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				BD267C6D29D130E54293A08934251983 /* Images.xcassets */,
-				90E0315506659AB3CE2101F0A96E0E70 /* MSCWebRTC.storyboard */,
-				EC491E12279E6FF9B18D0C2FE55724BB /* Settings.bundle */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		9F057A45396C69B2E9672CAEC7A74299 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				639F1E1D53BF7105E7C038AFACB784AA /* WebRTC.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A73A20F72FA46AA5F868CEEE22A50B4E /* WebRTC */ = {
-			isa = PBXGroup;
-			children = (
-				9F057A45396C69B2E9672CAEC7A74299 /* Frameworks */,
-			);
-			path = WebRTC;
-			sourceTree = "<group>";
-		};
-		A7A11E3389D18F89C8518A67CC09E06A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0EDE08CCDBA7E795C4AEE3AE23C120A4 /* SocketRocket.framework */,
-				9EF292C354B632BA67D787066A91FD18 /* thrift.framework */,
-				2CFB663DCF34384C3386091E8DAB00C0 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C06C260979FC1DC1DCA6391D88F4A146 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6B80A9117A72333D3039473511DA77CC /* Info.plist */,
-				3C24F07E3222E2EFDF0D30682939AEB9 /* SocketRocket.modulemap */,
-				2E36A01630AFE6066AE36E184B43B207 /* SocketRocket.xcconfig */,
-				13EF96FDA05BF4A3FE5F000404EE5743 /* SocketRocket-dummy.m */,
-				734BB70D0DFC1A1ABDAB7130CC95B34E /* SocketRocket-prefix.pch */,
-				B3A78D2EB81BFFBAE1357E6B8DFE5E82 /* SocketRocket-umbrella.h */,
+				EAF8003E1DF3B24C27E3CA2063D214A7 /* Info.plist */,
+				5054ADD9ACEA46BCC8CC42F56761546F /* SocketRocket.modulemap */,
+				32529CBBDB0FB8FD04805EB8DA60F856 /* SocketRocket.xcconfig */,
+				C6F9F53BEE0F67B4F013AE98837D48B9 /* SocketRocket-dummy.m */,
+				B88B4F4A948D9AF38CF5D37FD8CC1FE8 /* SocketRocket-prefix.pch */,
+				07CB93BBEA29FD913A5FA1483DD0F52F /* SocketRocket-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SocketRocket";
 			sourceTree = "<group>";
 		};
-		EC2EC4C2779D09A9A66DAD509BB4E84C /* Products */ = {
+		78B8CD0BECC8C89A14490D2591AF64C1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				054BC80945B2A3C8666A7681B887AA9B /* mscrtc.bundle */,
-				6A8FA0FC772CD0C9DDBAA58154883943 /* mscrtc.framework */,
-				FF22E9DD89E5107D092724AADC9597FC /* Pods_Example.framework */,
-				5CA2749AA40B20D7D85C0228547A0DD4 /* SocketRocket.framework */,
-				416982EE66541B956F2208832CC84A6B /* thrift.framework */,
+				334C1D9D42CCAEF01D9EF63D76A6AE5E /* ADCallKitManager.h */,
+				055BCAB66A1BED3A46EBB57BD24E75F8 /* ADCallKitManager.m */,
+				B9852D0359CC6D804A9E61912827AB3F /* ARDAppClient.h */,
+				42FCCEE425C4B67F56F910ADC714FB84 /* ARDAppClient.m */,
+				6E063F5E7543579830C8285559ABC562 /* ARDMessageResponse.h */,
+				187060D01B690AF537FF48E66B9CB70A /* ARDMessageResponse.m */,
+				4D986059F7A513713F4B8150FBE340A3 /* ARDRegisterResponse.h */,
+				9A4D3C1F316C3318A1D79065AB6B93F0 /* ARDRegisterResponse.m */,
+				E30ED79733AE94E4DCF3A4E26E1DEF32 /* ARDSignalingMessage.h */,
+				9D7F1CAEE4DEB8DE4AE6C6A770C81B06 /* ARDSignalingMessage.m */,
+				7647B2AD028D84BC4C8D9F126636669F /* ARDUtilities.h */,
+				D328BCB5AF954E6295430E7BEF101C9B /* ARDUtilities.m */,
+				75899518887745A73DD03C7AFBEF5E40 /* ARDWebSocketChannel.h */,
+				81F84B37739500BDF34ACE16451CDB36 /* ARDWebSocketChannel.m */,
+				F2CE37FD5350C8BF1DD154EB1385C2D5 /* ARTCRoomTextInputViewCell.h */,
+				96F41B0A66ADF8D200C17050519A3F0F /* ARTCRoomTextInputViewCell.m */,
+				E0F102EB1F0712DCD0FF3EA9A260A302 /* ARTCRoomViewController.h */,
+				D74685F74F4C16FAE38ACA79ED6F9114 /* ARTCRoomViewController.m */,
+				1746A104141CAD00F545DA1FA43B145E /* ARTCVideoChatViewController.h */,
+				BC7FA2C98129C3428F084D356CEB9518 /* ARTCVideoChatViewController.m */,
+				C0C927FBA4148B1447D658AFCFDDDA8E /* RTCMediaStream+Configuration.h */,
+				3E2689A47DF71B63DBD409C9C26E4B2E /* RTCMediaStream+Configuration.m */,
 			);
-			name = Products;
+			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		EC491E12279E6FF9B18D0C2FE55724BB /* Settings.bundle */ = {
+		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
-				F911EFFE1562F7FE14B436B1A8E7375C /* en.lproj */,
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				156ECB9D51638468346815D1C386B54B /* Development Pods */,
+				0BCEBE9D38D6453FC1223B72B412E5B2 /* Frameworks */,
+				EE1E4CA0A9D0C242632D8C1EF0148692 /* Pods */,
+				21DBBF316CABF4017A3CAC08E8F231CC /* Products */,
+				6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		9DFA8898EF81DA86F7E515D539EB29DE /* Settings.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				990D73CFA33B57CA0FD30C111B20291E /* en.lproj */,
+			);
+			name = Settings.bundle;
 			path = Settings.bundle;
+			sourceTree = "<group>";
+		};
+		B08E2A7A99B9156717774FD84E100EAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8749E9F54167DAA883FC6A7294A8B778 /* WebRTC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1D41EB30BC1A88E11606C01D0B9E6D6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D3C81CDCB1419FB3717C4E4C07C7D4CB /* Images.xcassets */,
+				4DC4EC525C9FCA38CDB9D880D7C861ED /* MSCWebRTC.storyboard */,
+				9DFA8898EF81DA86F7E515D539EB29DE /* Settings.bundle */,
+			);
+			name = Assets;
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CC1FC89BFC5E63594D800A96D11B35B8 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				9BCF44ADF8EAAEA86EB56F215EA1BBE8 /* SocketRocket.h */,
+				A55DE51FA5188756A8615CD3CCCB36B5 /* SRWebSocket.h */,
+				E02787868027EC9B1AEF9538F3B70DBE /* SRWebSocket.m */,
+				6FA934DC6F0B62C3529850B94B3C1C8B /* Support Files */,
+			);
+			name = SocketRocket;
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
+		DB5AB37FA771FCA7EEB75176909D9968 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				B08E2A7A99B9156717774FD84E100EAE /* Frameworks */,
+			);
+			name = WebRTC;
+			path = WebRTC;
 			sourceTree = "<group>";
 		};
 		EC8B32D2B59AE7F246E9F7AA9FC2F54B /* Resources */ = {
@@ -622,11 +377,21 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		EE1E4CA0A9D0C242632D8C1EF0148692 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC1FC89BFC5E63594D800A96D11B35B8 /* SocketRocket */,
+				DB5AB37FA771FCA7EEB75176909D9968 /* WebRTC */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA85554443E6FD3A39E7D6DDE9035829 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				8460DA119E4E106E95E6133A4FBD5D81 /* Assets */,
+				C1D41EB30BC1A88E11606C01D0B9E6D6 /* Assets */,
 			);
+			name = Pod;
 			path = Pod;
 			sourceTree = "<group>";
 		};
@@ -651,91 +416,53 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		16699EFB7FBF096CFD3BA4A4AF31D272 /* Headers */ = {
+		05995AC6E24AC9F799187900C50030E7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE823999CB83AF929FA658EFD10B9DAF /* SocketRocket-umbrella.h in Headers */,
-				C602E9995850FB23189A5542F581B083 /* SocketRocket.h in Headers */,
-				A0A1A0A28E6B54B2DB57DCCF098F7D6F /* SRWebSocket.h in Headers */,
+				38D7177B4FE6CE6AFE782E99A6514DF4 /* ADCallKitManager.h in Headers */,
+				C93D17CBDD831EBF96C00AB9347C595D /* ARDAppClient.h in Headers */,
+				D2A2996BFFADD0B7CFAABB4C94DBB1F0 /* ARDMessageResponse.h in Headers */,
+				F3792554D073F51DE95447EBD54DAA29 /* ARDRegisterResponse.h in Headers */,
+				10F1643A1FF0237DF174372C1EE1FFE9 /* ARDSignalingMessage.h in Headers */,
+				2AC81FF4B6511E624E9BCF45704952E8 /* ARDUtilities.h in Headers */,
+				486735634BCE69FE656A833D7F94C36C /* ARDWebSocketChannel.h in Headers */,
+				5EC21B03860E7C068482D6684BFF3977 /* ARTCRoomTextInputViewCell.h in Headers */,
+				2BB57C838D8EAF78E1F44247772B6288 /* ARTCRoomViewController.h in Headers */,
+				48DFA583741FA5B9FC543C6ABD8D92CD /* ARTCVideoChatViewController.h in Headers */,
+				5D5654AB3F6F370117D463698319F753 /* mscrtc-umbrella.h in Headers */,
+				5911D2C0F6157042D4AA8ACB21B35C93 /* RTCMediaStream+Configuration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		53E2462EB67625DF76342C5473A4BAA2 /* Headers */ = {
+		B34D9798CC7AC8B4F32E472283F6FE3C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80272F17C3E37D32713690C7ED49BC8 /* ADCallKitManager.h in Headers */,
-				509A29FE61E981E907EA36E78C54F359 /* ARDAppClient.h in Headers */,
-				2807522B358975C8DC781D00A10F743C /* ARDMessageResponse.h in Headers */,
-				ECC42DD67975B01F376612573F8967AC /* ARDRegisterResponse.h in Headers */,
-				1E308E6EBEB152135DD1D1A045A3A114 /* ARDSignalingMessage.h in Headers */,
-				25011DDBBE6EED426B1A46F912CBCE0B /* ARDUtilities.h in Headers */,
-				FE2766BE7C7FA803E0CD4F59DDAB16CE /* ARDWebSocketChannel.h in Headers */,
-				FB8B8B9043604D67B2CDA6BC7C6FF94B /* ARTCRoomTextInputViewCell.h in Headers */,
-				32CFF80A91E699885857B4F9E3CE9F29 /* ARTCRoomViewController.h in Headers */,
-				341F6273855372AE4BD043337BB677D3 /* ARTCVideoChatViewController.h in Headers */,
-				926D3269FF5BCD09D3677BD4087EA338 /* mscrtc-umbrella.h in Headers */,
-				9A74CA6E0BBCCACC4A35B8825ADD4E2D /* RTCMediaStream+Configuration.h in Headers */,
-				0E7BC7677A09C126EF263B8AC27BCF37 /* Webrtc.h in Headers */,
+				C3E1F24D4DBA74C73B071245678A4785 /* Pods-Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6E793CC2AD429083BF5AEE5790F2C731 /* Headers */ = {
+		E8FE24DE52AE4F394EFCED23383E68F3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B07C4CEB1BEBAEEB87FA8CC62BCB3D22 /* TApplicationError.h in Headers */,
-				33412F7CF1DB88A53EE015339663D3A9 /* TAsyncTransport.h in Headers */,
-				363ACD47CB16E58BB497E86E64C2CA5D /* TBase.h in Headers */,
-				7F14185E081E6BDAA88EAEBA07DDE7D1 /* TBaseClient.h in Headers */,
-				97088B1C031B50A30E391DB54DCFEDF0 /* TBinaryProtocol.h in Headers */,
-				03397F76A69B22126DF78FF0C60539A0 /* TCompactProtocol.h in Headers */,
-				67A6B3363E405DAB0997495ECB10D917 /* TError.h in Headers */,
-				8B898D8AF89BC8A0FA37133C15FBBA3B /* TFramedTransport.h in Headers */,
-				531762266CE93D32D4BF21BC113D18F8 /* thrift-umbrella.h in Headers */,
-				D3C55CD90FD2A30B47981492D8510FC7 /* Thrift.h in Headers */,
-				E12BF01BDCF32C7CBDC8EA324D1ACA73 /* THTTPSessionTransport.h in Headers */,
-				9CBB8A03758A60821CEFD4FD126D13D0 /* THTTPTransport.h in Headers */,
-				C4CF89D038597594FBA4179AA1F3F2A2 /* TMemoryBuffer.h in Headers */,
-				F5A5D25B29D23CB4726E2399F92C87EB /* TMultiplexedProtocol.h in Headers */,
-				831C2AE26DE5CC473195ED92FFBC7A75 /* TNSFileHandleTransport.h in Headers */,
-				6B5D92EB52A5938E4A7E59AA39744E4C /* TNSStreamTransport.h in Headers */,
-				13EDACE19CD1964B9445A29727FD5FDF /* TProcessor.h in Headers */,
-				F3AC0F26C23961E179069FC5B0185163 /* TProcessorFactory.h in Headers */,
-				B8375BDFF3BF7B9B3914C00E48A1C649 /* TProtocol.h in Headers */,
-				EBBE65820FCFCFF503472B38BC757A82 /* TProtocolDecorator.h in Headers */,
-				62D1C0C5EFBCEC141BCB398D02D11773 /* TProtocolError.h in Headers */,
-				A4AEBA19D72D265FD8305B648D580673 /* TProtocolFactory.h in Headers */,
-				3449C02CBD7F3BBBD61DF057E26611A3 /* TProtocolUtil.h in Headers */,
-				779564C7FADD27694E3678B2AD7A583E /* TSharedProcessorFactory.h in Headers */,
-				F1FC94F45665C7F2886A81BBE3EE9385 /* TSocketServer.h in Headers */,
-				4B99B3EE627147BBE11591E424193408 /* TSocketTransport.h in Headers */,
-				2623ADA56E8A53E38652F7CB850CACCF /* TSSLSocketTransport.h in Headers */,
-				0F40F646AE54250518162E6C33A068F0 /* TSSLSocketTransportError.h in Headers */,
-				B7207FCCD69495262B41B8421670B10B /* TTransport.h in Headers */,
-				5CF562A043D61BFC288F517BA9CD74BE /* TTransportError.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB597A9247DEC93C73AB8EDC12721B02 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E74952496596B9FE51833DEE13CED0A8 /* Pods-Example-umbrella.h in Headers */,
+				6116667BBF98CB26085255645C48C03C /* SocketRocket-umbrella.h in Headers */,
+				C470840DB791C1FCA05698C462B92C18 /* SocketRocket.h in Headers */,
+				1065411516255B3A434EC0B80D3BC7B7 /* SRWebSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		628EAAF8F239A793B5B24FCE52DAD6E7 /* mscrtc-mscrtc */ = {
+		060BB466993B8ABFCBF20D0BAACEE528 /* mscrtc-mscrtc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 467483D7BBC77AADFA3A56E4E1369B3E /* Build configuration list for PBXNativeTarget "mscrtc-mscrtc" */;
+			buildConfigurationList = AD504AB18259E668881A54C9882A56F2 /* Build configuration list for PBXNativeTarget "mscrtc-mscrtc" */;
 			buildPhases = (
-				0944FC00E69A2BE321A6045254C67BD1 /* Sources */,
-				E6D10C4C235263C14919889675EBEF69 /* Frameworks */,
-				3F577FCEC592119F3593CAE8036C79DF /* Resources */,
+				C81579B4CA5324A6FF0A1609991BE0D3 /* Sources */,
+				B427EEBB9F511D60ACE304EA64F35F8B /* Frameworks */,
+				6A984902A09F3433C50C6CDD5414165C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -743,74 +470,36 @@
 			);
 			name = "mscrtc-mscrtc";
 			productName = "mscrtc-mscrtc";
-			productReference = 054BC80945B2A3C8666A7681B887AA9B /* mscrtc.bundle */;
+			productReference = A3CD3D6125A8B25280B8C5338E9ADE9B /* mscrtc.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		62F5C3796638CC63A5520161A0367CCB /* thrift */ = {
+		87F461D418681B815BE800D458406462 /* mscrtc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC757ACBD8B540236B325121A4C5CA3D /* Build configuration list for PBXNativeTarget "thrift" */;
+			buildConfigurationList = C3B57A45FB15AF79E97185D0F3A6C657 /* Build configuration list for PBXNativeTarget "mscrtc" */;
 			buildPhases = (
-				7D795BC8FE7CF8EF956D7FEF07FA02BC /* Sources */,
-				C3E84E2D587872534A1B6FAADD9E83AC /* Frameworks */,
-				6E793CC2AD429083BF5AEE5790F2C731 /* Headers */,
+				31CACD9D1D51FB292059641084FAF733 /* Sources */,
+				6447D4BDE8E9ACF0FEF48FA8DAED9A29 /* Frameworks */,
+				BB0B2C9D6B40CFC618B41D25D3E895E5 /* Resources */,
+				05995AC6E24AC9F799187900C50030E7 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = thrift;
-			productName = thrift;
-			productReference = 416982EE66541B956F2208832CC84A6B /* thrift.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B0BEB5CC354BB790F2EC213A693DF071 /* Pods-Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FAD03B7D1C51A991CC46CBB8B407BBAB /* Build configuration list for PBXNativeTarget "Pods-Example" */;
-			buildPhases = (
-				F5728D8716ACEB9DC961E132383F6D02 /* Sources */,
-				F67751A1D17C14412C3B72BB34331F42 /* Frameworks */,
-				DB597A9247DEC93C73AB8EDC12721B02 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6D0B42F852FA3B4C6B68D2AD8D18B752 /* PBXTargetDependency */,
-				5A71DF354DF03122E30D72A1704F1C04 /* PBXTargetDependency */,
-				1AF614AEEC63EB0AAC9DA67260E840D4 /* PBXTargetDependency */,
-			);
-			name = "Pods-Example";
-			productName = "Pods-Example";
-			productReference = FF22E9DD89E5107D092724AADC9597FC /* Pods_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B0C13420E1D357B949913D5B86899FFA /* mscrtc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 96FCAAF35C790F56593D5A694C53D884 /* Build configuration list for PBXNativeTarget "mscrtc" */;
-			buildPhases = (
-				39BB16208397FC8981B244CD1276C02F /* Sources */,
-				4A016D430FE60BFB950F01A9B10A4428 /* Frameworks */,
-				96843A4C90EE20ED8B47F426B2140284 /* Resources */,
-				53E2462EB67625DF76342C5473A4BAA2 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1958E1A7D8708560E467CC5F81829BDA /* PBXTargetDependency */,
-				22C6104F23432973ED0DFF43A5F01007 /* PBXTargetDependency */,
-				FBE6CD3A253D291FA7DEDB46B34101F0 /* PBXTargetDependency */,
+				5972AF2D202117D450B2AE8B0B7B1FCC /* PBXTargetDependency */,
+				9180BC79D3205B40128F74FF4D20014C /* PBXTargetDependency */,
 			);
 			name = mscrtc;
 			productName = mscrtc;
-			productReference = 6A8FA0FC772CD0C9DDBAA58154883943 /* mscrtc.framework */;
+			productReference = 44CADCDA68DF8CB915980D6D3EB2C5ED /* mscrtc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B42ECEB74804B9BBCCEAA1DCF16296BE /* SocketRocket */ = {
+		89338830BEEB2E6BF4E36732545E4FD1 /* SocketRocket */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66BEAA354819A73B5BDF69C108033941 /* Build configuration list for PBXNativeTarget "SocketRocket" */;
+			buildConfigurationList = CF3497C1ECCF5C09162FA6D9791ED5ED /* Build configuration list for PBXNativeTarget "SocketRocket" */;
 			buildPhases = (
-				F06823A2D70A93B3AC13632006D5D253 /* Sources */,
-				7F9BF21A121D57652FB8469D23C8DEC5 /* Frameworks */,
-				16699EFB7FBF096CFD3BA4A4AF31D272 /* Headers */,
+				75E6832A9F63576036B17B2A9DC52725 /* Sources */,
+				F2B93CA5A655634B2CD5FDDAA7D286F9 /* Frameworks */,
+				E8FE24DE52AE4F394EFCED23383E68F3 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -818,7 +507,26 @@
 			);
 			name = SocketRocket;
 			productName = SocketRocket;
-			productReference = 5CA2749AA40B20D7D85C0228547A0DD4 /* SocketRocket.framework */;
+			productReference = 00E03C01EDBBFAD9F9C743D32489FD34 /* SocketRocket.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8FA1921CD2121F83D5167E99D231E131 /* Pods-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35EFDAFEC02B3FC97DF0ECDE678C5A43 /* Build configuration list for PBXNativeTarget "Pods-Example" */;
+			buildPhases = (
+				004384D371D809A5CBDF3F8A7917C3E9 /* Sources */,
+				23F3FDCEB41EBFD3DC25830A9AB1D372 /* Frameworks */,
+				B34D9798CC7AC8B4F32E472283F6FE3C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE025D57A8CA9A9CEF93A0BF62729F54 /* PBXTargetDependency */,
+				F53C2A42929D8239FBCAB37C6AEB23AE /* PBXTargetDependency */,
+			);
+			name = "Pods-Example";
+			productName = "Pods-Example";
+			productReference = B7E71051D70FFAA85131848965CF139D /* Pods_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -838,168 +546,117 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = EC2EC4C2779D09A9A66DAD509BB4E84C /* Products */;
+			productRefGroup = 21DBBF316CABF4017A3CAC08E8F231CC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B0C13420E1D357B949913D5B86899FFA /* mscrtc */,
-				628EAAF8F239A793B5B24FCE52DAD6E7 /* mscrtc-mscrtc */,
-				B0BEB5CC354BB790F2EC213A693DF071 /* Pods-Example */,
-				B42ECEB74804B9BBCCEAA1DCF16296BE /* SocketRocket */,
-				62F5C3796638CC63A5520161A0367CCB /* thrift */,
+				87F461D418681B815BE800D458406462 /* mscrtc */,
+				060BB466993B8ABFCBF20D0BAACEE528 /* mscrtc-mscrtc */,
+				8FA1921CD2121F83D5167E99D231E131 /* Pods-Example */,
+				89338830BEEB2E6BF4E36732545E4FD1 /* SocketRocket */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F577FCEC592119F3593CAE8036C79DF /* Resources */ = {
+		6A984902A09F3433C50C6CDD5414165C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2EC6B4F131FF3FEA12D93023B787D21 /* en.lproj in Resources */,
-				977D6AC26AA72BB273E8FDB10AD34F25 /* Images.xcassets in Resources */,
-				778F6296B14A3EABB4088093863C4A35 /* MSCWebRTC.storyboard in Resources */,
+				74B0A5DCE022C4F9641AD5C884C19238 /* en.lproj in Resources */,
+				903EAE2B7FF43F66768A0354FA660B24 /* Images.xcassets in Resources */,
+				6EA4AE551562ED1B41C39ABB7AC611F5 /* MSCWebRTC.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96843A4C90EE20ED8B47F426B2140284 /* Resources */ = {
+		BB0B2C9D6B40CFC618B41D25D3E895E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3352D687749170299127EDC6D09B274 /* mscrtc.bundle in Resources */,
+				CB63A4CA8AEA6281F05EF111C5542E86 /* mscrtc.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0944FC00E69A2BE321A6045254C67BD1 /* Sources */ = {
+		004384D371D809A5CBDF3F8A7917C3E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B1F1F9308F762CBC615B958BD1112AB /* Pods-Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39BB16208397FC8981B244CD1276C02F /* Sources */ = {
+		31CACD9D1D51FB292059641084FAF733 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D0AB36EB7651C2C9A06B4F8744D014 /* ADCallKitManager.m in Sources */,
-				8D06156AA668EF9741C2F7CE66BF1305 /* ARDAppClient.m in Sources */,
-				2CBEB936D911B0D3D96DDB7289550328 /* ARDMessageResponse.m in Sources */,
-				D14085604A086B87682B04AE3EB8513D /* ARDRegisterResponse.m in Sources */,
-				5F3A509A2E1817613C57F59DD2B0313A /* ARDSignalingMessage.m in Sources */,
-				EED1AF381989FEE40D5D965F0B41C571 /* ARDUtilities.m in Sources */,
-				172FC5FA3BB723222D6B91795DF6EF5D /* ARDWebSocketChannel.m in Sources */,
-				35FEE9883BC448EB10649FD94B36FC7B /* ARTCRoomTextInputViewCell.m in Sources */,
-				AED389FDF4721B65D3A6BE33958969B7 /* ARTCRoomViewController.m in Sources */,
-				10DAA0DFDE315BFD24A6F1F8D74078C1 /* ARTCVideoChatViewController.m in Sources */,
-				A28BAE63FE996C9B27B75ADB1AE3063C /* mscrtc-dummy.m in Sources */,
-				0A87DF2F34F9B3AC62DF16288B2E13D8 /* RTCMediaStream+Configuration.m in Sources */,
-				628997CE08E20B1F85E000F35C83A431 /* Webrtc.m in Sources */,
+				01B6B607E347814E4AE7A9CE5BAC1252 /* ADCallKitManager.m in Sources */,
+				53060CF6AE02C311A4CEEB8A4AC5E32C /* ARDAppClient.m in Sources */,
+				17D09D473CAD508BC1A6C2C994BDC74B /* ARDMessageResponse.m in Sources */,
+				BC261FE1DADF6FEE720A4B10916B0304 /* ARDRegisterResponse.m in Sources */,
+				69B68959E794563820F1D16C2360F91D /* ARDSignalingMessage.m in Sources */,
+				56D3356E663F88529C5A516DC9ADBF6E /* ARDUtilities.m in Sources */,
+				AAE68174FCBCCADCF9F9D4A59D396151 /* ARDWebSocketChannel.m in Sources */,
+				5A6BC569799725CCE2A2B4192DF18DA4 /* ARTCRoomTextInputViewCell.m in Sources */,
+				2AD36456705B5064453C970141ECBB1B /* ARTCRoomViewController.m in Sources */,
+				48A727C50910B55AC6E8EF6BF3E5719B /* ARTCVideoChatViewController.m in Sources */,
+				C13DC05643449FDFB8326A58F02A61D4 /* mscrtc-dummy.m in Sources */,
+				FB40CC1A22B97CCD43B5EFE43CE5C75B /* RTCMediaStream+Configuration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D795BC8FE7CF8EF956D7FEF07FA02BC /* Sources */ = {
+		75E6832A9F63576036B17B2A9DC52725 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0990A7F8E10EE5D55A4C693C77FBBAF0 /* TApplicationError.m in Sources */,
-				1B81487BC632D4DF2109846BFDC616C3 /* TBaseClient.m in Sources */,
-				1FA5DFF276B4038DF3A27BEA9400B872 /* TBinary.swift in Sources */,
-				648019FD9FEF28C3265FE67AF3062FD7 /* TBinaryProtocol.m in Sources */,
-				98BBBE8FB175315D1B71B9E7C53C183B /* TCompactProtocol.m in Sources */,
-				134DFCDBC84A16C1D4BE587BED579C64 /* TEnum.swift in Sources */,
-				5A491082C3C12711FAAE9DB066BD75DD /* TError.m in Sources */,
-				59D204C6851A88EB1D874B6A70BA4A46 /* TFramedTransport.m in Sources */,
-				7B6D634D9CD2A17CDCB39A2B16537904 /* thrift-dummy.m in Sources */,
-				FBF5112F67868457285A57805BA8182C /* THTTPSessionTransport.m in Sources */,
-				49537ECFB5BC82330F434CD7BD701BDF /* THTTPTransport.m in Sources */,
-				F7DDF84A0DC19E313922DB9D9A5BD63E /* TList.swift in Sources */,
-				5A736632001A12D58F321672EBDEA9D6 /* TMap.swift in Sources */,
-				3B021417104E588CD1817608068086A1 /* TMemoryBuffer.m in Sources */,
-				8C4EA0E3941E097985F19D39167DEECF /* TMultiplexedProtocol.m in Sources */,
-				CED38567DAB992B94D573A4BDE97B4B7 /* TNSFileHandleTransport.m in Sources */,
-				4FDFD2991669A4858EDB4D0E2FAE08CD /* TNSStreamTransport.m in Sources */,
-				64C7777C1052DB166DE81D0771720D22 /* TProtocol.swift in Sources */,
-				559A273F877A12EDFB30B6C054C6BF2E /* TProtocolDecorator.m in Sources */,
-				3C9F3944DDFBFC8057A838B08D18D6AE /* TProtocolError.m in Sources */,
-				671FAC5F24C2B68B59DE890853ECF399 /* TProtocolUtil.m in Sources */,
-				A4535CCECFDC68F5DF821889E5885579 /* TSerializable.swift in Sources */,
-				3EA7338FCE56B308406B854005622A8E /* TSet.swift in Sources */,
-				0F97A28DA43F6A1F6BF17A6B4D65D5D3 /* TSharedProcessorFactory.m in Sources */,
-				A010904CA3C94B08E158CCB763AC300B /* TSocketServer.m in Sources */,
-				53554F85C2745AB54A14EADC906335C9 /* TSocketTransport.m in Sources */,
-				880E1D9A2A3DF031817A8B530B8F0138 /* TSSLSocketTransport.m in Sources */,
-				CE0D66D674B879001D43D1BA86C78338 /* TSSLSocketTransportError.m in Sources */,
-				AFE48A7C0017D9C1AC4349ABA5984BD6 /* TStruct.swift in Sources */,
-				42BAF031897410C7A25A795997E8465B /* TTransportError.m in Sources */,
+				18395E77DE351546B3487B98168D6B82 /* SocketRocket-dummy.m in Sources */,
+				8869601F33739292337B931F40836BEC /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F06823A2D70A93B3AC13632006D5D253 /* Sources */ = {
+		C81579B4CA5324A6FF0A1609991BE0D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F40B8CBF8AFDFBF7456E981BFEF7A2F /* SocketRocket-dummy.m in Sources */,
-				9041BBEA14B40B2E28A147352E6D77A6 /* SRWebSocket.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5728D8716ACEB9DC961E132383F6D02 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4B6BFCF289D13B80C699621CDCC70D98 /* Pods-Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1958E1A7D8708560E467CC5F81829BDA /* PBXTargetDependency */ = {
+		5972AF2D202117D450B2AE8B0B7B1FCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SocketRocket;
-			target = B42ECEB74804B9BBCCEAA1DCF16296BE /* SocketRocket */;
-			targetProxy = F706E89B0CCC746FE9B421C6126428B4 /* PBXContainerItemProxy */;
+			target = 89338830BEEB2E6BF4E36732545E4FD1 /* SocketRocket */;
+			targetProxy = D6FF7A9F32322E68EB4899B33F3C8E9C /* PBXContainerItemProxy */;
 		};
-		1AF614AEEC63EB0AAC9DA67260E840D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = thrift;
-			target = 62F5C3796638CC63A5520161A0367CCB /* thrift */;
-			targetProxy = 5C1826735C1CD6945B65B3535B6C9048 /* PBXContainerItemProxy */;
-		};
-		22C6104F23432973ED0DFF43A5F01007 /* PBXTargetDependency */ = {
+		9180BC79D3205B40128F74FF4D20014C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mscrtc-mscrtc";
-			target = 628EAAF8F239A793B5B24FCE52DAD6E7 /* mscrtc-mscrtc */;
-			targetProxy = 2C0A81F430EFAFCAB317D6E7ECD8B693 /* PBXContainerItemProxy */;
+			target = 060BB466993B8ABFCBF20D0BAACEE528 /* mscrtc-mscrtc */;
+			targetProxy = 98432EAB8CF33A74D0B23B85033AC0D0 /* PBXContainerItemProxy */;
 		};
-		5A71DF354DF03122E30D72A1704F1C04 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = mscrtc;
-			target = B0C13420E1D357B949913D5B86899FFA /* mscrtc */;
-			targetProxy = E9FBF42D882B8EDEFB5BFB555321046C /* PBXContainerItemProxy */;
-		};
-		6D0B42F852FA3B4C6B68D2AD8D18B752 /* PBXTargetDependency */ = {
+		AE025D57A8CA9A9CEF93A0BF62729F54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SocketRocket;
-			target = B42ECEB74804B9BBCCEAA1DCF16296BE /* SocketRocket */;
-			targetProxy = DAA09B83C18ED00B8864B84FDA786278 /* PBXContainerItemProxy */;
+			target = 89338830BEEB2E6BF4E36732545E4FD1 /* SocketRocket */;
+			targetProxy = BFC7ECE37C2BAE39BE576562970A2799 /* PBXContainerItemProxy */;
 		};
-		FBE6CD3A253D291FA7DEDB46B34101F0 /* PBXTargetDependency */ = {
+		F53C2A42929D8239FBCAB37C6AEB23AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = thrift;
-			target = 62F5C3796638CC63A5520161A0367CCB /* thrift */;
-			targetProxy = C3B22BC50A7E3B4E012D98FB3DC42BE7 /* PBXContainerItemProxy */;
+			name = mscrtc;
+			target = 87F461D418681B815BE800D458406462 /* mscrtc */;
+			targetProxy = 32D122B5BA012CCB57777A355DBE4EED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		90E0315506659AB3CE2101F0A96E0E70 /* MSCWebRTC.storyboard */ = {
+		4DC4EC525C9FCA38CDB9D880D7C861ED /* MSCWebRTC.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				034D9B421E83980600A23E61 /* en */,
+				545FC9E866679CF6489894E489EE65B1 /* MSCWebRTC.storyboard */,
 			);
 			name = MSCWebRTC.storyboard;
 			path = .;
@@ -1008,74 +665,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0E194548D4818BC8F707E87324B74676 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 149054C495E8EC590CAB4C524133016F /* Pods-Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Example/Pods-Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		36631922E41E82F4BC16CB2E9056DC48 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E36A01630AFE6066AE36E184B43B207 /* SocketRocket.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SocketRocket/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SocketRocket/SocketRocket.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SocketRocket;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		77A8F5083843020B84A7140B9E24DC00 /* Release */ = {
+		220A84AC814BDAC6B90BF26BACF0B75A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E512A5F985F876750237FD237C3AEEDA /* Pods-Example.release.xcconfig */;
 			buildSettings = {
@@ -1110,40 +700,69 @@
 			};
 			name = Release;
 		};
-		8A8690A7ADD353ACFADEC23ABC03CC5A /* Debug */ = {
+		33B176D6DDEE197A4CC69269BA2474EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F92F27F13CDA4D2F0EA120436D247F /* thrift.xcconfig */;
+			baseConfigurationReference = 32529CBBDB0FB8FD04805EB8DA60F856 /* SocketRocket.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/thrift/thrift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/thrift/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SocketRocket/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/thrift/thrift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = thrift;
+				MODULEMAP_FILE = "Target Support Files/SocketRocket/SocketRocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SocketRocket;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		907ACB83C9E933C6CED27805E6F97554 /* Release */ = {
+		41DDB5449A9A036545AC6B1F975F289D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/mscrtc/mscrtc-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/mscrtc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/mscrtc/mscrtc.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = mscrtc;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4F6443E9CA0589BDB5F13F8732404852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
 			buildSettings = {
@@ -1159,6 +778,103 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
+		};
+		688FDFFC7543FA4E4B281A45B46BE8B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 149054C495E8EC590CAB4C524133016F /* Pods-Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Example/Pods-Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D031914FFA1B98FF5237E6205300F58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/mscrtc/mscrtc-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/mscrtc/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/mscrtc/mscrtc.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = mscrtc;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8004F3C805371F6E68934674FD38AE07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32529CBBDB0FB8FD04805EB8DA60F856 /* SocketRocket.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SocketRocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SocketRocket/SocketRocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SocketRocket;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		A435E3C35B2666C25C53422D898980A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1204,7 +920,7 @@
 			};
 			name = Debug;
 		};
-		AC47331649CE440749AF0CBBC153662A /* Debug */ = {
+		C04EDF47DB378B79BE1E7DF38AD47335 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
 			buildSettings = {
@@ -1220,102 +936,6 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
-		};
-		CB13810B48A4F796AF8483CCCC097316 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/mscrtc/mscrtc-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/mscrtc/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/mscrtc/mscrtc.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = mscrtc;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E0A8615F62BF6416AF972C38542D4827 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38F92F27F13CDA4D2F0EA120436D247F /* thrift.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/thrift/thrift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/thrift/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/thrift/thrift.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = thrift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		EF444080859C88E03C2E4A4AA06A3477 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A15C07454E7BE0486FB447D734BE06F /* mscrtc.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/mscrtc/mscrtc-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/mscrtc/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/mscrtc/mscrtc.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = mscrtc;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		F2C4F47FC8AD76198661C5EFDE751899 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1357,37 +977,6 @@
 			};
 			name = Release;
 		};
-		F8EFC91ED2271E3CCF1EAD5E63B4B899 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E36A01630AFE6066AE36E184B43B207 /* SocketRocket.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SocketRocket/SocketRocket-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SocketRocket/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SocketRocket/SocketRocket.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SocketRocket;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1400,47 +989,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		467483D7BBC77AADFA3A56E4E1369B3E /* Build configuration list for PBXNativeTarget "mscrtc-mscrtc" */ = {
+		35EFDAFEC02B3FC97DF0ECDE678C5A43 /* Build configuration list for PBXNativeTarget "Pods-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AC47331649CE440749AF0CBBC153662A /* Debug */,
-				907ACB83C9E933C6CED27805E6F97554 /* Release */,
+				688FDFFC7543FA4E4B281A45B46BE8B1 /* Debug */,
+				220A84AC814BDAC6B90BF26BACF0B75A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66BEAA354819A73B5BDF69C108033941 /* Build configuration list for PBXNativeTarget "SocketRocket" */ = {
+		AD504AB18259E668881A54C9882A56F2 /* Build configuration list for PBXNativeTarget "mscrtc-mscrtc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36631922E41E82F4BC16CB2E9056DC48 /* Debug */,
-				F8EFC91ED2271E3CCF1EAD5E63B4B899 /* Release */,
+				C04EDF47DB378B79BE1E7DF38AD47335 /* Debug */,
+				4F6443E9CA0589BDB5F13F8732404852 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96FCAAF35C790F56593D5A694C53D884 /* Build configuration list for PBXNativeTarget "mscrtc" */ = {
+		C3B57A45FB15AF79E97185D0F3A6C657 /* Build configuration list for PBXNativeTarget "mscrtc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CB13810B48A4F796AF8483CCCC097316 /* Debug */,
-				EF444080859C88E03C2E4A4AA06A3477 /* Release */,
+				7D031914FFA1B98FF5237E6205300F58 /* Debug */,
+				41DDB5449A9A036545AC6B1F975F289D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC757ACBD8B540236B325121A4C5CA3D /* Build configuration list for PBXNativeTarget "thrift" */ = {
+		CF3497C1ECCF5C09162FA6D9791ED5ED /* Build configuration list for PBXNativeTarget "SocketRocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8A8690A7ADD353ACFADEC23ABC03CC5A /* Debug */,
-				E0A8615F62BF6416AF972C38542D4827 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FAD03B7D1C51A991CC46CBB8B407BBAB /* Build configuration list for PBXNativeTarget "Pods-Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0E194548D4818BC8F707E87324B74676 /* Debug */,
-				77A8F5083843020B84A7140B9E24DC00 /* Release */,
+				8004F3C805371F6E68934674FD38AE07 /* Debug */,
+				33B176D6DDEE197A4CC69269BA2474EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

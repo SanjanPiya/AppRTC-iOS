@@ -21,7 +21,6 @@
 #import "ARTCRoomViewController.h"
 #import "ARTCVideoChatViewController.h"
 #import "RTCMediaStream+Configuration.h"
-#import "Webrtc.h"
 
 FOUNDATION_EXPORT double mscrtcVersionNumber;
 FOUNDATION_EXPORT const unsigned char mscrtcVersionString[];
