@@ -36,9 +36,7 @@
 #import "ARDWebSocketChannel.h"
 #import <WebRTC/WebRTC.h>
 #import <WebRTC/RTCPeerConnection.h>
-#import "TBinaryProtocol.h"
-#import "TSocketTransport.h"
-#import "Webrtc.h"
+#import "ADCallKitManager.h"
 
 static NSString *kARDDefaultSTUNServerUrl = @"stun:stun.l.google.com:19302";
 
@@ -131,7 +129,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"support"
                                                               forKey:@"MY_USERNAME"];
       
-    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://192.168.43.151/jWebrtc"
+    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://nicokrause.com/jWebrtc"
                                                                forKey:@"SERVER_HOST_URL"];
       
     [defaults registerDefaults:appDefaults];
@@ -163,11 +161,13 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect : false useCallback: false];
 }
 
-- (void)registerWithSwift : (NSString *)userId : (NSString *)token {
-    self.from = userId;
+- (void)registerTokenOnServer{
+
+    
+    
     //172.20.10.6
     //192.168.43.151
-    TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151"
+  /*  TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151"
                                                                               port:9090];
     // Talk to a server via socket, using a binary protocol
     TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
@@ -181,12 +181,12 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                               }];
     RegisterUserId *registerUser = [[RegisterUserId alloc] initWithUserId:self.from firebaseToken:token];
     RegisterResult *result = [client registerUserId:registerUser error:&err];
-    
-    NSLog(@"RegisterUserId returned: %@",[result response]);
+   
+    NSLog(@"RegisterUserId returned: %@",[result response]); */
     
 }
 
-- (void)connectToWebsocket: (BOOL) reconnect : (NSString *) from{
+- (void)connect: (BOOL) reconnect : (NSString *) from{
     if(from!=nil){
             self.from = from;
     }
@@ -209,10 +209,9 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     __weak ARDAppClient *weakSelf = self;
     ARDAppClient *strongSelf = weakSelf;
-   // _channel._state = kARDWebSocketChannelStateOpen; //= kARDWebSocketChannelStateOpen;
+   
     [strongSelf registerWithColliderIfReady];
-    
-    [_channel getAppConfig];
+    [_channel registerFrom:from];
     
     
 }
@@ -221,33 +220,36 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect:true useCallback:false];
     _channel = nil;
 }
-- (void)sendCallOverThrift :(NSString *) fromName :(NSString *) toName : (NSString *) fromUUID : (NSString *) toUUID{
-    
-    TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151" port:9090];
-    //[[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]
-    
-    // Talk to a server via socket, using a binary protocol
-    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
-    
-    WebrtcClient *client = [[WebrtcClient alloc] initWithProtocol:protocol];
-        
-    NSError *err = [NSError errorWithDomain:@"webrtc"
-                                       code:100
-                                   userInfo:@{
-                                              NSLocalizedDescriptionKey:@"Error while talking to thrift server while making a call"
-                                              }];
-    
-    Call *call = [[Call alloc] initWithFromName:fromName toName:toName fromUUID:fromUUID toUUID:toUUID];
-    
-    CallResult *result = [client call:call error:&err];
-    NSLog(@"call returned: %@",[result response]);
 
-    
-}
 
 - (void)call:(NSString *)from : (NSString *)to{
     self.to = to;
     self.from = from;
+    
+   // [self connect:false :from ];
+    /*   /**
+     * Report Outgoing-Call to Callkit
+     */
+   /* ADCallKitManagerCompletion startCallcompletion =^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"ADCallKitManagerCompletion startCallcompletion error %@", error);
+            [self disconnect];
+        }else{
+            //start signaling
+            NSString *fromUUID = [[NSUUID UUID] UUIDString];
+            NSString *toUUID = [[NSUUID UUID] UUIDString];
+            
+            [self connect:false :fromUUID ];
+            
+        }
+    };
+    
+    NSUUID *callUUID = [[ADCallKitManager sharedInstance] reportOutgoingCallWithContact:@"nico krause"
+                                                                             completion:startCallcompletion];
+    
+    [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
+    */
+
     
     [self startSignalingIfReady];
 }
@@ -864,6 +866,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)registerWithColliderIfReady {
     _websocketURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",_websocketURL, @"/ws"]];
     _channel =  [[ARDWebSocketChannel alloc] initWithURL:_websocketURL delegate:(id) self];
+
 }
 
 - (void)sendSignalingMessageToCollider:(ARDSignalingMessage *)message {

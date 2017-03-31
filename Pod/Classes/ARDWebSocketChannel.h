@@ -71,8 +71,6 @@ typedef NS_ENUM(NSInteger, ARDWebSocketChannelState) {
 - (void)registerFrom:(NSString *)name;
 - (void)call:(NSString *)from : (NSString *)to : (RTCSessionDescription *) description :(Boolean) direct;
 - (void)incomingCallResponse:(NSString *)from : (RTCSessionDescription *) description;
-- (void)incomingScreenCallResponse:(NSString *)from : (RTCSessionDescription *) description;
-
 - (void)sendData:(NSData *)data;
 
 @end

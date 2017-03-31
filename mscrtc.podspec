@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "mscrtc"
-  s.version          = "0.0.1"
+  s.version          = "0.0.2"
   s.summary          = "MSCRTC - WebRTC functions for mscrtc-ios"
   s.description      = <<-DESC
                        This pod add WebRTC functions to an app. 
@@ -24,12 +24,12 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '8.1'
   s.requires_arc = true
-  s.dependency  'thrift'
+  #s.dependency  'thrift'
   s.dependency  'WebRTC'
   s.dependency  'SocketRocket'
   s.source_files = 'Pod/Classes'
   s.resource_bundles = {
-    'mscrtc' => ['Pod/**/*.{lproj,storyboard,xcassets}']
+    'mscrtc' => ['Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

@@ -5,7 +5,7 @@
 
 #import "ADCallKitManager.h"
 #import <Intents/Intents.h>
-
+#import "ARDAppClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ADCallKitManager() <CXProviderDelegate>
+@interface ADCallKitManager() <CXProviderDelegate, ARDAppClientDelegate>
 @property (nonatomic, strong) CXProvider *provider;
 @property (nonatomic, strong) CXCallController *callController;
 @property (nonatomic, copy) ADCallKitActionNotificationBlock actionNotificationBlock;
@@ -148,7 +148,7 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
 - (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
     NSLog(@" incoming call from %@",from);
     
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"IncomingCallRequestNotification" object:from];
+   [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:from];
 }
 
 #pragma mark - CXProviderDelegate

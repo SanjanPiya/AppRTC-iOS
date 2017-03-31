@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property(nonatomic, weak) id<ARDAppClientDelegate> delegate;
 @property(nonatomic, weak) id<ARDAppClientUpdateUserTableDelegate> registeredUserdelegate;
 @property(nonatomic, strong) NSString *serverHostUrl;
+@property(nonatomic, strong) NSString *token;
 @property(nonatomic, strong) NSString *from;
 @property(nonatomic, strong) NSString *to;
 @property(nonatomic, assign) BOOL isInitiator; //we are calling
@@ -102,8 +103,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
 @property (assign, nonatomic) BOOL isZoom; //used for double tap remote view
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate;
-- (void)registerWithSwift :(NSString *)userId : (NSString*) token;
-- (void)connectToWebsocket: (BOOL) reconnect : (NSString *) from;
+- (void)registerWithSwift;
+- (void)rememberTokenForRegistration:(NSString *)token;
+- (void)connect: (BOOL) reconnect : (NSString *) from;
 - (void)startSignalingIfReady;
 - (void)startSignalingScreensharing;
 - (void)sendSignalingMessageToCollider: (ARDSignalingMessage *)message;
