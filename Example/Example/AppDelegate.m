@@ -116,7 +116,7 @@
             self.client.to = toUUID;
             self.client.isPushKitConfig = true;
             self.client.isInitiator = true; //if we receive a push message from apple we switch the role of beeing the initiater of the call. We become initiater although the other party was calling! a bit confusing but practical. "outgoing" call needs to be accepted from the other party immediately so no dialog of "incoming call" is appearing there anymore. for that reason we set the direct call flag in the websocket signaling 'call' to true. if the client receives this he will connect the call directly without asking.
-            [self.client connectToWebsocket : false : nil];          
+            [self.client connect : false : nil];
         }
     };
 
