@@ -1,6 +1,6 @@
 {
   "name": "mscrtc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "summary": "MSCRTC - WebRTC functions for mscrtc-ios",
   "description": "This pod add WebRTC functions to an app. \nIt works together with the msc-kurento mediaserver implementation in Java",
   "homepage": "https://github.com/inspiraluna/AppRTC-iOS",
@@ -10,16 +10,13 @@
   },
   "source": {
     "git": "https://github.com/inspiraluna/AppRTC-iOS.git",
-    "tag": "0.0.1"
+    "tag": "0.0.2"
   },
   "platforms": {
     "ios": "8.1"
   },
   "requires_arc": true,
   "dependencies": {
-    "thrift": [
-
-    ],
     "WebRTC": [
 
     ],
@@ -30,7 +27,7 @@
   "source_files": "Pod/Classes",
   "resource_bundles": {
     "mscrtc": [
-      "Pod/**/*.{lproj,storyboard,xcassets}"
+      "Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}"
     ]
   }
 }
