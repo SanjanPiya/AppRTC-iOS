@@ -27,7 +27,7 @@
     //Connect to the room
     if(self.client == nil){
         self.client = [[ARDAppClient alloc] initWithDelegate:self];
-        [self.client connectToWebsocket : false : nil];
+        [self.client connect : false : nil];
     }
     
     [super viewWillAppear:animated];

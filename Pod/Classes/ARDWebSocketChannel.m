@@ -75,7 +75,6 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
       
     NSLog(@"Opening WebSocket.");
     [_socket open];
- 
   }
   return self;
 }
@@ -93,7 +92,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
 }
 
 - (void)getAppConfig {
-   if (_state == kARDWebSocketChannelStateOpen) {
+  if (_state == kARDWebSocketChannelStateOpen) {
        
         NSDictionary *appConfigMessage = @{
                                             @"id": @"appConfig"
@@ -104,7 +103,7 @@ static NSString const *kRTCICEServerCredentialKey = @"credential";
                                           error:nil];
         
         [self sendData: message];
-    }
+   }
 }
 
 - (void)registerFrom:(NSString *)name {
