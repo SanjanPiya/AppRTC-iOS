@@ -8,7 +8,7 @@
 
 #import "ARTCVideoChatViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "ADCallKitManager.h"
 @implementation ARTCVideoChatViewController
 
 - (void)viewDidLoad {
@@ -40,7 +40,6 @@
     [self.client.viewWrapper addGestureRecognizer:tapGestureRecognizer];
     
     //Add Double Tap to zoom
-   // tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(zoomRemote)];
     tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(switchCamera)];
     [tapGestureRecognizer setNumberOfTapsRequired:2];
     [self.client.viewWrapper addGestureRecognizer:tapGestureRecognizer];
@@ -63,19 +62,11 @@
         [self.client connect : false : nil];
     }
     
-    NSString *callingString;
-    
-    if (self.client.isInitiator){
-        callingString = [NSString stringWithFormat:@"calling to %@", self.client.to];
-        [self.urlLabel setText: callingString];
-        NSLog(@"%@", callingString);
-        [self.client call: self.client.from:  self.client.to];
-    }else{
-        callingString = [NSString stringWithFormat:@"call from %@", self.client.to];
-        [self.urlLabel setText: callingString];
-        NSLog(@"%@", callingString);
-        [self.client startSignalingIfReady];
-    }
+    NSString *callingString = [NSString stringWithFormat:@"call from %@", self.client.fromName];
+    [self.urlLabel setText: callingString];
+    NSLog(@"%@", callingString);
+    [self.client startSignalingIfReady];
+
 
 }
 
@@ -95,12 +86,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    [self disconnect:false];
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application {
-   // [self disconnect:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,16 +115,11 @@
         self.client.screenVideoTrack = nil;
         [self.client.screenView renderFrame:nil];
         
-       // if(self.client.isInitiator)
         [self.client disconnect: ownDisconnect useCallback: false ];
         if(self.client.isCallbackMode){
             NSLog(@"Call the other peer to send another stream - e.g. screensharing / video");
             ARDCallbackMessage *callbackMessage =  [[ARDCallbackMessage alloc] init];
-           // NSData *callBackData = [callbackMessage JSONData];
-            //usleep(2000000);
             [self.client sendSignalingMessageToCollider: callbackMessage];
-            //usleep(2000000);
-            
         }
     }
 }
@@ -210,7 +193,7 @@
 - (IBAction)hangupButtonPressed:(id)sender {
     //Clean up
     [self disconnect: true];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -232,25 +215,12 @@
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
             // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            //[self.navigationController popToRootViewControllerAnimated:YES];
             //  [self remoteDisconnected];
             break;
     }
 }
-/*
-  not necessary anymore when calling over pushkit - if app goes into background all calls and signaling should already be cancelled and its not necessary to start signaling as soon as the app comes back from background
- 
-- (void)enterBackground:(NSNotification *)notification{
-      [self.client disconnect];
-    
-}
 
-
-- (void)returnFromBackground:(NSNotification *)notification{
-    
-    [self.client connectToWebsocket:true:nil];
-    
-} */
 - (void)orientationChanged:(NSNotification *)notification{
    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)

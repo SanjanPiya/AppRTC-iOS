@@ -89,6 +89,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
 @synthesize isRegisteredWithWebsocketServer  = _isRegisteredWithWebsocketServer;
 @synthesize from = _from;
 @synthesize to = _to;
+@synthesize fromName = fromName;
+@synthesize callNSUUID = _callNSUUID;
 @synthesize isInitiator = _isInitiator;
 @synthesize isPushKitConfig = _isPushKitConfig;
 @synthesize isSpeakerEnabled = _isSpeakerEnabled;
@@ -161,31 +163,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [self disconnect : false useCallback: false];
 }
 
-- (void)registerTokenOnServer{
-
-    
-    
-    //172.20.10.6
-    //192.168.43.151
-  /*  TSocketTransport *socketTransport = [[TSocketTransport alloc] initWithHostname:@"192.168.43.151"
-                                                                              port:9090];
-    // Talk to a server via socket, using a binary protocol
-    TBinaryProtocol *protocol = [[TBinaryProtocol alloc] initWithTransport:socketTransport strictRead:YES strictWrite:YES];
-    
-    WebrtcClient *client = [[WebrtcClient alloc] initWithProtocol:protocol];
-    
-    NSError *err = [NSError errorWithDomain:@"webrtc"
-                                       code:100
-                                   userInfo:@{
-                                              NSLocalizedDescriptionKey:@"Error while talking to thrift server during registration"
-                                              }];
-    RegisterUserId *registerUser = [[RegisterUserId alloc] initWithUserId:self.from firebaseToken:token];
-    RegisterResult *result = [client registerUserId:registerUser error:&err];
-   
-    NSLog(@"RegisterUserId returned: %@",[result response]); */
-    
-}
-
 - (void)connect: (BOOL) reconnect : (NSString *) from{
     if(from!=nil){
             self.from = from;
@@ -225,32 +202,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)call:(NSString *)from : (NSString *)to{
     self.to = to;
     self.from = from;
-    
-   // [self connect:false :from ];
-    /*   /**
-     * Report Outgoing-Call to Callkit
-     */
-   /* ADCallKitManagerCompletion startCallcompletion =^(NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"ADCallKitManagerCompletion startCallcompletion error %@", error);
-            [self disconnect];
-        }else{
-            //start signaling
-            NSString *fromUUID = [[NSUUID UUID] UUIDString];
-            NSString *toUUID = [[NSUUID UUID] UUIDString];
-            
-            [self connect:false :fromUUID ];
-            
-        }
-    };
-    
-    NSUUID *callUUID = [[ADCallKitManager sharedInstance] reportOutgoingCallWithContact:@"nico krause"
-                                                                             completion:startCallcompletion];
-    
-    [[ADCallKitManager sharedInstance] updateCall:callUUID state:ADCallStateConnecting];
-    */
-
-    
     [self startSignalingIfReady];
 }
 
@@ -303,7 +254,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     //if device is not yet connected don't do any peerConnection stream actions
     if(_state == kARDAppClientStateDisconnected || _state == kARDAppClientStateConnecting){
-        NSLog(@"orientation changed ");
         return;
     }
     
@@ -345,8 +295,25 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _hasReceivedSdp = NO;
     _messageQueue = [NSMutableArray array];
     _peerConnection = nil;
+    
 
+    NSLog(@"%@", self.callNSUUID);
     self.state = kARDAppClientStateDisconnected;
+    
+    ADCallKitManagerCompletion stopCallcompletion =^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"requestTransaction error %@", error);
+
+        }else{
+            [[ADCallKitManager sharedInstance] updateCall: self.callNSUUID state:ADCallStateEnded];
+        }
+    };
+
+    
+    [[ADCallKitManager sharedInstance] endCall:self.callNSUUID completion:stopCallcompletion];
+    
+    NSDictionary* userInfo = @{@"callType": @"stop"};
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:self userInfo:userInfo];
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
@@ -812,6 +779,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
      self.localVideoTrack = localVideoTrack;
      [self.localVideoTrack addRenderer:self.localView];
+    
+     [[ADCallKitManager sharedInstance] updateCall: self.callNSUUID state:ADCallStateConnected];
 }
 
 - (void)didReceiveRemoteVideoTrack:(RTCVideoTrack *)remoteVideoTrack {
@@ -833,23 +802,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
      }];
 }
 
-- (void)didReceiveScreenVideoTrack:(RTCVideoTrack *)screenVideoTrack {
-    
-    self.screenVideoTrack = screenVideoTrack;
-    
-     [self.remoteVideoTrack removeRenderer:self.remoteView];
-     [self.remoteView renderFrame:nil];
-     [self.screenVideoTrack addRenderer:self.remoteView];
-     [self.remoteVideoTrack addRenderer:self.screenView];
-    
-    
-    [UIView animateWithDuration:0.4f animations:^{
-        
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UIDeviceOrientationDidChangeNotification" object:self];
-        
-    }];
-}
 
 - (void)didError:(NSError *)error {
     UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:nil
@@ -858,6 +810,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
                                                                                  cancelButtonTitle:@"OK"
                                                                                  otherButtonTitles:nil];
     [alertView show];
+    [[ADCallKitManager sharedInstance] updateCall: self.callNSUUID state:ADCallStateEndedWithFailure];
     [self disconnect : false useCallback: false];
 }
 
