@@ -147,8 +147,8 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
 }
 - (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
     NSLog(@" incoming call from %@",from);
-    
-   [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:from];
+    NSDictionary* userInfo = @{@"callType": @"start"};
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:from userInfo:userInfo];
 }
 
 #pragma mark - CXProviderDelegate
