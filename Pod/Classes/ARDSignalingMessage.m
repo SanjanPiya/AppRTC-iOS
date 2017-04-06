@@ -145,9 +145,6 @@ static NSString const *kARDSignalingCandidate = @"candidate";
       bool callback = ([values[@"callback"] length] != 0);
       message = [[ARDByeMessage alloc] initWithCallback:callback];
   }
-  else if ([typeString isEqualToString:@"stopScreenCommunication"]) {
-      message = [[ARDScreenByeMessage alloc] init];
-  }
   else if ([typeString isEqualToString:@"ping"]) {
       message = [[ARDPingMessage alloc] init];
   }
@@ -323,20 +320,6 @@ static NSString const *kARDSignalingCandidate = @"candidate";
 }
 @end
 
-@implementation ARDScreenByeMessage
-- (instancetype)init {
-    return [super initWithType:kARDSignalingMessageTypeScreenBye];
-}
-
-- (NSData *)JSONData {
-    NSDictionary *message = @{
-                              @"id": @"stopScreen"
-                              };
-    return [NSJSONSerialization dataWithJSONObject:message
-                                           options:NSJSONWritingPrettyPrinted
-                                             error:NULL];
-}
-@end
 
 @implementation ARDPingMessage
 - (instancetype)init {

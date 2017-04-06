@@ -34,7 +34,9 @@ typedef NS_ENUM(NSInteger, ARDAppClientState) {
   kARDAppClientStateDisconnected,
   // Connecting to servers.
   kARDAppClientStateConnecting,
-  // Connected to servers.
+
+  kARDAppClientStateRegistered,
+    // Connected to servers.
   kARDAppClientStateConnected,
   //Ice finished
   kARDAppClientIceFinished

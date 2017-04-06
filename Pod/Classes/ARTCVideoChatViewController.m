@@ -62,7 +62,7 @@
         [self.client connect : false : nil];
     }
     
-    NSString *callingString = [NSString stringWithFormat:@"call from %@", self.client.fromName];
+    NSString *callingString = [NSString stringWithFormat:@"Telefonat mit: %@", self.client.fromName];
     [self.urlLabel setText: callingString];
     NSLog(@"%@", callingString);
     [self.client startSignalingIfReady];
@@ -214,9 +214,6 @@
             break;
         case kARDAppClientStateDisconnected:
             NSLog(@"Client disconnected.");
-            // [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            //[self.navigationController popToRootViewControllerAnimated:YES];
-            //  [self remoteDisconnected];
             break;
     }
 }
