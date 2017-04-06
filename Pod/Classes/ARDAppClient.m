@@ -126,7 +126,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
     _isSpeakerEnabled = YES;
     //_websocketURL = [NSURL URLWithString: @"wss://nicokrause.com/jWebrtc"];
-    _websocketURL = [NSURL URLWithString: @"wss://192.168.43.151/jWebrtc"];
+    //_websocketURL = [NSURL URLWithString: @"wss://192.168.43.151/jWebrtc"];
+    _websocketURL = [NSURL URLWithString: @"wss://webrtc.a-fk.de/jWebrtc"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(orientationChanged:)
