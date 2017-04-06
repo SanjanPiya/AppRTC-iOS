@@ -131,18 +131,23 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
 
 - (void)appClient:(ARDAppClient *)client didChangeState:(ARDAppClientState)state {
     switch (state) {
-        case kARDAppClientStateConnected:
-            NSLog(@"Client connected.");
+        case kARDAppClientStateRegistered:
+        {
+            NSLog(@"Client registered...");
+            //Start
+            ADCallKitManagerCompletion startIncomingCallcompletion =^(NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"requestTransaction error %@", error);
+                }else{
+                    
+                }
+            };
+            
+            //Start CallKit
+            client.callNSUUID = [[ADCallKitManager sharedInstance]
+                                 reportIncomingCallWithContact:client.fromName completion:startIncomingCallcompletion];
             break;
-        case kARDAppClientStateConnecting:
-            NSLog(@"Client connecting.");
-            break;
-        case kARDAppClientIceFinished:
-            NSLog(@"ICE  finished");
-            break;
-        case kARDAppClientStateDisconnected:
-            NSLog(@"Client disconnected.");
-            break;
+        }
     }
 }
 - (void)appClient:(ARDAppClient *)client incomingCallRequest:(NSString *)from {
@@ -150,6 +155,7 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     NSDictionary* userInfo = @{@"callType": @"start"};
     [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:from userInfo:userInfo];
 }
+
 
 #pragma mark - CXProviderDelegate
 - (void)provider:(CXProvider *)provider performAnswerCallAction:(nonnull CXAnswerCallAction *)action {

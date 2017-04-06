@@ -37,17 +37,12 @@ typedef enum {
   kARDSignalingMessageTypeRegisterResponse,
   kARDSignalingMessageTypeResponse,
   kARDSignalingMessageIncomingCall,
-  kARDSignalingMessageIncomingScreenCall,
   kARDSignalingMessageStartCommunication,
-  kARDSignalingMessageStartScreenCommunication,
   kARDSignalingMessageIncomingResponseCall,
-  kARDSignalingMessageIncomingScreenResponseCall,
   kARDSignalingMessageTypeCandidate,
-  kARDSignalingMessageTypeScreenCandidate,
   kARDSignalingMessageTypeOffer,
   kARDSignalingMessageTypeAnswer,
   kARDSignalingMessageTypeBye,
-  kARDSignalingMessageTypeScreenBye,
   kARDSignalingMessageTypeCallback,
   kARDSignalingMessageTypePing,
   kARDSignalingMessageTypePong,
@@ -103,11 +98,6 @@ typedef enum {
 
 @interface ARDIncomingCallResponseMessage : ARDSignalingMessage
 @property(nonatomic, readwrite) NSString *from;
-@end
-
-@interface ARDIncomingScreenCallResponseMessage : ARDSignalingMessage
-@property(nonatomic, readwrite) NSString *from;
-@property(nonatomic, readwrite) NSString *to;
 @end
 
 @interface ARDByeMessage : ARDSignalingMessage

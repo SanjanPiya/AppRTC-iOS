@@ -117,15 +117,6 @@
     
 }
 
-- (void)appClient:(ARDAppClient *)client incomingScreenCallRequest:(NSString *)from {
-    NSLog(@" incoming screencall from %@",from);
-    
-    self.client.to = from;
-    self.client.from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
-    
-    [self.client startSignalingScreensharing];
-}
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         NSLog(@"Cancel Tapped.");

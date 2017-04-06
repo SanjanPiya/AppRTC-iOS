@@ -53,7 +53,6 @@ NSString const *kRTCICECandidateSdpKey = @"candidate";
 NSString const *kARDSignalingCandidate = @"candidate";
 
 @interface ARDAppClient (){
-   // NSMutableArray * arrayCondidates;
 }
 
 @property(nonatomic, strong) ARDWebSocketChannel *channel;
@@ -120,31 +119,21 @@ NSString const *kARDSignalingCandidate = @"candidate";
 
 - (instancetype)initWithDelegate:(id<ARDAppClientDelegate>)delegate {
   if (self = [super init]) {
+      
     _delegate = delegate;
     _factory = [[RTCPeerConnectionFactory alloc] init];
     _messageQueue = [NSMutableArray array];
     _iceServers = [NSMutableArray arrayWithObject:[self defaultSTUNServer]];
     _isSpeakerEnabled = YES;
-      
-    // Set the application defaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"support"
-                                                              forKey:@"MY_USERNAME"];
-      
-    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"wss://nicokrause.com/jWebrtc"
-                                                               forKey:@"SERVER_HOST_URL"];
-      
-    [defaults registerDefaults:appDefaults];
-    [defaults registerDefaults:appDefaults2];
-    [defaults synchronize];
-      
+    //_websocketURL = [NSURL URLWithString: @"wss://nicokrause.com/jWebrtc"];
+    _websocketURL = [NSURL URLWithString: @"wss://192.168.43.151/jWebrtc"];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(orientationChanged:)
                                                    name:@"UIDeviceOrientationDidChangeNotification"
                                                  object:nil];
       
     //get default orientation and store it so it cannot be overwritten by other orientations
-      
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if (UIDeviceOrientationIsLandscape(orientation)){
           _isPotrait = false;
@@ -164,6 +153,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (void)connect: (BOOL) reconnect : (NSString *) from{
+   
     if(from!=nil){
             self.from = from;
     }
@@ -172,13 +162,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
         NSLog(@"don't connect again because channel is not nil");
         return;
     }
-    
-    _websocketURL = [NSURL URLWithString: [[NSUserDefaults standardUserDefaults] stringForKey:@"SERVER_HOST_URL"]];
-    
-    if(_from == nil){
-        _from = [[NSUserDefaults standardUserDefaults] stringForKey:@"MY_USERNAME"];
-    }
-    
     
     NSLog(@"called connectToWebsocket to %@ with user: %@",_websocketURL,_from);
     NSParameterAssert(_state == kARDAppClientStateDisconnected);
@@ -189,8 +172,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
    
     [strongSelf registerWithColliderIfReady];
     [_channel registerFrom:from];
-    
-    
 }
 
 - (void)disconnect{
@@ -226,7 +207,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
         [_peerConnection addStream:self.localStream];
         [self sendOffer];
     }
-    
 }
 
 - (void)sendOffer {
@@ -296,8 +276,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     _messageQueue = [NSMutableArray array];
     _peerConnection = nil;
     
-
-    NSLog(@"%@", self.callNSUUID);
+   
     self.state = kARDAppClientStateDisconnected;
     
     ADCallKitManagerCompletion stopCallcompletion =^(NSError * _Nullable error) {
@@ -305,6 +284,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
             NSLog(@"requestTransaction error %@", error);
 
         }else{
+             NSLog(@"disconnecting %@", self.callNSUUID);
             [[ADCallKitManager sharedInstance] updateCall: self.callNSUUID state:ADCallStateEnded];
         }
     };
@@ -312,6 +292,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     [[ADCallKitManager sharedInstance] endCall:self.callNSUUID completion:stopCallcompletion];
     
+    //this works only when we are inside the app and not if we are outside the app
     NSDictionary* userInfo = @{@"callType": @"stop"};
     [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:self userInfo:userInfo];
 
@@ -335,11 +316,15 @@ NSString const *kARDSignalingCandidate = @"candidate";
           [_registeredUserdelegate removeRegisteredUser:_from];
           break;
     case kARDSignalingMessageTypeRegister:
-         NSLog(@"Registrierung wurde angenommen nun sollte Call aufgebaut werden! ");
+       
           break;
     case kARDSignalingMessageTypeRegisterResponse:
-        //   [_delegate appClient: call: ((ARDRegisterResponse *)message).roomId];
-        NSLog(@"Registrierung wurde angenommen nun sollte Call aufgebaut werden, wenn der Call vom CallKit angenommen wurde. ");
+          NSLog(@"Registrierung wurde angenommen nun kann der Call entgegengenommen und aufgebaut werden ! %@", ((ARDRegisterResponse *)message));
+         
+          if(_isInitiator){
+               [_delegate appClient:self didChangeState:kARDAppClientStateRegistered];
+          }
+         
           break;
     case kARDSignalingMessageTypeResponse:
           //what should have been happening here?
@@ -358,7 +343,6 @@ NSString const *kARDSignalingCandidate = @"candidate";
            [_messageQueue addObject:message];
           break;
     case kARDSignalingMessageStartCommunication:
-    case kARDSignalingMessageStartScreenCommunication:
           _hasReceivedSdp = YES;
           [_messageQueue insertObject:message atIndex:0];
           break;
@@ -368,11 +352,9 @@ NSString const *kARDSignalingCandidate = @"candidate";
       [_messageQueue insertObject:message atIndex:0];
       break;
     case kARDSignalingMessageTypeCandidate:
-    case kARDSignalingMessageTypeScreenCandidate:
       [_messageQueue addObject:message];
       break;
     case kARDSignalingMessageTypeBye:
-    case kARDSignalingMessageTypeScreenBye:
         [_messageQueue insertObject:message atIndex:0];
         break;
     case kARDSignalingMessageTypePing:   
@@ -642,9 +624,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
         case kARDSignalingMessageTypeRegister:
         case kARDSignalingMessageTypeRegisterResponse:
         case kARDSignalingMessageIncomingCall:
-        case kARDSignalingMessageIncomingScreenCall:
         case kARDSignalingMessageIncomingResponseCall:
-        case kARDSignalingMessageIncomingScreenResponseCall:
         case kARDSignalingMessageTypeResponse:
         case kARDSignalingMessageTypeOffer:
         case kARDSignalingMessageTypeCallback:
