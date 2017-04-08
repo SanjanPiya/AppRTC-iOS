@@ -1,5 +1,5 @@
 PODS:
-  - mscrtc (0.0.2):
+  - mscrtc (0.0.3):
     - SocketRocket
     - WebRTC
   - SocketRocket (0.5.1)
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mscrtc: 7d269c44075767ef92154a8aec317c758c35eb76
+  mscrtc: 278db63dfac980ae21066036a00f4c4fdc10593a
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   WebRTC: c05e75588769c79b0db6eb007646718751e4f108
 
