@@ -9,10 +9,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-storyboards-sample is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-    pod "mscrtc"
+    pod 'mscrtc', :git => 'https://github.com/inspiraluna/AppRTC-iOS.git', :branch => 'develop'
 
 ##	Components
 1. Code for outgoing calls
