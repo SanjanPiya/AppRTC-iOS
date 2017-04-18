@@ -87,17 +87,6 @@ strip_invalid_archs() {
   fi
 }
 
-
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/SocketRocket/SocketRocket.framework"
-  install_framework "${PODS_ROOT}/WebRTC/WebRTC.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/mscrtc/mscrtc.framework"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/SocketRocket/SocketRocket.framework"
-  install_framework "${PODS_ROOT}/WebRTC/WebRTC.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/mscrtc/mscrtc.framework"
-fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi
