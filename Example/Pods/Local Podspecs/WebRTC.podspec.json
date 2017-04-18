@@ -1,0 +1,19 @@
+{
+  "name": "WebRTC",
+  "version": "0.0.1",
+  "summary": "MSCRTC - WebRTC Api",
+  "description": "This pod adds WebRTC-API",
+  "homepage": "http://webrtc.org/",
+  "license": "MIT",
+  "authors": {
+    "Nico Krause": "nico@le-space.de"
+  },
+  "source": {
+    "git": "https://github.com/inspiraluna/bitcode-webrtc-api.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "8.1"
+  },
+  "vendored_frameworks": "WebRTC.framework"
+}

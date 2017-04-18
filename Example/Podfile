@@ -3,7 +3,7 @@ use_frameworks!
 target 'Example'  do
     pod "SocketRocket"
     # pod "mscrtc", :path => "../"
-    # pod "WebRTC", :path => "../../WebRTC"
+    pod "WebRTC", :path => "../../WebRTC"
      
 end
 

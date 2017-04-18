@@ -17,7 +17,6 @@
 
 #import <WebRTC/RTCMediaStream.h>
 
-
 @interface RTCMediaStream (Configuration)
 
 @property (nonatomic, assign, getter = isAudioEnabled) BOOL audioEnabled;

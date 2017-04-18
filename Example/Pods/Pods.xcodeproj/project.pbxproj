@@ -45,6 +45,7 @@
 		699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
 		764D33E23CE6C1111110B04F5CBADADB /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		7932176CAC4E66CD1DF6CF8B352798BC /* SocketRocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SocketRocket-dummy.m"; sourceTree = "<group>"; };
+		9251D2E9C692D0FDBE644D05417D9BA4 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A33F57D14BABB8E67F58C0FCF2D7CF8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E3725257C79D0C80F87B9E2B291C17A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -88,6 +89,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2689E4182A33322A951EE1CE4BDDF785 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9251D2E9C692D0FDBE644D05417D9BA4 /* WebRTC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4FF663BB937700D1580BDAB7F3EF0D97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,10 +136,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6D42179C96DE46F7FE5EB335414A02C9 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B8BA9542586DF7C50B8E4D7DF5687E9 /* WebRTC */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		7B8BA9542586DF7C50B8E4D7DF5687E9 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				2689E4182A33322A951EE1CE4BDDF785 /* Frameworks */,
+			);
+			name = WebRTC;
+			path = ../../../WebRTC;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				6D42179C96DE46F7FE5EB335414A02C9 /* Development Pods */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
 				4FF663BB937700D1580BDAB7F3EF0D97 /* Pods */,
 				6BFCE8ECD49DD309CCA8F012AB502CC5 /* Products */,

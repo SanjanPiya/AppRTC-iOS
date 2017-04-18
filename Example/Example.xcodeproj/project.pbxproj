@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		035944971EA4D61D003F681C /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944821EA4D61D003F681C /* ADCallKitManager.m */; };
-		035944981EA4D61D003F681C /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944841EA4D61D003F681C /* ARDAppClient.m */; };
-		035944991EA4D61D003F681C /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944861EA4D61D003F681C /* ARDMessageResponse.m */; };
-		0359449A1EA4D61D003F681C /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944881EA4D61D003F681C /* ARDRegisterResponse.m */; };
-		0359449B1EA4D61D003F681C /* ARDSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359448A1EA4D61D003F681C /* ARDSignalingMessage.m */; };
-		0359449C1EA4D61D003F681C /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359448C1EA4D61D003F681C /* ARDUtilities.m */; };
-		0359449D1EA4D61D003F681C /* ARDWebSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359448E1EA4D61D003F681C /* ARDWebSocketChannel.m */; };
-		0359449E1EA4D61D003F681C /* ARTCRoomTextInputViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944901EA4D61D003F681C /* ARTCRoomTextInputViewCell.m */; };
-		0359449F1EA4D61D003F681C /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944921EA4D61D003F681C /* ARTCRoomViewController.m */; };
-		035944A01EA4D61D003F681C /* ARTCVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944941EA4D61D003F681C /* ARTCVideoChatViewController.m */; };
-		035944A11EA4D61D003F681C /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944961EA4D61D003F681C /* RTCMediaStream+Configuration.m */; };
-		03F55F601EA658A3003DC554 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F55F5F1EA658A3003DC554 /* WebRTC.framework */; };
-		03F55F611EA658A3003DC554 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03F55F5F1EA658A3003DC554 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		03F55F7F1EA66087003DC554 /* ADCallKitManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F6A1EA66087003DC554 /* ADCallKitManager.m */; };
+		03F55F801EA66087003DC554 /* ARDAppClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F6C1EA66087003DC554 /* ARDAppClient.m */; };
+		03F55F811EA66087003DC554 /* ARDMessageResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F6E1EA66087003DC554 /* ARDMessageResponse.m */; };
+		03F55F821EA66087003DC554 /* ARDRegisterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F701EA66087003DC554 /* ARDRegisterResponse.m */; };
+		03F55F831EA66087003DC554 /* ARDSignalingMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F721EA66087003DC554 /* ARDSignalingMessage.m */; };
+		03F55F841EA66087003DC554 /* ARDUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F741EA66087003DC554 /* ARDUtilities.m */; };
+		03F55F851EA66087003DC554 /* ARDWebSocketChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F761EA66087003DC554 /* ARDWebSocketChannel.m */; };
+		03F55F861EA66087003DC554 /* ARTCRoomTextInputViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F781EA66087003DC554 /* ARTCRoomTextInputViewCell.m */; };
+		03F55F871EA66087003DC554 /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F7A1EA66087003DC554 /* ARTCRoomViewController.m */; };
+		03F55F881EA66087003DC554 /* ARTCVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F7C1EA66087003DC554 /* ARTCVideoChatViewController.m */; };
+		03F55F891EA66087003DC554 /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F55F7E1EA66087003DC554 /* RTCMediaStream+Configuration.m */; };
 		03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FD2AFA1E71B4C700611005 /* PushKit.framework */; };
 		B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F991EEF435C6314A71EC2B54 /* Pods_Example.framework */; };
 		B6F245341A1238440074C6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245331A1238440074C6E1 /* main.m */; };
@@ -42,44 +40,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		037F6C4D1E9F48EE009DBAF9 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				03F55F611EA658A3003DC554 /* WebRTC.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		035944811EA4D61D003F681C /* ADCallKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCallKitManager.h; sourceTree = "<group>"; };
-		035944821EA4D61D003F681C /* ADCallKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCallKitManager.m; sourceTree = "<group>"; };
-		035944831EA4D61D003F681C /* ARDAppClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
-		035944841EA4D61D003F681C /* ARDAppClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDAppClient.m; sourceTree = "<group>"; };
-		035944851EA4D61D003F681C /* ARDMessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
-		035944861EA4D61D003F681C /* ARDMessageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDMessageResponse.m; sourceTree = "<group>"; };
-		035944871EA4D61D003F681C /* ARDRegisterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDRegisterResponse.h; sourceTree = "<group>"; };
-		035944881EA4D61D003F681C /* ARDRegisterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDRegisterResponse.m; sourceTree = "<group>"; };
-		035944891EA4D61D003F681C /* ARDSignalingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDSignalingMessage.h; sourceTree = "<group>"; };
-		0359448A1EA4D61D003F681C /* ARDSignalingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDSignalingMessage.m; sourceTree = "<group>"; };
-		0359448B1EA4D61D003F681C /* ARDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDUtilities.h; sourceTree = "<group>"; };
-		0359448C1EA4D61D003F681C /* ARDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
-		0359448D1EA4D61D003F681C /* ARDWebSocketChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDWebSocketChannel.h; sourceTree = "<group>"; };
-		0359448E1EA4D61D003F681C /* ARDWebSocketChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDWebSocketChannel.m; sourceTree = "<group>"; };
-		0359448F1EA4D61D003F681C /* ARTCRoomTextInputViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCRoomTextInputViewCell.h; sourceTree = "<group>"; };
-		035944901EA4D61D003F681C /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
-		035944911EA4D61D003F681C /* ARTCRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCRoomViewController.h; sourceTree = "<group>"; };
-		035944921EA4D61D003F681C /* ARTCRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomViewController.m; sourceTree = "<group>"; };
-		035944931EA4D61D003F681C /* ARTCVideoChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCVideoChatViewController.h; sourceTree = "<group>"; };
-		035944941EA4D61D003F681C /* ARTCVideoChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCVideoChatViewController.m; sourceTree = "<group>"; };
-		035944951EA4D61D003F681C /* RTCMediaStream+Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+Configuration.h"; sourceTree = "<group>"; };
-		035944961EA4D61D003F681C /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
-		03F55F5F1EA658A3003DC554 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
+		03F55F691EA66087003DC554 /* ADCallKitManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCallKitManager.h; sourceTree = "<group>"; };
+		03F55F6A1EA66087003DC554 /* ADCallKitManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADCallKitManager.m; sourceTree = "<group>"; };
+		03F55F6B1EA66087003DC554 /* ARDAppClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDAppClient.h; sourceTree = "<group>"; };
+		03F55F6C1EA66087003DC554 /* ARDAppClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDAppClient.m; sourceTree = "<group>"; };
+		03F55F6D1EA66087003DC554 /* ARDMessageResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDMessageResponse.h; sourceTree = "<group>"; };
+		03F55F6E1EA66087003DC554 /* ARDMessageResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDMessageResponse.m; sourceTree = "<group>"; };
+		03F55F6F1EA66087003DC554 /* ARDRegisterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDRegisterResponse.h; sourceTree = "<group>"; };
+		03F55F701EA66087003DC554 /* ARDRegisterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDRegisterResponse.m; sourceTree = "<group>"; };
+		03F55F711EA66087003DC554 /* ARDSignalingMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDSignalingMessage.h; sourceTree = "<group>"; };
+		03F55F721EA66087003DC554 /* ARDSignalingMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDSignalingMessage.m; sourceTree = "<group>"; };
+		03F55F731EA66087003DC554 /* ARDUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDUtilities.h; sourceTree = "<group>"; };
+		03F55F741EA66087003DC554 /* ARDUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDUtilities.m; sourceTree = "<group>"; };
+		03F55F751EA66087003DC554 /* ARDWebSocketChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARDWebSocketChannel.h; sourceTree = "<group>"; };
+		03F55F761EA66087003DC554 /* ARDWebSocketChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARDWebSocketChannel.m; sourceTree = "<group>"; };
+		03F55F771EA66087003DC554 /* ARTCRoomTextInputViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCRoomTextInputViewCell.h; sourceTree = "<group>"; };
+		03F55F781EA66087003DC554 /* ARTCRoomTextInputViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomTextInputViewCell.m; sourceTree = "<group>"; };
+		03F55F791EA66087003DC554 /* ARTCRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCRoomViewController.h; sourceTree = "<group>"; };
+		03F55F7A1EA66087003DC554 /* ARTCRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCRoomViewController.m; sourceTree = "<group>"; };
+		03F55F7B1EA66087003DC554 /* ARTCVideoChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTCVideoChatViewController.h; sourceTree = "<group>"; };
+		03F55F7C1EA66087003DC554 /* ARTCVideoChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCVideoChatViewController.m; sourceTree = "<group>"; };
+		03F55F7D1EA66087003DC554 /* RTCMediaStream+Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+Configuration.h"; sourceTree = "<group>"; };
+		03F55F7E1EA66087003DC554 /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
 		03FD2AF91E71B19700611005 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		03FD2AFA1E71B4C700611005 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		4A0D8E1992BC17774EE28603 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,7 +92,6 @@
 			files = (
 				03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */,
 				B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */,
-				03F55F601EA658A3003DC554 /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,31 +105,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		035944801EA4D60B003F681C /* pod */ = {
+		03F55F681EA66075003DC554 /* pod */ = {
 			isa = PBXGroup;
 			children = (
-				035944811EA4D61D003F681C /* ADCallKitManager.h */,
-				035944821EA4D61D003F681C /* ADCallKitManager.m */,
-				035944831EA4D61D003F681C /* ARDAppClient.h */,
-				035944841EA4D61D003F681C /* ARDAppClient.m */,
-				035944851EA4D61D003F681C /* ARDMessageResponse.h */,
-				035944861EA4D61D003F681C /* ARDMessageResponse.m */,
-				035944871EA4D61D003F681C /* ARDRegisterResponse.h */,
-				035944881EA4D61D003F681C /* ARDRegisterResponse.m */,
-				035944891EA4D61D003F681C /* ARDSignalingMessage.h */,
-				0359448A1EA4D61D003F681C /* ARDSignalingMessage.m */,
-				0359448B1EA4D61D003F681C /* ARDUtilities.h */,
-				0359448C1EA4D61D003F681C /* ARDUtilities.m */,
-				0359448D1EA4D61D003F681C /* ARDWebSocketChannel.h */,
-				0359448E1EA4D61D003F681C /* ARDWebSocketChannel.m */,
-				0359448F1EA4D61D003F681C /* ARTCRoomTextInputViewCell.h */,
-				035944901EA4D61D003F681C /* ARTCRoomTextInputViewCell.m */,
-				035944911EA4D61D003F681C /* ARTCRoomViewController.h */,
-				035944921EA4D61D003F681C /* ARTCRoomViewController.m */,
-				035944931EA4D61D003F681C /* ARTCVideoChatViewController.h */,
-				035944941EA4D61D003F681C /* ARTCVideoChatViewController.m */,
-				035944951EA4D61D003F681C /* RTCMediaStream+Configuration.h */,
-				035944961EA4D61D003F681C /* RTCMediaStream+Configuration.m */,
+				03F55F691EA66087003DC554 /* ADCallKitManager.h */,
+				03F55F6A1EA66087003DC554 /* ADCallKitManager.m */,
+				03F55F6B1EA66087003DC554 /* ARDAppClient.h */,
+				03F55F6C1EA66087003DC554 /* ARDAppClient.m */,
+				03F55F6D1EA66087003DC554 /* ARDMessageResponse.h */,
+				03F55F6E1EA66087003DC554 /* ARDMessageResponse.m */,
+				03F55F6F1EA66087003DC554 /* ARDRegisterResponse.h */,
+				03F55F701EA66087003DC554 /* ARDRegisterResponse.m */,
+				03F55F711EA66087003DC554 /* ARDSignalingMessage.h */,
+				03F55F721EA66087003DC554 /* ARDSignalingMessage.m */,
+				03F55F731EA66087003DC554 /* ARDUtilities.h */,
+				03F55F741EA66087003DC554 /* ARDUtilities.m */,
+				03F55F751EA66087003DC554 /* ARDWebSocketChannel.h */,
+				03F55F761EA66087003DC554 /* ARDWebSocketChannel.m */,
+				03F55F771EA66087003DC554 /* ARTCRoomTextInputViewCell.h */,
+				03F55F781EA66087003DC554 /* ARTCRoomTextInputViewCell.m */,
+				03F55F791EA66087003DC554 /* ARTCRoomViewController.h */,
+				03F55F7A1EA66087003DC554 /* ARTCRoomViewController.m */,
+				03F55F7B1EA66087003DC554 /* ARTCVideoChatViewController.h */,
+				03F55F7C1EA66087003DC554 /* ARTCVideoChatViewController.m */,
+				03F55F7D1EA66087003DC554 /* RTCMediaStream+Configuration.h */,
+				03F55F7E1EA66087003DC554 /* RTCMediaStream+Configuration.m */,
 			);
 			name = pod;
 			sourceTree = "<group>";
@@ -164,7 +146,6 @@
 		B6F245251A1238440074C6E1 = {
 			isa = PBXGroup;
 			children = (
-				03F55F5F1EA658A3003DC554 /* WebRTC.framework */,
 				B6F245301A1238440074C6E1 /* Example */,
 				B6F2454D1A1238450074C6E1 /* ExampleTests */,
 				B6F2452F1A1238440074C6E1 /* Products */,
@@ -185,7 +166,7 @@
 		B6F245301A1238440074C6E1 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				035944801EA4D60B003F681C /* pod */,
+				03F55F681EA66075003DC554 /* pod */,
 				03FD2AF91E71B19700611005 /* Example.entitlements */,
 				B6F245351A1238440074C6E1 /* AppDelegate.h */,
 				B6F245361A1238440074C6E1 /* AppDelegate.m */,
@@ -249,7 +230,6 @@
 				B6F2452C1A1238440074C6E1 /* Resources */,
 				738BB88E953CFFA283E3567B /* [CP] Embed Pods Frameworks */,
 				CD5C5C9897B00A9CDFA141C0 /* [CP] Copy Pods Resources */,
-				037F6C4D1E9F48EE009DBAF9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -396,21 +376,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				035944981EA4D61D003F681C /* ARDAppClient.m in Sources */,
-				035944A11EA4D61D003F681C /* RTCMediaStream+Configuration.m in Sources */,
-				0359449F1EA4D61D003F681C /* ARTCRoomViewController.m in Sources */,
-				0359449B1EA4D61D003F681C /* ARDSignalingMessage.m in Sources */,
-				0359449C1EA4D61D003F681C /* ARDUtilities.m in Sources */,
+				03F55F801EA66087003DC554 /* ARDAppClient.m in Sources */,
+				03F55F891EA66087003DC554 /* RTCMediaStream+Configuration.m in Sources */,
+				03F55F871EA66087003DC554 /* ARTCRoomViewController.m in Sources */,
+				03F55F831EA66087003DC554 /* ARDSignalingMessage.m in Sources */,
+				03F55F841EA66087003DC554 /* ARDUtilities.m in Sources */,
 				B6F245371A1238440074C6E1 /* AppDelegate.m in Sources */,
-				0359449D1EA4D61D003F681C /* ARDWebSocketChannel.m in Sources */,
-				035944A01EA4D61D003F681C /* ARTCVideoChatViewController.m in Sources */,
-				0359449E1EA4D61D003F681C /* ARTCRoomTextInputViewCell.m in Sources */,
+				03F55F851EA66087003DC554 /* ARDWebSocketChannel.m in Sources */,
+				03F55F881EA66087003DC554 /* ARTCVideoChatViewController.m in Sources */,
+				03F55F861EA66087003DC554 /* ARTCRoomTextInputViewCell.m in Sources */,
 				B6F2453A1A1238440074C6E1 /* MasterViewController.m in Sources */,
-				0359449A1EA4D61D003F681C /* ARDRegisterResponse.m in Sources */,
-				035944991EA4D61D003F681C /* ARDMessageResponse.m in Sources */,
+				03F55F821EA66087003DC554 /* ARDRegisterResponse.m in Sources */,
+				03F55F811EA66087003DC554 /* ARDMessageResponse.m in Sources */,
 				B6F245341A1238440074C6E1 /* main.m in Sources */,
 				B6F2453D1A1238440074C6E1 /* DetailViewController.m in Sources */,
-				035944971EA4D61D003F681C /* ADCallKitManager.m in Sources */,
+				03F55F7F1EA66087003DC554 /* ADCallKitManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +531,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AEDB070D045ACF4E4DBB5E14 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				DEVELOPMENT_TEAM = MSDT4NYU7S;
@@ -581,7 +560,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A0D8E1992BC17774EE28603 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				DEVELOPMENT_TEAM = MSDT4NYU7S;
