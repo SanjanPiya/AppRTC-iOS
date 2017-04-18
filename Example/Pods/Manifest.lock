@@ -1,19 +1,19 @@
 PODS:
+  - mscrtc (1.5.0):
+    - SocketRocket
   - SocketRocket (0.5.1)
-  - WebRTC (0.0.1)
 
 DEPENDENCIES:
-  - SocketRocket
-  - WebRTC (from `../../WebRTC`)
+  - mscrtc (from `../`)
 
 EXTERNAL SOURCES:
-  WebRTC:
-    :path: "../../WebRTC"
+  mscrtc:
+    :path: "../"
 
 SPEC CHECKSUMS:
+  mscrtc: 3d961cb2d8300cd301a992e9969b3973193782d1
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
-  WebRTC: 8a2bacda663a7e26bb174d762e024a2edb3bdee7
 
-PODFILE CHECKSUM: 984b2a55c0e8902ae01127cbd421f839ba45e3f4
+PODFILE CHECKSUM: 54396f03a0fd53b0cfdc275b36f30d53a9d221c3
 
 COCOAPODS: 1.2.1
