@@ -18,6 +18,8 @@
 		0359449F1EA4D61D003F681C /* ARTCRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944921EA4D61D003F681C /* ARTCRoomViewController.m */; };
 		035944A01EA4D61D003F681C /* ARTCVideoChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944941EA4D61D003F681C /* ARTCVideoChatViewController.m */; };
 		035944A11EA4D61D003F681C /* RTCMediaStream+Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 035944961EA4D61D003F681C /* RTCMediaStream+Configuration.m */; };
+		03F55F601EA658A3003DC554 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F55F5F1EA658A3003DC554 /* WebRTC.framework */; };
+		03F55F611EA658A3003DC554 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03F55F5F1EA658A3003DC554 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FD2AFA1E71B4C700611005 /* PushKit.framework */; };
 		B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F991EEF435C6314A71EC2B54 /* Pods_Example.framework */; };
 		B6F245341A1238440074C6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245331A1238440074C6E1 /* main.m */; };
@@ -47,6 +49,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				03F55F611EA658A3003DC554 /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +79,7 @@
 		035944941EA4D61D003F681C /* ARTCVideoChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTCVideoChatViewController.m; sourceTree = "<group>"; };
 		035944951EA4D61D003F681C /* RTCMediaStream+Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RTCMediaStream+Configuration.h"; sourceTree = "<group>"; };
 		035944961EA4D61D003F681C /* RTCMediaStream+Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RTCMediaStream+Configuration.m"; sourceTree = "<group>"; };
+		03F55F5F1EA658A3003DC554 /* WebRTC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WebRTC.framework; sourceTree = "<group>"; };
 		03FD2AF91E71B19700611005 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		03FD2AFA1E71B4C700611005 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		4A0D8E1992BC17774EE28603 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			files = (
 				03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */,
 				B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */,
+				03F55F601EA658A3003DC554 /* WebRTC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +164,7 @@
 		B6F245251A1238440074C6E1 = {
 			isa = PBXGroup;
 			children = (
+				03F55F5F1EA658A3003DC554 /* WebRTC.framework */,
 				B6F245301A1238440074C6E1 /* Example */,
 				B6F2454D1A1238450074C6E1 /* ExampleTests */,
 				B6F2452F1A1238440074C6E1 /* Products */,
@@ -556,6 +562,7 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -564,8 +571,6 @@
 					"\"SocketRocket\"",
 					"-framework",
 					"\"WebRTC\"",
-					"-framework",
-					"\"mscrtc\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.lespace.msc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -587,6 +592,7 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_NO_COMMON_BLOCKS = NO;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -595,8 +601,6 @@
 					"\"SocketRocket\"",
 					"-framework",
 					"\"WebRTC\"",
-					"-framework",
-					"\"mscrtc\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.lespace.msc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
