@@ -26,7 +26,9 @@
  */
 
 #import <Foundation/Foundation.h>
-//#import <WebRTC/WebRTC.h>
+#import <WebRTC/RTCPeerConnectionFactory.h>
+#import <WebRTC/RTCEAGLVideoView.h>
+#import <WebRTC/RTCVideoTrack.h>
 #import "ARDSignalingMessage.h"
 
 typedef NS_ENUM(NSInteger, ARDAppClientState) {

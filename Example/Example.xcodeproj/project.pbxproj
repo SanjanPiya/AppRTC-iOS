@@ -100,7 +100,6 @@
 		B6F245251A1238440074C6E1 = {
 			isa = PBXGroup;
 			children = (
-				03FA94DC1EA66AD600F08B01 /* WebRTC.framework */,
 				B6F245301A1238440074C6E1 /* Example */,
 				B6F2454D1A1238450074C6E1 /* ExampleTests */,
 				B6F2452F1A1238440074C6E1 /* Products */,
@@ -165,6 +164,7 @@
 		CB2BA7718312676ACD407402 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03FA94DC1EA66AD600F08B01 /* WebRTC.framework */,
 				03FD2AFA1E71B4C700611005 /* PushKit.framework */,
 				F991EEF435C6314A71EC2B54 /* Pods_Example.framework */,
 			);

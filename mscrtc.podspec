@@ -22,14 +22,14 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/inspiraluna/AppRTC-iOS.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
 
   #s.dependency  'WebRTC'
   s.dependency  'SocketRocket'
-  s.source_files = 'Pod/Classes'
-  #s.vendored_frameworks = 'WebRTC.framework'
+  s.source_files = 'Pod/Classes/**/*'
+  s.vendored_frameworks = 'WebRTC.framework'
   #s.source_files = 'Pod/Classes/**/*', 'WebRTC.framework/Headers/*.h'
-  #s.public_header_files = 'WebRTC.framework/Headers/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h', 'WebRTC.framework/Headers/*.h'
   s.resource_bundles = {
     'mscrtc' => ['Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}']
   }
