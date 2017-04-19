@@ -30,9 +30,6 @@
 #import <WebRTC/RTCSessionDescription.h>
 
 
-
-
-
 typedef enum {
   kARDSignalingMessageTypeRegister,
   kARDSignalingMessageTypeRegisteredUsers,

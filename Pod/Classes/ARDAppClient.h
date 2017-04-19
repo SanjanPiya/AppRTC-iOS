@@ -26,10 +26,11 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <WebRTC/RTCPeerConnectionFactory.h>
-#import <WebRTC/RTCEAGLVideoView.h>
-#import <WebRTC/RTCVideoTrack.h>
 #import "ARDSignalingMessage.h"
+#import <WebRTC/RTCVideoTrack.h>
+#import <WebRTC/RTCPeerConnectionFactory.h>
+#import <WebRTC/RTCIceCandidate.h>
+#import <WebRTC/RTCEAGLVideoView.h>
 
 typedef NS_ENUM(NSInteger, ARDAppClientState) {
   // Disconnected from servers.
