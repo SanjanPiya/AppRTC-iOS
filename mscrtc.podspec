@@ -24,18 +24,14 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '9.0'
 
-  #s.dependency  'WebRTC'
+  s.dependency  'mscrtc-webrtc-api'
   s.dependency  'SocketRocket'
   s.source_files = 'Pod/Classes'
-  s.vendored_frameworks = 'WebRTC.framework'
+ # s.vendored_frameworks = 'WebRTC.framework'
   #s.source_files = 'Pod/Classes/**/*', 'WebRTC.framework/Headers/*.h'
-  s.public_header_files = 'Pod/Classes/**/*.h', 'WebRTC.framework/Headers/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h'
   s.resource_bundles = {
     'mscrtc' => ['Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}']
-  }
-  s.xcconfig            = {
-    'FRAMEWORK_SEARCH_PATHS' => '"${PODS_ROOT}/WebRTC.framework"',
-    'LD_RUNPATH_SEARCH_PATHS' => '@loader_path/../Frameworks'
   }
   s.requires_arc = true
 end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03FA94DD1EA66AD600F08B01 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03FA94DC1EA66AD600F08B01 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03FD2AFB1E71B4C700611005 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FD2AFA1E71B4C700611005 /* PushKit.framework */; };
 		B056495F41AAF543426ED697 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F991EEF435C6314A71EC2B54 /* Pods_Example.framework */; };
 		B6F245341A1238440074C6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F245331A1238440074C6E1 /* main.m */; };
@@ -37,7 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				03FA94DD1EA66AD600F08B01 /* WebRTC.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
