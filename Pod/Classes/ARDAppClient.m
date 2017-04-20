@@ -149,8 +149,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationDidBecomeActiveNotification" object:nil];
-    [self disconnect : false useCallback: false];
+
+  [self disconnect : false useCallback: false];
 }
 
 - (void)connect: (BOOL) reconnect : (NSString *) from{
@@ -176,7 +176,7 @@ NSString const *kARDSignalingCandidate = @"candidate";
 }
 
 - (void)disconnect{
-    [self disconnect:true useCallback:false];
+    [self disconnect:false useCallback:false];
     _channel = nil;
 }
 
@@ -295,6 +295,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
     
     //this works only when we are inside the app and not if we are outside the app
     NSDictionary* userInfo = @{@"callType": @"stop"};
+    
+    //see http://stackoverflow.com/questions/28993369/ios-how-can-objective-c-code-read-static-variables-in-swift 
     [[NSNotificationCenter defaultCenter] postNotificationName: @"soscompNOTIFICATION_RECEIVED_WEBRTC_NOTIFICATION"  object:self userInfo:userInfo];
 
     [UIApplication sharedApplication].idleTimerDisabled = NO;

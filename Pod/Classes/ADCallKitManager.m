@@ -133,7 +133,6 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
     switch (state) {
         case kARDAppClientStateRegistered:
         {
-            NSLog(@"Client registered...");
             //Start
             ADCallKitManagerCompletion startIncomingCallcompletion =^(NSError * _Nullable error) {
                 if (error) {
@@ -146,6 +145,27 @@ static const NSInteger ADDefaultMaximumCallGroups = 1;
             //Start CallKit
             client.callNSUUID = [[ADCallKitManager sharedInstance]
                                  reportIncomingCallWithContact:client.fromName completion:startIncomingCallcompletion];
+            break;
+        }
+        case kARDAppClientStateDisconnected:{
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UIEndOfCommunicationNotification" object:self];
+         /*   ADCallKitManagerCompletion endCallcompletion =^(NSError * _Nullable error) {
+                if (error) {
+                    NSLog(@"requestTransaction error %@", error);
+                }else{
+                    if (error) {
+                        NSLog(@"requestTransaction error %@", error);
+                        
+                    }else{
+                        [[ADCallKitManager sharedInstance] updateCall: client.callNSUUID state:ADCallStateEnded];
+                    }
+                }
+            };
+            
+            [[ADCallKitManager sharedInstance] endCall:client.callNSUUID completion:endCallcompletion];*/
+         
             break;
         }
     }

@@ -51,6 +51,12 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     
+    //Getting End of Communication
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(communicationEnded:)
+                                                 name:@"UIEndOfCommunicationNotification"
+                                               object:nil];
+    
 
     //RTCEAGLVideoViewDelegate provides notifications on video frame dimensions
     [self.remoteView setDelegate:self];
@@ -217,7 +223,10 @@
             break;
     }
 }
-
+- (void)communicationEnded:(NSNotification *)notification{
+     [self disconnect: false];
+     [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)orientationChanged:(NSNotification *)notification{
    
     [self videoView:self.client.localView didChangeVideoSize:self.localView.frame.size]; //self.localVideoSize (is not set anywhere ?!)
