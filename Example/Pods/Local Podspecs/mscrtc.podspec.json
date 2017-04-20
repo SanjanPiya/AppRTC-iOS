@@ -16,24 +16,19 @@
     "ios": "9.0"
   },
   "dependencies": {
+    "mscrtc-webrtc-api": [
+
+    ],
     "SocketRocket": [
 
     ]
   },
   "source_files": "Pod/Classes",
-  "vendored_frameworks": "WebRTC.framework",
-  "public_header_files": [
-    "Pod/Classes/**/*.h",
-    "WebRTC.framework/Headers/*.h"
-  ],
+  "public_header_files": "Pod/Classes/**/*.h",
   "resource_bundles": {
     "mscrtc": [
       "Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}"
     ]
-  },
-  "xcconfig": {
-    "FRAMEWORK_SEARCH_PATHS": "\"${PODS_ROOT}/WebRTC.framework\"",
-    "LD_RUNPATH_SEARCH_PATHS": "@loader_path/../Frameworks"
   },
   "requires_arc": true
 }

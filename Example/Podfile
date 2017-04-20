@@ -1,8 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 target 'Example'  do
-    #pod "SocketRocket"
-    #pod "WebRTC", :path => "../../WebRTC"
     pod "mscrtc", :path => "../"
+    pod "mscrtc-webrtc-api", :path => "../../mscrtc-webrtc-api/"
 end
 
