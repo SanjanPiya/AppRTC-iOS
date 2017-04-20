@@ -5,17 +5,26 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "591FAFDDBE7CBD7346EA21B67DBBD6673E6FDFF2" : 9223372036854775807,
-    "A8EFA075CD6320D3FC502988B36F602E0701ED9A" : 9223372036854775807
+    "329F12080182C4B22750B7E0D5E8B4AB7A804614" : 9223372036854775807,
+    "A8EFA075CD6320D3FC502988B36F602E0701ED9A" : 9223372036854775807,
+    "FEB58BB7E34D04F62B794398D2F7EFBDC3AC3A4D" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F7F74BBD-E9ED-470C-8564-12F6F2E83F2E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "591FAFDDBE7CBD7346EA21B67DBBD6673E6FDFF2" : "mscrtc-ios\/",
-    "A8EFA075CD6320D3FC502988B36F602E0701ED9A" : "..\/CallKit"
+    "329F12080182C4B22750B7E0D5E8B4AB7A804614" : "mscrtc-webrtc-api\/",
+    "A8EFA075CD6320D3FC502988B36F602E0701ED9A" : "..\/CallKit",
+    "FEB58BB7E34D04F62B794398D2F7EFBDC3AC3A4D" : "WebRTC\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Example",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/Example.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inspiraluna\/bitcode-webrtc-api.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "329F12080182C4B22750B7E0D5E8B4AB7A804614"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inspiraluna\/AppRTC-iOS.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
@@ -25,6 +34,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/appdios\/CallKit.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A8EFA075CD6320D3FC502988B36F602E0701ED9A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inspiraluna\/bitcode-webrtc-api.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FEB58BB7E34D04F62B794398D2F7EFBDC3AC3A4D"
     }
   ]
 }

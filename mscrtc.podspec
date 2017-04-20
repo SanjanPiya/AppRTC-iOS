@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "mscrtc"
-  s.version          = "1.4.0"
+  s.version          = "1.5.0"
   s.summary          = "MSCRTC - WebRTC functions for mscrtc-ios"
   s.description      = <<-DESC
                        This pod add WebRTC functions to an app. 
@@ -22,18 +22,16 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/inspiraluna/AppRTC-iOS.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.1'
-  s.requires_arc = true
-  #s.dependency  'thrift'
-  s.dependency  'WebRTC'
+  s.platform     = :ios, '9.0'
+
+  s.dependency  'mscrtc-webrtc-api'
   s.dependency  'SocketRocket'
   s.source_files = 'Pod/Classes'
-  s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'NO' }
+ # s.vendored_frameworks = 'WebRTC.framework'
+  #s.source_files = 'Pod/Classes/**/*', 'WebRTC.framework/Headers/*.h'
+  s.public_header_files = 'Pod/Classes/**/*.h'
   s.resource_bundles = {
     'mscrtc' => ['Pod/**/*.{png,jpeg,jpg,lproj,storyboard,xcassets}']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.requires_arc = true
 end

@@ -30,6 +30,7 @@
 #import "ARDRegisterResponse.h"
 #import "ARDUtilities.h"
 #import "SRWebSocket.h"
+#import <WebRTC/RTCIceServer.h>
 #include "ARDAppClient.h"
 
 // TODO(tkchin): move these to a configuration object.
