@@ -224,8 +224,16 @@
     }
 }
 - (void)communicationEnded:(NSNotification *)notification{
-     [self disconnect: false];
+    //[self.navigationController popToRootViewControllerAnimated:true];
+    //(self.navigationController?.popToRootViewControllerAnimated(true)
      [self dismissViewControllerAnimated:YES completion:nil];
+     [self disconnect: false];
+
+    //works but not perfectly - navigation controller confused.
+    //self.popoverPresentationController;
+   //  [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+   // [self popoverPresentationController];
+  
 }
 - (void)orientationChanged:(NSNotification *)notification{
    

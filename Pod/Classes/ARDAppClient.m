@@ -294,6 +294,8 @@ NSString const *kARDSignalingCandidate = @"candidate";
     [[ADCallKitManager sharedInstance] endCall:self.callNSUUID completion:stopCallcompletion];
     
     //this works only when we are inside the app and not if we are outside the app
+    //because of that i disabled it now there is a better solution:
+    //we are sending now: UIEndOfCommunicationNotification: from ADCallKitManager:didChangeState:kARDAppClientStateDisconnected
     NSDictionary* userInfo = @{@"callType": @"stop"};
     
     //see http://stackoverflow.com/questions/28993369/ios-how-can-objective-c-code-read-static-variables-in-swift 
